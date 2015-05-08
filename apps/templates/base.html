@@ -15,8 +15,7 @@
     <body>
     <div id="header">
         <p id="nav">
-            <a href="{{ site_url }}" title="Visual Editor for Controlled Vocabularies">home</a>
-            &mdash; <a href="{{ site_url }}{% url 'listings' %}">vocabularies</a>
+            <a href="{{ site_url }}{% url 'listings' %}" title="Visual Editor for Controlled Vocabularies">vocabularies</a>
             &mdash; <a href="{{ site_url }}{% url 'tag.views.about' %}" title="Contextual Tagging using Controlled Vocabularies">tagging</a>
             &mdash; <a href="{{ site_url }}{% url 'views.docs' %}" title="Visual Vocabulary Suite Documentation">docs</a>
             {% if user.is_staff %}
