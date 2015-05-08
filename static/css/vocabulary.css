@@ -9,8 +9,9 @@ h1.caption{padding:15px 30px;display:inline-block}
     color:#fff;border-bottom:1px solid #000}
 
 #infovis{position:relative;top:-30px;left:30px;height:600px;width:600px;margin:0;overflow:hidden;padding:0 0 0 100px}
-#vocabulary-list{padding:20px 20px 30px 20px;-moz-column-width:200px;overflow:auto;-moz-column-gap:1em;-webkit-column-width:200px;-webkit-column-gap:1em}
-#vocabulary-list li{list-style:none;padding:5px 15px;-webkit-column-break-inside: avoid;}
+#vocabulary-list{padding:0 20px 30px 20px;
+    -moz-column-width:200px;overflow:auto;-moz-column-gap:1em;-webkit-column-width:200px;-webkit-column-gap:1em}
+#vocabulary-list li{list-style:none;font-size:16px;padding:5px 15px;-webkit-column-break-inside: avoid;}
 #vocabulary-list a{color:#fff;text-shadow:#000 1px 1px 1px}
 #vocabulary-list a:hover{text-decoration:none}
 
