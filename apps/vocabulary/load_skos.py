@@ -13,7 +13,7 @@ from django.contrib import messages
 from vocabulary.models import *
 import settings
 
-logfile = settings.MEDIA_ROOT + 'load_skos.log'
+logfile = settings.PROJECT_ROOT + 'load_skos.log'
 logging.basicConfig(filename=logfile, level=logging.DEBUG)
 
 VOCAB_TAG_MAP = {
