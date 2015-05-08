@@ -163,7 +163,7 @@ def concept_new(request, vocab_node_id, node_id=0):
     if vocab_node_id:
         parent = vocab
         add_parent = False
-    else:
+    if node_id:
         parent = get_object_or_404(Concept, node_id=node_id, vocabulary=vocab)
         add_parent = True
     if request.method == 'POST':
