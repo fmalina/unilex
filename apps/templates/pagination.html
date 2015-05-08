@@ -1,5 +1,5 @@
 {% if is_paginated %}
-<div class="pagination">
+<div class="paginator">
 <div>
     {% if page_obj.has_previous %}<a rel="prev" href="{{ path }}?page={{ page_obj.previous_page_number }}{{ getvars }}">‹&nbsp;previous</a>{% endif %}
     {% if mobile %}

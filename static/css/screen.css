@@ -28,11 +28,11 @@ form input{width:350px;border:2px solid #111;padding:5px;font-size:20px}
 
 .details{font-size:10px;color:#666;float:right;padding:2px 0 0 10px}
 
-div.pagination{padding:3px;margin:3px;text-align:center}
-div.pagination a{padding:2px 5px 2px 5px;margin-right:2px;border:1px solid #ddd;text-decoration:none;color:#88AF3F}
-div.pagination a:hover, div.pagination a:active{border:1px solid #85BD1E;color:#638425;background-color:#F1FFD6}
-div.pagination span.current{padding:2px 5px 2px 5px;margin-right:2px;border:1px solid #B2E05D;font-weight:bold;background-color:#B2E05D;color:#FFF}
-div.pagination span.disabled{padding:2px 5px 2px 5px;margin-right:2px;border:1px solid #f3f3f3;color:#ccc}
+div.paginator{padding:3px;margin:3px;text-align:center}
+div.paginator a{padding:2px 5px 2px 5px;margin-right:2px;border:1px solid #ddd;text-decoration:none;color:#88AF3F}
+div.paginator a:hover, div.paginator a:active{border:1px solid #85BD1E;color:#638425;background-color:#F1FFD6}
+div.paginator span.current{padding:2px 5px 2px 5px;margin-right:2px;border:1px solid #B2E05D;font-weight:bold;background-color:#B2E05D;color:#FFF}
+div.paginator span.disabled{padding:2px 5px 2px 5px;margin-right:2px;border:1px solid #f3f3f3;color:#ccc}
 
 button,
 input[type="submit"],

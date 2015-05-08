@@ -14,6 +14,7 @@ from vocabulary.export_skos import export_skos
 from vocabulary.export_csv import export_csv
 from vocabulary.export_json import vocab_to_dict
 from utils import render, getCamelCase, ajax_login_required
+from paging import simple_paging
 from datetime import datetime
 
 def listings(request, *args, **kwargs):
@@ -36,13 +37,14 @@ def autocomplete(request):
 
 def search(request):
     q = request.GET.get('q','')
-    concepts = Concept.objects.filter(
+    ls = Concept.objects.filter(
         Q(name__search=q) |
         Q(description__search=q) |
         Q(node_id__istartswith=q)
     ).order_by('-count')
+    ls, count, paging = simple_paging(request, ls, 10)
     return render('vocabulary/search.html', {
-        'concepts': concepts,
+        'ls': ls,
         'q': q,
         'title': '%s - Search results' % q
         }, request)
