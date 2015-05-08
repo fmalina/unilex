@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" /> 
+        <title>{%block title%}{{ title }}{% endblock %}</title>
+        <link rel="stylesheet" href="{{ site_url }}/css/screen.css?{{ version }}" />
+        <link rel="stylesheet" href="{{ site_url }}/css/vocabulary.css?{{ version }}">
+        <link rel="stylesheet" href="{{ site_url }}/css/print.css?{{ version }}" media="print" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+        {% block extrastyles %}{% endblock %}
+        {% block extrascripts %}{% endblock %}
+        {% block extrascripts2 %}{% endblock %}
+    </head>
+    <body>
+    <div id="header">
+        <p id="nav">
+            <a href="{{ site_url }}{% url 'listings' %}" title="Visual Editor for Controlled Vocabularies">vocabularies</a>
+            &mdash; <a href="{{ site_url }}{% url 'tag.views.about' %}" title="Contextual Tagging using Controlled Vocabularies">tagging</a>
+            &mdash; <a href="{{ site_url }}{% url 'views.docs' %}" title="Visual Vocabulary Suite Documentation">docs</a>
+            {% if user.is_staff %}
+            &mdash; <a href="{{ site_url }}/admin/">admin</a>{% endif %}
+            &mdash;
+            {% if user.is_anonymous %}
+                <a rel="nofollow" id="loginlink" href="{% url 'auth_login' %}{% if request.path != '/accounts/logout/' %}?next={{request.path}}{% endif %}">login</a>
+            / <a href="{% url 'registration_register' %}">register</a>
+            {% else %}
+                <a rel="nofollow" href="{% url 'auth_logout' %}">logout</a>
+            {% endif %}
+        </p>
+        {% block search %}
+            {% include 'vocabulary/search-input.html' %}
+        {% endblock %}
+    </div>
+    {% include 'messages.html' %}
+    <div id="content">
+        {% block headline %}{% endblock %}
+        {% block content_wrap %}
+            {% block content %}{% endblock %}
+        {% endblock %}
+        <div class="clear"></div>
+    </div>
+    {% block sidebar %}{% endblock %}
+    <div id="footer">
+        {% include 'feedback/form.html' %}
+        <p>&copy; Copyright Unilexicon&trade; {% now "Y" %}. All rights reserved. {{ debug }}</p>
+    </div>
+    {% if not debug %}
+        {% include 'analytics.html' %}
+    {% endif %}
+    </body>
+</html>

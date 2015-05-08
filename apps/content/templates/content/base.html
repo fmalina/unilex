@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en-gb">
+    <head>
+        <title>{% block title %}Site preview{% endblock %}</title>
+        <link type="text/css" rel="stylesheet" href="{{ site_url }}/css/screen.css?{{ version }}" />
+        <link type="text/css" rel="stylesheet" href="{{ site_url }}/css/content.css?{{ version }}" />
+        <link type="text/css" rel="stylesheet" href="{{ site_url }}/css/megadropdown.css?{{ version }}" />
+        <link type="text/css" rel="stylesheet" href="{{ site_url }}/css/print.css?{{ version }}" media="print" />
+        {% block extrastyles %}{% endblock %}
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+        <script type="text/javascript" src="{{ site_url }}/js/feedback.js?{{ version }}"></script>
+        <script type="text/javascript" src="{{ site_url }}/js/hover-intent.js?{{ version }}"></script>
+        <script type="text/javascript" src="{{ site_url }}/js/megadropdown.js?{{ version }}"></script>
+        {% block extrascripts %}{% endblock %}
+    </head>
+    <body>
+    <div id="container">
+    <div id="header">
+        <a href="./" id="logo">Site preview</a>
+		
+        <div class="clear"></div>
+        <ul id="mega">
+		{% include "vocabulary/ul-3levels.html" %}
+		</ul>
+        <div class="clear"></div>
+    </div><!--/header-->
+    
+    <div id="content">
+        {% block content %}
+        {% endblock %}
+        <div class="clear"></div>
+    </div><!--/content-->
+    <div id="footer">
+        {% include 'feedback/form.html' %}
+    </div><!--/footer-->
+    </div><!--/container-->
+    </body>
+</html>

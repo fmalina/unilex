@@ -1,0 +1,10 @@
+<html>
+<head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+    <script src="tag.js"></script>
+    <script>
+    // Listen for any changes to the URL of any tab.
+    chrome.tabs.onUpdated.addListener(tag.isAllowed);
+    </script>
+</head>
+</html>

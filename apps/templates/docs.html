@@ -1,0 +1,271 @@
+{% extends "base.html" %}
+{% block title %}Visual Vocabulary Suite Documentation - Controlled Vocabulary Editor &amp; Tagging Extension{% endblock %}
+{% block extrastyles %}
+<style type="text/css">
+img{border:1px solid #ddd;background:#eee;padding:2px;width:100%}
+img.auto{width:auto}
+#content-in{max-width:630px}
+.figure{margin:20px auto;text-align:center}
+.external{background-image:url(/img/icon-external-black.png);background-repeat:no-repeat;background-position:100% 50%;padding-right:12px}
+#intro h1 small{font:13px arial, sans-serif;display:block}
+#content-in{background:#fff;color:#333}
+</style>
+{% endblock %}
+{% block content %}
+<div id="intro">
+  <h1>Visual vocabulary suite <small>A vocabulary editor and content tagging extension</small></h1>
+</div>
+<div id="content-in">
+
+  <h2>About this document</h2>
+
+  <p>This document provides both a general system guide and a
+  comprehensive technical description of two software tools designed to allow the
+  development of controlled vocabularies and their use in tagging content.</p>
+
+  <p>The document is aimed at several audiences. The general
+  overview guide is suitable for management and other general staff who wish to assess
+  the potential for creating and managing controlled vocabularies and for using
+  vocabulary-based categorisation in content-focused websites. The more technical
+  sections are aimed at taxonomists, information architects and developers who want to
+  understand the implications of using the tools within their
+  environments.</p>
+
+  <h2>Background to the development of the suite</h2>
+
+  <p>These tools were developed to address two
+  needs:</p>
+
+  <ol>
+    <li>
+      <p>A general purpose, usable, web-based system allowing the
+      development of <dfn title="Simple Knowledge Organisation System">skos</dfn>-based controlled vocabularies</p>
+    </li>
+
+    <li>
+      <p>An extension tool allowing editors in the Drupal content
+      management system to easily tag content against a collection of
+      vocabularies</p>
+    </li>
+  </ol>
+  
+  <h2>System description of the vocabulary editor</h2>
+
+  <p>The vocabulary editor is a web-based editor that allows the
+  user to construct a controlled vocabulary as a visually-attractive hierarchical tree
+  structure. It also provides a repository with sophisticated tools for management of the
+  vocabularies, including the capability to import existing structures from Excel (.xls)
+  or <dfn title="Simple Knowledge Organisation System">SKOS</dfn> (.xml) files and to export SKOS. A quick search is also provided, allowing
+  quick identification of concepts from vocabularies and allowing the user to locate the
+  concepts visually within the vocabulary hierarchy.</p>
+
+  <h2>Features in more depth</h2>
+
+  <p>The visual editor is accessed by a suitable URL: at present
+  this is <a href="http://unilexicon.com/">unilexicon.com</a> . This leads to the home
+  page for the editor (see Figure 1).</p>
+
+  <p class="figure"><img src="/docs/m5449b4b0.png" alt="" /><br />
+  <i>Figure 1. The visual vocabulary editor home page</i></p>
+
+  <p>This shows a list of all of the vocabularies currently loaded
+  into the repository. It also allows the user to create or upload another vocabulary or
+  to use the search box to search concepts.</p>
+
+  <h3>Viewing and editing vocabularies</h3>
+
+  <p>To view or edit a vocabulary, the user clicks on a vocabulary
+  name. This will give a new display showing that vocabulary with a subset of its
+  hierarchical structure. For example, here is the Educational topic
+  vocabulary:</p>
+
+  <p class="figure"><img src="/docs/7d0cc2ea.png" alt="" /><br />
+  <i>Figure 2. The visual vocabulary view of the Educational topic vocabulary</i></p>
+
+  <p>The Vocabulary title is at the centre of the view, with a set
+  of branches and nodes representing the child and grand-child concepts. In the interests
+  of clarity only a selection of descendant concepts are shown, and only the first two
+  levels of these are labelled. Selecting a node will cause that node to move to the
+  centre and show its child concepts:</p>
+
+  <p class="figure"><img src="/docs/397c0195.png" alt="" /><br />
+  <i>Figure 3. Selecting a child term from the Educational topic vocabulary</i></p>
+
+  <p>In Figure 3, the user has selected Teaching and learning. This
+  concept is now centered in the display and its child, grand-child (and so on) concepts
+  are shown. The route back to its parent is also shown, together with the other child
+  concepts of the parent. This overall tree structure is called a <b>hypertree</b>. Note
+  also that the hierarchical structure is shown in the panel to the right. The user can
+  choose concepts from here to focus upon as an alternative to the tree
+  structure.</p>
+
+  <p>It is worth noting that each vocabulary and each node has its
+  own permalink. So it is possible for a user to bookmark, say, Educational topic &gt;
+  Teaching and learning &gt; Teaching as
+  http://unilexicon.com/vocabularies/26/#node10584</p>
+
+  <p>The user can also log in to make changes to the
+  vocabulary.</p>
+
+  <p class="figure"><img src="/docs/mbf1299f.png" alt="" class="auto" /><br />
+  <i>Figure 4. The login / register screen</i></p>
+
+  <p>Once logged in, the view changes to show additional information
+  about the current concept. Figure 5 shows the Teaching concept (Educational topic &gt;
+  Teaching and learning &gt; Teaching):</p>
+
+  <p class="figure"><img src="/docs/5e090f53.png" alt="" /><br />
+  <i>Figure 5. Concept editing display once logged in</i></p>
+
+  <p>This shows a set of additional fields allowing the
+  authenticated user to add a description and to add relationships (e.g. RT, UF and USE
+  relationships) with terms elsewhere in this vocabulary and in other
+  vocabularies.</p>
+
+  <p>In the case of navigation vocabularies, the display and editing
+  capabilities are slightly different. Navigation vocabularies can have queries attached
+  to navigation points. These are designed to query the Drupal database to retrieve
+  content that matches the query. Here, for example, is the main DoC Navigation
+  vocabulary, with the concept Navigation &gt; Secondary &gt; Leadership and governance
+  selected:</p>
+
+  <p class="figure"><img src="/docs/m3976a017.png" alt="" /><br>
+  <i>Figure 6. Navigation concept showing existing query</i></p>
+
+  <p>The query in this case is:</p>
+
+  <pre><code>ns.recordtag="Edu: School
+        phase^cb5c42e42cd473f29ab9d03540ced1a4" and ns.recordtag="Edu:
+        Educational purpose^9d17742a9597b8bae5bdddb95a0661c5")</code></pre>
+
+  <p>This means show all content which has been tagged with
+  "Secondary" from the Phase vocabulary and "Leadership" from the Educational topic
+  vocabulary. The user can elaborate the query by choosing the "Add another" link and
+  choosing the appropriate linking language (AND, OR or NOT) from the Query pop-up. For
+  example, if the user wanted to add a role of Headteacher to this query, she would click
+  on the "Add Another" link then start typing "headteacher" in the field that appears. An
+  auto-complete pop-up list immediately appears and filters as the user types, showing
+  the options (see Figure 7).</p>
+
+  <p class="figure"><img src="/docs/40aa3b30.png" alt="" /></p>
+
+  <p>Choosing an item from the list adds it to the panel (see Figure 8).</p>
+
+  <p class="figure"><img src="/docs/m37e837d2.png" alt="" /><br />
+  <i>Figure 8. Adding a query concept</i></p>
+
+  <p>The display shows the concept name, its concept id and its
+  place in the vocabulary hierarchy. The user can remove the query concept (
+  <img src="/docs/26ab1731.png" width="21" height="21" class="auto" /> ), open the concept in its
+  original vocabulary ( <img src="/docs/m17b9c05f.png" width="21" height="21" class="auto" /> ) or add it to the query window (
+  <img src="/docs/m7db65fa.png" width="21" height="21" class="auto" /> ). When adding a concept
+  to a query the concept will be pasted into the query window at the current cursor
+  location (if the cursor is in the window) or at the end of the query if the window is
+  not currently selected. The user can use the query pop-up to build complex queries. See
+  Figure 9.</p>
+
+  <p class="figure"><img src="/docs/fa29ebd.png" alt="" /><br>
+  <i>Figure 9. Building a query</i></p>
+
+  <p>The user can test the results of a query by clicking the "Try
+  now" link. This sends the query to the Drupal CMS and retrieves a list of content items
+  that fit the query with links back to the original content.</p>
+
+  <p>This combination of a query-building interface and a testing
+  tool allows the user quickly to build relevant queries for navigation
+  points.</p>
+
+  <p>The Order field allows the display order of concepts from a
+  navigation point to be specified. A display order of 1 will bring that concept to the
+  top of the display list, with subsequent numbers pushing concepts further down the
+  list.</p>
+
+  <h2>System description of the content tagging plugin</h2>
+
+  <p>Having a repository of well-designed controlled vocabularies is
+  important, but equally important is providing a content management system with an
+  effective mechanism for making use of those vocabularies.</p>
+
+  <p>The web-based tagging editor is designed as a small efficient
+  extension to Chrome web browser. The sequence of screenshots below outlines the
+  process <i>(note: this is in active development and the
+  appearance will change substantially, but this is a reasonable guide to the way the
+  tool will work).</i></p>
+
+  <p class="figure"><img src="/docs/51f0564d.png" alt="" class="auto" /><br />
+  <i>Figure 10. New tagging editor interface (mock-up)</i></p>
+
+  <p class="figure"><img src="/docs/m51583c6f.png" alt="" /><br />
+  <i>Figure 11. Finding and adding tags to content</i></p>
+
+  <h2>Technical components of the visual vocabulary editor</h2>
+
+  <h3>Hosting and system requirements</h3>
+
+  <p>Ubuntu Linux server, 256MB memory. Debian also works. All code is generally platform independent.</p>
+
+  <h3>Installation</h3>
+  <p>To instal the dependencies on a fresh Ubuntu server:</p>
+  <p><code>sudo apt-get install apache2 libapache2-mod-wsgi mysql-server python-django python-mysqldb python-xlrd python-docutils postfix nginx</code></p>
+  <p>Server configuration files are included in the <kbd>/archive</kbd> folder</p>
+  <p>Our server runs on <a class="external" href="https://manage.slicehost.com/customers/new?referrer=2d099c40216759a9c4cdb80f0d29f3ee" title="referral link">SliceHost</a>.</p>
+
+  <h3>Technical description</h3>
+  <p>Web based SKOS editor.</p>
+
+  <h3>List of code modules</h3>
+  <ul>
+  <li><p><a class="external" href="http://www.djangoproject.com/">The Django framework</a></p></li>
+  <li><p><a class="external" href="http://codespeak.net/lxml/">LXML</a> for parsing incoming SRU and SKOS RDF import. LXML uses
+  <a class="external" href="http://xmlsoft.org/">libxml</a> and
+  <a class="external" href="http://www.w3.org/TR/xpath/">XPATH</a>, more about
+  <a class="external" href="http://stackoverflow.com/questions/3785629">parsing SRU With LXML &amp; XPATH</a></p></li>
+
+  <li><p><a class="external" href="http://pypi.python.org/pypi/xlrd/">XLRD library</a> by John Machin, used by Excel import. <a class="external" href="http://stackoverflow.com/questions/3290620">More information about the import algorithm</a></p></li>
+
+  <li><p><a class="external" href="http://jquery.com/">jQuery</a> and jQuery based:</p>
+    <ul>
+      <li><a class="external" href="http://code.google.com/p/django-dynamic-formset/" title="A jQuery plugin that allows you dynamically add new forms to a rendered django formset">Django dynamic formset</a></li>
+      <li><a class="external" href="https://github.com/agarzola/jQuery-Autocomplete-Plugin-1.1.1">Autocomplete</a></li>
+      <li>Icons from <a class="external" href="http://ui.jquery.com/">jQuery UI project</a></li>
+    </ul>
+  </li>
+  <li><p><a class="external" href="http://thejit.org/">JavaScript InfoVis Toolkit</a> to create interactive data visualizations</p></li>
+  <li><p><a class="external" href="http://www.ubuntu.com/server">Ubuntu server</a></p></li>
+  <li><p><a class="external" href="http://wiki.nginx.org/Main">Nginx</a> front-end webserver <a class="external" href="http://stackoverflow.com/questions/869001">our configuration</a></p></li>
+  <li><p><a class="external" href="http://httpd.apache.org/">Apache2</a> with <a class="external" href="http://code.google.com/p/modwsgi/">Mod_wsgi</a>, fast_cgi is also fine, more in <a class="external" href="http://docs.djangoproject.com/en/dev/howto/deployment/">Django deployment docs</a></p></li>
+  <li><p><a class="external" href="http://www.mysql.com/">MySQL database</a>, any
+  <a class="external" href="http://docs.djangoproject.com/en/dev/ref/databases/">database supported by Django <dfn title="object relational mapper">ORM</dfn></a> will work, including PostgreSQL &amp; SQLite</p></li>
+  </ul>
+
+  <h2>Technical components of the content tagging plugin</h2>
+  <p><a class="external" href="http://code.google.com/chrome/extensions">Chrome extension</a> is written in JavaScript ( plain native code,
+  <a class="external" href="http://code.google.com/chrome/extensions/options.html">DOM localStorage</a> ), CSS and HTML5. Tagging interfaces are loaded for each content node using AJAX. Tagging interface iteself uses jQuery.
+  Frontend uses AJAX to talk to backend WSGI application, which communicates to underlying CMS. SRU is used to retrieve data from the CMS. SWORD is used to post amended data back.</p>
+
+  <h3>System requirements</h3>
+  <p><a class="external" href="http://www.google.com/chrome">Chrome</a> or
+  <a class="external" href="http://www.chromium.org/Home">Chromium</a> web browser.</p>
+
+  
+  <h3>Technical description</h3>
+  <p>Tagging plug-in is implemented as a browser extension for Google Chrome and Chromium browsers.</p>
+
+  <h3>Drupal CMS integration dependencies</h3>
+  <ul>
+      <li><p><a class="external" href="http://drupal.org/project/cql" title="Contextual Query Language">CQL</a>, a formal language for representing queries to information retrieval systems such as search engines,
+          bibliographic catalogs and museum collection information. Based on the semantics of Z39.50,
+          its design objective is that queries be human readable and writable, and that the language
+          be intuitive while maintaining the expressiveness of more complex query languages.
+          It is being developed and maintained by the Z39.50 Maintenance Agency,
+          part of the Library of Congress.</p></li>
+      <li><p><a class="external" href="http://drupal.org/project/sru" title="Search/Retrieval via URL">SRU</a>, a standard XML-focused search protocol for Internet search queries,
+          utilizing CQL (Contextual Query Language),
+          a standard syntax for representing queries.</p></li>
+      <li><p><a class="external" href="http://drupal.org/project/sword" title="Simple Web service Offering Repository Deposit">SWORD</a>, a lightweight protocol for depositing content from one location to another.
+          It stands for Simple Web-service Offering Repository Deposit and is a profile of the Atom
+          Publishing Protocol (known as APP or ATOMPUB).</p></li>
+      <li><p><a class="external" href="http://drupal.org/node/560326" title="W3C standard SKOS RDF export/import">SKOS RDF export/import</a></p></li>
+  </ul>
+</div>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block extrastyles %}
+        <link type="text/css" rel="stylesheet" href="{{ site_url }}/css/vocabulary.css?{{ version }}" />
+        <link type="text/css" rel="stylesheet" href="{{ site_url }}/css/set.css?{{ version }}" />
+{% endblock %}
+{% block extrascripts %}
+    <!--[if IE]><script type="text/javascript" src="{{ site_url }}/js/Jit/Extras/excanvas.js?{{ version }}"></script><![endif]-->
+    <script type="text/javascript" src="{{ site_url }}/js/Jit/jit-yc.js?{{ version }}"></script>
+    {% if user.is_authenticated %}
+    <script type="text/javascript" src="{{ site_url }}/js/jquery.formset.js?{{ version }}"></script>
+    {% endif %}
+{% endblock %}

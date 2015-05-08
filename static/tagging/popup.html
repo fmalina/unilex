@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" /> 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+    <script src="md5.js"></script>
+    <script src="tag.js"></script>
+    <script>
+        $(function(){
+            tag.init();
+            setInterval('tag.saveCurrent()', 5000);
+        });
+    </script>
+    <style>
+    body{min-width:420px;padding:10px;overflow-x:hidden;font-family:helvetica,arial,sans-serif}
+    ul,li{list-style:none;margin:0;padding:0}
+    h2{font-size:13px;font-weight:bold}
+    input, textarea{width:100%}
+    label{padding-top:10px}
+    a{color:#14a}
+    </style>
+  </head>
+  <body></body>
+</html>

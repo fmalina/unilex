@@ -1,0 +1,48 @@
+{% include 'vocabulary/panel.html' %}
+<script type="text/javascript" src="{{ site_url }}/js/vocab_set.js?{{ version }}"></script>
+
+{% if user.is_authenticated %}
+<form method="post" action="{{ request.path }}">
+    {{ form.errors }}
+    
+    <p>{{ form.name.label_tag }} {{ form.name }}</p>
+    <p>{{ form.description.label_tag }} {{ form.description }}</p>
+    
+    <p><label>Parents</label></p>
+    {% with parent_forms_and_set as forms_and_set %}
+    {% with parent_formset as formset %}
+        {% include "vocabulary/concept-set-formset.html" %}
+    {% endwith %}
+    {% endwith %}
+
+    <p><label>{% if not concept.vocabulary.queries %}Related{% else %}Query{% endif %} concepts</label></p>
+    <div{% if concept.vocabulary.queries %} id="queries"{% endif %}>
+        {% include "vocabulary/concept-set-formset.html" %}
+    </div>
+
+    <p>
+        {{ formset.management_form }}
+        {{ parent_formset.management_form }}
+        <button type="submit"><b>&#10003;</b> Save</button>
+    </p>
+
+    {% if concept.vocabulary.queries %}
+        <script type="text/javascript" src="{{ site_url }}/js/vocab_queries.js?{{ version }}"></script>
+        <p id="query"><label for="operators">{{ form.query.label }}
+                <select id="operators">
+                    <option value="and">and</option>
+                    <option value="or">or</option>
+                    <option value="not">not</option>
+                    <option value="(  )">(  )</option>
+                </select>
+                <span class="link" id="add_operator">+</span>
+            </label>
+        {{ form.query }}</p>
+        
+        <p><label><span class="link test try">test query</span></label></p>
+        <div id="results"></div>
+        <p>{{ form.order.label_tag }} {{ form.order }}</p>
+        <p>{{ form.active.label_tag }} {{ form.active }}</p>
+    {% endif %}
+</form>
+{% endif %}

@@ -1,0 +1,10 @@
+{% include 'messages.html' %}
+<ul>
+{% for link in links %}
+    {% if forloop.first %}<li>Top 10 out of <b>{{ link.no }}</b> result{{ link.no|pluralize }}:</li>{% endif %}
+    <li><p><b><a class="external" target="_blank" href="{{ sru_server_url }}node/{{ link.n_id }}">{{ link.title }}</a></b><br>
+    {% if link.desc %}{{ link.desc|truncatewords:18 }}{% endif %}</p></li>
+{% empty %}
+    <li>no results</li>
+{% endfor %}
+</ul>

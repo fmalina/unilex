@@ -1,0 +1,5 @@
+# sudo pip3 install -r requirements.txt --upgrade
+django # web framework
+gunicorn # backend server
+mysqlclient # database bindings, any Django supported DB
+git+git://github.com/macropin/django-registration.git

@@ -1,0 +1,10 @@
+GET /sru?operation=searchRetrieve&query=(id="20354")&auth=648f7...d
+
+POST /sword/repository?auth=648f7...d HTTP/1.1\r\n
+Content-Disposition:  filename=summary.xml\r\n
+X-No-Op: false\r\n
+X-Verbose: false\r\n
+Host: test.server.edu\r\n
+Content-Length: 4147\r\n
+\r\n
+Data (4147 bytes)

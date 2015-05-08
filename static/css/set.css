@@ -1,0 +1,41 @@
+.set{position:relative}
+.set .add{display:none}
+#queries .set .add{display:inline-block}
+.set li{position:relative !important;padding:5px 0 !important}
+.set a{outline:0}
+
+label{text-transform:uppercase;color:#888;display:block;font-size:11px}
+.ac_results li small,
+.set p small{color:#aaa;padding-left:5px}
+.set p small{opacity:0}
+.set li:hover p small{opacity:.7}
+#queries .set li p small,
+.set p small:hover{opacity:1}
+.set div p{margin-top:0}
+.set div,
+.set small,
+.set .autocomplete{width:380px !important}
+
+.form,
+.autocomplete,
+.add-row{display:block}
+.delete-row{float:right;text-decoration:none}
+.delete-row:hover{color:#c00}
+
+.add{text-decoration:none;width:13px;height:9px;padding-right:3px;background:url(/img/icon-add.png) no-repeat}
+.go{text-decoration:none;width:12px;height:8px;padding-right:3px;display:inline-block}
+.external,
+.go{background-image:url(../img/icon-external.png);background-repeat:no-repeat}
+.external{background-position:100% 50%;padding-right:12px}
+
+.ac_results small{font-size:11px !important}
+#tagging{width:400px;font-size:12px}
+#tagging .ac_input{background:#fff;border:2px solid #e3e3e3;border-left:2px solid #e9e9e9;border-bottom:2px solid #f0f0f0}
+#tagging .ac_input:hover,
+#tagging .ac_input:focus{border:2px solid #ace}
+#tagging small{opacity:0}
+#tagging li:hover small{opacity:.5}
+#tagging small:hover{opacity:1}
+#tagging .go{background:url(../img/icon-external-black.png) no-repeat}
+#tagging .set small{position:absolute;left:-5px;text-align:left;bottom:2px}
+#tagging .set li{border-top:1px solid #ddd;padding:5px 15px 5px 15px}

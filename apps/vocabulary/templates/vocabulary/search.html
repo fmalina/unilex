@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load pagination_tags %}
+{% load search_tags %}
+{% block content %}
+    <div id="content-in">
+    {% if concepts %}<h2>{{ concepts.count }} result{{ concepts.count|pluralize }} for "{{ q }}"</h2>{% endif %}
+    <ul id="sr">
+    {% autopaginate concepts 10 %}
+    {% for concept in concepts %}
+        <li>
+        <h2><a href="{{ concept.get_absolute_url }}">{{ concept.name|highlight:q }}</a>
+            {% if user.is_authenticated %}
+                <small>{{ concept.node_id|highlight:q }}{% if concept.count %}, {{ concept.count }} use{{ concept.count|pluralize }}{% endif %}</small>
+            {% endif %}</h2>
+        <p>{% if concept.description %}{% searchexcerpt q 5 %}{{ concept.description|highlight:q }}{% endsearchexcerpt %}<br>{% endif %}
+            <small>{{ concept.backwards_path|highlight:q }}</small></p>
+        </li>
+    {% empty %}
+        <h2>No results</h2>
+    {% endfor %}
+    </ul>
+    {% paginate %}
+    </div>
+{% endblock %}

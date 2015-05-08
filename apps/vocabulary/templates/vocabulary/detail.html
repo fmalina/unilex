@@ -1,0 +1,29 @@
+{% extends 'vocabulary/base.html' %}
+{% block title %}{{vocabulary.title}}{% endblock %}
+
+{% block extrascripts2 %}
+    <script type="text/javascript" src="{{ site_url }}/js/jquery.cookie.js?{{ version }}"></script>
+    {% if count < 1000 %}
+    <script type="text/javascript" src="{{ site_url }}/js/vocab_browse.js?{{ version }}"></script>
+    {% endif %}
+{% endblock %}
+{% block content %}
+<h1 class="caption">{{ vocabulary.title }} <small>(
+    {% if count == 0 %}
+        It's empty here. Get to work.
+    {% else %}
+        {{ count }} concept{{ count|pluralize }}
+    {% endif %})</small></h1>
+
+<div id="inner-details"></div>
+<div id="infovis">
+{% if count > 999 %}
+    <p style="font-size:16px;padding:40px 0">
+    This vocabulary is too big<br>
+    to be displayed here at present.<br>
+    <small>Cap is set to 1k concepts.</small>
+    </p>
+{% endif %}
+</div> 
+<div id="log"></div>
+{% endblock %}

@@ -1,0 +1,26 @@
+<script type="text/javascript">
+$(function(){
+    conceptFormset('{{ site_url }}', '{{ formset.prefix }}');
+});
+</script>
+
+<ul class="set" id="{{ formset.prefix }}">
+    {% for form, set in forms_and_set %}
+    <li id="{{ form.prefix }}-row">
+    {% with set as concept %}
+        {% include "vocabulary/concept-set.html" %}
+    {% endwith %}
+    {% if set == 'addfirst' %}
+        <div class="show">
+        <div></div>
+        {{ form.to_concept }}
+        </div>
+    {% else %}
+        <div></div>
+        {{ form.to_concept }}
+    {% endif %}
+    {% for fld in form.hidden_fields %}{{ fld }}{% endfor %}
+    {% if form.instance.pk %}{{ form.DELETE }}{% endif %}
+    </li>
+    {% endfor %}
+</ul>
