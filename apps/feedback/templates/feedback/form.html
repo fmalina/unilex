@@ -1,0 +1,16 @@
+<script type="text/javascript" src="{{ site_url }}/js/feedback.js?{{ version }}"></script>
+<form id="feedback" method="post" action="{{ site_url }}#">
+	<fieldset>
+	<h3>How can we make this website better? <span id="feedback_status"></span></h3>
+	<textarea name="feedback_message" id="feedback_message" class="placeholder" rows="10" cols="50"
+        placeholder="Send us your suggestions, love letters. Tell us about issues..."></textarea>
+	<div id="feedback_submit">
+		<button type="submit">Send feedback...</button>
+		
+		{% if user.is_anonymous %}<div id="feedback_optional">
+			<label for="feedback_email">Your email (optional)</label>
+			<input type="text" name="feedback_email" id="feedback_email" />
+		</div>{% endif %}
+	</div>
+	</fieldset>
+</form>

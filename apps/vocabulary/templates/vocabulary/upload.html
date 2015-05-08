@@ -1,0 +1,62 @@
+{% extends 'vocabulary/base.html' %}
+
+{% block content %}
+<form action="{{ request.path }}" method="post" enctype="multipart/form-data">
+	<h2>Import {{ format|upper }} vocabulary</h2>
+	<script type="text/javascript">
+	$(function(){
+		$("input[name='file']").change(function (){
+		    button = $(this).parents('form:first').find('button');
+			if($(this).val()!=''){
+				button.removeAttr('disabled');
+			} else {
+			    button.attr('disabled', 'disabled');
+			}
+		});
+	});
+	</script>
+    {% csrf_token %}
+    {% if format == 'xls' %}
+    <p>Upload your Excel spreadsheet in the following format.</p>
+        <table id="excel">
+        <tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th></tr>
+        <tr><th>1</th><td>Chapter 1</td><td></td><td></td><td></td></tr>
+        <tr><th>2</th><td></td><td>Chapter 1.1</td><td></td><td></td></tr>
+        <tr><th>3</th><td></td><td></td><td>Chapter 1.1.1</td><td></td></tr>
+        <tr><th>4</th><td></td><td></td><td>Chapter 1.1.2</td><td></td></tr>
+        <tr><th>5</th><td></td><td></td><td>Chapter 1.1.3</td><td></td></tr>
+        <tr><th>6</th><td></td><td>Chapter 1.2</td><td></td><td></td></tr>
+        <tr><th>7</th><td></td><td>Chapter 1.3</td><td></td><td></td></tr>
+        <tr><th>8</th><td>Chapter 2</td><td></td><td></td><td></td></tr>
+        <tr><th>9</th><td></td><td>Chapter 2.1</td><td></td><td></td></tr>
+        <tr><th>10</th><td></td><td></td><td>Chapter 2.1.1</td><td></td></tr>
+        <tr><th>11</th><td></td><td></td><td></td><td>Chapter 2.1.1.1</td></tr>
+        <tr><th>12</th><td></td><td></td><td></td><td>Chapter 2.1.1.2</td></tr>
+        <tr><th>...</th><td></td><td></td><td></td><td>...</td></tr>
+        </table>
+    <p>This will fill your new vocabulary with concepts in your spreadsheet.<br>
+	Numbers in the example above are for illustrative purposes only.</p>
+    {% endif %}
+    {% if format == 'skos' %}
+    <pre>
+&lt;rdf:RDF
+  xmlns:rdf=&quot;http://www.w3.org ... rdf-syntax-ns#&quot;
+  xmlns:skos=&quot;http://www.w3.org/2004/02/skos/core#&quot;&gt;
+  
+  &lt;skos:Concept rdf:about=&quot;...#mammals&quot;&gt;
+    &lt;skos:prefLabel&gt;mammals&lt;/skos:prefLabel&gt;
+    &lt;skos:broader rdf:resource=&quot;...#animals&quot;/&gt;
+  &lt;/skos:Concept&gt;
+
+  &lt;skos:Concept rdf:about=&quot;..#animals&quot;&gt;
+    &lt;skos:prefLabel&gt;animals&lt;/skos:prefLabel&gt;
+    &lt;skos:narrower rdf:resource=&quot;...#mammals&quot;/&gt;
+  &lt;/skos:Concept&gt;
+
+&lt;/rdf:RDF&gt;
+    </pre>
+    {% endif %}
+    {{ form.as_p }}
+    <p><button type="submit" disabled="disabled"><b>&#10003;</b> Upload</button> <a href="./" class="cancel">cancel</a></p>
+</form>
+{% endblock %}

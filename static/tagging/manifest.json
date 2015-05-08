@@ -1,0 +1,20 @@
+{
+  "name": "Tagging",
+  "description": "Tag things using meaningful concepts from unilexicon.com",
+  "version": "0.1",
+  "update_url": "http://unilexicon.com/tagging/updates.xml",
+  "background_page": "background.html",
+  "options_page": "options.html",
+  "page_action": {
+    "default_icon": "img/icon.png",
+    "default_popup": "popup.html"
+  },
+	
+	"icons": {
+		"16": "img/icon.png",
+		"48": "img/icon48.png"
+	},
+  "permissions": [
+    "tabs", "notifications"
+  ]
+}

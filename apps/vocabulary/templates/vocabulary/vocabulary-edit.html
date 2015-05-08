@@ -1,0 +1,14 @@
+{% include 'vocabulary/panel.html' %}
+
+{% if user.is_authenticated %}
+<form action="{{ request.path }}" method="post">
+    {% for field in form %}
+    <p class="{{ field.name }}">
+        {{ field.errors }}
+        {{ field.label_tag }}
+        {{ field }}
+    </p>
+    {% endfor %}
+    <p><button type="submit"><b>&#10003;</b> Save</button></p>
+</form>
+{% endif %}

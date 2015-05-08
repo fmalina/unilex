@@ -1,0 +1,21 @@
+{% extends 'vocabulary/base.html' %}
+
+{% block title %}{{ vocabulary.title }}{% endblock %}
+
+{% block extrastyles %}
+    <link type="text/css" rel="stylesheet" href="{{ site_url }}/css/megadropdown.css?{{ version }}" />
+{% endblock %}
+
+{% block extrascripts %}
+    <script type="text/javascript" src="{{ site_url }}/js/hover-intent.js?{{ version }}"></script>
+    <script type="text/javascript" src="{{ site_url }}/js/megadropdown.js?{{ version }}"></script>
+{% endblock %}
+
+{% block content %}
+<div id="content-in">
+	<div id="views"><a href="./">&laquo; back to hypertree</a></div>
+	<ul id="mega">
+	{% include "vocabulary/ul-3levels.html" %}
+	</ul>
+</div>
+{% endblock %}

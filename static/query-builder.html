@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Query builder demo</title>
+<link rel="stylesheet" href="/css/screen.css">
+<link rel="stylesheet" href="/css/vocabulary.css">
+<link rel="stylesheet" href="/css/set.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<script src="/js/autocomplete.js"></script>
+<script src="/js/vocab_queries.js"></script>
+<script src="/js/vocab_query_builder.js"></script>
+<style>
+div.term{padding:.2em 0}
+div.notTerm{text-decoration:line-through}
+span.queryPart{display:none}
+</style>
+<script>
+$(document).ready(function(){
+    $("#q").autocomplete("/vocabularies/autocomplete", {
+        width: 430,
+        scrollHeight: 'auto',
+        selectFirst: false,
+        autoFill: false,
+        minChars: 1
+    }).attr("autocomplete","off");
+    $("#q").result(function(event, data, formatted){
+        if(data){
+            window.location = $(data[0]).find('.go').attr('href');
+            $(this).val('');
+        }
+    });
+});
+</script>
+</head>
+<body>
+<div id="content">
+<div id="intro">
+<h1>Query builder demo</h1>
+</div>
+<form method="post" action="#">
+    <div id="queries">
+        <div id="termChoices">
+            <div id="placeholder"><a href="#" id="addNew">Add term</a></div>
+        </div>
+    </div>
+    
+    <p id="query">
+        <label for="id_query">Query</label>
+        <textarea id="id_query" rows="10" cols="40" name="query"></textarea>
+    </p>
+    
+    <p><label><span class="link test try">test query</span></label></p>
+    <div id="results"></div>
+    <p><button type="submit"><b>✓</b> Save</button></p>
+</form>
+</body>
+</html>

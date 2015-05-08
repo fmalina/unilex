@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url><loc>http://{{ site.domain }}</loc><priority>1</priority></url>
+{% for page in pages %}
+<url><loc>http://{{ site.domain }}{{ page.get_absolute_url }}</loc><lastmod>{{ page.updated_at|date:"Y-m-d" }}</lastmod><priority>0.8</priority></url>
+{% endfor %}
+{% for vocab in vocabularies %}
+<url><loc>http://{{ site.domain }}/{{ vocab.get_absolute_url }}</loc><lastmod>{{ vocab.updated_at|date:"Y-m-d" }}</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+{% endfor %}
+</urlset>

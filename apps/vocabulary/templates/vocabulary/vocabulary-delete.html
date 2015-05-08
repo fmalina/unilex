@@ -1,0 +1,15 @@
+<form action="{{request.path}}" method="post">{% csrf_token %}
+    <p>Are you sure you wish to delete <b>'{{ vocabulary.title }}'</b>?</p>
+
+    {% with vocabulary.concept_set.count as descendants %}
+        <div>{% if descendants %}
+        This will also delete the {{descendants}} concept{{descendants|pluralize}} in the vocabulary
+        and {% ifequal descendants 1 %}its{% else %}their{% endifequal %} relations with concepts in other vocabularies.
+        <label>I understand. 
+        {% else %}
+        <label>Yes, let's do it.
+        {% endif %}<input type="checkbox" name="understand" value="understand"> </label></div>
+    {% endwith %}
+    <p><button type="submit" class="delete"><b>✗</b> Delete</button>
+    <a href="#cancel" class="cancel">cancel</a></p>
+</form>

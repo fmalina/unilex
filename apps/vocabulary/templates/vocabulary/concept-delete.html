@@ -1,0 +1,11 @@
+<form action="{{request.path}}" method="post">{% csrf_token %}
+    <p>Are you sure you wish to delete <b>'{{concept.name}}'</b>?</p>
+    {% with concept.get_descendants_count as descendants %} 
+        {% if descendants %}
+        <p><input type="checkbox" name="recursive" value="recursive" style="vertical-align: baseline"> Also delete {{descendants}} child term{{descendants|pluralize}}.</p>
+        {% endif %}
+    {% endwith %}
+    <p><button type="submit" class="delete" name="delete"><b>✗</b> Delete</button> <a href="#cancel" class="cancel">cancel</a></p>
+</form>
+
+

@@ -1,0 +1,20 @@
+{% if messages %}
+    <script type="text/javascript">
+    $(function(){
+        {% if messages|length = 1 %}
+            $('#messages').animate({opacity: 1.0}, 5000).slideUp('slow');
+        {% else %}
+            $('#messages').append('<li class="dismiss"><a href="javascript:void();">dismiss</a></li>');
+            $('.dismiss a').bind('click', function(){
+                $('#messages').slideUp('slow');
+            });
+        {% endif %}
+    });
+    </script>
+    
+    <ul id="messages">
+        {% for message in messages %}
+            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|safe }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}

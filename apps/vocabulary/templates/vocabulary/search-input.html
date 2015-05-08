@@ -1,0 +1,24 @@
+<script src="{{ site_url }}/js/autocomplete.js?{{ version }}"></script>
+<script>
+$(document).ready(function(){
+    $("#q").autocomplete("{{ site_url }}{% url 'vocabulary.views.autocomplete' %}", {
+        width: 430,
+        scrollHeight: 'auto',
+        selectFirst: false,
+        autoFill: false,
+        minChars: 1
+    }).attr("autocomplete","off");
+    $("#q").result(function(event, data, formatted){
+        if(data){
+            window.location = $(data[0]).find('.go').attr('href');
+            $(this).val('');
+        }
+    });
+});
+</script>
+
+<form id="search" method="get" action="{{ site_url }}{% url 'vocabulary.views.search' %}">
+    <div>
+        <input type="text" id="q" name="q" value="{{ q }}" /><button type="submit">Search</button>
+    </div>
+</form>

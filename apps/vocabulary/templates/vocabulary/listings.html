@@ -1,0 +1,27 @@
+{% extends 'vocabulary/base.html' %}
+{% block title %}Visual Editor for Controlled Vocabularies - SKOS Editor{% endblock %}
+{% block content %}
+    <div id="intro">   
+        <h1>Visual Vocabulary Editor</h1>
+        <p>This is a visual tool for managing <def title="classifications, thesauri or taxonomies">controlled vocabularies</def>.</p>
+        <ul>
+        <li>it allows users to explore and edit vocabularies through an attractive user interface</li>
+        <li>it helps users to quickly comprehend relations between concepts in large complex classification systems</li>
+        <li>it makes editing <dfn title="simple knowledge organisation system">SKOS</dfn> files fast and productive</li>
+        <li>simplifies the process of writing contextual queries for navigation vocabularies</li>
+        <li>imports and exports vocabularies using a variety of sources and formats including <dfn title="simple knowledge organisation system">SKOS</dfn>, <dfn title="nested unordered list">HTML</dfn> and <dfn title="indented cells">Excel</dfn></li>
+        </ul>
+        <p>
+            <a href="add">add new vocabulary</a>,
+            Import: <a href="load-xls">Excel</a>, 
+            <a href="load-skos">SKOS</a>
+        </p>
+    </div>
+
+    <ul id="vocabulary-list">
+    {% for vocabulary in listings %}
+        <li><a href="{{vocabulary.get_absolute_url}}">{{vocabulary.title}}</a>&nbsp;({{ vocabulary.concept_count }})</li>
+    {% endfor %}
+    </ul>
+
+{% endblock %}
