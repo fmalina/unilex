@@ -3,13 +3,13 @@
 {% block title %}{{ vocabulary.title }}{% endblock %}
 
 {% block extrastyles %}
-    <link type="text/css" rel="stylesheet" href="{{ site_url }}/css/meeting.css?{{ version }}" />
+    <link rel="stylesheet" href="{{ site_url }}/css/meeting.css?{{ version }}" />
 {% endblock %}
 
 {% block extrascripts %}
-    <script type="text/javascript" src="{{ site_url }}/js/jquery-ui-1.8.2.custom.min.js?{{ version }}"></script>
-    <script type="text/javascript" src="{{ site_url }}/js/ui.sortable-1.8.js?{{ version }}"></script>
-    <script type="text/javascript">
+    <script src="{{ site_url }}/js/jquery-ui-1.8.2.custom.min.js?{{ version }}"></script>
+    <script src="{{ site_url }}/js/ui.sortable-1.8.js?{{ version }}"></script>
+    <script>
         $(function(){
 	        $(".sort").sortable({
 	        	placeholder: 'placeholder',

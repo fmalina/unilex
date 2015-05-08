@@ -89,11 +89,11 @@ def vocabulary_add(request):
 def json(request, vocab_node_id):
     vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
     jsondata = dumps(vocab_to_dict(vocab), indent=4)
-    return HttpResponse(jsondata, mimetype='application/json')
+    return HttpResponse(jsondata, content_type='application/json')
 
 def export(request, vocab, data, extension, mime):
     timestamp = datetime.today().strftime('%Y-%m-%d')
-    response = HttpResponse(data, mimetype=mime)
+    response = HttpResponse(data, content_type=mime)
     response['Content-Disposition'] = 'attachment; filename="%s-%s.%s"' % (getCamelCase(vocab.title), timestamp, extension)
     return response
 

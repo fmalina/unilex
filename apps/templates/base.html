@@ -6,7 +6,8 @@
         <link rel="stylesheet" href="{{ site_url }}/css/screen.css?{{ version }}" />
         <link rel="stylesheet" href="{{ site_url }}/css/vocabulary.css?{{ version }}">
         <link rel="stylesheet" href="{{ site_url }}/css/print.css?{{ version }}" media="print" />
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
         {% block extrastyles %}{% endblock %}
         {% block extrascripts %}{% endblock %}
         {% block extrascripts2 %}{% endblock %}
@@ -14,7 +15,8 @@
     <body>
     <div id="header">
         <p id="nav">
-            <a href="{{ site_url }}{% url 'listings' %}" title="Visual Editor for Controlled Vocabularies">vocabularies</a>
+            <a href="{{ site_url }}" title="Visual Editor for Controlled Vocabularies">home</a>
+            &mdash; <a href="{{ site_url }}{% url 'listings' %}">vocabularies</a>
             &mdash; <a href="{{ site_url }}{% url 'tag.views.about' %}" title="Contextual Tagging using Controlled Vocabularies">tagging</a>
             &mdash; <a href="{{ site_url }}{% url 'views.docs' %}" title="Visual Vocabulary Suite Documentation">docs</a>
             {% if user.is_staff %}

@@ -77,14 +77,14 @@ def load_pages(conn):
             page = Page(
                 id=node[0],
                 title=rev[0],
-                body=unicode(rev[1]),
-                teaser=unicode(rev[2]),
+                body=str(rev[1]),
+                teaser=str(rev[2]),
                 #updated_at=updated_at,
                 #created_at=created_at
             )
             page.save()
-        except:
-            print('Unicode trouble with nid: %s' % node[0])
+        except Exception as e:
+            print('%s, trouble with nid: %s' % (e, node[0]))
             pass
 
 def drop_empty_tables(conn):
@@ -117,7 +117,7 @@ def count_tag_frequency(conn):
             concept.count = count
             print('%s - %s in %s' % (count, concept.name, vocab_node_id))
             concept.save()
-        except:
+        except (Vocabulary.DoesNotExist, Concept.DoesNotExist):
             print('Something went wrong, vocabulary or concept DoesNotExist')
             pass
 

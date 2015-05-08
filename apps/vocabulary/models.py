@@ -57,7 +57,7 @@ class Vocabulary(models.Model):
     def increment_slug(self, slug):
         current_number_suffix_match = re.search("\d+$", slug) # get the current number suffix if there is one
         current_number_suffix = current_number_suffix_match and current_number_suffix_match.group() or 0
-        next = unicode(int(current_number_suffix) +1) # increment it, and turn back to string so re.sub doesn't die
+        next = str(int(current_number_suffix) +1) # increment it, and turn back to string so re.sub doesn't die
         return re.sub("(\d+)?$", next, slug) # replace current number suffix with incremented suffix, try again...
 
     def make_node_id(self, slugbase):
