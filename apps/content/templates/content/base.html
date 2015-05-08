@@ -2,15 +2,16 @@
 <html lang="en-gb">
     <head>
         <title>{% block title %}Site preview{% endblock %}</title>
-        <link type="text/css" rel="stylesheet" href="{{ site_url }}/css/screen.css?{{ version }}" />
-        <link type="text/css" rel="stylesheet" href="{{ site_url }}/css/content.css?{{ version }}" />
-        <link type="text/css" rel="stylesheet" href="{{ site_url }}/css/megadropdown.css?{{ version }}" />
-        <link type="text/css" rel="stylesheet" href="{{ site_url }}/css/print.css?{{ version }}" media="print" />
+        <link rel="stylesheet" href="{{ site_url }}/css/screen.css?{{ version }}" />
+        <link rel="stylesheet" href="{{ site_url }}/css/content.css?{{ version }}" />
+        <link rel="stylesheet" href="{{ site_url }}/css/megadropdown.css?{{ version }}" />
+        <link rel="stylesheet" href="{{ site_url }}/css/print.css?{{ version }}" media="print" />
         {% block extrastyles %}{% endblock %}
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
-        <script type="text/javascript" src="{{ site_url }}/js/feedback.js?{{ version }}"></script>
-        <script type="text/javascript" src="{{ site_url }}/js/hover-intent.js?{{ version }}"></script>
-        <script type="text/javascript" src="{{ site_url }}/js/megadropdown.js?{{ version }}"></script>
+        <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <script src="{{ site_url }}/js/feedback.js?{{ version }}"></script>
+        <script src="{{ site_url }}/js/hover-intent.js?{{ version }}"></script>
+        <script src="{{ site_url }}/js/megadropdown.js?{{ version }}"></script>
         {% block extrascripts %}{% endblock %}
     </head>
     <body>

@@ -3,12 +3,12 @@
 {% block title %}{{ vocabulary.title }}{% endblock %}
 
 {% block extrastyles %}
-    <link type="text/css" rel="stylesheet" href="{{ site_url }}/css/megadropdown.css?{{ version }}" />
+    <link rel="stylesheet" href="{{ site_url }}/css/megadropdown.css?{{ version }}" />
 {% endblock %}
 
 {% block extrascripts %}
-    <script type="text/javascript" src="{{ site_url }}/js/hover-intent.js?{{ version }}"></script>
-    <script type="text/javascript" src="{{ site_url }}/js/megadropdown.js?{{ version }}"></script>
+    <script src="{{ site_url }}/js/hover-intent.js?{{ version }}"></script>
+    <script src="{{ site_url }}/js/megadropdown.js?{{ version }}"></script>
 {% endblock %}
 
 {% block content %}

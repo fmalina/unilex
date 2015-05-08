@@ -3,7 +3,7 @@
 {% block content %}
 <form action="{{ request.path }}" method="post" enctype="multipart/form-data">
 	<h2>Import {{ format|upper }} vocabulary</h2>
-	<script type="text/javascript">
+	<script>
 	$(function(){
 		$("input[name='file']").change(function (){
 		    button = $(this).parents('form:first').find('button');

@@ -8,7 +8,7 @@ def sitemap(request):
     site = Site.objects.get_current()
     vocabularies = Vocabulary.objects.all().order_by('-updated_at')
     rendered = render_to_string('sitemap.xml', {'site':site,'vocabularies':vocabularies})
-    return HttpResponse(rendered, mimetype='application/xml')
+    return HttpResponse(rendered, content_type='application/xml')
 
 def home(request):
     return render('home.html', {}, request)

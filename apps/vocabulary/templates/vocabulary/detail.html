@@ -2,9 +2,9 @@
 {% block title %}{{vocabulary.title}}{% endblock %}
 
 {% block extrascripts2 %}
-    <script type="text/javascript" src="{{ site_url }}/js/jquery.cookie.js?{{ version }}"></script>
+    <script src="{{ site_url }}/js/jquery.cookie.js?{{ version }}"></script>
     {% if count < 1000 %}
-    <script type="text/javascript" src="{{ site_url }}/js/vocab_browse.js?{{ version }}"></script>
+    <script src="{{ site_url }}/js/vocab_browse.js?{{ version }}"></script>
     {% endif %}
 {% endblock %}
 {% block content %}

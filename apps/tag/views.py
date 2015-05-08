@@ -59,7 +59,7 @@ def tag(request, node_id):
             messages.error(request, 'Sorry, we can\'t pull tags from the CMS right now.<br>' \
                 'Connection has timed out. Reload to try again')
             import traceback
-            return HttpResponse(traceback.format_exc(), mimetype='text/plain')
+            return HttpResponse(traceback.format_exc(), content_type='text/plain')
             
         raw_tags = record['tags']
         tags = []
