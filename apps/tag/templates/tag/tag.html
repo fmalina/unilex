@@ -1,4 +1,4 @@
-<form method="post" action="{{ site_url }}{{ request.path }}" id="tagging">
+<form method="post" action="{{ base_url }}{{ request.path }}" id="tagging">
 {% include "messages.html" %}
 {% csrf_token %}
 {{ form.errors }}

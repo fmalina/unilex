@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% block extrastyles %}
-        <link rel="stylesheet" href="{{ site_url }}/css/vocabulary.css?{{ version }}" />
-        <link rel="stylesheet" href="{{ site_url }}/css/set.css?{{ version }}" />
+        <link rel="stylesheet" href="{{ base_url }}/css/vocabulary.css?{{ version }}" />
+        <link rel="stylesheet" href="{{ base_url }}/css/set.css?{{ version }}" />
 {% endblock %}
 {% block extrascripts %}
-    <!--[if IE]><script src="{{ site_url }}/js/Jit/Extras/excanvas.js?{{ version }}"></script><![endif]-->
-    <script src="{{ site_url }}/js/Jit/jit-yc.js?{{ version }}"></script>
+    <!--[if IE]><script src="{{ base_url }}/js/Jit/Extras/excanvas.js?{{ version }}"></script><![endif]-->
+    <script src="{{ base_url }}/js/Jit/jit-yc.js?{{ version }}"></script>
     {% if user.is_authenticated %}
-    <script src="{{ site_url }}/js/jquery.formset.js?{{ version }}"></script>
+    <script src="{{ base_url }}/js/jquery.formset.js?{{ version }}"></script>
     {% endif %}
 {% endblock %}

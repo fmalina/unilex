@@ -3,9 +3,9 @@
     <head>
         <meta charset="utf-8" /> 
         <title>{%block title%}{{ title }}{% endblock %}</title>
-        <link rel="stylesheet" href="{{ site_url }}/css/screen.css?{{ version }}" />
-        <link rel="stylesheet" href="{{ site_url }}/css/vocabulary.css?{{ version }}">
-        <link rel="stylesheet" href="{{ site_url }}/css/print.css?{{ version }}" media="print" />
+        <link rel="stylesheet" href="{{ base_url }}/css/screen.css?{{ version }}" />
+        <link rel="stylesheet" href="{{ base_url }}/css/vocabulary.css?{{ version }}">
+        <link rel="stylesheet" href="{{ base_url }}/css/print.css?{{ version }}" media="print" />
         <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
         <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
         {% block extrastyles %}{% endblock %}
@@ -15,12 +15,12 @@
     <body>
     <div id="header">
         <p id="nav">
-            <a href="{{ site_url }}">home</a> &mdash; 
-            <a href="{{ site_url }}{% url 'listings' %}" title="Visual Editor for Controlled Vocabularies">vocabularies</a>
-            &mdash; <a href="{{ site_url }}{% url 'tag.views.about' %}" title="Contextual Tagging using Controlled Vocabularies">tagging</a>
-            &mdash; <a href="{{ site_url }}{% url 'views.docs' %}" title="Visual Vocabulary Suite Documentation">documentation</a>
+            <a href="{{ base_url }}">home</a> &mdash; 
+            <a href="{{ base_url }}{% url 'listings' %}" title="Visual Editor for Controlled Vocabularies">vocabularies</a>
+            &mdash; <a href="{{ base_url }}{% url 'tag.views.about' %}" title="Contextual Tagging using Controlled Vocabularies">tagging</a>
+            &mdash; <a href="{{ base_url }}{% url 'views.docs' %}" title="Visual Vocabulary Suite Documentation">documentation</a>
             {% if user.is_staff %}
-            &mdash; <a href="{{ site_url }}/admin/">admin</a>{% endif %}
+            &mdash; <a href="{{ base_url }}/admin/">admin</a>{% endif %}
             &mdash;
             {% if user.is_anonymous %}
                 <a rel="nofollow" id="loginlink" href="{% url 'auth_login' %}{% if request.path != '/accounts/logout/' %}?next={{request.path}}{% endif %}">login</a>
