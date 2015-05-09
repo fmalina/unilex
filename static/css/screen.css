@@ -27,6 +27,7 @@ form ul{margin:0;padding:10px 0}
 form ul li{list-style:none;padding:5px 0}
 form label{display:block;text-transform:uppercase;font-size:10px;color:#999}
 form input{width:350px;border:2px solid #111;padding:5px;font-size:20px}
+form input[type="file"]{border:0;font-size:inherit}
 
 .details{font-size:10px;color:#666;float:right;padding:2px 0 0 10px}
 
