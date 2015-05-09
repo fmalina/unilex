@@ -63,7 +63,7 @@ REPLACE INTO auth_user SET
     is_staff=1,
     is_active=1,
     is_superuser=1,
-    last_login=NULL,
+    last_login='2000-01-01 00:00:00',
     date_joined='2000-01-01 00:00:00';
 
-UPDATE django_site SET domain='127.0.0.1:8000', name='Unilexicon' WHERE id=1;
+UPDATE django_site SET domain='unilexicon.com', name='Unilexicon' WHERE id=1;
