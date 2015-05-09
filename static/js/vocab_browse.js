@@ -126,7 +126,7 @@ var VocabBrowser = {
             });
             nid = VocabBrowser.id(node.id);
             $('#icon-add').bind('click', function () {
-                $.get('/vocabularies/' + nid + '/concepts/new', function (data) {
+                $.get('/vocabularies/' + nid + '/new', function (data) {
                     $('#inner-details').prepend(data);
                     $("#inner-details input[type='text']:first").focus();
                 });
