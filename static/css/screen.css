@@ -55,7 +55,7 @@ hr{border-color:rgba(255,255,255,0.2);clear:both}
 #search input{border:1px solid #bbb;-moz-border-radius:5px 0 0 5px;border-radius:5px 0 0 5px;background:#eee;height:22px}
 #search button{margin:0;-moz-border-radius:0 5px 5px 0;border-radius:0 5px 5px 0}
 #search input:focus{background:#fff}
-#search button{color:#fff;background:green;border:0;text-shadow:#000 0 0 3px;text-transform:uppercase;cursor:pointer;padding:6px 12px}
+#search button{color:#fff;background:green;border:0;text-shadow:#000 0 0 3px;text-transform:uppercase;cursor:pointer;padding:6px 8px}
 #search button:hover{text-decoration:underline}
 
 #sr{margin:0;padding:0}
