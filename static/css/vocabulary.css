@@ -47,11 +47,11 @@ form li{list-style:none;text-shadow:none}
 #editicons{margin:.0;text-align:left}
 #editicons img,#editicons dfn{cursor:pointer;color:#fff;text-shadow:none;opacity:.8;padding:1px 3px}
 #editicons img:hover,#editicons dfn:hover{opacity:.5}
-#infovis .node{text-shadow:black 1px 1px 0;background-color:rgba(0,0,0,0.5);padding:.3em 0.6em;color:#ddd;-moz-border-radius:3px;border-radius:3px}
+#infovis .node{text-shadow:black 1px 1px 0;background-color:rgba(0,0,0,0.5);padding:.3em 0.6em;color:#ddd;border-radius:3px}
 #infovis .vocabnode{color:#FE8;text-shadow:#800 1px 1px 0}
 #infovis .node:hover{color:#fff;background-color:rgba(0,0,0,0.9);cursor:pointer;z-index:20000 !important}
 #infovis .node-depth-0:hover,
-#infovis .node-depth-0{font-size:1.2em;background-color:rgba(0,0,0,0.5);cursor:default;-moz-border-radius:5px;border-radius:5px}
+#infovis .node-depth-0{font-size:1.2em;background-color:rgba(0,0,0,0.5);cursor:default;border-radius:5px}
 #infovis .node-depth-1{opacity:.9;font-size:.8em}
 #infovis .node-depth-2{opacity:.7;font-size:.7em}
 #id_mother{background:url(/img/icon-paste.png) 99% 50% no-repeat}
