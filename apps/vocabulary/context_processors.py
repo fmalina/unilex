@@ -20,6 +20,6 @@ def current_site(request):
         site = RequestSite(request)
     return {
         'site': site,
-        'site_url': current_site_url(site),
+        'base_url': current_site_url(site),
         'version': version
     }

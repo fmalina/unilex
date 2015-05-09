@@ -1,5 +1,5 @@
 {% include 'vocabulary/panel.html' %}
-<script src="{{ site_url }}/js/vocab_set.js?{{ version }}"></script>
+<script src="{{ base_url }}/js/vocab_set.js?{{ version }}"></script>
 
 {% if user.is_authenticated %}
 <form method="post" action="{{ request.path }}">
@@ -27,7 +27,7 @@
     </p>
 
     {% if concept.vocabulary.queries %}
-        <script src="{{ site_url }}/js/vocab_queries.js?{{ version }}"></script>
+        <script src="{{ base_url }}/js/vocab_queries.js?{{ version }}"></script>
         <p id="query"><label for="operators">{{ form.query.label }}
                 <select id="operators">
                     <option value="and">and</option>
