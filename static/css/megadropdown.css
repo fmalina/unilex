@@ -6,7 +6,7 @@
 #mega a:hover,
 #mega .hovering a{background:#104F75}
 #mega li{list-style:none}
-#mega .level1{margin:0 .2em 0 0;font-size:1em;font-weight:bold;-webkit-border-radius:3px 3px 0 0;-moz-border-radius:3px 3px 0 0}
+#mega .level1{margin:0 .2em 0 0;font-size:1em;font-weight:bold;border-radius:3px 3px 0 0}
 #mega .hovering .level1 a{background-color:#104F75}
 #mega .level2{padding:.4em 0;margin:0 0 1em 0;font-size:1em;display:block}
 #mega .level3{display:block;padding:.2em 0;margin:0;font-size:1em}

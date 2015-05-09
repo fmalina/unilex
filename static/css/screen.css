@@ -39,7 +39,7 @@ div.paginator span.disabled{padding:2px 5px 2px 5px;margin-right:2px;border:1px 
 button,
 input[type="submit"],
 .btn,
-#install{text-decoration:none;display:inline-block;text-shadow:#000 0 0 3px;border:1px solid #666;text-shadow:0 1px 3px #444;color:#fff;padding:15px;background:rgba(0,0,0,.3);cursor:pointer;cursor:hand;-moz-border-radius:5px;border-radius:5px;margin-top:15px;font:20px Georgia, serif;cursor:pointer}
+#install{text-decoration:none;display:inline-block;text-shadow:#000 0 0 3px;border:1px solid #666;text-shadow:0 1px 3px #444;color:#fff;padding:15px;background:rgba(0,0,0,.3);cursor:pointer;border-radius:5px;margin-top:15px;font:20px Georgia,serif}
 button:hover,
 input[type="submit"]:hover{background:rgba(0,0,0,.5);border:1px solid #646464}
 #install small{font:12px arial, serif}
@@ -50,12 +50,12 @@ hr{border-color:rgba(255,255,255,0.2);clear:both}
 .inline{padding-left:0}
 .inline li{display:inline-block;list-style-type:none;padding:10px;}
 
-#search,#search div{display:inline}
-#search{padding:0 30px 13px 2px}
-#search input{border:1px solid #bbb;-moz-border-radius:5px 0 0 5px;border-radius:5px 0 0 5px;background:#eee;height:22px}
-#search button{margin:0;-moz-border-radius:0 5px 5px 0;border-radius:0 5px 5px 0}
+#search,#search div{display:inline-block}
+#search{padding:0 15px 0 5px}
+#search input{background:#eee;border:1px solid #bbb;border-radius:5px 0 0 5px;height:22px}
+#search button{margin:0;border-radius:0 5px 5px 0}
 #search input:focus{background:#fff}
-#search button{color:#fff;background:green;border:0;text-shadow:#000 0 0 3px;text-transform:uppercase;cursor:pointer;padding:6px 8px}
+#search button{position:relative;top:-3px;color:#fff;background:green;border:0;text-shadow:#000 0 0 3px;font-size:12px;cursor:pointer;padding:10px 8px}
 #search button:hover{text-decoration:underline}
 
 #sr{margin:0;padding:0}
