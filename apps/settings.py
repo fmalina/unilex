@@ -19,6 +19,9 @@ ACCOUNT_ACTIVATION_DAYS = 2
 REGISTRATION_AUTO_LOGIN = True
 LOGIN_REDIRECT_URL = '/'
 
+from django.utils.log import DEFAULT_LOGGING as LOGGING
+LOGGING['handlers']['mail_admins']['include_html'] = True
+
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
