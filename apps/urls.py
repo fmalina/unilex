@@ -15,6 +15,7 @@ urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
     url(r'^docs$', 'views.docs', name='docs'),
     url(r'^logout/$', 'views.logmeout', name='auth_logout'),
+    url(r'^sitemap.xml$', 'views.sitemap', name='sitemap'),
     # uncomment if you don't use a reverse proxy
     (r'^(.*)', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
 )
