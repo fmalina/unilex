@@ -3,4 +3,5 @@ django # web framework
 gunicorn # backend server
 mysqlclient # database bindings, any Django supported DB
 xlrd # Excel reader
+docutils # to generate documentation
 git+git://github.com/macropin/django-registration.git
