@@ -9,4 +9,5 @@
     {% if user.is_authenticated %}
     <script src="{{ base_url }}/js/jquery.formset.js?{{ version }}"></script>
     {% endif %}
+    {% block extrascripts2 %}{% endblock %}
 {% endblock %}
