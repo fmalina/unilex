@@ -8,7 +8,7 @@ import re
 import time
 
 class Language(models.Model):
-    ''' Language of a vocabulary or Concept label '''
+    """Language of a vocabulary or Concept label"""
     iso = models.CharField(primary_key=True, max_length=5, verbose_name='ISO code')
     name = models.CharField(max_length=60)
     
@@ -19,8 +19,8 @@ class Language(models.Model):
         db_table = 'languages'
 
 class Authority(models.Model):
-    ''' Authority is an organisation, author or maintainer whose
-    decisions on development of a vocabulary are definitive '''
+    """Authority is an organisation, author or maintainer whose
+    decisions on development of a vocabulary are definitive"""
     code = models.CharField(primary_key=True, max_length=5)
     name = models.CharField(max_length=150)
     
@@ -32,7 +32,7 @@ class VocabularyManager(models.Manager):
         return self.annotate(concept_count=models.Count('concept'))
 
 class Vocabulary(models.Model):
-    ''' Vocabulary is a hierarchy of concepts '''
+    """Vocabulary is a hierarchy of concepts"""
     node_id     = models.SlugField(db_index=True, max_length=60, verbose_name='Permalink: /vocabularies/')
     title       = models.CharField(max_length=75)
     description = models.TextField(max_length=200, blank=True)
@@ -82,7 +82,7 @@ class Vocabulary(models.Model):
         verbose_name_plural = "Vocabularies"
 
 class Concept(models.Model):
-    '''A Concept is a term within a vocabulary.'''
+    """A Concept is a term within a vocabulary."""
     node_id     = models.SlugField(db_index=True, max_length=60, blank=True)
     vocabulary  = models.ForeignKey(Vocabulary)
     name        = models.CharField(db_index=True, max_length=255) # prefLabel
@@ -212,16 +212,16 @@ VALIDATIONS = [
 ]
 
 class AttributeOption(models.Model):
-    '''
+    """
     Type of a note
-    --------------
+    
     Allows arbitrary name/value pairs to be attached to a concept.
     By defining the list, the user will be presented with a predefined
     list of attributes instead of a free form field.
     The validation field should contain a regular expression that can be
     used to validate the structure of the input.
     Possible usage for a book: ISBN, Pages, Author, etc
-    '''
+    """
     description   = models.CharField("Description", max_length=100)
     name          = models.SlugField("Attribute name", max_length=100)
     validation    = models.CharField("Field Validations", choices=VALIDATIONS, max_length=100)
@@ -237,12 +237,12 @@ class AttributeOption(models.Model):
 
 
 class ConceptAttribute(models.Model):
-    '''
+    """
     Allows arbitrary name/value pairs (as strings) to be attached to a concept.
     This is a simple way to add extra text or numeric info to a concept.
     If you want more structure than this, create your own subtype to add
     whatever you want to your Concepts.
-    '''
+    """
     concept      = models.ForeignKey(Concept)
     #languagecode = models.CharField(_('language'), max_length=10, choices=settings.LANGUAGES, null=True, blank=True)
     option       = models.ForeignKey(AttributeOption)
