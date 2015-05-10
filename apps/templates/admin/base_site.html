@@ -4,3 +4,13 @@
 {% block extrastyle %}{% endblock %}
 {% block extrascripts %}{% endblock %}
 {% endblock %}
+{% block headline %}
+<div id="intro">
+    <h1>{% block content_title %}{% endblock %}</h1>
+</div>
+{% endblock %}
+{% block content_wrap %}
+<div id="content-in">
+    {% block content %}{% endblock %}
+</div>
+{% endblock %}
