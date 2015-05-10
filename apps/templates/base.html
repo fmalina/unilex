@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="{{ base_url }}/css/print.css?{{ version }}" media="print" />
         <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
         <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        {% block extrahead %}{% endblock %}
         {% block extrastyles %}{% endblock %}
         {% block extrascripts %}{% endblock %}
         {% block extrascripts2 %}{% endblock %}
