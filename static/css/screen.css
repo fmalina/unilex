@@ -8,6 +8,7 @@ h2{font-size:24px}
 fieldset{border:0;padding:0}
 .clear{clear:both}
 .hide{display:none}
+.beta{font-size:20px}
 
 #header,#footer{padding:15px 30px;color:#333}
 #footer a{color:#0b66a6}
