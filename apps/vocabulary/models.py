@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 from django.utils.html import strip_tags, strip_entities
 from django.template.defaultfilters import slugify
 from vocabulary.baseconv import base36
@@ -23,6 +24,8 @@ class Authority(models.Model):
     decisions on development of a vocabulary are definitive"""
     code = models.CharField(primary_key=True, max_length=5)
     name = models.CharField(max_length=150)
+    # users = models.ManyToManyField(settings.AUTH_USER_MODEL,
+    #     help_text="Authority can have many users. Vocabulary can have one authority.")
     
     def __str__(self):
         return self.code
@@ -39,7 +42,8 @@ class Vocabulary(models.Model):
     language    = models.ForeignKey(Language, blank=True, null=True)
     authority   = models.ForeignKey(Authority, blank=True, null=True)
     queries     = models.BooleanField(verbose_name="Enable queries?", default=False)
-    #multihoming = models.BooleanField(verbose_name="Enable multihoming?", default=False)
+    # private     = models.BooleanField(verbose_name="Private vocabulary", default=False,
+    #     help_text="Private vocabulary can be edited only by the users belonging to its authority.")
     updated_at  = models.DateTimeField(default=datetime.now, editable=False)
     created_at  = models.DateTimeField(default=datetime.now, editable=False)
 
