@@ -17,7 +17,7 @@
     <h2>Explore vocabularies</h2>
     <ul id="vocabulary-list">
     {% for vocabulary in listings %}
-        <li><a href="{{vocabulary.get_absolute_url}}">{{vocabulary.title}}</a>&nbsp;({{ vocabulary.concept_count }})</li>
+        <li><a href="{{vocabulary.get_absolute_url}}">{{vocabulary.title }} ({{ vocabulary.concept_count }})</a></li>
     {% endfor %}
     </ul>
 
