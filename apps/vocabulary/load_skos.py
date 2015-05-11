@@ -204,17 +204,11 @@ class SKOSLoader(object):
             goto = '/vocabularies/load-skos'
         
         for vocab in doc.findall('.//{http://www.w3.org/2004/02/skos/core#}ConceptScheme'):
-            try:
-                vocab = self.load_vocab_instance(vocab)
-                goto = vocab.get_absolute_url()
-            except:
-                self.message(40, sys.exc_info()[1])
+            vocab = self.load_vocab_instance(vocab)
+            goto = vocab.get_absolute_url()
 
         for concept in doc.findall('.//{http://www.w3.org/2004/02/skos/core#}Concept'):
-            try:
-                self.load_concept_instance(concept)
-            except:
-                self.message(40, sys.exc_info()[1])
+            self.load_concept_instance(concept)
         
         return goto
 

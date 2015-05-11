@@ -38,12 +38,12 @@ class Vocabulary(models.Model):
     """Vocabulary is a hierarchy of concepts"""
     node_id     = models.SlugField(db_index=True, max_length=60, verbose_name='Permalink: /vocabularies/')
     title       = models.CharField(max_length=75)
-    description = models.TextField(max_length=200, blank=True)
+    description = models.TextField(max_length=200, blank=True, null=True)
     language    = models.ForeignKey(Language, blank=True, null=True)
     authority   = models.ForeignKey(Authority, blank=True, null=True)
     queries     = models.BooleanField(verbose_name="Enable queries?", default=False)
-    # private     = models.BooleanField(verbose_name="Private vocabulary", default=False,
-    #     help_text="Private vocabulary can be edited only by the users belonging to its authority.")
+    private     = models.BooleanField(verbose_name="Private vocabulary", default=False,
+        help_text="Private vocabulary can be edited only by the users belonging to its authority.")
     updated_at  = models.DateTimeField(default=datetime.now, editable=False)
     created_at  = models.DateTimeField(default=datetime.now, editable=False)
 
