@@ -4,3 +4,5 @@ archive
 tagging.pem
 settings_local.py
 load_skos.log
+static/admin
+
