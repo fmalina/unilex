@@ -241,31 +241,21 @@ def concept_edit(request, vocab_node_id, node_id):
         'parent_forms_and_set': zip(parent_formset.forms, parent)
         }, request)
 
+@csrf_exempt
 @ajax_login_required
 def concept_adopt(request, vocab_node_id, node_id):
     vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
-    c = get_object_or_404(Concept, node_id=node_id, vocabulary=vocab)
+    child = get_object_or_404(Concept, node_id=node_id, vocabulary=vocab)
+    mother = False
+    if request.POST['mother'] != 'orphanate':
+        mother = Concept.objects.get(node_id=request.POST['mother'])
     if request.method == 'POST':
-        gobackto = c.vocabulary.get_absolute_url()
-        if(c.mother()):
-            gobackto = c.get_absolute_url()
-        try:
-            giveto = request.POST['mother']
-            try:
-                givetotest = int(giveto)
-            except:
-                givetotest = 0
-            # protect from pasting to itself
-            if givetotest != c.id:
-                c.parent.remove(c.mother())
-                
-                if(giveto != 'orphanate'):
-                    parent = Concept.objects.get(pk=int(giveto))
-                    c.parent.add(parent)
-                c.save()
-        except: # no POST['parent']
-            pass
-    return redirect(gobackto)
+        if child != mother: # protect from pasting to itself
+            child.parent.remove(child.mother())
+            if mother:
+                child.parent.add(mother)
+            child.save()
+    return HttpResponse('ok')
 
 @ajax_login_required
 def concept_delete(request, vocab_node_id, node_id):
