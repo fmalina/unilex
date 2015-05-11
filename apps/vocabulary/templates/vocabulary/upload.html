@@ -38,8 +38,7 @@
 	Numbers in the example above are for illustrative purposes only.</p>
     {% endif %}
     {% if format == 'skos' %}
-    <p>The SKOS import feature is only tested at a subset of SKOS (Lexaurus serialisation) without custom RDF extensions.<br>
-        Please leave us feedback to help improve the import feature to fit your needs.</p>
+    <p>Works for SKOS files produced with Unilexicon and subset of Lexaurus export.</p>
     <pre>
 &lt;rdf:RDF
   xmlns:rdf=&quot;http://www.w3.org ... rdf-syntax-ns#&quot;
@@ -60,5 +59,6 @@
     {% endif %}
     {{ form.as_p }}
     <p><button type="submit" disabled="disabled"><b>&#10003;</b> Upload</button> <a href="./" class="cancel">cancel</a></p>
+    <p>Please leave us feedback below to support processing of your SKOS files.</p>
 </form>
 {% endblock %}
