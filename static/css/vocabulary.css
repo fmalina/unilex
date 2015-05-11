@@ -38,7 +38,7 @@ h1.caption{padding:15px 30px}
 #inner-details form .title{margin-bottom:0}
 #inner-details form .node_id{margin-top:0}
 #inner-details form .node_id label{display:inline}
-#inner-details form .node_id input{display:inline-block;width:228px;border:0;border-bottom:1px solid #000;background:none;color:#fff}
+#inner-details form .node_id input{display:inline-block;width:228px;border:0;border-bottom:1px dashed #444;background:none;color:#fff}
 
 form .buttons{text-align:right}
 form label{display:block;text-align:left;font-size:10px;padding:2px}
