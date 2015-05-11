@@ -3,21 +3,19 @@
 from django.template import Template, Context
 
 VOCAB_TEMPLATE = Template('''
-    <skos:ConceptScheme rdf:nodeID="{{vocab.node_id}}">
-        <skos:prefLabel>{{vocab.title}}</skos:prefLabel>
-        <skos:definition>{{vocab.description}}</skos:definition>
-        <zthes:thesNote label="globallyUniqueId">{{ vocab.node_id }}</zthes:thesNote>
-        <zthes:thesNote label="version">{{vocab.version}}</zthes:thesNote>
-        <zthes:thesNote label="authority">{{vocab.authority}}</zthes:thesNote>
-        <dc:language>{{vocab.language}}</dc:language>
-        <dc:date>{{vocab.created_at|date:"d-m-Y"}}</dc:date>
+    <skos:ConceptScheme rdf:nodeID="{{v.node_id}}">
+        <skos:prefLabel>{{v.title}}</skos:prefLabel>
+        <skos:definition>{{v.description}}</skos:definition>
+        {% if v.version %}<zthes:thesNote label="version">{{v.version}}</zthes:thesNote>{% endif %}
+        {% if v.authority %}<zthes:thesNote label="authority">{{v.authority.code}}</zthes:thesNote>{% endif %}
+        {% if v.language %}<dc:language>{{v.language}}</dc:language>{% endif %}
+        <dc:date>{{v.created_at|date:"d-m-Y"}}</dc:date>
     </skos:ConceptScheme>
 ''')
 
 CONCEPT_TEMPLATE = Template('''
     <skos:Concept rdf:nodeID="{{ concept.node_id }}">
         <skos:inScheme rdf:nodeID="{{ concept.vocabulary.node_id }}"/>
-        <zthes:termNote label="globallyUniqueId">{{ concept.node_id }}</zthes:termNote>
         <skos:prefLabel>{{ concept.name }}</skos:prefLabel>{% if not concept.mother %}
         <skos:topConceptOf rdf:nodeID="{{ concept.vocabulary.node_id }}"/>{% else %}{% for parent in concept.parent.all %}
         <skos:broader rdf:nodeID="{{parent.node_id}}"/>
@@ -31,7 +29,7 @@ CONCEPT_TEMPLATE = Template('''
 ''')
 
 def vocab_to_skos(vocab):
-    return VOCAB_TEMPLATE.render(Context({'vocab': vocab}))
+    return VOCAB_TEMPLATE.render(Context({'v': vocab}))
 
 def concept_to_skos(concept):
     return CONCEPT_TEMPLATE.render(Context({'concept': concept}))
