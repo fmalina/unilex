@@ -30,7 +30,6 @@ VOCAB_TAG_MAP = {
             'version': None,
             'globallyUniqueId': None,
             'ownersId': None,
-            'purpose': None, # Seems to duplicate the name in practice
             'category': None,
             'rightsHolder': None,
         }
@@ -252,7 +251,6 @@ class SKOSLoader(object):
         except:
             pass
         v = Vocabulary(**vocab_dict)
-        v.title = v.title.replace('DoC ', '')
         v.save()
         return v
 
