@@ -1,6 +1,6 @@
-'''Import SKOS vocabularies (tested only with Lexaurus serialisation)
+"""Import SKOS vocabularies (tested only with Lexaurus serialisation)
 Use from a command line for bulk imports and in the SKOS upload script view.
-'''
+"""
 
 import sys, os, os.path
 import traceback
@@ -79,10 +79,10 @@ CONCEPT_TAG_MAP = {
 }
 
 class XMLFormatError(Exception):
-    '''A problem importing our dialect of SKOS'''
+    """A problem importing our dialect of SKOS"""
 
 def load_fields_from_node(node, tag_map):
-    '''Convert an XML node in a format defined by tag_map to a simple dictionary.
+    """Convert an XML node in a format defined by tag_map to a simple dictionary.
     
     Each key in tag_map is a dictionary of element names in ElementTree's qualified name
     format (ie {namespace}nodeName).
@@ -95,7 +95,7 @@ def load_fields_from_node(node, tag_map):
     - If the mapping is a two element tuple (attribute, attribute_mapping), then the XML attribute
       named by `attribute` will be looked up and one of the above three rules applied as per the
       attribute_mapping dictionary.
-    '''
+    """
     map = {}
     for child in node:
         try:
@@ -152,7 +152,7 @@ class SKOSLoader(object):
         self.concepts_relationships = []
     
     def message(self, level, message):
-        ''' Log message to a log file or display in the browser '''
+        """Log message to a log file or display in the browser"""
         if self.log:
             logging.log(level, message)
         else:
@@ -183,7 +183,7 @@ class SKOSLoader(object):
         self.concepts_relationships = []
 
     def load_skos_vocab(self, fname):
-        '''Import a vocabulary into the DB from xml file fname in SKOS format'''
+        """Import a vocabulary into the DB from xml file fname in SKOS format"""
         doc = ElementTree()
         goto = '/'
         try:
@@ -236,7 +236,7 @@ class SKOSLoader(object):
         return identifiers[0]
 
     def load_vocab_instance(self, vocab):
-        '''Parse a Vocabulary instance from an ElementTree skos:ConceptScheme node.'''
+        """Parse a Vocabulary instance from an ElementTree skos:ConceptScheme node."""
         vocab_dict = {
             'node_id': self.get_node_id(vocab) 
         }
@@ -255,7 +255,7 @@ class SKOSLoader(object):
         return v
 
     def load_concept_instance(self, node):
-        '''Parse a Concept instance from an ElementTree skos:Concept node.'''
+        """Parse a Concept instance from an ElementTree skos:Concept node."""
         node_id = self.get_node_id(node)
         concept_dict = {
             'node_id': node_id
