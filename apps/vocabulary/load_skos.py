@@ -50,13 +50,10 @@ CONCEPT_TAG_MAP = {
     '{http://purl.org/dc/elements/1.1/}creator': None, # creator
     '{http://purl.org/dc/elements/1.1/}language': None,
     '{http://purl.org/dc/terms/}rightsHolder': None, # creator
-    '{http://skeyn.com/schemes/EDVOC/zthes-ext.xsd#}termBrowseRoot': None, # Irrelevant
-    '{http://www.zthes.org/}termBrowseRoot': None, # Irrelevant
-    '{http://skeyn.com/schemes/EDVOC/zthes-ext.xsd#}termNoteGloballyUniqueId': None, # Duplicate
     '{http://www.zthes.org/}termNoteGloballyUniqueId': None,
-    '{http://skeyn.com/schemes/EDVOC/zthes-ext.xsd#}termNoteDisplayOrder': 'order',
+    '{http://www.zthes.org/}termNoteDisplayOrder': 'order',
     '{http://www.zthes.org/}termNoteDisplayOrder': 'order', 
-    '{http://skeyn.com/schemes/EDVOC/zthes-ext.xsd#}termNoteSourceAuthority': None, # source
+    '{http://www.zthes.org/}termNoteSourceAuthority': None, # source
     '{http://www.zthes.org/}termNoteSourceAuthority': None, # source
     '{http://purl.org/dc/elements/1.1/}title': 'name',
     '{http://www.zthes.org/}termNote': ('label', {
