@@ -25,7 +25,7 @@ VOCAB_TAG_MAP = {
     '{http://purl.org/dc/elements/1.1/}format': None,
     '{http://purl.org/dc/elements/1.1/}rights': None,
     '{http://www.w3.org/2004/02/skos/core#}definition': 'description',
-    '{http://www.zthes.org/}thesNote': ('label', {
+    '{http://unilexicon.com/}thesNote': ('label', {
             'authority': None,
             'version': None,
             'globallyUniqueId': None,
@@ -50,13 +50,13 @@ CONCEPT_TAG_MAP = {
     '{http://purl.org/dc/elements/1.1/}creator': None, # creator
     '{http://purl.org/dc/elements/1.1/}language': None,
     '{http://purl.org/dc/terms/}rightsHolder': None, # creator
-    '{http://www.zthes.org/}termNoteGloballyUniqueId': None,
-    '{http://www.zthes.org/}termNoteDisplayOrder': 'order',
-    '{http://www.zthes.org/}termNoteDisplayOrder': 'order', 
-    '{http://www.zthes.org/}termNoteSourceAuthority': None, # source
-    '{http://www.zthes.org/}termNoteSourceAuthority': None, # source
+    '{http://unilexicon.com/}termNoteGloballyUniqueId': None,
+    '{http://unilexicon.com/}termNoteDisplayOrder': 'order',
+    '{http://unilexicon.com/}termNoteDisplayOrder': 'order', 
+    '{http://unilexicon.com/}termNoteSourceAuthority': None, # source
+    '{http://unilexicon.com/}termNoteSourceAuthority': None, # source
     '{http://purl.org/dc/elements/1.1/}title': 'name',
-    '{http://www.zthes.org/}termNote': ('label', {
+    '{http://unilexicon.com/}termNote': ('label', {
             'category': 'category[]',
             # these need to go to ConceptAttributes
             'displayOrder': 'order',
