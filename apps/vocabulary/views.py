@@ -130,12 +130,14 @@ def megadropdowns(request, vocab_node_id):
 def order(request, vocab_node_id):
     vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
     concepts = Concept.objects.filter(vocabulary=vocab)
+    x = 'Order concepts'
     if request.method == 'POST':
-        for c in concepts: 
-            #c.order = int(request.POST['order'])
-            #c.save()
-            pass
-        return 'updated ordering'
+        for c in concepts:
+            raise # TODO
+            c.order = int(request.POST['order']) 
+            c.save()
+        x = 'Updated order'
+    return HttpResponse(x)
 
 @csrf_exempt
 def vocabulary_edit(request, vocab_node_id):
