@@ -20,8 +20,13 @@ Server Installation - Vocabulary editor & repository
 ----------------------------------------------------
 Install Python, Django, MySQL and mysqlclient bindings
 Create database and add name, user and password to settings_local.py.
+
 Run:
 $ ./manage.py migrate
+
+For MySQL enable fulltext indexes.
+ALTER TABLE concepts ADD FULLTEXT(name);
+ALTER TABLE concepts ADD FULLTEXT(description);
 
 Import SKOS vocabularies from disk (or upload them later):
 $ ./manage.py load_skos -r <directory of the vocabularies to import e.g.:  /home/f/repos/vocabs/>
