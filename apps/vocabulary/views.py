@@ -108,7 +108,7 @@ def csv(request, vocab_node_id):
 def glossary(request, vocab_node_id):
     vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
     concepts = vocab.concept_set.order_by('name')
-    return render('vocabulary/glossary.txt', {'concepts': concepts}, request)
+    return render('vocabulary/glossary.csv', {'concepts': concepts}, request)
 
 def meeting(request, vocab_node_id):
     vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
