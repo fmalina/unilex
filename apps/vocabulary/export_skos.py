@@ -16,7 +16,8 @@ VOCAB_TEMPLATE = Template('''
 CONCEPT_TEMPLATE = Template('''
     <skos:Concept rdf:nodeID="{{ concept.node_id }}">
         <skos:inScheme rdf:nodeID="{{ concept.vocabulary.node_id }}"/>
-        <skos:prefLabel>{{ concept.name }}</skos:prefLabel>{% if not concept.mother %}
+        <skos:prefLabel>{{ concept.name }}</skos:prefLabel>{% if concept.description %}
+        <skos:definition>{{ concept.description }}</skos:definition>{% endif %}{% if not concept.mother %}
         <skos:topConceptOf rdf:nodeID="{{ concept.vocabulary.node_id }}"/>{% else %}{% for parent in concept.parent.all %}
         <skos:broader rdf:nodeID="{{parent.node_id}}"/>
         {% endfor %}{% endif %}
