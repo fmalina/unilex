@@ -19,7 +19,7 @@ def get_setting(name):
     return getattr(settings, SETTINGS_PREFIX + name, SETTINGS_DEFAULTS[name])
 
 def searchexcerpt(text, phrases, context_words=None, ignore_case=None, word_boundary=None):
-    if isinstance(phrases, basestring):
+    if isinstance(phrases, str):
         phrases = [phrases]
     if context_words is None:
         context_words = get_setting('CONTEXT_WORDS')
@@ -132,7 +132,7 @@ def searchexcerpt_filter(value, arg):
 searchexcerpt_filter.is_safe = True
 
 def highlight(text, phrases, ignore_case=None, word_boundary=None, class_name=None):
-    if isinstance(phrases, basestring):
+    if isinstance(phrases, str):
         phrases = [phrases]
     if ignore_case is None:
         ignore_case = get_setting('IGNORE_CASE')
@@ -189,7 +189,7 @@ def highlight_filter(value, arg):
     return highlight(value, arg)['highlighted']
 
 def hits(text, phrases, ignore_case=None, word_boundary=None):
-    if isinstance(phrases, basestring):
+    if isinstance(phrases, str):
         phrases = [phrases]
     if ignore_case is None:
         ignore_case = get_setting('IGNORE_CASE')
