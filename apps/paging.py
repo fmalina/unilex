@@ -59,7 +59,6 @@ def render_paging(request, pages, page_obj, count, limit):
     
     return render_to_string('pagination.html', {
         'path': request.path_info,
-        'mobile': bool(request.mobile),
         'pages': pages,
         'page_obj': page_obj,
         'is_paginated': count > limit,

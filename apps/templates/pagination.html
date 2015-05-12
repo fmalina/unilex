@@ -2,21 +2,17 @@
 <div class="paginator">
 <div>
     {% if page_obj.has_previous %}<a rel="prev" href="{{ path }}?page={{ page_obj.previous_page_number }}{{ getvars }}">‹&nbsp;previous</a>{% endif %}
-    {% if mobile %}
-        <i> {{ page_obj.number }} of {{ pages|length }} </i>
-    {% else %}
-        {% for page in pages %}
-            {% if page %}
-                {% if page = page_obj.number %}
-                    <span class="active{% if forloop.last %} last{% endif %}">{{ page }}</span>
-                {% else %}
-                    <a{% if forloop.last %} class="last"{% endif %} href="{{ path }}?page={{ page }}{{ getvars }}">{{ page }}</a>
-                {% endif %}
+    {% for page in pages %}
+        {% if page %}
+            {% if page = page_obj.number %}
+                <span class="active{% if forloop.last %} last{% endif %}">{{ page }}</span>
             {% else %}
-                <span>…</span>
+                <a{% if forloop.last %} class="last"{% endif %} href="{{ path }}?page={{ page }}{{ getvars }}">{{ page }}</a>
             {% endif %}
-        {% endfor %}
-    {% endif %}
+        {% else %}
+            <span>…</span>
+        {% endif %}
+    {% endfor %}
     {% if page_obj.has_next %}<a rel="next" class="next" href="{{ path }}?page={{ page_obj.next_page_number }}{{ getvars }}">next&nbsp;›</a>{% endif %}
 </div>
 </div>
