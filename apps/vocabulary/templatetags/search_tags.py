@@ -3,7 +3,6 @@ from django.conf import settings
 from django.template import Node, TemplateSyntaxError
 from django.utils.safestring import mark_safe
 from django.utils.datastructures import SortedDict
-from itertools import ifilter, takewhile
 import re
 
 register = template.Library()
@@ -42,7 +41,7 @@ def searchexcerpt(text, phrases, context_words=None, ignore_case=None, word_boun
     for i, piece in enumerate(pieces):
         word_lists.append(whitespace.split(piece))
         if i % 2:
-            index[i] = expr = ifilter(lambda e: e.match(piece), exprs).next()
+            index[i] = expr = filter(lambda e: e.match(piece), exprs).next()
             matches.setdefault(expr, []).append(i)
     
     def merge(lists):
