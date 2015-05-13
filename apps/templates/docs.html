@@ -60,9 +60,9 @@ img.auto{width:auto}
 
   <h2>Features in more depth</h2>
 
-  <p>The visual editor is accessed by a suitable URL: at present
-  this is <a href="http://unilexicon.com/">unilexicon.com</a> . This leads to the home
-  page for the editor (see Figure 1).</p>
+  <p>The visual editor is accessed by a suitable URL: for example
+  <a href="http://unilexicon.com/">unilexicon.com</a><br>
+  This leads to the home page for the editor (see Figure 1).</p>
 
   <p class="figure"><img src="/docs/m5449b4b0.png" alt="" /><br />
   <i>Figure 1. The visual vocabulary editor home page</i></p>
@@ -216,37 +216,41 @@ img.auto{width:auto}
 
   <h3>List of code modules</h3>
   <ul>
-  <li><p><a class="external" href="http://www.djangoproject.com/">The Django framework</a></p></li>
-  <li><p><a class="external" href="http://codespeak.net/lxml/">LXML</a> for parsing incoming SRU and SKOS RDF import. LXML uses
+  <li><p><a class="external" href="https://www.djangoproject.com/">The Django framework</a></p></li>
+  <li><p><a class="external" href="http://lxml.de">LXML</a> for parsing incoming SRU and SKOS RDF import. LXML uses
   <a class="external" href="http://xmlsoft.org/">libxml</a> and
   <a class="external" href="http://www.w3.org/TR/xpath/">XPATH</a>, more about
   <a class="external" href="http://stackoverflow.com/questions/3785629">parsing SRU With LXML &amp; XPATH</a></p></li>
 
-  <li><p><a class="external" href="http://pypi.python.org/pypi/xlrd/">XLRD library</a> by John Machin, used by Excel import. <a class="external" href="http://stackoverflow.com/questions/3290620">More information about the import algorithm</a></p></li>
+  <li><p><a class="external" href="https://pypi.python.org/pypi/xlrd/">XLRD library</a> by John Machin, used by Excel import.
+      <a class="external" href="http://stackoverflow.com/questions/3290620">More information about the import algorithm</a></p></li>
 
   <li><p><a class="external" href="http://jquery.com/">jQuery</a> and jQuery based:</p>
     <ul>
-      <li><a class="external" href="http://code.google.com/p/django-dynamic-formset/" title="A jQuery plugin that allows you dynamically add new forms to a rendered django formset">Django dynamic formset</a></li>
+      <li><a class="external" href="https://github.com/elo80ka/django-dynamic-formset" title="A jQuery plugin that allows you dynamically add new forms to a rendered django formset">Django dynamic formset</a></li>
       <li><a class="external" href="https://github.com/agarzola/jQuery-Autocomplete-Plugin-1.1.1">Autocomplete</a></li>
-      <li>Icons from <a class="external" href="http://ui.jquery.com/">jQuery UI project</a></li>
+      <li>Icons from <a class="external" href="http://jqueryui.com">jQuery UI project</a></li>
     </ul>
   </li>
   <li><p><a class="external" href="http://thejit.org/">JavaScript InfoVis Toolkit</a> to create interactive data visualizations</p></li>
   <li><p><a class="external" href="http://www.ubuntu.com/server">Ubuntu server</a></p></li>
   <li><p><a class="external" href="http://wiki.nginx.org/Main">Nginx</a> front-end webserver <a class="external" href="http://stackoverflow.com/questions/869001">our configuration</a></p></li>
-  <li><p>Gunicorn server or <a class="external" href="http://httpd.apache.org/">Apache2</a> with <a class="external" href="http://code.google.com/p/modwsgi/">Mod_wsgi</a>, more in <a class="external" href="http://docs.djangoproject.com/en/dev/howto/deployment/">Django deployment docs</a></p></li>
+  <li><p>Gunicorn server or
+      <a class="external" href="http://httpd.apache.org/">Apache2</a> with
+      <a class="external" href="http://www.modwsgi.org/">Mod_wsgi</a>, more in
+      <a class="external" href="https://docs.djangoproject.com/en/dev/howto/deployment/">Django deployment docs</a></p></li>
   <li><p><a class="external" href="http://www.mysql.com/">MySQL database</a>, any
-  <a class="external" href="http://docs.djangoproject.com/en/dev/ref/databases/">database supported by Django <dfn title="object relational mapper">ORM</dfn></a> will work, including PostgreSQL &amp; SQLite</p></li>
+  <a class="external" href="https://docs.djangoproject.com/en/dev/ref/databases/">database supported by Django <dfn title="object relational mapper">ORM</dfn></a> will work, including PostgreSQL &amp; SQLite</p></li>
   </ul>
 
   <h2>Technical components of the content tagging plugin</h2>
-  <p><a class="external" href="http://code.google.com/chrome/extensions">Chrome extension</a> is written in JavaScript ( plain native code,
-  <a class="external" href="http://code.google.com/chrome/extensions/options.html">DOM localStorage</a> ), CSS and HTML5. Tagging interfaces are loaded for each content node using AJAX. Tagging interface iteself uses jQuery.
+  <p><a class="external" href="https://developer.chrome.com/extensions">Chrome extension</a> is written in JavaScript ( plain native code,
+  <a class="external" href="https://developer.chrome.com/extensions/options">DOM localStorage</a> ), CSS and HTML5. Tagging interfaces are loaded for each content node using AJAX. Tagging interface iteself uses jQuery.
   Frontend uses AJAX to talk to backend WSGI application, which communicates to underlying CMS. SRU is used to retrieve data from the CMS. SWORD is used to post amended data back.</p>
 
   <h3>System requirements</h3>
-  <p><a class="external" href="http://www.google.com/chrome">Chrome</a> or
-  <a class="external" href="http://www.chromium.org/Home">Chromium</a> web browser.</p>
+  <p><a class="external" href="http://www.google.com/chrome/">Chrome</a> or
+  <a class="external" href="https://www.chromium.org/Home">Chromium</a> web browser.</p>
 
   
   <h3>Technical description</h3>
@@ -271,9 +275,9 @@ img.auto{width:auto}
           part of the Library of Congress.</p></li>
   </ul>
   <p>Modules:
-      <a class="external" rel="nofollow" href="http://drupal.org/project/sru">SRU</a>,
-      <a class="external" rel="nofollow" href="http://drupal.org/project/sword">SWORD</a>,
-      <a class="external" rel="nofollow" href="http://drupal.org/project/cql">CQL</a>,
-      SKOS RDF export/import is now <a class="external" href="http://drupal.org/node/560326">patched</a>.</p>
+      <a class="external" href="https://www.drupal.org/project/sru">SRU</a>,
+      <a class="external" href="https://www.drupal.org/project/sword">SWORD</a>,
+      <a class="external" href="https://www.drupal.org/project/cql">CQL</a>,
+      W3C standard <a class="external" href="https://www.drupal.org/node/560326">SKOS export/import for Drupal</a>.</p>
 </div>
 {% endblock %}
