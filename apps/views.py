@@ -7,7 +7,7 @@ from vocabulary.models import Vocabulary
 from utils import render
 
 def sitemap(request):
-    base_href = 'http://' + Site.objects.get_current().domain
+    base_href = 'https://' + Site.objects.get_current().domain
     vocabularies = Vocabulary.objects.exclude(private=True).order_by('-updated_at')
     rendered = render_to_string('sitemap.xml', {'vocabularies':vocabularies, 'base_href':base_href})
     return HttpResponse(rendered, content_type='application/xml')
