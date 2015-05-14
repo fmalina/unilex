@@ -20,3 +20,15 @@
 .level3-wrap{background:#fff;padding:1em 1.25em;margin:0 0 1em 0}
 
 .level3-wrap li:last-child a{border:0}
+
+.ui-sortable a{
+	cursor:grab;
+	cursor:-webkit-grab;
+	cursor:-moz-grab;
+}
+.ui-sortable a:active{
+	cursor:grabbing;
+	cursor:-webkit-grabbing;
+	cursor:-moz-grabbing;
+}
+.ui-sortable a.level1{cursor:not-allowed} /* TODO */
