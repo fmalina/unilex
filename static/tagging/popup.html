@@ -1,15 +1,10 @@
 <html>
   <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" /> 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+    <meta charset="utf-8" /> 
+    <script src="zepto.js"></script>
     <script src="md5.js"></script>
     <script src="tag.js"></script>
-    <script>
-        $(function(){
-            tag.init();
-            setInterval('tag.saveCurrent()', 5000);
-        });
-    </script>
+    <script src="init-tag.js"></script>
     <style>
     body{min-width:420px;padding:10px;overflow-x:hidden;font-family:helvetica,arial,sans-serif}
     ul,li{list-style:none;margin:0;padding:0}

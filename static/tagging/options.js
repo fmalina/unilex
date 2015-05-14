@@ -10,6 +10,7 @@ function options(){
   if(window.localStorage == null){
     alert("LocalStorage must be enabled to change options.");
     document.getElementById('name').disabled = true;
+    document.getElementById('site').disabled = true;
     document.getElementById('username').disabled = true;
     document.getElementById('password').disabled = true;
     return;
@@ -26,7 +27,7 @@ function auth_token(){
   // Create SWORD authentication token in agreed format
   var password = window.localStorage.getItem('password');
   var username = window.localStorage.getItem('username');
-  password = MD5(password);
+  password = md5(password);
   token = 'username=' + username + ':password=' + password + ':nso';
-  return MD5(token);
+  return md5(token);
 }
