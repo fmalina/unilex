@@ -158,7 +158,7 @@ class Concept(models.Model):
         i = 0
         for p in self.get_path():
             if i > 1:
-                depth = '%s\t' % depth
+                depth = '%s,' % depth
             i = i+1
         return depth
 

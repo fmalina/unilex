@@ -2,6 +2,7 @@ from json import dumps
 from django.db.models import Q
 from django.http import HttpResponse
 from django.template import RequestContext
+from django.template.loader import render_to_string
 from django.forms.models import inlineformset_factory
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
@@ -103,12 +104,14 @@ def skos(request, vocab_node_id):
 
 def csv(request, vocab_node_id):
     vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
-    return export(request, vocab, export_csv(vocab), 'tsv', 'text/tab-separated-values')
+    s = export_csv(vocab)
+    return export(request, vocab, s, 'csv', 'text/comma-separated-values')
 
 def glossary(request, vocab_node_id):
     vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
     concepts = vocab.concept_set.order_by('name')
-    return render('vocabulary/glossary.csv', {'concepts': concepts}, request)
+    s = render_to_string('vocabulary/glossary.csv', {'concepts': concepts})
+    return export(request, vocab, s, 'csv', 'text/comma-separated-values')
 
 def meeting(request, vocab_node_id):
     vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
