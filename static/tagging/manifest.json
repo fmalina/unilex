@@ -1,11 +1,14 @@
 {
+  "manifest_version": 2,
   "name": "Tagging",
   "description": "Tag things using meaningful concepts from unilexicon.com",
-  "version": "0.1",
+  "version": "0.2",
+  "homepage_url": "http://unilexicon.com/",
+  "content_security_policy": "script-src 'self' https://unilexicon.com; object-src 'self'",
   "update_url": "http://unilexicon.com/tagging/updates.xml",
-  "background_page": "background.html",
+  "background": {"page": "background.html"},
   "options_page": "options.html",
-  "page_action": {
+  "browser_action": {
     "default_icon": "img/icon.png",
     "default_popup": "popup.html"
   },
