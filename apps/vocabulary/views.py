@@ -19,7 +19,7 @@ from paging import simple_paging
 from datetime import datetime
 
 def listings(request, *args, **kwargs):
-    listings = Vocabulary.objects.exclude(private=True).with_counts().order_by('title')
+    listings = Vocabulary.objects.with_counts().exclude(private=True).order_by('title')
     return render('vocabulary/listings.html', {'listings': listings}, request)
 
 def autocomplete(request):
