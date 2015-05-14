@@ -113,18 +113,10 @@ def glossary(request, vocab_node_id):
     s = render_to_string('vocabulary/glossary.csv', {'concepts': concepts})
     return export(request, vocab, s, 'csv', 'text/comma-separated-values')
 
-def meeting(request, vocab_node_id):
+def ul(request, vocab_node_id, style='meeting'):
     vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
     concepts = vocab.concept_set.filter(parent__isnull=True).order_by('order')
-    return render('vocabulary/meeting.html', {
-        'vocabulary': vocab,
-        'concepts': concepts
-        }, request)
-
-def dropdown(request, vocab_node_id):
-    vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
-    concepts = vocab.concept_set.filter(parent__isnull=True).order_by('order')
-    return render('vocabulary/megadropdowns.html', {
+    return render('vocabulary/view-%s.html' % style, {
         'vocabulary': vocab,
         'concepts': concepts
         }, request)
