@@ -118,7 +118,7 @@ def meeting(request, vocab_node_id):
         'concepts': concepts
         }, request)
 
-def megadropdowns(request, vocab_node_id):
+def dropdown(request, vocab_node_id):
     vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
     concepts = vocab.concept_set.filter(parent__isnull=True).order_by('order')
     return render('vocabulary/megadropdowns.html', {
