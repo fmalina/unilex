@@ -1,8 +1,8 @@
 def to_csv(aa):
-    str = ''
+    s = ''
     for a in aa:
-        str = str + a
-    return str
+        s = s + a
+    return s
 
 def concept_to_csv(concept):
     return '%s"%s"\n%s' % (
