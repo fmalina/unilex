@@ -5,7 +5,8 @@ def to_csv(aa):
     return s
 
 def concept_to_csv(concept):
-    return '%s"%s"\n%s' % (
+    return '%s,%s"%s"\n%s' % (
+        concept.node_id,
         concept.depth_indent(),
         concept.name,
         to_csv([concept_to_csv(child) for child in concept.get_children()])
