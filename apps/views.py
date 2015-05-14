@@ -8,7 +8,7 @@ from utils import render
 
 def sitemap(request):
     base_href = 'http://' + Site.objects.get_current().domain
-    vocabularies = Vocabulary.objects.all().order_by('-updated_at')
+    vocabularies = Vocabulary.objects.exclude(private=True).order_by('-updated_at')
     rendered = render_to_string('sitemap.xml', {'vocabularies':vocabularies, 'base_href':base_href})
     return HttpResponse(rendered, content_type='application/xml')
 
