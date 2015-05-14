@@ -56,6 +56,12 @@ form li{list-style:none;text-shadow:none}
 #infovis .node-depth-2{opacity:.7;font-size:.7em}
 #id_mother{background:url(/img/icon-paste.png) 99% 50% no-repeat}
 
+#switch-view{float:right}
+#switch-view ul{list-style:none;padding:0;}
+#switch-view li{padding-bottom:5px}
+#switch-view a{text-decoration:none}
+#switch-view a:hover{text-decoration:underline}
+
 .new_concept input,
 .new_concept select,
 .edit_concept input,

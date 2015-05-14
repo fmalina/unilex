@@ -15,7 +15,6 @@
     {% else %}
         {{ count }} concept{{ count|pluralize }}
     {% endif %})</small></h1>
-
 <div id="infovis">
 {% if count > 999 %}
     <p style="font-size:16px;padding:40px 0">
@@ -24,8 +23,19 @@
     <small>Cap is set to 1k concepts.</small>
     </p>
 {% endif %}
-</div>
-</div>
+</div><!-- /infovis -->
+<div id="switch-view">
+    <b>Switch view</b>
+    <ul>
+        <li><a href="{% url 'meeting'  vocabulary.node_id %}">Meeting view</a>
+        <li><a href="{% url 'dropdown' vocabulary.node_id %}">Megadropdowns</a>
+        <li><a href="{% url 'json'     vocabulary.node_id %}">JSON</a> / 
+            <a href="{% url 'skos'     vocabulary.node_id %}">SKOS</a>
+        <li><a href="{% url 'csv'      vocabulary.node_id %}">CSV tree</a> + 
+            <a href="{% url 'glossary' vocabulary.node_id %}">glossary</a>
+    </ul>
+</div><!-- /switch view -->
+</div><!-- /main -->
 
 <div id="inner-details"></div>
 <div id="log"></div>
