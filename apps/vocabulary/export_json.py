@@ -1,14 +1,15 @@
 def concept_to_dict(concept):
-    return {
+    d = {
         'id': concept.node_id,
         'name': concept.name,
         'children': [concept_to_dict(child) for child in concept.get_children()],
-        'data': {
-            'type': 'concept',
-            'query': concept.query,
-            'active': concept.active
-        }
+        'data': {'type': 'concept'}
     }
+    if concept.query:
+        d['data']['query'] = concept.query
+    if not concept.active:
+        d['data']['active'] = concept.active
+    return d
 
 def vocab_to_dict(vocab):
     children = vocab.concept_set.filter(parent__isnull=True)
