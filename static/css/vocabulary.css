@@ -56,8 +56,9 @@ form li{list-style:none;text-shadow:none}
 #infovis .node-depth-2{opacity:.7;font-size:.7em}
 #id_mother{background:url(/img/icon-paste.png) 99% 50% no-repeat}
 
-#switch-view{float:right}
-#switch-view ul{list-style:none;padding:0;}
+#switch-view{position:absolute;z-index:100000;bottom:0;left:30px;background:rgba(0,0,0,0.5);padding:10px 20px}
+#switch-view ul{list-style:none;padding:0;display:none}
+#switch-view:hover ul{display:block}
 #switch-view li{padding-bottom:5px}
 #switch-view a{text-decoration:none}
 #switch-view a:hover{text-decoration:underline}
