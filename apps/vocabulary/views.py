@@ -84,6 +84,7 @@ def load_vocab(request, format='xls'):
 @login_required
 def vocabulary_add(request):
     vocab = Vocabulary(title='New vocabulary')
+    vocab.user = request.user
     vocab.save()
     return redirect(vocab.get_absolute_url())
 
