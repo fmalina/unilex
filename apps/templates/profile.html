@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Your profile{% endblock %}
+{% block content %}
+<div id="intro">
+    <h1>Your profile</h1>
+</div>
+<div id="content-in">
+    <div class="col1">
+        <form method="post" action="{{request.path}}">
+        {{form.as_p}}
+        {% csrf_token %}
+        <p><button type="submit">Save</button></p>
+        </form>
+        <p><a href="{% url 'password_change' %}">Change password</a></p>
+    </div>
+    
+    <div class="col2">
+        <h2>Your vocabularies</h2>
+        {% include 'vocabulary/ls.html' %}
+        {% include 'vocabulary/add.html' %}
+    </div>
+    <hr>
+</div>
+{% endblock %}

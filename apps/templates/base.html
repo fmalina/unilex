@@ -26,7 +26,8 @@
                 <a rel="nofollow" id="loginlink" href="{% url 'auth_login' %}{% if request.path != '/accounts/logout/' %}?next={{request.path}}{% endif %}">login</a>
             / <a href="{% url 'registration_register' %}">register</a>
             {% else %}
-                <a rel="nofollow" href="{% url 'auth_logout' %}">logout</a>
+                <a href="{% url 'profile' %}">your profile</a> / 
+                <a href="{% url 'auth_logout' %}">logout</a>
             {% endif %}
         </p>
         {% block search %}
