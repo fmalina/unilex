@@ -280,16 +280,18 @@ def concept_delete(request, vocab_node_id, node_id):
 @ajax_login_required
 def vocabulary_delete(request, vocab_node_id):
     vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
-    if request.user != vocab.user and not request.user.is_staff:
-        messages.info(request, 'Only authors and staff members can delete vocabularies.')
-        return redirect(vocab.get_absolute_url())
-        
-    if request.method == 'POST':
-        if 'understand' in request.POST:
-            vocab.delete()
-            messages.success(request, '"%s" is now deleted.' % vocab.title)
-            return redirect('/vocabularies/')
-        else:
-            messages.info(request, 'Not deleted. You need to tick the box to confirm.')
-            return redirect(vocab.get_absolute_url())
-    return render('vocabulary/vocabulary-delete.html', {'vocabulary': vocab}, request)
+    allowed = False
+    if request.user == vocab.user or request.user.is_staff:
+        allowed = True
+        if request.method == 'POST':
+            if 'understand' in request.POST:
+                vocab.delete()
+                messages.success(request, '"%s" is now deleted.' % vocab.title)
+                return redirect('/vocabularies/')
+            else:
+                messages.info(request, 'Not deleted. You need to tick the box to confirm.')
+                return redirect(vocab.get_absolute_url())
+    return render('vocabulary/vocabulary-delete.html', {
+        'vocabulary': vocab,
+        'allowed': allowed
+    }, request)
