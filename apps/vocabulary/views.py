@@ -280,6 +280,10 @@ def concept_delete(request, vocab_node_id, node_id):
 @ajax_login_required
 def vocabulary_delete(request, vocab_node_id):
     vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
+    if request.user != vocab.user and not request.user.is_staff:
+        messages.info(request, 'Only authors and staff members can delete vocabularies.')
+        return redirect(vocab.get_absolute_url())
+        
     if request.method == 'POST':
         if 'understand' in request.POST:
             vocab.delete()
