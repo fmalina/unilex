@@ -2,10 +2,10 @@ from django.conf.urls import url, patterns, include
 
 urlpatterns = patterns('vocabulary.views',
     url(r'^$',                        'listings', name='listings'),
-       (r'^add$',                     'vocabulary_add'),
+    url(r'^add$',                     'vocabulary_add', name='add'),
        (r'^autocomplete$',            'autocomplete'),
        (r'^search$',                  'search'),
-       (r'^load-(?P<format>[a-z]+)$', 'load_vocab'),
+    url(r'^load-(?P<format>[a-z]+)$', 'load_vocab', name='load'),
     url(r'^(?P<vocab_node_id>[a-z0-9-]+)/$',         'detail', name='vocabulary'),
     url(r'^(?P<vocab_node_id>[a-z0-9-]+)/edit$',     'vocabulary_edit'),
     url(r'^(?P<vocab_node_id>[a-z0-9-]+)/delete$',   'vocabulary_delete'),

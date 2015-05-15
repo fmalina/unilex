@@ -12,13 +12,9 @@
         <li>import and export vocabularies using a variety of sources and formats including JSON, <dfn title="simple knowledge organisation system">SKOS</dfn>, <dfn title="nested unordered list">HTML</dfn> and <dfn title="indented cells">Excel</dfn></li>
         <li>simplify writing of contextual queries for navigation vocabularies</li>
         </ul>
-        <p><a href="add" class="btn">Start your vocabulary</a> &nbsp; &nbsp; Import: <a href="load-xls">Excel</a>, <a href="load-skos">SKOS</a></p>
+        {% include 'vocabulary/add.html' %}
     </div>
     <h2>Explore vocabularies</h2>
-    <ul id="vocabulary-list">
-    {% for vocabulary in listings %}
-        <li><a href="{{vocabulary.get_absolute_url}}">{{vocabulary.title }} ({{ vocabulary.concept_count }})</a></li>
-    {% endfor %}
-    </ul>
+    {% include 'vocabulary/ls.html' %}
 
 {% endblock %}
