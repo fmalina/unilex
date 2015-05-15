@@ -37,6 +37,7 @@ class VocabularyManager(models.Manager):
 class Vocabulary(models.Model):
     """Vocabulary is a hierarchy of concepts"""
     node_id     = models.SlugField(db_index=True, max_length=60, verbose_name='Permalink: /vocabularies/')
+    user        = models.ForeignKey(settings.AUTH_USER_MODEL)
     title       = models.CharField(max_length=75)
     description = models.TextField(max_length=200, blank=True, null=True)
     language    = models.ForeignKey(Language, blank=True, null=True)
