@@ -1,13 +1,21 @@
 {% for c1 in concepts %}
-<li class="level1-inner-wrap {{ c1|slugify }}"><a href="{% if dummy %}#{% else %}{{ c1.get_absolute_url }}{% endif %}" class="level1{% if c1.get_children %} haschildren{% endif %}"><span>{{ c1 }}</span></a>
+<li id="order_vocab_{{ vocabulary.pk }}_{{ forloop.counter }}"
+    class="level1-inner-wrap {{ c1|slugify }}">
+    <a href="{% if dummy %}#{% else %}{{ c1.get_absolute_url }}{% endif %}"
+        class="level1{% if c1.get_children %} haschildren{% endif %}"><span>{{ c1 }}</span></a>
     {% if c1.get_children %}
     <ul class="level2-wrap sort">
     {% for c2 in c1.get_children %}
-    <li class="level2-inner-wrap {{ c2|slugify }}"><a href="{% if dummy %}#{% else %}{{ c2.get_absolute_url }}{% endif %}" class="level2{% if c2.get_children %} haschildren{% endif %}">{{ c2|safe }}</a>
+    <li id="order_concept_{{ c1.pk }}_{{ forloop.counter }}"
+        class="level2-inner-wrap {{ c2|slugify }}">
+        <a href="{% if dummy %}#{% else %}{{ c2.get_absolute_url }}{% endif %}"
+            class="level2{% if c2.get_children %} haschildren{% endif %}">{{ c2|safe }}</a>
         {% if c2.get_children %}
         <ul class="level3-wrap sort">
         {% for c3 in c2.get_children %}
-        <li><a href="{% if dummy %}#{% else %}{{ c3.get_absolute_url }}{% endif %}" class="level3">{{ c3 }}</a></li>
+        <li id="order_concept_{{ c2.pk }}_{{ forloop.counter }}">
+            <a href="{% if dummy %}#{% else %}{{ c3.get_absolute_url }}{% endif %}" class="level3">{{ c3 }}</a>
+        </li>
         {% endfor %}
         </ul>
         {% endif %}

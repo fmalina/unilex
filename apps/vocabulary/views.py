@@ -122,16 +122,42 @@ def ul(request, vocab_node_id, style='meeting'):
         'concepts': concepts
         }, request)
 
-@login_required
-def order(request, vocab_node_id):
+@ajax_login_required
+@csrf_exempt
+def ordering(request, vocab_node_id):
+    """ Child concepts are ordered by ID if no order is specified.
+    
+    This view allows to set new ordering using concept.order.
+    
+    Request POST will look like:
+        {'order_concept_478[]': ['2', '1', '3']} or
+        {'order_vocab_15[]': ['1', '2', '5'...
+    Where 478 is parent concept PK and 2, 1, 3 is new ordering
+    of the children to rewrite their starting sequence 1, 2, 3.
+    Ordering sequence numbers are not the same thing as concept.order
+    
+    Ordering the 1st level differs as instead of parent concept PK we get a vocab PK.
+    """
     vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
     concepts = Concept.objects.filter(vocabulary=vocab)
     x = 'Order concepts'
     if request.method == 'POST':
-        for c in concepts:
-            raise # TODO
-            c.order = int(request.POST['order']) 
-            c.save()
+        orderword_modelword_pk, seq = list(dict(request.POST).items())[0]
+        orderword,modelword,pk = orderword_modelword_pk.split('_')
+        pk=int(pk.replace('[]',''))
+        if modelword == 'concept':
+            model = Concept
+        else:
+            model = Vocabulary
+        parent = get_object_or_404(model, pk=pk)
+        children = dict(enumerate(parent.get_children(), start=1)) # old order
+        sequence = list(enumerate([int(x) for x in seq], start=1)) # new order mapping
+        # print(children) >>> {1: <Concept: CSS>, 2: <Concept: JS>, 3: <Concept: HTML>}
+        # print(sequence) >>> [(1, 3), (2, 1), (3, 2)] # desired order HTML, CSS, JS
+        for new_concept_order,forloop_counter in sequence:
+            concept = children[forloop_counter]
+            concept.order = new_concept_order
+            concept.save()
         x = 'Updated order'
     return HttpResponse(x)
 

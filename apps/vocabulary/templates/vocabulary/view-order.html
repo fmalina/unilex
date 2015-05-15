@@ -7,26 +7,27 @@
 {% endblock %}
 
 {% block extrascripts %}
-    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-    <script>
-        $(function(){
-	        $(".sort").sortable({
-	        	placeholder: 'placeholder',
-	        	forcePlaceholderSize: true
-	            /* TO DO: use this to edit display order.
-					update: function(){
-						$.ajax({
-							type: 'POST',
-							url: 'order',
-							data: function(){},
-							success: function(){
-								$(this).addClass("done");
-							}
-						});
-					} */
-	        });
-        });
-    </script>
+	<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+	<script>
+	$(function(){
+		$(".sort").sortable({
+			placeholder: 'placeholder',
+			forcePlaceholderSize: true,
+			update: function(){
+				var data = $(this).sortable('serialize');
+				$.ajax({
+					type: 'POST',
+					data: data,
+					url: '{% url 'ordering' vocabulary.node_id %}',
+					success: function(){
+						$(this).addClass("done");
+						window.location.reload(); // TODO now re-key the li IDs instead
+					}
+				});
+			}
+		});
+	});
+	</script>
 {% endblock %}
 
 {% block content %}
