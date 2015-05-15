@@ -1,3 +1,7 @@
+{% if not allowed %}
+    <p>Only authors and staff members can delete vocabularies.
+        <a href="#cancel" class="cancel">ok, dismiss</a></p>
+{% else %}
 <form action="{{request.path}}" method="post">{% csrf_token %}
     <p>Are you sure you wish to delete <b>'{{ vocabulary.title }}'</b>?</p>
 
@@ -13,3 +17,4 @@
     <p><button type="submit" class="delete"><b>✗</b> Delete</button>
     <a href="#cancel" class="cancel">cancel</a></p>
 </form>
+{% endif %}
