@@ -23,6 +23,7 @@ fieldset{border:0;padding:0}
 #nav ul{list-style:none}
 #nav a{text-decoration:none}
 #nav a:hover{text-decoration:underline}
+#header #nav li{display:inline-block;padding-right:1.1em}
 
 form ul{margin:0;padding:10px 0}
 form ul li{list-style:none;padding:5px 0}
