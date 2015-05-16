@@ -14,22 +14,23 @@
     </head>
     <body>
     <div id="header">
-        <p id="nav">
-            <a href="{{ base_url }}">home</a> &mdash; 
-            <a href="{{ base_url }}{% url 'listings' %}" title="Visual Editor for Controlled Vocabularies">vocabularies</a>
-            &mdash; <a href="{{ base_url }}{% url 'tag.views.about' %}" title="Contextual Tagging using Controlled Vocabularies">tagging</a>
-            &mdash; <a href="{{ base_url }}{% url 'views.docs' %}" title="Visual Vocabulary Suite Documentation">documentation</a>
+        <ul id="nav">
+            <li><a href="{{ base_url }}">Home</a>
+            <li><a href="{{ base_url }}{% url 'listings' %}"
+                title="Visual Taxonomy Editor for Controlled Vocabularies, Taxonomies and Thesauri">Vocabularies</a>
+            <li><a href="{{ base_url }}{% url 'tag.views.about' %}" title="Contextual Tagging using Controlled Vocabularies">Tagging</a>
+            <li><a href="{{ base_url }}{% url 'views.docs' %}" title="Visual Vocabulary Suite Documentation">Documentation</a>
             {% if user.is_staff %}
-            &mdash; <a href="{{ base_url }}/admin/">admin</a>{% endif %}
-            &mdash;
+            <li><a href="{{ base_url }}/admin/">Admin</a>{% endif %}
             {% if user.is_anonymous %}
-                <a rel="nofollow" id="loginlink" href="{% url 'auth_login' %}{% if request.path != '/accounts/logout/' %}?next={{request.path}}{% endif %}">login</a>
-            / <a href="{% url 'registration_register' %}">register</a>
+            <li><a rel="nofollow" id="loginlink"
+                href="{% url 'auth_login' %}{% if request.path != '/accounts/logout/' %}?next={{request.path}}{% endif %}">Login</a>
+            / <a href="{% url 'registration_register' %}">Register</a>
             {% else %}
-                <a href="{% url 'profile' %}">your profile</a> / 
-                <a href="{% url 'auth_logout' %}">logout</a>
+            <li><a href="{% url 'profile' %}">Your profile</a> / 
+                <a href="{% url 'auth_logout' %}">Logout</a>
             {% endif %}
-        </p>
+        </ul>
         {% block search %}
             {% include 'vocabulary/search-input.html' %}
         {% endblock %}
