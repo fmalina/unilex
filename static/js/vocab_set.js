@@ -1,6 +1,6 @@
 function makeAutocomplete(sel, url){
     sel.autocomplete(url, {
-        width: 400,
+        width: 300,
 		scrollHeight: 'auto',
 		selectFirst: true,
 		autoFill: false,
