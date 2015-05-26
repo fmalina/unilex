@@ -41,14 +41,15 @@ div.paginator span.disabled{padding:2px 5px 2px 5px;margin-right:2px;border:1px 
 
 button,
 input[type="submit"],
-.btn,
-#install{text-decoration:none;display:inline-block;text-shadow:#000 0 0 3px;border:1px solid #666;text-shadow:0 1px 3px #444;color:#fff;padding:15px;background:rgba(0,0,0,.3);cursor:pointer;border-radius:5px;margin-top:15px;font:20px Georgia,serif}
+.btn{text-decoration:none;display:inline-block;text-shadow:#000 0 0 3px;border:1px solid #666;text-shadow:0 1px 3px #444;color:#fff;padding:15px;background:rgba(0,0,0,.3);cursor:pointer;border-radius:5px;margin-top:15px;font:20px Georgia,serif}
+.btn:hover,
 button:hover,
 input[type="submit"]:hover{background:rgba(0,0,0,.5);border:1px solid #646464}
-#install small{font:12px arial, serif}
-#install{padding:20px 25px}
+.call small{font:12px arial, serif}
+.call{padding:20px 25px}
 
 .col1,.col2{width:45%;float:left;padding-right:3%}
+.col1 a,.col2 a{font-weight:bold}
 hr{border-color:rgba(255,255,255,0.2);clear:both}
 .inline{padding-left:0}
 .inline li{display:inline-block;list-style-type:none;padding:10px;}

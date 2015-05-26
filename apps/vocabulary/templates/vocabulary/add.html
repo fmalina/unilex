@@ -1,4 +1,8 @@
 <p>
-    <a href="{% url 'add' %}" class="btn">Start your vocabulary</a> &nbsp; &nbsp; Import:
+    <a href="{% url 'add' %}" class="btn call"><img src="/img/icon-add.png" alt=""> Start your vocabulary
+        {% if not request.user.is_authenticated %}
+            <small>registration required</small>
+        {% endif %}
+    </a> &nbsp; &nbsp; Import:
     <a href="{% url 'load' 'xls' %}">Excel</a>,
     <a href="{% url 'load' 'skos' %}">SKOS</a></p>
