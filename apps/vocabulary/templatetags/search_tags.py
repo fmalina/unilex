@@ -55,7 +55,7 @@ def searchexcerpt(text, phrases, context_words=None, ignore_case=None, word_boun
     
     i = 0
     merged = []
-    for j in map(min, matches.itervalues()):
+    for j in map(min, matches.values()):
         merged.append(merge(word_lists[i:j]))
         merged.append(word_lists[j])
         i = j + 1
