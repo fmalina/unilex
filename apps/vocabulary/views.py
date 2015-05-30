@@ -37,15 +37,17 @@ def autocomplete(request):
     return render('vocabulary/autocomplete.txt', {'concepts': concepts}, request)
 
 def search(request):
-    q = request.GET.get('q','')
+    q = request.GET.get('q','').strip()
     ls = Concept.objects.filter(
         Q(name__search=q) |
         Q(description__search=q) |
         Q(node_id__istartswith=q)
     ).order_by('-count')
+    if not q:
+        ls = []
     ls, count, paging = simple_paging(request, ls, 10)
     return render('vocabulary/search.html', {
-        'ls': ls,
+        'ls': ls, 'count': count, 'paging': paging,
         'q': q,
         'title': '%s - Search results' % q
         }, request)
