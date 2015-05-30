@@ -33,11 +33,13 @@ form input[type="file"]{border:0;font-size:inherit}
 
 .details{font-size:10px;color:#666;float:right;padding:2px 0 0 10px}
 
-div.paginator{padding:3px;margin:3px;text-align:center}
-div.paginator a{padding:2px 5px 2px 5px;margin-right:2px;border:1px solid #ddd;text-decoration:none;color:#88AF3F}
-div.paginator a:hover, div.paginator a:active{border:1px solid #85BD1E;color:#638425;background-color:#F1FFD6}
-div.paginator span.current{padding:2px 5px 2px 5px;margin-right:2px;border:1px solid #B2E05D;font-weight:bold;background-color:#B2E05D;color:#FFF}
-div.paginator span.disabled{padding:2px 5px 2px 5px;margin-right:2px;border:1px solid #f3f3f3;color:#ccc}
+div.paginator{margin:1em 0px}
+div.paginator a,
+div.paginator span{padding:.3em .7em;margin-right:.2em;border-radius:5px;background:black}
+div.paginator a{text-decoration:none}
+div.paginator a:hover,
+div.paginator a:active{color:white}
+div.paginator span{color:gray}
 
 button,
 input[type="submit"],
@@ -67,7 +69,7 @@ hr{border-color:rgba(255,255,255,0.2);clear:both}
 #sr h2{font-weight:normal;font-size:16px;margin:0}
 #sr h2 small{font-size:10px;color:#ccc}
 #sr p{padding:0;margin:0}
-#sr p small{color:#0cff00}
+#sr p small{color:#eee}
 #sr{width:600px}
 
 #feedback .placeholder{height:1.2em;overflow:hidden;color:gray}
