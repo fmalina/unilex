@@ -12,6 +12,9 @@
         {% endfor %}
     {% else %}
         <b>{{ vocabulary }}</b>
+        {% if vocabulary.description %}<br>
+            {{ vocabulary.description }}
+        {% endif %}
     {% endif %}</li>
 
     {% for c in children %}
