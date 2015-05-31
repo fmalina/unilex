@@ -12,13 +12,17 @@
         {% endfor %}
     {% else %}
         <b>{{ vocabulary }}</b>
-        {% if vocabulary.description %}<br>
+        {% if vocabulary.description and not user.is_authenticated %}<br>
             {{ vocabulary.description }}
         {% endif %}
     {% endif %}</li>
 
     {% for c in children %}
-        <li>&nbsp;&nbsp;&rarr; <a href="{{ c.get_absolute_url }}">{{ c.name }}</a></li>
+        <li>&nbsp;&nbsp;&rarr; <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+        {% if c.description and not user.is_authenticated %}<br>
+            {{ c.description }}
+        {% endif %}
+        </li>
     {% endfor %}
 
     {% if concept.related.all %}
