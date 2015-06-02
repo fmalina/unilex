@@ -1,2 +1,0 @@
-"ID","Title","Definition"{% for concept in concepts %}
-"{{ concept.node_id }}","{{ concept.name }}","{{ concept.description }}"{% endfor %}

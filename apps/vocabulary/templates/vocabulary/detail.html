@@ -31,13 +31,13 @@
     <b>Switch view ▼</b>
     <ul>
         <li>Editing vocabulary
-        <li><a href="{% url 'order'  vocabulary.node_id %}">Order concept priorities</a>
-        <li><a href="{% url 'nav' vocabulary.node_id %}">Preview website navigation</a>
-        <li><a href="{% url 'ul' vocabulary.node_id %}">Unordered list (3 levels)</a><br><br>
-        <li>Export: <a href="{% url 'json'     vocabulary.node_id %}">JSON</a> / 
-            <a href="{% url 'skos'     vocabulary.node_id %}">SKOS</a>
-        <li><a href="{% url 'csv'      vocabulary.node_id %}">CSV tree</a> + 
-            <a href="{% url 'glossary' vocabulary.node_id %}">glossary</a>
+        <li><a href="{% url 'order' vocabulary.node_id %}">Order concept priorities</a>
+        <li><a href="{% url 'nav'   vocabulary.node_id %}">Preview website navigation</a>
+        <li><a href="{% url 'ul'    vocabulary.node_id %}">Unordered list (3 levels)</a><br><br>
+        <li>Export:
+            <a href="{% url 'json'  vocabulary.node_id %}">JSON</a> /
+            <a href="{% url 'skos'  vocabulary.node_id %}">SKOS</a> /
+            <a href="{% url 'csv'   vocabulary.node_id %}">CSV</a>
     </ul>
 </div><!-- /switch view -->
 {% endif %}

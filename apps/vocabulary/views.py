@@ -110,12 +110,6 @@ def csv(request, vocab_node_id):
     s = export_csv(vocab)
     return export(request, vocab, s, 'csv', 'text/comma-separated-values')
 
-def glossary(request, vocab_node_id):
-    vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
-    concepts = vocab.concept_set.order_by('name')
-    s = render_to_string('vocabulary/glossary.csv', {'concepts': concepts})
-    return export(request, vocab, s, 'csv', 'text/comma-separated-values')
-
 def ul(request, vocab_node_id, style='meeting'):
     vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
     concepts = vocab.concept_set.filter(parent__isnull=True).order_by('order')
