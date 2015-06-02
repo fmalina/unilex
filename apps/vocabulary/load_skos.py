@@ -245,6 +245,7 @@ class SKOSLoader(object):
         except:
             pass
         v = Vocabulary(**vocab_dict)
+        v.user = self.request.user
         v.save()
         return v
 
