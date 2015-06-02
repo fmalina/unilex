@@ -2,10 +2,11 @@ def concept_to_dict(concept):
     d = {
         'id': concept.node_id,
         'name': concept.name,
-        'description': concept.description,
         'children': [concept_to_dict(child) for child in concept.get_children()],
         'data': {'type': 'concept'}
     }
+    if concept.description:
+        d['description'] = concept.description
     if concept.query:
         d['data']['query'] = concept.query
     if not concept.active:
