@@ -7,6 +7,7 @@ def load_xls(request, file):
     """Import a hierarchy into the DB from Excel
     Adds messages and returns redirect URL"""
     vocab = Vocabulary(title=file.name.split('.')[0])
+    vocab.user = request.user
     vocab.save()
     xls = file.read()
     try:
