@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -256 1792 1792" width="100%" height="100%">
+<g transform="matrix(1,0,0,-1,130,1285.5)">
+<path style="fill:#528ff5" d="m 448,1088 q 0,53 -37.5,90.5 Q 373,1216 320,1216 267,1216 229.5,1178.5 192,1141 192,1088 192,1035 229.5,997.5 267,960 320,960 q 53,0 90.5,37.5 Q 448,1035 448,1088 z M 1515,512 q 0,-53 -37,-90 L 987,-70 q -39,-37 -91,-37 -53,0 -90,37 L 91,646 Q 53,683 26.5,747 0,811 0,864 v 416 q 0,52 38,90 38,38 90,38 h 416 q 53,0 117,-26.5 64,-26.5 102,-64.5 l 715,-714 q 37,-39 37,-91 z" />
+<g transform="rotate(-45 850 850)">
+<path d="M0,0 a100,100 0 1,0 450,0"
+    style="fill:none;stroke:black;stroke-width:100"
+    transform="translate(-150 650)" />
+<rect width="600" height="100" style="fill:white" transform="translate(600 800)" />
+<rect width="800" height="100" style="fill:white" transform="translate(600 600)" />
+<rect width="400" height="100" style="fill:white" transform="translate(600 400)" />
+</g>
+</g>
+</svg>

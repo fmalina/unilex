@@ -5,3 +5,5 @@ settings_local.py
 load_skos.log
 static/admin
 
+tag.zip
+tag/js.build

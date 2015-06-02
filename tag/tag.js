@@ -1,9 +1,3 @@
-;(function ($) {
-    $.getScript("https://unilexicon.com/js/autocomplete.js");
-    $.getScript("https://unilexicon.com/js/jquery.formset.js");
-    $.getScript("https://unilexicon.com/js/vocab_set.js");
-})($)
-
 var tag = {
     // configure this
     repository: 'https://unilexicon.com', // vocabulary repository url, has to be https
