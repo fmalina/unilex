@@ -5,7 +5,6 @@
   "version": "0.2",
   "homepage_url": "http://unilexicon.com/",
   "content_security_policy": "script-src 'self' https://unilexicon.com; object-src 'self'",
-  "update_url": "http://unilexicon.com/tagging/updates.xml",
   "background": {"page": "background.html"},
   "options_page": "options.html",
   "browser_action": {
