@@ -2,7 +2,7 @@ def concept_to_dict(concept):
     d = {
         'id': concept.node_id,
         'name': concept.name,
-        'description': description,
+        'description': concept.description,
         'children': [concept_to_dict(child) for child in concept.get_children()],
         'data': {'type': 'concept'}
     }
@@ -19,7 +19,7 @@ def vocab_to_dict(vocab):
         'id': vocabulary_id,
         'name': vocab.title,
         'queries': vocab.queries,
-        'description': description,
+        'description': vocab.description,
         'children': [concept_to_dict(child) for child in children],
         'data': {'type': 'vocab'}
     }
