@@ -5,7 +5,9 @@ def to_csv(aa):
     return s
 
 def concept_to_csv(concept):
-    return '%s,%s"%s"\n%s' % (
+    return '"%s","%s","%s",%s"%s"\n%s' % (
+        concept.name,
+        concept.description,
         concept.node_id,
         concept.depth_indent(),
         concept.name,
@@ -13,4 +15,5 @@ def concept_to_csv(concept):
     )
 
 def export_csv(vocab):
-    return to_csv([concept_to_csv(child) for child in vocab.get_children()])
+    header = '"Title","Definition","ID","Tree"\n'
+    return header + to_csv([concept_to_csv(child) for child in vocab.get_children()])
