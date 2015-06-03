@@ -113,12 +113,12 @@ var VocabBrowser = {
     },
     showIcons: function (domElement, node) {
         $('#editicons').remove();
-        var del   = '<img src="/img/icon-delete.png" alt="Delete" title="Delete..." id="icon-delete" >';
-        var cut   = '<img src="/img/icon-cut.png"    alt="Cut"    title="Cut..."    id="icon-cut"    >';
-        var paste = '<img src="/img/icon-paste.png"  alt="Paste"  title="Paste..."  id="icon-paste"  >';
-        var add   = '<img src="/img/icon-add.png"    alt="Add"    title="Add..."    id="icon-add"    >';
-        var edit  = '<img src="/img/icon-edit.png"   alt="Edit"   title="Edit..."   id="icon-edit"   >';
-        var save  = '<img src="/img/icon-save.png"   alt="Save"   title="Download"  id="icon-save"   >';
+        var del   = '<i class="icon-delete"  title="Delete"   id="icon-delete" ><b>×</b></i>';
+        var cut   = '<i class="icon-cut-out" title="Cut out"  id="icon-cut"    ></i>';
+        var paste = '<i class="icon-put-in"  title="Put in"   id="icon-paste"  ></i>';
+        var add   = '<i class="icon-add"     title="Add"      id="icon-add"    ><b>+</b></i>';
+        var edit  = '<i class="icon-edit"    title="Edit"     id="icon-edit"   ></i>';
+        var save  = '<i class="icon-save"    title="Download" id="icon-save"   ></i>';
         if (node.data.type == 'vocab') {
             $(domElement).append('<p id="editicons">' + save + add + del + paste + '</p>');
             $('#icon-save').bind('click', function () {

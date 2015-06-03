@@ -51,18 +51,17 @@ input[type="submit"]:hover{background:rgba(0,0,0,.5);border:1px solid #646464}
 .call{padding:20px 25px}
 
 .col1,.col2{width:45%;float:left;padding-right:3%}
-.col1 a,.col2 a{font-weight:bold}
 hr{border-color:rgba(255,255,255,0.2);clear:both}
 .inline{padding-left:0}
 .inline li{display:inline-block;list-style-type:none;padding:10px;}
 
 #search,#search div{display:inline-block}
 #search{padding:0 15px 0 5px}
-#search input{background:#eee;border:1px solid #bbb;border-radius:5px 0 0 5px;height:22px}
-#search button{margin:0;border-radius:0 5px 5px 0}
-#search input:focus{background:#fff}
-#search button{position:relative;top:-3px;color:#fff;background:green;border:0;text-shadow:#000 0 0 3px;font-size:12px;cursor:pointer;padding:10px 8px}
-#search button:hover{text-decoration:underline}
+#search button,
+#search input{background:#eee;border:1px solid #bbb}
+#search input{border-radius:5px 0 0 5px;border-right:0}
+#search button{border-radius:0 5px 5px 0;border-left:0;margin:0;padding:6px 6px 5px 0}
+#search button i{color:#333;text-shadow:none;font-size:14px}
 
 #sr{margin:0;padding:0}
 #sr li{list-style:none;padding:0 0 1.5em 0}

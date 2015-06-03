@@ -1,2 +1,9 @@
-{% if concept != 'addfirst' %}<div><p><a title="more about this in a new tab" class="go" target="_blank" href="{{ base_url }}{{ concept.get_absolute_url }}"></a><a class="add" title='ns.recordtag="{{ concept.vocabulary.node_id }}^{{ concept.node_id }}"' href="javascript:void(0)"></a><span>{{ concept.backwards_path }}</span><br><small>{{ concept.node_id }}{% if concept.count %}, {{ concept.count }} use{{ concept.count|pluralize }}{% endif %}</small></p><div>{% if autocomplete %}|{{ concept.id }}
+{% if concept != 'addfirst' %}{% spaceless %}<div>
+    <p>
+        <a title="more in a new tab" class="go" target="_blank" href="{{ base_url }}{{ concept.get_absolute_url }}"><i class="icon-external"></i></a>
+        <a title='T="{{ concept.vocabulary.node_id }}^{{ concept.node_id }}"' href="javascript:void(0)" class="add"><b>+</b></a>
+        <span>{{ concept.backwards_path }}</span><br>
+        <small>{{ concept.node_id }}{% if concept.count %}, {{ concept.count }} use{{ concept.count|pluralize }}{% endif %}</small>
+    </p>
+    <div>{% endspaceless %}{% if autocomplete %}|{{ concept.id }}
 {% endif %}{%endif%}
