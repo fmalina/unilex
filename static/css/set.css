@@ -22,11 +22,8 @@ label{text-transform:uppercase;color:#888;display:block;font-size:11px}
 .delete-row{float:right;text-decoration:none}
 .delete-row:hover{color:#c00}
 
-.add{text-decoration:none;width:13px;height:9px;padding-right:3px;background:url(/img/icon-add.png) no-repeat}
-.go{text-decoration:none;width:12px;height:8px;padding-right:3px;display:inline-block}
-.external,
-.go{background-image:url(../img/icon-external.png);background-repeat:no-repeat}
-.external{background-position:100% 50%;padding-right:12px}
+.add{text-decoration:none;padding-right:3px}
+.go{text-decoration:none;padding-right:5px;color:#bbb}
 
 .ac_results small{font-size:11px !important}
 #tagging{width:400px;font-size:12px}
@@ -36,6 +33,6 @@ label{text-transform:uppercase;color:#888;display:block;font-size:11px}
 #tagging small{opacity:0}
 #tagging li:hover small{opacity:.5}
 #tagging small:hover{opacity:1}
-#tagging .go{background:url(../img/icon-external-black.png) no-repeat}
+#tagging .go{color:#333}
 #tagging .set small{position:absolute;left:-5px;text-align:left;bottom:2px}
 #tagging .set li{border-top:1px solid #ddd;padding:5px 15px 5px 15px}

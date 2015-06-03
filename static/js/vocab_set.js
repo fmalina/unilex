@@ -23,8 +23,8 @@ function conceptFormset(base_url, formset_prefix){
     $('#'+ formset_prefix +' li').formset({
         prefix: formset_prefix,
         formCssClass: formset_prefix + '-row',
-        deleteText: '✗',
-        addText: '<span>+ add another</span>',
+        deleteText: '<b>×</b>',
+        addText: '<span><b>+</b> add another</span>',
         added: function(li) {
             li.find('p').remove();
             var txt = li.find('.autocomplete');

@@ -45,9 +45,10 @@ form .buttons{text-align:right}
 form label{display:block;text-align:left;font-size:10px;padding:2px}
 form ul{padding:0}
 form li{list-style:none;text-shadow:none}
-#editicons{margin:.0;text-align:left}
-#editicons img,#editicons dfn{cursor:pointer;color:#fff;text-shadow:none;opacity:.8;padding:1px 3px}
-#editicons img:hover,#editicons dfn:hover{opacity:.5}
+#editicons{margin:.0;text-align:left;font-size:14px}
+#editicons b{font-size:20px}
+#editicons i{cursor:pointer;color:#eee;padding:1px 5px}
+#editicons i:hover{color:#bbb}
 #infovis .node{text-shadow:black 1px 1px 0;background-color:rgba(0,0,0,0.5);padding:.3em 0.6em;color:#ddd;border-radius:3px}
 #infovis .vocabnode{color:#FE8;text-shadow:#800 1px 1px 0}
 #infovis .node:hover{color:#fff;background-color:rgba(0,0,0,0.9);cursor:pointer;z-index:20000 !important}
@@ -55,7 +56,6 @@ form li{list-style:none;text-shadow:none}
 #infovis .node-depth-0{font-size:1.5em;background-color:rgba(0,0,0,0.5);cursor:default;border-radius:5px}
 #infovis .node-depth-1{opacity:.9;font-size:1.2em}
 #infovis .node-depth-2{opacity:.7;font-size:1em}
-#id_mother{background:url(/img/icon-paste.png) 99% 50% no-repeat}
 
 #switch-view{position:absolute;z-index:30001;top:0;left:500px;background:rgba(0,0,0,0.5);padding:10px 20px}
 #switch-view ul{list-style:none;padding:0;display:none}
@@ -87,7 +87,7 @@ form li{list-style:none;text-shadow:none}
 #panel a:hover{text-decoration:underline}
 #inner-details .set{padding:10px 20px 10px 30px;position:relative;left:-30px;background-color:rgba(0, 0, 0, 0.5)}
 .set li{border-top:1px solid #180010}
-.set .delete-row{color:#fff;right:-30px}
+.set .delete-row{color:#fff;position:relative;top:4px;font-size:18px;}
 
 #id_description{font-family:Arial, sans-serif;padding:2px 1px;height:40px}
 #inner-details li#synonyms{padding:10px 0 0 25px}
@@ -99,7 +99,9 @@ form li{list-style:none;text-shadow:none}
 .test:hover,
 p:hover .add,
 p:hover .go,
+button i,
 button b{color:#0d0}
+button.delete i,
 button.delete b{color:#c00}
 #results{display:none}
 .add-row{text-decoration:none}

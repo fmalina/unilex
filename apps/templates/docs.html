@@ -6,7 +6,7 @@ img{border:1px solid #ddd;background:#eee;padding:2px;width:100%}
 img.auto{width:auto}
 #content-in{max-width:630px}
 .figure{margin:20px auto;text-align:center}
-.external{background-image:url(/img/icon-external-black.png);background-repeat:no-repeat;background-position:100% 50%;padding-right:12px}
+.external:after{font-family:"uxfont";content:" a";font-size:11px;color:#555}
 #intro h1 small{font:13px arial, sans-serif;display:block}
 #content-in{background:#fff;color:#333}
 </style>
@@ -155,10 +155,10 @@ img.auto{width:auto}
   <i>Figure 8. Adding a query concept</i></p>
 
   <p>The display shows the concept name, its concept id and its
-  place in the vocabulary hierarchy. The user can remove the query concept (
-  <img src="/docs/26ab1731.png" width="21" height="21" class="auto" /> ), open the concept in its
-  original vocabulary ( <img src="/docs/m17b9c05f.png" width="21" height="21" class="auto" /> ) or add it to the query window (
-  <img src="/docs/m7db65fa.png" width="21" height="21" class="auto" /> ). When adding a concept
+  place in the vocabulary hierarchy.
+  The user can remove the query concept ( <b>&times;</b> ), open the concept in its
+  original vocabulary ( <i class="icon-external"></i> )
+  or add it to the query window ( <b>+</b> ). When adding a concept
   to a query the concept will be pasted into the query window at the current cursor
   location (if the cursor is in the window) or at the end of the query if the window is
   not currently selected. The user can use the query pop-up to build complex queries. See

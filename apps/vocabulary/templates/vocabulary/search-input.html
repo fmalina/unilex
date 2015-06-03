@@ -2,7 +2,7 @@
 <script>
 $(document).ready(function(){
     $("#q").autocomplete("{{ base_url }}{% url 'vocabulary.views.autocomplete' %}", {
-        width: 430,
+        width: 380,
         scrollHeight: 'auto',
         selectFirst: false,
         autoFill: false,
@@ -19,6 +19,7 @@ $(document).ready(function(){
 
 <form id="search" method="get" action="{{ base_url }}{% url 'vocabulary.views.search' %}">
     <div>
-        <input type="text" id="q" name="q" value="{{ q }}" /><button type="submit">Search</button>
+        <input type="text" id="q" name="q" value="{{ q }}" /><button type="submit">
+            <i class="icon-search"></i></button>
     </div>
 </form>

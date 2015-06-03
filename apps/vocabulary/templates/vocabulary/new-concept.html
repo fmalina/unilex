@@ -2,6 +2,6 @@
     {% csrf_token %}
     <p>Create a new concept{% if parent %} within <strong>{{parent}}</strong>{% endif %}:</p>
     {{form.as_p}}
-    <p><button type="submit"><b>&#10003;</b> Create</button>
+    <p><button type="submit"><i class="icon-check"></i> Create</button>
     <a href="#cancel" class="cancel">cancel</a></p>
 </form>
