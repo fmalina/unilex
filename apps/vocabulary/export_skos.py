@@ -1,6 +1,9 @@
 '''Export a vocabulary as SKOS in RDF/XML format.'''
 
 from django.template import Template, Context
+from vocabulary.load_skos import xmlns
+
+NAMESPACES = '\n'.join(['xmlns:%s="%s"' % (k,v) for k, v in xmlns.items()])
 
 VOCAB_TEMPLATE = Template('''
     <skos:ConceptScheme rdf:nodeID="{{v.node_id}}">
@@ -42,13 +45,7 @@ def export_skos(vocab):
     without buffering the whole file in memory.
     '''
     yield '<?xml version="1.0" encoding="UTF-8"?>\n'
-    yield '''<rdf:RDF
-    xmlns:dc="http://purl.org/dc/elements/1.1/"
-    xmlns:dcterms="http://purl.org/dc/terms/"
-    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
-    xmlns:zthes="http://unilexicon.com/">\n'''
+    yield '<rdf:RDF '+NAMESPACES+'>\n'
     yield vocab_to_skos(vocab) 
 
     for concept in vocab.concept_set.all():

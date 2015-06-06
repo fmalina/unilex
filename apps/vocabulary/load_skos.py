@@ -16,16 +16,27 @@ import settings
 logfile = settings.PROJECT_ROOT + 'load_skos.log'
 logging.basicConfig(filename=logfile, level=logging.DEBUG)
 
-VOCAB_TAG_MAP = {
-    '{http://purl.org/dc/elements/1.1/}title': 'title',
-    '{http://www.w3.org/2004/02/skos/core#}prefLabel': 'title',
-    '{http://purl.org/dc/elements/1.1/}language': 'language',
-    '{http://purl.org/dc/elements/1.1/}date': None,
-    '{http://purl.org/dc/elements/1.1/}description': 'description',
-    '{http://purl.org/dc/elements/1.1/}format': None,
-    '{http://purl.org/dc/elements/1.1/}rights': None,
-    '{http://www.w3.org/2004/02/skos/core#}definition': 'description',
-    '{http://unilexicon.com/}thesNote': ('label', {
+xmlns = {
+    'dc': 'http://purl.org/dc/elements/1.1/',
+    'rdf': 'http://www.w3.org/1999/02/22-rdf-syntax-ns#',
+    'rdfs': 'http://www.w3.org/2000/01/rdf-schema#',
+    'skos': 'http://www.w3.org/2004/02/skos/core#',
+    'zthes': 'http://unilexicon.com/'
+}
+expand_tag = lambda ns, tag: '{%s}%s' % (xmlns[ns], tag)
+TAG = lambda ns_colon_tag: expand_tag(*ns_colon_tag.split(':'))
+expand = lambda tag_map: {TAG(k):v for k,v in tag_map.items()}
+
+VOCAB_TAG_MAP = expand({
+    'skos:prefLabel': 'title',
+    'skos:definition': 'description',
+    'dc:title': 'title',
+    'dc:language': 'language',
+    'dc:date': None,
+    'dc:description': 'description',
+    'dc:format': None,
+    'dc:rights': None,
+    'zthes:thesNote': ('label', {
             'authority': None,
             'version': None,
             'globallyUniqueId': None,
@@ -34,28 +45,25 @@ VOCAB_TAG_MAP = {
             'rightsHolder': None,
         }
     ),
-}
+})
 
-CONCEPT_TAG_MAP = {
-    '{http://www.w3.org/2004/02/skos/core#}prefLabel': 'name',
-    '{http://www.w3.org/2004/02/skos/core#}altLabel': 'synonyms[]',
-    '{http://www.w3.org/2004/02/skos/core#}topConceptOf': None, # deduceable from inScheme when no broader
-    '{http://www.w3.org/2004/02/skos/core#}inScheme': 'vocabulary',
-    '{http://www.w3.org/2004/02/skos/core#}broader': 'parent[]',
-    '{http://www.w3.org/2004/02/skos/core#}narrower': 'children[]',
-    '{http://www.w3.org/2004/02/skos/core#}definition': 'description',
-    '{http://www.w3.org/2004/02/skos/core#}related': 'related[]',
-    '{http://purl.org/dc/elements/1.1/}source': None, # source
-    '{http://purl.org/dc/elements/1.1/}creator': None, # creator
-    '{http://purl.org/dc/elements/1.1/}language': None,
-    '{http://purl.org/dc/terms/}rightsHolder': None, # creator
-    '{http://unilexicon.com/}termNoteGloballyUniqueId': None,
-    '{http://unilexicon.com/}termNoteDisplayOrder': 'order',
-    '{http://unilexicon.com/}termNoteDisplayOrder': 'order', 
-    '{http://unilexicon.com/}termNoteSourceAuthority': None, # source
-    '{http://unilexicon.com/}termNoteSourceAuthority': None, # source
-    '{http://purl.org/dc/elements/1.1/}title': 'name',
-    '{http://unilexicon.com/}termNote': ('label', {
+CONCEPT_TAG_MAP = expand({
+    'skos:prefLabel': 'name',
+    'skos:altLabel': 'synonyms[]',
+    'skos:topConceptOf': None, # deduceable from inScheme when no broader
+    'skos:inScheme': 'vocabulary',
+    'skos:broader': 'parent[]',
+    'skos:narrower': 'children[]',
+    'skos:definition': 'description',
+    'skos:related': 'related[]',
+    'dc:title': 'name',
+    'dc:source': None, # source
+    'dc:creator': None, # creator
+    'dc:language': None,
+    'zthes:termNoteGloballyUniqueId': None,
+    'zthes:termNoteDisplayOrder': 'order',
+    'zthes:termNoteSourceAuthority': None, # source
+    'zthes:termNote': ('label', {
             'category': 'category[]',
             # these need to go to ConceptAttributes
             'displayOrder': 'order',
@@ -76,7 +84,7 @@ CONCEPT_TAG_MAP = {
             'termApproval': None,
         }
     ),
-}
+})
 
 class XMLFormatError(Exception):
     """A problem importing our dialect of SKOS"""
@@ -117,7 +125,7 @@ def load_fields_from_node(node, tag_map):
 
         if mapped_field is not None:
             value = child.text
-            xmlns_nid = '{http://www.w3.org/1999/02/22-rdf-syntax-ns#}nodeID'
+            xmlns_nid = TAG('rdf:nodeID')
             if not value:
                 # Look for a nodeID corresponding to a blank node
                 nodeid = child.get(xmlns_nid)
@@ -126,7 +134,7 @@ def load_fields_from_node(node, tag_map):
 
             if not value:
                 # Look for an rdf:resource URL
-                resource = child.get('{http://www.w3.org/1999/02/22-rdf-syntax-ns#}resource')
+                resource = child.get(TAG('rdf:resource'))
                 if resource:
                     value = resource
 
@@ -199,28 +207,28 @@ class SKOSLoader(object):
             self.message(40, 'Sorry, that wasn\'t a SKOS RDF file.')
             goto = '/vocabularies/load-skos'
             
-        if doc.getroot().tag != '{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF':
+        if doc.getroot().tag != TAG('rdf:RDF'):
             self.message(40, "We need a SKOS RDF file. Try again.")
             goto = '/vocabularies/load-skos'
         
-        for vocab in doc.findall('.//{http://www.w3.org/2004/02/skos/core#}ConceptScheme'):
+        for vocab in doc.findall('.//'+TAG('skos:ConceptScheme')):
             vocab = self.load_vocab_instance(vocab)
             goto = vocab.get_absolute_url()
 
-        for concept in doc.findall('.//{http://www.w3.org/2004/02/skos/core#}Concept'):
+        for concept in doc.findall('.//'+TAG('skos:Concept')):
             self.load_concept_instance(concept)
         
         return goto
 
     def get_node_id(self, element):
         identifiers = []
-        node_id = element.get('{http://www.w3.org/1999/02/22-rdf-syntax-ns#}nodeID')
+        node_id = element.get(TAG('rdf:nodeID'))
         if node_id:
             identifiers.append(node_id)
-        node_url = element.get('{http://www.w3.org/1999/02/22-rdf-syntax-ns#}about')
+        node_url = element.get(TAG('rdf:about'))
         if node_url:
             identifiers.append(node_url)
-        node_fragment = element.get('{http://www.w3.org/1999/02/22-rdf-syntax-ns#}ID')
+        node_fragment = element.get(TAG('rdf:ID'))
         if node_fragment:
             identifiers.append('#' + node_fragment)
         if not identifiers:
@@ -252,16 +260,14 @@ class SKOSLoader(object):
     def load_concept_instance(self, node):
         """Parse a Concept instance from an ElementTree skos:Concept node."""
         node_id = self.get_node_id(node)
-        concept_dict = {
-            'node_id': node_id
-        }
+        concept_dict = {'node_id': node_id}
         concept_dict.update(load_fields_from_node(node, CONCEPT_TAG_MAP))
         vocabulary = concept_dict.pop('vocabulary', None)
-        parent = concept_dict.pop('parent', [])
-        related = concept_dict.pop('related', [])
-        category = concept_dict.pop('category', [])
-        children = concept_dict.pop('children', [])
-        synonyms = concept_dict.pop('synonyms', [])
+        parent     = concept_dict.pop('parent', [])
+        related    = concept_dict.pop('related', [])
+        category   = concept_dict.pop('category', [])
+        children   = concept_dict.pop('children', [])
+        synonyms   = concept_dict.pop('synonyms', [])
         try:
             vocabulary = Vocabulary.objects.get(node_id=vocabulary)
         except Vocabulary.DoesNotExist:
