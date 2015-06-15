@@ -1,6 +1,7 @@
 from feedback.models import Feedback
 from django.contrib.sites.models import Site
 from django.http import Http404, HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 import datetime
 import re
 
@@ -10,6 +11,7 @@ def strip_domain(request, url):
               .replace('https://','')\
               .replace(site.domain,'')
 
+@csrf_exempt
 def feedback(request):
     if not request.POST.get('feedback_message', '').strip():
         raise Http404
