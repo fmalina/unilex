@@ -10,7 +10,7 @@ function feedback(){
 				feedback_email: $("#feedback_email").val()
 			}
 			, error: function(b, d, c) {
-			   $("#feedback_status").html("Whoops! We're experiencing some technical hiccups. If you're not too frustrated by this, please e-mail us at vizualbod@vizualbod.com instead.")}
+			   $("#feedback_status").html("Whoops! There were some technical hiccups. If you're not too frustrated by this, please e-mail fmalina@gmail.com instead.")}
 			, success: function(b, c) {
 			   $("#feedback_status").html("Success! Thanks for taking the time to write.")}
 		})
