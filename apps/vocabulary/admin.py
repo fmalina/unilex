@@ -40,15 +40,14 @@ class LanguageAdmin(admin.ModelAdmin):
 
 class VocabularyAdmin(admin.ModelAdmin):
     prepopulated_fields = {"node_id": ("title",)}
-    pass
+    list_display = ('title','node_id','user','language','private','updated_at','created_at')
 
 class ConceptAdmin(admin.ModelAdmin):
     search_fields = ['id','name']
     inlines = [ConceptAttribute_Inline]
     list_display = ('name','mother','vocabulary','forward_path')
     list_filter = ('vocabulary',)
-    exclude = ('parent','related','node_id') 
-    pass
+    exclude = ('parent','related','node_id')
 
 admin.site.register(Language, LanguageAdmin)
 admin.site.register(Concept, ConceptAdmin)
