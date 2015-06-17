@@ -25,9 +25,9 @@ xmlns = {
 }
 expand_tag = lambda ns, tag: '{%s}%s' % (xmlns[ns], tag)
 TAG = lambda ns_colon_tag: expand_tag(*ns_colon_tag.split(':'))
-expand = lambda tag_map: {TAG(k):v for k,v in tag_map.items()}
+expand_map = lambda tag_map: {TAG(k):v for k,v in tag_map.items()}
 
-VOCAB_TAG_MAP = expand({
+VOCAB_TAG_MAP = expand_map({
     'skos:prefLabel': 'title',
     'skos:definition': 'description',
     'dc:title': 'title',
@@ -47,7 +47,7 @@ VOCAB_TAG_MAP = expand({
     ),
 })
 
-CONCEPT_TAG_MAP = expand({
+CONCEPT_TAG_MAP = expand_map({
     'skos:prefLabel': 'name',
     'skos:altLabel': 'synonyms[]',
     'skos:topConceptOf': None, # deduceable from inScheme when no broader
