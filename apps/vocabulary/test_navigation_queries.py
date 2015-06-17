@@ -1,13 +1,3 @@
-# Bootstrap Django
-import sys, os, os.path
-
-def relpath(p):
-    return os.path.join(os.path.dirname(__file__), p)
-
-os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
-sys.path = sys.path[:1] + ['./'] + sys.path[1:]
-sys.path = sys.path[:1] + [relpath('../..')] + sys.path[1:]
-
 from vocabulary.models import Vocabulary, Concept
 from vocabulary.sru import Sru
 
