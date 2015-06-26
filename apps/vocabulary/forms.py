@@ -13,7 +13,7 @@ class ConceptForm(ModelForm):
 
     class Meta:
         model = Concept
-        exclude = ('node_id', 'related', 'vocabulary', 'parent')
+        exclude = ('related', 'vocabulary', 'parent')
 
 class NewChildConceptForm(ModelForm):
     name = CharField()
