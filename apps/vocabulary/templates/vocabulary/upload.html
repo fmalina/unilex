@@ -1,8 +1,10 @@
 {% extends 'vocabulary/base.html' %}
-{% block title %}Upload your taxonomy {% if format == 'xls' %}as Excel (XLS) spreadsheet{% else %}SKOS file{% endif %} and start editing{% endblock %}
+{% block title %}Upload your taxonomy {% if format == 'xls' %}as Excel (.xls) or CSV spreadsheet{% else %}SKOS file{% endif %} and start editing{% endblock %}
 {% block content %}
 <form action="{{ request.path }}" method="post" enctype="multipart/form-data">
-	<h2>Import {{ format|upper }} vocabulary</h2>
+	<h2>Import your vocabulary from<br>
+        {% if format == 'xls' %}Excel (.xls) or CSV spreadsheet{% else %}SKOS file{% endif %}
+        and start editing</h2>
 	<script>
 	$(function(){
 		$("input[name='file']").change(function (){
