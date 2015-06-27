@@ -117,3 +117,10 @@ button.delete b{color:#c00}
 #excel td{border:1px solid #ddd}
 #excel td,#excel th{padding:2px 5px}
 #excel th{background:#eee;border:1px solid #333;font-weight:normal}
+#excel caption{color:white;padding:10px 0 5px 0}
+#excel caption .p2{color:#ada}
+#excel caption i{font-style:normal}
+#excel thead b,tbody b{font-weight:normal}
+#excel .p2,#excel .p3{display:none}
+#excel tbody .p2{color:green}
+#excel .p3{color:gray}
