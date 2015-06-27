@@ -68,12 +68,14 @@ def load_vocab(request, format='xls'):
     if request.method == 'POST' and request.user.is_authenticated():
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
+            file = request.FILES['file']
+            fn = file.name.split('.')[0].split('/')[-1]
+            f = file.read()
             if format=='xls':
-                goto = load_xls(request, request.FILES['file'])
+                goto = load_xls(request, f, fn)
             if format=='skos':
-                file = request.FILES['file'].read()
                 loader = SKOSLoader(request)
-                goto = loader.load_skos_vocab(file)
+                goto = loader.load_skos_vocab(f)
                 
                 loader.save_relationships()
                 messages.success(request, loader)
