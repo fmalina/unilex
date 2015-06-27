@@ -17,25 +17,56 @@
 	</script>
     {% csrf_token %}
     {% if format == 'xls' %}
-    <p>Upload your Excel spreadsheet in the following format.</p>
-        <table id="excel">
-        <tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th></tr>
-        <tr><th>1</th><td>Chapter 1</td><td></td><td></td><td></td></tr>
-        <tr><th>2</th><td></td><td>Chapter 1.1</td><td></td><td></td></tr>
-        <tr><th>3</th><td></td><td></td><td>Chapter 1.1.1</td><td></td></tr>
-        <tr><th>4</th><td></td><td></td><td>Chapter 1.1.2</td><td></td></tr>
-        <tr><th>5</th><td></td><td></td><td>Chapter 1.1.3</td><td></td></tr>
-        <tr><th>6</th><td></td><td>Chapter 1.2</td><td></td><td></td></tr>
-        <tr><th>7</th><td></td><td>Chapter 1.3</td><td></td><td></td></tr>
-        <tr><th>8</th><td>Chapter 2</td><td></td><td></td><td></td></tr>
-        <tr><th>9</th><td></td><td>Chapter 2.1</td><td></td><td></td></tr>
-        <tr><th>10</th><td></td><td></td><td>Chapter 2.1.1</td><td></td></tr>
-        <tr><th>11</th><td></td><td></td><td></td><td>Chapter 2.1.1.1</td></tr>
-        <tr><th>12</th><td></td><td></td><td></td><td>Chapter 2.1.1.2</td></tr>
-        <tr><th>...</th><td></td><td></td><td></td><td>...</td></tr>
-        </table>
-    <p>This will fill your new vocabulary with concepts in your spreadsheet.<br>
-	Numbers in the example above are for illustration, only indentation matters.</p>
+    <p>Upload your taxonomy in any of the following formats:</p>
+    <style>
+    summary{padding:10px 0 0 0}
+    summary .p2{color:#ada}
+    summary i{font-style:normal}
+    thead b,tbody b{font-weight:normal}
+    .p2,.p3{display:none}
+    tbody .p2{color:green}
+    .p3{color:gray}
+    </style>
+    <script>
+    $(function() {
+        $('.p2' ).delay(5000).fadeIn({
+            start: function(){
+                $('thead .p1').hide();
+            }
+        });
+        $('.p3').delay(8000).fadeIn();
+    });
+    </script>
+    <table id="excel">
+        <summary>
+            <b>PLAIN TREE</b><i class="t p2">, IDs in 1st column allowed</i><i class="t p3">, parents allowed</i>
+        <summary>
+        <thead>
+            <tr>
+                <th></th>
+                <th class="t p2"><b>A</b></th>
+                <th><b class="p1">A</b><b class="p2">B</b></th>
+                <th><b class="p1">B</b><b class="p2">C</b></th>
+                <th><b class="p1">C</b><b class="p2">D</b></th>
+                <th><b class="p1">D</b><b class="p2">E</b></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><th>  1</th><td class="p2">001</td><td><b class="p1">Mammalia</b></td><td></td><td></td><td></td></tr>
+            <tr><th>  2</th><td class="p2">002</td><td><b class="p3">Mammalia</b></td><td><b class="p1">Boreoeutheria</b></td><td></td><td></td></tr>
+            <tr><th>  3</th><td class="p2">003</td><td><b class="p3">Mammalia</b></td><td><b class="p3">Boreoeutheria</b></td><td>Laurasiatheria</td><td></td></tr>
+            <tr><th>  4</th><td class="p2">004</td><td><b class="p3">Mammalia</b></td><td><b class="p3">Boreoeutheria</b></td><td>Euarchontoglires</td><td></td></tr>
+            <tr><th>  5</th><td class="p2">005</td><td><b class="p3">Mammalia</b></td><td><b class="p3">Boreoeutheria</b></td><td>Meridiungulata</td><td></td></tr>
+            <tr><th>  6</th><td class="p2">006</td><td><b class="p3">Mammalia</b></td><td>Xenarthra</td><td></td><td></td></tr>
+            <tr><th>  7</th><td class="p2">007</td><td><b class="p3">Mammalia</b></td><td>Afrotheria</td><td></td><td></td></tr>
+            <tr><th>  8</th><td class="p2">008</td><td><b class="p1">Reptilia</b></td><td></td><td></td><td></td></tr>
+            <tr><th>  9</th><td class="p2">009</td><td><b class="p3">Reptilia</b></td><td><b class="p1">Testudinata</b></td><td></td><td></td></tr>
+            <tr><th> 10</th><td class="p2">010</td><td><b class="p3">Reptilia</b></td><td><b class="p3">Testudinata</b></td><td><b class="p1">Cryptodira</b></td><td></td></tr>
+            <tr><th> 11</th><td class="p2">011</td><td><b class="p3">Reptilia</b></td><td><b class="p3">Testudinata</b></td><td><b class="p3">Cryptodira</b></td><td>Eucryptodira</td></tr>
+            <tr><th> 12</th><td class="p2">012</td><td><b class="p3">Reptilia</b></td><td><b class="p3">Testudinata</b></td><td><b class="p3">Cryptodira</b></td><td>Paracryptodira</td></tr>
+            <tr><th>  …</th><td class="p2">  …</td><td>…</td><td></td><td></td><td></td></tr>
+        </tbody>
+    </table>
     {% endif %}
     {% if format == 'skos' %}
     <p>Works for SKOS files produced with Unilexicon and subset of Lexaurus export.</p>

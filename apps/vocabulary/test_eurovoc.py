@@ -5,7 +5,6 @@ import settings
 ev = settings.PROJECT_ROOT+'archive/eurovoc_skos.rdf'
 doc = ET()
 
-doc.parse(ev)
-
-for e in doc.iter():
-    print(e)
+# doc.parse(ev)
+# for e in doc.iter():
+#     print(e)
