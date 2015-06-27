@@ -61,12 +61,11 @@ def detail(request, vocab_node_id):
         'count': count,
         'concepts': concepts}, request)
 
-@login_required
 def load_vocab(request, format='xls'):
     from vocabulary.load_xls import load_xls
     from vocabulary.load_skos import SKOSLoader
     
-    if request.method == 'POST':
+    if request.method == 'POST' and request.user.is_authenticated():
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
             if format=='xls':

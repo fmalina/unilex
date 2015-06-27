@@ -1,5 +1,5 @@
 {% extends 'vocabulary/base.html' %}
-
+{% block title %}Upload your taxonomy {% if format == 'xls' %}as Excel (XLS) spreadsheet{% else %}SKOS file{% endif %} and start editing{% endblock %}
 {% block content %}
 <form action="{{ request.path }}" method="post" enctype="multipart/form-data">
 	<h2>Import {{ format|upper }} vocabulary</h2>
@@ -13,38 +13,30 @@
 			    button.attr('disabled', 'disabled');
 			}
 		});
+        
+        // Excel table animation intro
+        $('.p2' ).delay(5000).fadeIn({
+            start: function(){
+                $('thead .p1, caption .p1').hide();
+            }
+        });
+        $('.p3').delay(8000).fadeIn();
 	});
 	</script>
     {% csrf_token %}
     {% if format == 'xls' %}
     <p>Upload your taxonomy in any of the following formats:</p>
-    <style>
-    summary{padding:10px 0 0 0}
-    summary .p2{color:#ada}
-    summary i{font-style:normal}
-    thead b,tbody b{font-weight:normal}
-    .p2,.p3{display:none}
-    tbody .p2{color:green}
-    .p3{color:gray}
-    </style>
-    <script>
-    $(function() {
-        $('.p2' ).delay(5000).fadeIn({
-            start: function(){
-                $('thead .p1').hide();
-            }
-        });
-        $('.p3').delay(8000).fadeIn();
-    });
-    </script>
     <table id="excel">
-        <summary>
-            <b>PLAIN TREE</b><i class="t p2">, IDs in 1st column allowed</i><i class="t p3">, parents allowed</i>
-        <summary>
+        <caption>
+            <b>Plain tree,</b>
+            <i class="p2">1st column can contain IDs.</i>
+            <i class="p3">Parentage trails are ignored.</i>
+            <span class="p1">&hellip;</span>
+        </caption>
         <thead>
             <tr>
                 <th></th>
-                <th class="t p2"><b>A</b></th>
+                <th class="p2"><b>A</b></th>
                 <th><b class="p1">A</b><b class="p2">B</b></th>
                 <th><b class="p1">B</b><b class="p2">C</b></th>
                 <th><b class="p1">C</b><b class="p2">D</b></th>
@@ -89,8 +81,12 @@
 &lt;/rdf:RDF&gt;
     </pre>
     {% endif %}
-    {{ form.as_p }}
-    <p><button type="submit" disabled="disabled"><i class="icon-check"></i> Upload</button>
+    {% if request.user.is_authenticated %}
+        {{ form.as_p }}
+        <p><button type="submit" disabled="disabled"><i class="icon-check"></i> Upload</button>
         <a href="./" class="cancel">cancel</a></p>
+    {% else %}
+        <p><a href="{% url 'registration_register' %}" class="btn"><i class="icon-edit"></i> Registration required&hellip;</a></p>
+    {% endif %}
 </form>
 {% endblock %}
