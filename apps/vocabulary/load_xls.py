@@ -52,7 +52,7 @@ def load_xls(request, file, title):
     conceptstack = []
     for line, row in enumerate(reader):
         name, blank = last_full_cell(row)
-        concept = Concept(vocabulary=vocab, order=0, name=name)
+        concept = Concept(vocabulary=vocab, order=line, name=name)
         if id_col:
             concept.node_id = row[0]
             blank -= 1 # to account for ID column
