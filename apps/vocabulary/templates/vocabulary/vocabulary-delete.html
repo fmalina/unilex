@@ -1,13 +1,13 @@
-<form action="{{request.path}}" method="post">
+<form action="{{ request.path }}" method="post">
 {% if not allowed %}
     <p>Only authors and staff members can delete vocabularies.
 {% else %}
     <p>Are you sure you wish to delete <b>'{{ vocabulary.title }}'</b>?</p>
 
-    {% with vocabulary.concept_set.count as descendants %}
-        <div>{% if descendants %}
-        This will also delete the {{descendants}} concept{{descendants|pluralize}} in the vocabulary
-        and {% ifequal descendants 1 %}its{% else %}their{% endifequal %} relations with concepts in other vocabularies.
+    {% with vocabulary.concept_set.count as c %}
+        <div>{% if c %}
+        This will also delete the {{ c }} concept{{ c|pluralize }} in the vocabulary
+        and {% if c = 1 %}its{% else %}their{% endif %} relations with concepts in other vocabularies.
         <label>I understand. 
         {% else %}
         <label>Yes, let's do it.

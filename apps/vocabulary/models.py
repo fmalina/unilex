@@ -50,6 +50,10 @@ class Vocabulary(models.Model):
 
     objects = VocabularyManager()
     
+    @property
+    def name(self):
+        return self.title
+    
     def get_children(self):
         return Concept.objects.filter(vocabulary=self, parent__isnull=True).order_by('order')
     
@@ -88,7 +92,7 @@ class Vocabulary(models.Model):
 
 class Concept(models.Model):
     """A Concept is a term within a vocabulary."""
-    node_id     = models.SlugField(db_index=True, max_length=60, blank=True)
+    node_id     = models.SlugField('Permalink ID', db_index=True, max_length=60, blank=True)
     vocabulary  = models.ForeignKey(Vocabulary)
     name        = models.CharField(db_index=True, max_length=255) # prefLabel
     description = models.TextField(blank=True)
@@ -102,66 +106,41 @@ class Concept(models.Model):
     created_at  = models.DateTimeField(default=datetime.now, editable=False)
     
     def mother(self):
-        try:
-            return self.parent.all()[0]
-        except:
-            return None
+        return self.parent.first()
     
-    def _recurse_for_parents(self, concept_obj):
-        parent_list = []
-        try:
-            parent = concept_obj.mother()
-            parent_list.append(parent)
+    def _recurse_for_parents(self, o):
+        ls = []
+        if o:
+            parent = o.mother()
+            ls.append(parent)
             if parent != self:
-                more = self._recurse_for_parents(parent)
-                parent_list.extend(more)
-        except:
-            pass
-        if concept_obj == self and parent_list:
-            parent_list.reverse()
-        return parent_list
+                ls += self._recurse_for_parents(parent)
+        if o == self and ls:
+            ls.reverse()
+        return ls
     
     def get_children(self):
         return Concept.objects.filter(parent=self).order_by('order')
     
     def get_descendants(self):
-        all = []
-        children = list(self.get_children())
-        all.extend(children)
-        for child in children:
-            all.extend(list(child.get_descendants()))
-        return all
-    
-    def get_descendants_count(self):
-        return len(self.get_descendants())
-    
-    def get_path(self):
-        concept_list = self._recurse_for_parents(self)
-        name_list = []
-        for c in concept_list:
-            name_list.append(str(c))
-        name_list.pop(0)
-        gotpath = [self.vocabulary.title,]
-        gotpath.extend(name_list)
-        gotpath.append(self.name)
-        return gotpath
+        ls = list(self.get_children())
+        for c in ls:
+            ls += list(c.get_descendants())
+        return ls
     
     def breadcrumb(self):
-        concept_list = self._recurse_for_parents(self)
-        concept_list.pop(0)
-        gotpath = [self.vocabulary]
-        gotpath.extend(concept_list)
-        gotpath.append(self)
-        return gotpath
+        ls = self._recurse_for_parents(self)
+        ls.pop(0)
+        return [self.vocabulary] + ls + [self]
     
+    def get_path(self):
+        return [x.name for x in self.breadcrumb()]
+    
+    def level(self):
+        return len(self.get_path())
+
     def depth_indent(self):
-        depth = ''
-        i = 0
-        for p in self.get_path():
-            if i > 1:
-                depth = '%s,' % depth
-            i = i+1
-        return depth
+        return (self.level()-2) * ','
 
     def forward_path(self):
         return strip_entities(strip_tags(' » '.join(self.get_path())))
@@ -191,7 +170,7 @@ class Concept(models.Model):
     class Meta:
         db_table = 'concepts'
         ordering = 'name',
-        unique_together = ('node_id', 'vocabulary')
+        unique_together = (('node_id', 'vocabulary'),)
 
 class Synonym(models.Model):
     concept = models.ForeignKey(Concept)
