@@ -15,10 +15,10 @@ class LoadTestCase(TestCase):
         request._messages = FallbackStorage(request)
         test_files = [
             (5427, 'taxonomy-with-ids.en-GB.xls'),
-            (28, 'regions-no-ids1.xls'),
-            (28, 'regions-no-ids.csv'),
-            (28, 'regions-with-ids.csv'),
-            (28, 'regions-with-ids-parents.csv')
+            (28, 'world-with-ids.UN-001.csv'),
+            (28, 'world-no-ids1.xls'),
+            (28, 'world-no-ids.csv'),
+            (28, 'world-with-ids-parents.csv')
         ]
         
         for no, fn in test_files:
