@@ -8,6 +8,7 @@
 
 {% block extrascripts %}
 	<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.0/isotope.pkgd.min.js"></script>
 	<script>
 	$(function(){
 		$(".sort").sortable({
@@ -26,6 +27,7 @@
 				});
 			}
 		});
+		$(".isotope").isotope({itemSelector: '.level1-inner-wrap'});
 	});
 	</script>
 {% endblock %}
@@ -33,7 +35,7 @@
 {% block content %}
 <div id="content-in">
 	<div id="views"><a href="./">&laquo; back to editing</a></div>
-	<ul id="nav" class="sort">
+	<ul class="nav sort isotope">
 	{% include "vocabulary/ul-3levels.html" %}
 	</ul>
 </div>
