@@ -83,7 +83,7 @@ class Vocabulary(models.Model):
         if not self.pk:
             # must be an import and nodeID has been provided
             self.node_id = self.make_node_id(self.node_id)
-            
+        self.node_id = slugify(self.node_id)
         super(Vocabulary, self).save(*args, **kwargs)
 
     class Meta:
