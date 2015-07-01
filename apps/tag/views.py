@@ -1,6 +1,6 @@
 from django.forms.formsets import formset_factory
 from django.template import RequestContext
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, HttpResponse
 from django.utils.safestring import mark_safe
@@ -11,7 +11,6 @@ from vocabulary.models import Concept, Vocabulary
 from tag.forms import *
 from tag.sru import Sru, SruError
 from tag.sword import post_sword
-from utils import render
 import settings
 
 def nothing(request):
@@ -20,7 +19,7 @@ def nothing(request):
 
 def about(request):
     ''' Page about tagging, install Chrome extension '''
-    return render('tag/about.html', {}, request)
+    return render(request, 'tag/about.html', {})
     
 @csrf_exempt
 def tag(request, node_id):
@@ -83,17 +82,17 @@ def tag(request, node_id):
         form = RecordForm(record)
         formset = TagFormSet(initial=tag_forms)
         forms_and_tags = zip(formset.forms, tags)
-        return render('tag/tag.html', {
+        return render(request, 'tag/tag.html', {
             'form': form,
             'formset': formset,
             'forms_and_set': forms_and_tags
-            }, request)
+            })
 
 def query(request):
     ''' Return list of results for a given CQL query '''
     query = request.POST['query']
     records = Sru(request, query).parse()
-    return render('tag/query-results.html', {
+    return render(request, 'tag/query-results.html', {
         'sru_server_url': settings.SRU_SERVER_URL,
         'links': records
-        }, request)
+        })

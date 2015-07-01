@@ -47,7 +47,8 @@
     {% block sidebar %}{% endblock %}
     <div id="footer">
         {% include 'feedback/form.html' %}
-        <p>&copy; Copyright Unilexicon&trade; {% now "Y" %}. All rights reserved. {{ debug }}</p>
+        {% include 'debug.html' %}
+        <p>&copy; Copyright Unilexicon&trade; {% now "Y" %}. All rights reserved.</p>
     </div>
     {% if not debug %}
         {% include 'analytics.html' %}

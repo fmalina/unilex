@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.template import RequestContext
 from django.template.loader import render_to_string
 from django.forms.models import inlineformset_factory
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
@@ -14,13 +14,13 @@ from vocabulary.forms import *
 from vocabulary.export_skos import export_skos
 from vocabulary.export_csv import export_csv
 from vocabulary.export_json import vocab_to_dict
-from utils import render, getCamelCase, ajax_login_required
+from utils import getCamelCase, ajax_login_required
 from paging import simple_paging
 from datetime import datetime
 
 def listings(request, *args, **kwargs):
     ls = Vocabulary.objects.with_counts().exclude(private=True).order_by('user_id','title')
-    return render('vocabulary/listings.html', {'ls': ls}, request)
+    return render(request, 'vocabulary/listings.html', {'ls': ls})
 
 def autocomplete(request):
     q = request.GET.get('q','').strip()
@@ -34,7 +34,7 @@ def autocomplete(request):
             Q(node_id__istartswith=q)
         )
     concepts = concepts.order_by('-count')
-    return render('vocabulary/autocomplete.txt', {'concepts': concepts}, request)
+    return render(request, 'vocabulary/autocomplete.txt', {'concepts': concepts})
 
 def search(request):
     q = request.GET.get('q','').strip()
@@ -46,20 +46,20 @@ def search(request):
     if not q:
         ls = []
     ls, count, paging = simple_paging(request, ls, 10)
-    return render('vocabulary/search.html', {
+    return render(request, 'vocabulary/search.html', {
         'ls': ls, 'count': count, 'paging': paging,
         'q': q,
         'title': '%s - Search results' % q
-        }, request)
+        })
 
 def detail(request, vocab_node_id):
     vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
     count = Concept.objects.filter(vocabulary=vocab).count()
     concepts = vocab.concept_set.filter(parent__isnull=True)
-    return render('vocabulary/detail.html', {
+    return render(request, 'vocabulary/detail.html', {
         'vocabulary': vocab,
         'count': count,
-        'concepts': concepts}, request)
+        'concepts': concepts})
 
 def load_vocab(request, format='xls'):
     from vocabulary.load_xls import load_xls
@@ -82,7 +82,7 @@ def load_vocab(request, format='xls'):
             return redirect(goto)
     else:
         form = UploadFileForm()
-    return render('vocabulary/upload.html', {'form':form, 'format': format}, request)
+    return render(request, 'vocabulary/upload.html', {'form':form, 'format': format})
 
 @login_required
 def vocabulary_add(request):
@@ -114,10 +114,10 @@ def csv(request, vocab_node_id):
 def ul(request, vocab_node_id, style='meeting'):
     vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
     concepts = vocab.concept_set.filter(parent__isnull=True).order_by('order')
-    return render('vocabulary/view-%s.html' % style, {
+    return render(request, 'vocabulary/view-%s.html' % style, {
         'vocabulary': vocab,
         'concepts': concepts
-        }, request)
+        })
 
 @ajax_login_required
 @csrf_exempt
@@ -171,11 +171,11 @@ def vocabulary_edit(request, vocab_node_id):
             return redirect('/')
     else:
         form = VocabularyForm(instance=vocab)
-    return render('vocabulary/vocabulary-edit.html', {
+    return render(request, 'vocabulary/vocabulary-edit.html', {
         'vocabulary': vocab,
         'children': vocab.get_children(),
         'form': form
-        }, request)
+        })
 
 @ajax_login_required
 def concept_new(request, vocab_node_id, node_id=0):
@@ -201,18 +201,18 @@ def concept_new(request, vocab_node_id, node_id=0):
             return redirect(gobackto)
     else:
         form = NewChildConceptForm(instance=c)
-    return render('vocabulary/new-concept.html', {
+    return render(request, 'vocabulary/new-concept.html', {
         'concept': c,
         'parent': parent,
         'form': form
-        }, request)
+        })
 
 @csrf_exempt
 def concept_edit(request, vocab_node_id, node_id):
     vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
     c = get_object_or_404(Concept, node_id=node_id, vocabulary=vocab)
     children = c.get_children()
-    synonyms = c.synonym_set.all()    
+    synonyms = c.synonym_set.all()
     related = c.related.all()
     parent  = c.parent.all()
     if not related:
@@ -251,7 +251,7 @@ def concept_edit(request, vocab_node_id, node_id):
         form = ConceptForm(instance=c)
         formset = RelatedFormSet(instance=c, prefix='rf')
         parent_formset = ParentFormSet(instance=c, prefix='pf')
-    return render('vocabulary/concept-edit.html', {
+    return render(request, 'vocabulary/concept-edit.html', {
         'children': children,
         'synonyms': synonyms,
         'concept': c,
@@ -260,7 +260,7 @@ def concept_edit(request, vocab_node_id, node_id):
         'parent_formset': parent_formset,
         'forms_and_set': zip(formset.forms, related),
         'parent_forms_and_set': zip(parent_formset.forms, parent)
-        }, request)
+        })
 
 @csrf_exempt
 @ajax_login_required
@@ -298,7 +298,7 @@ def concept_delete(request, vocab_node_id, node_id):
                     ch.parent.add(c.mother())
             c.delete()
         return redirect(gobackto)
-    return render('vocabulary/concept-delete.html', {'concept': c}, request)
+    return render(request, 'vocabulary/concept-delete.html', {'concept': c})
 
 @ajax_login_required
 def vocabulary_delete(request, vocab_node_id):
@@ -314,7 +314,7 @@ def vocabulary_delete(request, vocab_node_id):
             else:
                 messages.info(request, 'Not deleted. You need to tick the box to confirm.')
                 return redirect(vocab.get_absolute_url())
-    return render('vocabulary/vocabulary-delete.html', {
+    return render(request, 'vocabulary/vocabulary-delete.html', {
         'vocabulary': vocab,
         'allowed': allowed
-    }, request)
+    })
