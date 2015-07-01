@@ -1,0 +1,7 @@
+{% if debug and sql_queries %}
+    <div id="queries">
+    {% for query in sql_queries %}
+        <b>{{ forloop.counter }})</b> {{ query.time }}s<br>{{ query.sql|escape|wordwrap:80|linebreaksbr }}<br>
+    {% endfor %}
+    </div>
+{% endif %}

@@ -7,6 +7,7 @@ PROJECT_ROOT = PWD.replace('apps', '')
 from settings_local import *
 
 TEMPLATE_DEBUG = DEBUG
+INTERNAL_IPS = ['127.0.0.1']
 TIME_ZONE = 'Europe/London'
 LANGUAGE_CODE = 'en-gb'
 SITE_ID = 1

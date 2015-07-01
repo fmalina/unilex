@@ -1,10 +1,5 @@
-from django.shortcuts import render_to_response
-from django.template import RequestContext
 from django.http import HttpResponse
 import string
-
-def render(template, variables, request):
-    return render_to_response(template, variables, context_instance=RequestContext(request))
 
 def ajax_login_required(view_func):
     def wrap(request, *args, **kwargs):

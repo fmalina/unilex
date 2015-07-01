@@ -1,12 +1,10 @@
 from django import forms
+from django.shortcuts import render
 from django.contrib.auth.models import User
-
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
 from vocabulary.models import Vocabulary
-from utils import render
-
 
 class UpdateProfile(forms.ModelForm):
     username = forms.CharField(required=True)
@@ -29,9 +27,9 @@ def profile(request):
         form = UpdateProfile(instance=request.user)
     
     ls = Vocabulary.objects.with_counts().filter(user=request.user)
-    return render('profile.html', {
+    return render(request, 'profile.html', {
         'ls': ls,
         'form': form
-    }, request)
+    })
     
     
