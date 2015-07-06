@@ -1,8 +1,8 @@
-def concept_to_dict(concept):
+def concept_to_dict(concept, depth, max_depth):
     d = {
         'id': concept.node_id,
         'name': concept.name,
-        'children': [concept_to_dict(child) for child in concept.get_children()],
+        'children': [],
         'data': {'type': 'concept'}
     }
     if concept.description:
@@ -11,9 +11,17 @@ def concept_to_dict(concept):
         d['data']['query'] = concept.query
     if not concept.active:
         d['data']['active'] = concept.active
+    if depth < max_depth or max_depth == 0:
+        children = concept.get_children()
+        if children:
+            depth += 1
+        else:
+            depth -= 1
+        d['children'] = [concept_to_dict(child, depth, max_depth) for child in children]
+        d['data']['depth'] = depth
     return d
 
-def vocab_to_dict(vocab):
+def vocab_to_dict(vocab, max_depth=0):
     children = vocab.concept_set.filter(parent__isnull=True)
     vocabulary_id = 'v-%s' % vocab.node_id # prepending 'v', vocabulary ID cannot match any concept id on the same page
     return {
@@ -21,6 +29,6 @@ def vocab_to_dict(vocab):
         'name': vocab.title,
         'queries': vocab.queries,
         'description': vocab.description,
-        'children': [concept_to_dict(child) for child in children],
+        'children': [concept_to_dict(child, depth=1, max_depth=max_depth) for child in children],
         'data': {'type': 'vocab'}
     }
