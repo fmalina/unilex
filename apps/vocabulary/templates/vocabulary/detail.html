@@ -5,7 +5,7 @@
 {% endblock %}
 {% block extrascripts2 %}
     <script src="{{ base_url }}/js/jquery.cookie.js?{{ version }}"></script>
-    {% if count < 1000 %}
+    {% if suitable %}
     <script src="{{ base_url }}/js/vocab_browse.js?{{ version }}"></script>
     {% endif %}
 {% endblock %}
@@ -18,11 +18,10 @@
         {{ count }} concept{{ count|pluralize }}
     {% endif %})</small></h1>
 <div id="infovis">
-{% if count > 999 %}
+{% if not suitable %}
     <p style="font-size:16px;padding:40px 0">
-    This vocabulary is too big<br>
-    to be displayed here at present.<br>
-    <small>Cap is set to 1k concepts.</small>
+    This vocabulary is over 1k concepts, too big to load at once.<br>
+    <a href="order">See first 3 levels in alternative view</a>
     </p>
 {% endif %}
 </div><!-- /infovis -->
