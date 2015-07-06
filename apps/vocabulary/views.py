@@ -59,6 +59,7 @@ def detail(request, vocab_node_id):
     return render(request, 'vocabulary/detail.html', {
         'vocabulary': vocab,
         'count': count,
+        'suitable': count < 1000,
         'concepts': concepts})
 
 def load_vocab(request, format='xls'):
