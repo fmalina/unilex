@@ -5,9 +5,7 @@
 {% endblock %}
 {% block extrascripts2 %}
     <script src="{{ base_url }}/js/jquery.cookie.js?{{ version }}"></script>
-    {% if suitable %}
     <script src="{{ base_url }}/js/vocab_browse.js?{{ version }}"></script>
-    {% endif %}
 {% endblock %}
 {% block content %}
 <div id="main">
@@ -16,14 +14,16 @@
         It's empty here. Get to work.
     {% else %}
         {{ count }} concept{{ count|pluralize }}
-    {% endif %})</small></h1>
+    {% endif %})
+    {% if count > 1000 %}
+        <span style="font-size:12px;color:green;display:block">
+            Only first 3 levels of taxonomies over thousand concepts large are shown in Beta.<br>
+            Switch view to more suitable display. 
+        </span>
+    {% endif %}
+    </small></h1>
+
 <div id="infovis">
-{% if not suitable %}
-    <p style="font-size:16px;padding:40px 0">
-    This vocabulary is over 1k concepts, too big to load at once.<br>
-    <a href="order">See first 3 levels in alternative view</a>
-    </p>
-{% endif %}
 </div><!-- /infovis -->
 {% if count %}
 <div id="switch-view">
