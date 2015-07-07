@@ -52,15 +52,6 @@ def search(request):
         'title': '%s - Search results' % q
         })
 
-def detail(request, vocab_node_id):
-    vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
-    count = Concept.objects.filter(vocabulary=vocab).count()
-    concepts = vocab.concept_set.filter(parent__isnull=True)
-    return render(request, 'vocabulary/detail.html', {
-        'vocabulary': vocab,
-        'count': count,
-        'suitable': count < 1000,
-        'concepts': concepts})
 
 def load_vocab(request, format='xls'):
     from vocabulary.load_xls import load_xls
@@ -92,9 +83,22 @@ def vocabulary_add(request):
     vocab.save()
     return redirect(vocab.get_absolute_url())
 
+def detail(request, vocab_node_id):
+    vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
+    count = Concept.objects.filter(vocabulary=vocab).count()
+    concepts = vocab.concept_set.filter(parent__isnull=True)
+    return render(request, 'vocabulary/detail.html', {
+        'vocabulary': vocab,
+        'count': count,
+        'concepts': concepts})
+
 def json(request, vocab_node_id):
     vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
-    jsondata = dumps(vocab_to_dict(vocab), indent=4)
+    count = Concept.objects.filter(vocabulary=vocab).count()
+    max_depth = 0
+    if not count < 1000:
+        max_depth = 3
+    jsondata = dumps(vocab_to_dict(vocab, max_depth), indent=4)
     return HttpResponse(jsondata, content_type='application/json')
 
 def export(request, vocab, data, extension, mime):
