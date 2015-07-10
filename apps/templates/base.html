@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8" /> 
         <title>{%block title%}{{ title }}{% endblock %}</title>
+        <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="{{ base_url }}/css/screen.css?{{ version }}" />
         <link rel="stylesheet" href="{{ base_url }}/css/vocabulary.css?{{ version }}">
         <link rel="stylesheet" href="{{ base_url }}/css/print.css?{{ version }}" media="print" />
@@ -13,22 +14,22 @@
         {% block extrastyles %}{% endblock %}
         {% block extrascripts %}{% endblock %}
     </head>
-    <body>
+    <body{% block body_id %}{% endblock %}>
     <div id="header">
         <ul class="nav">
             <li><a href="{{ base_url }}">Home</a>
             <li><a href="{{ base_url }}{% url 'listings' %}"
                 title="Visual Taxonomy Editor for Controlled Vocabularies, Taxonomies and Thesauri">Vocabularies</a>
             <li><a href="{{ base_url }}{% url 'tag.views.about' %}" title="Contextual Tagging using Controlled Vocabularies">Tagging</a>
-            <li><a href="{{ base_url }}{% url 'views.docs' %}" title="Visual Vocabulary Suite Documentation">Documentation</a>
+            <li><a href="{{ base_url }}{% url 'docs' %}" title="Visual Vocabulary Suite Documentation">Documentation</a>
             {% if user.is_staff %}
             <li><a href="{{ base_url }}/admin/">Admin</a>{% endif %}
             {% if user.is_anonymous %}
-            <li><a rel="nofollow" id="loginlink"
+            <li><a class="sep" id="loginlink"
                 href="{% url 'auth_login' %}{% if request.path != '/accounts/logout/' %}?next={{request.path}}{% endif %}">Login</a>
-            / <a href="{% url 'registration_register' %}">Register</a>
+                <a href="{% url 'registration_register' %}">Register</a>
             {% else %}
-            <li><a href="{% url 'profile' %}">Your profile</a> / 
+            <li><a class="sep" href="{% url 'profile' %}">Your profile</a> 
                 <a href="{% url 'auth_logout' %}">Logout</a>
             {% endif %}
         </ul>
@@ -37,7 +38,7 @@
         {% endblock %}
     </div>
     {% include 'messages.html' %}
-    <div id="content">
+    <div class="content">
         {% block headline %}{% endblock %}
         {% block content_wrap %}
             {% block content %}{% endblock %}
@@ -47,8 +48,8 @@
     {% block sidebar %}{% endblock %}
     <div id="footer">
         {% include 'feedback/form.html' %}
-        {% include 'debug.html' %}
         <p>&copy; Copyright Unilexicon&trade; {% now "Y" %}. All rights reserved.</p>
+        {% include 'debug.html' %}
     </div>
     {% if not debug %}
         {% include 'analytics.html' %}

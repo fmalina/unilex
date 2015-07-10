@@ -1,8 +1,9 @@
-.ac_results{padding:0;border:1px solid #aaf;background-color:#f3f3f3;overflow:hidden;z-index:99999}
+.ac_results{border:1px solid #ddd;border-radius:2px;background:#eee;z-index:1;top:-2px;box-shadow:0 0 20px rgba(0,0,0,.2)}
 .ac_results ul{max-height:auto !important;list-style:none;padding:0;margin:0}
-.ac_results li{margin:0;padding:3px 8px;cursor:default;display:block;font:menu;font-size:14px;overflow:hidden}
+.ac_results li{margin:0;padding:3px 8px;cursor:default;display:block}
 .ac_results p{margin:0;padding:0}
 .ac_results a{text-decoration:none;color:#333}
+.ac_results small{color:#ddd}
 .ac_loading{background-position:98% 50% !important;background-repeat:no-repeat !important}
 .ac_loading{background-image:url(../img/indicator.gif) !important}
 .ac_odd{background-color:#fff}

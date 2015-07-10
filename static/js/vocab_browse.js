@@ -107,7 +107,7 @@ var VocabBrowser = {
             if (mo)
                 VocabBrowser.go(mo[1]);
             VocabBrowser.last_fragment = fragment;
-            // redirect to teh rigt context when logging in
+            // redirect to right context when logging in
             // $('#loginlink').attr('href', this.href + location.hash);
         }
     },
@@ -182,5 +182,16 @@ $(function(){
     VocabBrowser.init();
     $('.cancel').live('click', function(){
         $(this).parents('form:first').remove();
+    });
+    // Switch view dropdown
+    var ul = $('.drop-nav ul');
+    $('.drop-nav b').on('click', function(e) {
+        ul.toggle();
+        e.stopPropagation();
+    });
+    $('.content').on('click', function() {
+        if (ul.is(':visible')) {
+            ul.hide();
+        }
     });
 });

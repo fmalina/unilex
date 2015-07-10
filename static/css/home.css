@@ -1,0 +1,39 @@
+#demo{
+    width:500px;
+    height:300px;
+    box-shadow:0 0 48px rgba(0,0,0,.1);
+    float:left;
+    position:relative;
+    left:-70px;
+    border:1px solid #eee;
+    border-radius:4px;
+    overflow:hidden;
+    background:url(/chrome.png) no-repeat;
+}
+#tab,#url,#tag,#tip{position:absolute}
+#tag,#tip{background:#fff}
+#tab{
+    top:16px;left:107px;
+    font-size:11px;
+}
+#url{
+    top:45px;left:120px;
+    font:15px sans-serif;
+}
+#url span{color:gray}
+#tag{
+    top:68px;right:20px;
+    width:340px;
+    padding:30px;
+    box-shadow:0 0 20px rgba(0,0,0,.3);
+    border:1px solid #ccc;
+    border-radius:4px;
+}
+#tip{
+    top:-8px;right:20px;
+    z-index:1;
+    width:16px;height:16px;
+    -webkit-transform:rotate(45deg);
+        -ms-transform:rotate(45deg);
+            transform:rotate(45deg);
+}

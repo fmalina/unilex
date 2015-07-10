@@ -3,10 +3,8 @@
 
 {% block title %}{% trans "Log in" %}{% endblock %}
 {% block headline %}
-<div id="intro">
-    <h1>{% trans "Log in" %} / 
-        <small><a href="{% url 'registration_register' %}">{% trans "Register for an account" %}</a></small></h1>
-</div>
+    <h1>{% trans "Log in" %}
+        <small class="text-muted">or <a href="{% url 'registration_register' %}">{% trans "register for an account" %}</a></small></h1>
 {% endblock %}
 {% block content %}
 <form method="post" action="">

@@ -7,12 +7,8 @@ from content.forms import PageForm
 
 @login_required
 def site(request):
-    try:
-        vocab = Vocabulary.objects.filter(queries=True)[0]
-        concepts = vocab.concept_set.filter(parent__isnull=True).order_by('order')
-    except:
-        vocab = False
-        concepts = False
+    vocab = Vocabulary.objects.first()
+    concepts = vocab.concept_set.filter(parent__isnull=True).order_by('order')
     return render(request, 'content/base.html', {'vocabulary': vocab, 'concepts': concepts})
 
 def autocomplete(request):
