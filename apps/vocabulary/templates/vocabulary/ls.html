@@ -1,5 +1,6 @@
 <ul id="vocabulary-list">
 {% for v in ls %}
-    <li><a href="{{v.get_absolute_url}}" class="btn">{{v.title }} ({{ v.concept_count }})</a></li>
+    <li><a href="{{v.get_absolute_url}}">{{ v.title }} ({{ v.concept_count }})</a><br>
+    {{ v.description }}</li>
 {% endfor %}
 </ul>

@@ -15,8 +15,10 @@ def sitemap(request):
 def home(request):
     return render(request, 'home.html', {})
 
-def docs(request):
-    return render(request, 'docs.html', {})
+def docs(request, tpl=''):
+    if 'nav' in request.path_info:
+        tpl = '-nav-queries'
+    return render(request, 'docs'+tpl+'.html', {})
 
 def logmeout(request):
     messages.success(request, '<b>Logged out.</b> Thanks for spending some quality time with the Web site today.')

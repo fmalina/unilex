@@ -1,11 +1,12 @@
-#content{background:#fff;border-top:1px solid #ddd}
 #views{position:relative;top:-15px}
+
+.sort a:hover{color:#fff}
 
 .level1,
 .level2{border-radius:5px;border-left-width:1px;border-top-width:1px;color:#fff;text-shadow:#000 1px 1px;display:block}
-.level1{border:2px solid #333;background:#040;padding:.5em 1em;margin:0 1em 1em 0;font-size:1.5em}
-.level2{border:2px solid #666;background:#080;padding:.3em 1em;margin:0 0   1em 0;font-size:1.25em}
-.level3{border-bottom:1px solid #666;color:#333;display:block;padding:.2em .1em;margin:0;font-size:.9em}
+.level1{background:#005089;padding:.5em 1em;margin:0 1em 1em 0;font-size:1.5em}
+.level2{background:#007DD5;padding:.3em 1em;margin:0 0   1em 0;font-size:1.25em}
+.level3{border-bottom:1px solid #666;color:#333 !important;display:block;padding:.2em .1em;margin:0;font-size:.9em}
 .level1.haschildren,
 .level2.haschildren{border-radius:5px 5px 0 0;margin-bottom:0}
 
@@ -15,7 +16,7 @@
 .level1-inner-wrap{float:left;width:18em}
 .level2-wrap,
 .level3-wrap{border-radius:0 0 5px 5px;border:2px solid #666;border-left-width:1px;border-top:0}
-.level2-wrap{background:#ccc;padding:1.25em;margin:0 1.5em 1.5em 0}
+.level2-wrap{background:#EFF8FF;padding:1.25em;margin:0 1.5em 1.5em 0}
 .level3-wrap{background:#fff;padding:1em 1.25em;margin:0 0 1em 0}
 .level2-wrap .level2-inner-wrap:last-child *{margin-bottom:0}
 .level3-wrap li:last-child a{border:0}

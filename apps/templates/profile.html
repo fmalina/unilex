@@ -1,10 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}Your profile{% endblock %}
 {% block content %}
-<div id="intro">
     <h1>Your profile</h1>
-</div>
-<div id="content-in">
     <div class="col1">
         <form method="post" action="{{request.path}}">
         {{form.as_p}}
@@ -17,8 +14,8 @@
     <div class="col2">
         <h2>Your vocabularies</h2>
         {% include 'vocabulary/ls.html' %}
+        <div class="clear"></div>
         {% include 'vocabulary/add.html' %}
     </div>
     <hr>
-</div>
 {% endblock %}

@@ -11,16 +11,16 @@
             {% endif %}
         {% endfor %}
     {% else %}
-        <b>{{ vocabulary }}</b>
-        {% if vocabulary.description and not user.is_authenticated %}<br>
-            {{ vocabulary.description }}
+        <h2>{{ vocabulary }}</h2>
+        {% if vocabulary.description and not user.is_authenticated %}
+            <p>{{ vocabulary.description }}</b>
         {% endif %}
     {% endif %}</li>
 
     {% for c in children %}
         <li>&nbsp;&nbsp;&rarr; <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
-        {% if c.description and not user.is_authenticated %}<br>
-            {{ c.description }}
+        {% if c.description and not user.is_authenticated %}
+            <p class="indent">{{ c.description }}</p>
         {% endif %}
         </li>
     {% endfor %}

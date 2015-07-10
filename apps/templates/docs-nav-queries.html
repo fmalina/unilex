@@ -1,0 +1,72 @@
+{% extends "docs.html" %}
+{% block title %}Docs navigation vocabularies{% endblock %}
+
+{% block page %}
+<h1>Navigation vocabularies</h1>
+<p>Unilexicon is great for prototyping navigations. Go ahead and use produced taxonomies
+    for tagging the content directly.</p>
+<p>In this document we talk about special navigation vocabularies that can be used
+    to pull out content relevant to specific concepts using queries without direct
+    content tagging against the navigation vocabulary.
+    <b>In most CMS systems this won't be needed</b> as the content can be tagged
+    with main categorisation vocabulary directly.</p>
+<hr>
+  <p>In the case of separate navigation vocabularies discusses here, the display and editing
+  capabilities are slightly different. Navigation vocabularies can have queries attached
+  to navigation points. These are designed to query the CMS database to retrieve
+  content that matches the query. Here, for example, is a main navigation vocabulary
+  for a large website, with the concept Navigation &gt; Secondary &gt; Leadership and governance
+  selected:</p>
+
+  <p class="figure"><img src="/docs/m3976a017.png" alt="" /><br>
+  <i>Figure 6. Navigation concept showing existing query</i></p>
+
+  <p>The query in this case is:</p>
+
+  <p><code>recordtag="Edu: School phase^cb5c4..." and
+      recordtag="Edu: Educational purpose^9d177...")</code></p>
+
+  <p>This means show all content which has been tagged with
+  "Secondary" from the Phase vocabulary and "Leadership" from the Educational purpose
+  vocabulary. The user can elaborate the query by choosing the "Add another" link and
+  choosing the appropriate linking language (AND, OR or NOT) from the Query pop-up. For
+  example, if the user wanted to add a role of Headteacher to this query, she would click
+  on the "Add Another" link then start typing "headteacher" in the field that appears. An
+  auto-complete pop-up list immediately appears and filters as the user types, showing
+  the options (see Figure 7).</p>
+
+  <p class="figure"><img src="/docs/40aa3b30.png" alt="" /></p>
+
+  <p>Choosing an item from the list adds it to the panel (see Figure 8).</p>
+
+  <p class="figure"><img src="/docs/m37e837d2.png" alt="" /><br />
+  <i>Figure 8. Adding a query concept</i></p>
+
+  <p>The display shows the concept name, its concept id and its
+  place in the vocabulary hierarchy.
+  The user can remove the query concept ( <b>&times;</b> ), open the concept in its
+  original vocabulary ( <i class="icon-external"></i> )
+  or add it to the query window ( <b>+</b> ). When adding a concept
+  to a query the concept will be pasted into the query window at the current cursor
+  location (if the cursor is in the window) or at the end of the query if the window is
+  not currently selected. The user can use the query pop-up to build complex queries. See
+  Figure 9.</p>
+
+  <p class="figure"><img src="/docs/fa29ebd.png" alt="" /><br>
+  <i>Figure 9. Building a query</i></p>
+
+  <p>The user can test the results of a query by clicking the "Try
+  now" link. This sends the query to the CMS and retrieves a list of content items
+  that fit the query with links back to the original content.</p>
+
+  <p>This combination of a query-building interface and a testing
+  tool allows the user quickly to build relevant queries for navigation
+  points.</p>
+
+  <p>The Order field allows the display order of concepts from a
+  navigation point to be specified. A display order of 1 will bring that concept to the
+  top of the display list, with subsequent numbers pushing concepts further down the
+  list.</p>
+  
+  <p><a href="/docs#tagging">Continue reading about tagging</a>.</p>
+{% endblock %}

@@ -15,6 +15,7 @@ urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
     url(r'^profile$', 'profile.profile', name='profile'),
     url(r'^docs$', 'views.docs', name='docs'),
+       (r'^docs-nav-queries$', 'views.docs'),
     url(r'^logout/$', 'views.logmeout', name='auth_logout'),
     url(r'^sitemap.xml$', 'views.sitemap', name='sitemap'),
     # uncomment if you don't use a reverse proxy

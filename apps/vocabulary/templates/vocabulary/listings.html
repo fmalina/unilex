@@ -1,10 +1,8 @@
 {% extends 'vocabulary/base.html' %}
 {% block title %}Visual Editor for Controlled Vocabularies - SKOS Editor{% endblock %}
 {% block content %}
-    <div id="intro">   
         <h1>Visual Vocabulary Editor</h1>
         <p>This is a visual tool for managing <def title="classifications, thesauri or taxonomies">controlled vocabularies</def>.</p>
-        <h2>Features</h2>
         <ul>
         <li>explore and edit vocabularies through an attractive user interface</li>
         <li>quickly comprehend relations between concepts in large complex classification systems</li>
@@ -13,11 +11,12 @@
         <li>simplify writing of contextual queries for navigation vocabularies</li>
         </ul>
         {% include 'vocabulary/add.html' %}
-    </div>
-    <h2>Explore vocabularies</h2>
-    {% include 'vocabulary/ls.html' %}
+        <br>
     
-    <p>Public vocabularies are distributed under <a href="https://creativecommons.org/licenses/by/3.0/">CC-BY</a> license unless described otherwise.
-        Private ones remain proprietary.</p>
-    <p>To license a private enterprise instance of unilexicon, contact us below.</p>
+    <h2>Explore vocabularies
+        <small class="clear text-muted">
+            (<a class="text-muted" href="https://creativecommons.org/licenses/by/3.0/">CC-BY</a> licensed unless otherwise stated)
+        </small>
+    </h2>
+    {% include 'vocabulary/ls.html' %}
 {% endblock %}

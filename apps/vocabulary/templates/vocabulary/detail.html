@@ -7,9 +7,10 @@
     <script src="{{ base_url }}/js/jquery.cookie.js?{{ version }}"></script>
     <script src="{{ base_url }}/js/vocab_browse.js?{{ version }}"></script>
 {% endblock %}
+{% block body_id %} id="hypertree"{% endblock %}
 {% block content %}
 <div id="main">
-<h1 class="caption">{{ vocabulary.title }} <small>(
+<h1>{{ vocabulary.title }} <small>(
     {% if count == 0 %}
         It's empty here. Get to work.
     {% else %}
@@ -26,13 +27,14 @@
 <div id="infovis">
 </div><!-- /infovis -->
 {% if count %}
-<div id="switch-view">
+<div class="drop-nav">
     <b>Switch view <i class="icon-caret"></i></b>
     <ul>
         <li>Editing vocabulary
-        <li><a href="{% url 'order' vocabulary.node_id %}">Order concept priorities</a>
-        <li><a href="{% url 'nav'   vocabulary.node_id %}">Preview website navigation</a>
-        <li><a href="{% url 'ul'    vocabulary.node_id %}">Unordered list (3 levels)</a><br><br>
+        <li><a href="{% url 'order' vocabulary.node_id %}">Cards, order priorities</a>
+        <li><a href="{% url 'ul'    vocabulary.node_id %}">Tree, nested list (3 levels)</a>
+        <li><a href="{% url 'nav'   vocabulary.node_id %}">Tabs and dropdowns</a>
+            <br><br>
         <li>Export:
             <a href="{% url 'json'  vocabulary.node_id %}">JSON</a> /
             <a href="{% url 'skos'  vocabulary.node_id %}">SKOS</a> /
