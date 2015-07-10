@@ -1,6 +1,6 @@
 @import url('/css/autocomplete.css');
 
-body{font-family:"Open Sans", Arial, sans-serif;margin:0;padding:0;font-size:13px}
+body{font-family:"Open Sans", Arial, sans-serif;margin:0;padding:0;font-size:.83em}
 a{color:#23A4FF}
 a:hover{color:#005089}
 h1{font-size:3em;margin:0;padding:.2em 0 0 0}
@@ -10,7 +10,7 @@ dfn{border-bottom:1px dotted #ddd;cursor:help;font-style:normal}
 .clear{clear:both}
 .text-muted{color:silver}
 .hide{display:none}
-.beta{font-size:20px}
+.beta{font-size:.5em}
 .external:after{font-family:"uxfont";content:" a";font-size:11px;color:#555}
 
 #header,#footer{padding:15px 30px;color:#333}
@@ -40,44 +40,41 @@ form input[type="file"]{border:0;font-size:inherit;background:transparent}
 
 div.paginator{margin:1em 0px}
 div.paginator a,
-div.paginator span{padding:.3em .7em;margin-right:.2em;border-radius:5px;background:black}
+div.paginator span{padding:.5em 1em;margin-right:.2em;border-radius:4px;border:1px solid #ddd}
 div.paginator a{text-decoration:none}
-div.paginator a:hover,
-div.paginator a:active{color:white}
 div.paginator span{color:gray}
 
-button,
-input[type="submit"],
-.btn{text-decoration:none;display:inline-block;padding:.5em 1em;color:#fff;
-background:#23A4FF;cursor:pointer;border:0;border-radius:5px;margin-top:1em}
-.btn:hover,
+button,input[type="submit"],.btn{background:#23A4FF;color:#fff;
+    text-decoration:none;display:inline-block;padding:.5em 1em;
+    cursor:pointer;border:0;border-radius:5px;margin-top:1em}
 button:hover,
-input[type="submit"]:hover{text-shadow:#440 0 0 3px;
-    background:#005089;
-    color:#fff}
+input[type="submit"]:hover,.btn:hover{background:#005089;color:#fff;text-shadow:#440 0 0 3px}
+
 .call{padding:1em 1.5em;font-size:1.5em}
 .call small{font-size:.7em}
 
 .col1,.col2{width:45%;float:left;padding-right:3%}
-hr{border-color:rgba(255,255,255,0.2);clear:both}
+hr{color:#ddd;clear:both}
+
 .inline{padding-left:0}
 .inline li{display:inline-block;list-style-type:none;padding:0 1em 1em 0}
 
 #search,#search div{display:inline-block}
 #search{padding:0 15px 0 5px}
 #search button,
-#search input{background:#fff;border:1px solid #bbb;z-index:2}
-#search input{border-radius:2px 0 0 2px;border-right:0;padding:1px 5px 4px 5px}
-#search input:active{outline:none;border-color:#999}
-#search button{border-radius:0 2px 2px 0;border-left:0;margin:0;padding:6px 6px 5px 0}
+#search input{padding:7px}
+#search input{background:#fff;border-radius:4px;border:1px solid #bbb;font-size:13px}
+#search input:active,
+#search input:focus{outline:none;box-shadow:0 0 3px #23A4FF}
+#search button{background:none;border:0;margin:0;padding:6px;height:24px;position:relative;top:2px;left:-27px}
 #search button i{color:#333;text-shadow:none;font-size:14px}
+#search button::-moz-focus-inner{border:0;padding:0}
 
 #sr{margin:0;padding:0}
 #sr li{list-style:none;padding:0 0 1.5em 0}
 #sr h2{font-weight:normal;font-size:16px;margin:0}
 #sr h2 small{font-size:10px;color:#ccc}
 #sr p{padding:0;margin:0}
-#sr p small{color:#eee}
 #sr{width:600px}
 
 #feedback .placeholder{height:1.2em;overflow:hidden;color:gray}
