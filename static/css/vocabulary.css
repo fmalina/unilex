@@ -63,13 +63,13 @@ form li{list-style:none;text-shadow:none}
 #inner-details input[type="checkbox"]{width:auto}
 
 #add_operator,
-.test{color:#ccc;font-weight:bold;font-size:14px;text-decoration:none}
+.test{font-weight:bold;font-size:14px;text-decoration:none}
 #panel a{text-decoration:none}
 #panel a:hover{text-decoration:underline}
 #panel .indent{padding-left:22px;margin-top:0}
-#inner-details .set{padding:10px 20px 10px 30px;position:relative;left:-30px;background-color:rgba(0, 0, 0, 0.5)}
-.set li{border-top:1px solid #180010}
-.set .delete-row{color:#fff;position:relative;top:4px;font-size:18px;}
+#inner-details .set{padding:10px 20px 10px 30px;position:relative;left:-30px}
+.set li{border-top:1px solid #eee}
+.set .delete-row{color:#ddd;font-size:17px}
 
 #id_description{font-family:Arial, sans-serif;padding:2px 1px;height:60px;font-size:12px}
 #inner-details li#synonyms{padding:10px 0 0 25px}
@@ -80,15 +80,12 @@ form li{list-style:none;text-shadow:none}
 #add_operator:hover,
 .test:hover,
 p:hover .add,
-p:hover .go,
 button i,
 button b{color:#cfc}
 button.delete i,
 button.delete b{color:#fcc;position:relative;top:-1px}
 #results{display:none}
 .add-row{text-decoration:none}
-.add-row span{padding:1px 3px;display:inline-block}
-.add-row:hover span{background:green;color:white}
 
 #inner-details a{outline:0}
 #inner-details form{margin-bottom:50px}
