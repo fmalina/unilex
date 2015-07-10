@@ -13,7 +13,10 @@
     {% else %}
         <h2>{{ vocabulary }}</h2>
         {% if vocabulary.description and not user.is_authenticated %}
-            <p>{{ vocabulary.description }}</b>
+            <p>{{ vocabulary.description }}
+                {% if vocabulary.source %}
+                    <a class="external" href="{{ vocabulary.source }}">source</a>
+                {% endif %}
         {% endif %}
     {% endif %}</li>
 
