@@ -71,10 +71,14 @@ var VocabBrowser = {
                 if (node && node.id.indexOf("v-") == -1){
                     $.get(VocabBrowser.conceptUri(node.id,'edit'), function (data) {
                         $('#inner-details').html(data);
+                        // update page title
+                        var title = $('title').text().split(':')[0];
+                        $('title').text(title + ': ' + node.name);
                     });
                 } else {
                     $.get('/vocabularies/' + VocabBrowser.id(VocabBrowser.root) + '/edit', function (data) {
                         $('#inner-details').html(data);
+                        $('title').text(node.name);
                     });
                 }
             }
