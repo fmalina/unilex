@@ -18,7 +18,7 @@
 #inner-details form .title{margin-bottom:0}
 #inner-details form .node_id{margin-top:0}
 #inner-details form .node_id label{display:inline}
-#inner-details form .node_id input{display:inline-block;width:135px;border:0;border-bottom:1px dashed #ddd;background:none;border-radius:0}
+#inner-details form .node_id input{display:inline-block;width:135px;border:0;border-bottom:1px dashed #ddd;color:#999;font-size:.8em;background:none;border-radius:0}
 
 #tagging #inner-details{position:static;height:auto;margin:0 auto}
 #indicator{float:right}
