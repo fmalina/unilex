@@ -65,10 +65,10 @@ class Vocabulary(models.Model):
         return '/vocabularies/%s/' % self.node_id
 
     def increment_slug(self, slug):
-        current_number_suffix_match = re.search("\d+$", slug) # get the current number suffix if there is one
-        current_number_suffix = current_number_suffix_match and current_number_suffix_match.group() or 0
-        next = str(int(current_number_suffix) +1) # increment it, and turn back to string so re.sub doesn't die
-        return re.sub("(\d+)?$", next, slug) # replace current number suffix with incremented suffix, try again...
+        suff = re.search("\d+$", slug) # get the current number suffix if present
+        suff = suff and suff.group() or 0
+        nxt  = str(int(suff) +1) # increment it & turn to string for re.sub
+        return re.sub("(\d+)?$", nxt, slug) # replace with higher suffix, try again
 
     def make_node_id(self, slugbase):
         slug = slugify(slugbase)
@@ -160,12 +160,16 @@ class Concept(models.Model):
     def __str__(self):
         return self.name
     
+    def make_node_id(self):
+        slug = slugify(self.name)
+        while(Concept.objects.filter(node_id__iexact=slug, vocabulary=self.vocabulary).count()): # if it's not unique
+            slug = Vocabulary.increment_slug(self.vocabulary, slug)
+        return slug
+    
     def save(self, *args, **kwargs):
         self.updated_at = datetime.now()
         if not self.node_id:
-            # make a short hash based on current time http://www.google.com/logos/unix1234567890.gif
-            # reverse it for easier autocompletion (striding backwards)
-            self.node_id = base36.from_decimal(int((time.time() - 1234567890) * 1000000))[::-1]
+            self.node_id = self.make_node_id()
         super(Concept, self).save(*args, **kwargs)
         
     class Meta:
