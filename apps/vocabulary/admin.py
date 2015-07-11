@@ -47,7 +47,7 @@ class ConceptAdmin(admin.ModelAdmin):
     inlines = [ConceptAttribute_Inline]
     list_display = ('name','mother','vocabulary','forward_path')
     list_filter = ('vocabulary',)
-    exclude = ('parent','related','node_id')
+    exclude = ('parent','related','query')
 
 admin.site.register(Language, LanguageAdmin)
 admin.site.register(Concept, ConceptAdmin)
