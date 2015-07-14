@@ -3,16 +3,16 @@ from lxml import etree
 import urllib.request, urllib.parse, urllib.error
 import settings
 
-class SruError(Exception):
+class GetError(Exception):
     '''Base class of  SRU API errors'''
     
-class SruServerError(SruError):
+class GetServerError(GetError):
     '''There was a problem retrieving results from the server.'''
     
-class SruParseError(SruError):
+class GetParseError(GetError):
     '''There was a problem decoding the response.'''
 
-class Sru:
+class Get:
     '''Get SRU for a given CQL query and parse it. Return a list of records.
     Each record is a dictionary of with its title, description, note & tags.
     '''
@@ -22,7 +22,7 @@ class Sru:
     
     def namespaces(self):
         return {
-            'voc': settings.SRU_SERVER_URL.rstrip('/'),
+            'voc': settings.TAG_SERVER_URL.rstrip('/'),
             'lom': 'http://ltsc.ieee.org/xsd/LOM',
             'zs': 'http://www.loc.gov/zing/srw/',
             'dc': 'http://purl.org/dc/elements/1.1/',
@@ -40,18 +40,18 @@ class Sru:
         ''' Login and get SRU over HTTP.
         '''
         url = '%s?q=sru&operation=searchRetrieve&query=%s' % (
-            settings.SRU_SERVER_URL, urllib.parse.quote(self.query)
+            settings.TAG_SERVER_URL, urllib.parse.quote(self.query)
         )
         try:
             passman = urllib.request.HTTPPasswordMgrWithDefaultRealm()
-            passman.add_password(None, url, settings.SRU_USERNAME, settings.SRU_PASSWORD)
+            passman.add_password(None, url, settings.TAG_USERNAME, settings.TAG_PASSWORD)
             authhandler = urllib.request.HTTPBasicAuthHandler(passman)
             opener = urllib.request.build_opener(authhandler)
             urllib.request.install_opener(opener)
             urllib.request.urlopen(url).read()
             sru = urllib.request.urlopen(url).read()
         except IOError:
-            raise SruServerError("Error accessing the API")
+            raise GetServerError("Error accessing the API")
         return sru
 
     def tags(self, record):
@@ -73,12 +73,12 @@ class Sru:
         try:
             sru = etree.XML(resp)
         except Exception as e:
-            raise SruParseError("Error parsing SRU XML")
+            raise GetParseError("Error parsing SRU XML")
         ns = self.namespaces()
         try:
             msg = sru.xpath("/zs:searchRetrieveResponse/"
                 "voc:diagnostics/diagnostic:diagnostic/diagnostic:message", namespaces=ns)
-            raise SruServerError(msg.text)
+            raise GetServerError(msg.text)
         except:
                 records = []
                 no_of_records = self.string(sru.xpath("zs:numberOfRecords", namespaces=ns))

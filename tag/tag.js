@@ -56,7 +56,7 @@ var tag = {
     
     tagging: function(id){
         var body = $('body');
-        body.html('<img src="/img/indicator.gif" alt="">');
+        body.html('Loading...');
         var state = window.localStorage.getItem(id);
     
         if(state == undefined){

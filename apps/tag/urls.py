@@ -7,4 +7,10 @@ urlpatterns = patterns('tag.views',
     (r'^about$', 'about'),
     (r'^(?P<node_id>\d+)', 'tag'),
     (r'^query$', 'query'),
+    
+    (r'^site$', 'site'),
+    (r'^autocomplete$', 'autocomplete'),
+    (r'^search$', 'search'),
+    (r'^(?P<page_id>\d+)$', 'page'),
+    (r'^(?P<page_id>\d+)/edit$', 'page_edit'),
 )

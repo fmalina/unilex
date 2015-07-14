@@ -1,16 +1,18 @@
 from django.forms.formsets import formset_factory
 from django.template import RequestContext
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.decorators import login_required
+from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect, HttpResponse
 from django.utils.safestring import mark_safe
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
 from vocabulary.forms import *
 from vocabulary.models import Concept, Vocabulary
-from tag.forms import *
-from tag.sru import Sru, SruError
-from tag.sword import post_sword
+from tag.forms import TagForm, RecordForm, PageForm
+from tag.models import Page
+from tag.get import Get, GetError
+from tag.post import post_tags
 import settings
 
 def nothing(request):
@@ -53,8 +55,8 @@ def tag(request, node_id):
     else: # GET
         query = '(ns.nid="%s")' % node_id
         try:
-            record = Sru(request, query).parse()[0]
-        except SruError:
+            record = Get(request, query).parse()[0]
+        except GetError:
             messages.error(request, 'Sorry, we can\'t pull tags from the CMS right now.<br>' \
                 'Connection has timed out. Reload to try again')
             import traceback
@@ -91,8 +93,39 @@ def tag(request, node_id):
 def query(request):
     ''' Return list of results for a given CQL query '''
     query = request.POST['query']
-    records = Sru(request, query).parse()
+    records = Get(request, query).parse()
     return render(request, 'tag/query-results.html', {
-        'sru_server_url': settings.SRU_SERVER_URL,
+        'tag_server_url': settings.TAG_SERVER_URL,
         'links': records
         })
+
+@login_required
+def site(request):
+    vocab = Vocabulary.objects.first()
+    concepts = vocab.concept_set.filter(parent__isnull=True).order_by('order')
+    return render(request, 'tag/base.html', {'vocabulary': vocab, 'concepts': concepts})
+
+def autocomplete(request):
+    q = request.GET.get('q','').strip().lower()
+    concepts = Concept.objects.filter(name__istartswith=q)
+    return render(request, 'tag/autocomplete.txt', {'concepts': concepts})
+
+def search(request):
+    return redirect('/tag/site')
+
+def page(request, page_id):
+    page = get_object_or_404(Page, pk=page_id)
+    change = reverse('admin:tag_page_change', args=(page.id,))
+    return render(request, 'tag/page.html', {'page': page, 'change': change})
+
+@login_required
+def page_edit(request, page_id):
+    page = get_object_or_404(Page, pk=page_id)
+    if request.method == 'POST':
+        form = PageForm(request.POST, instance=page)
+        if form.is_valid():
+            form.save()
+            return redirect(page.get_absolute_url())
+    else:
+        form = PageForm(instance=page)
+    return render(request, 'tag/page-form.html', {'page': page, 'form': form })
