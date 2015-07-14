@@ -12,7 +12,7 @@
 <div id="main">
 <h1>{{ vocabulary.title }} <small>(
     {% if count == 0 %}
-        It's empty here. Get to work.
+        empty, use <b>+</b> to add a concept
     {% else %}
         {{ count }} concept{{ count|pluralize }}
     {% endif %})
