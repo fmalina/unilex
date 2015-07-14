@@ -1,11 +1,5 @@
 {% extends 'content/site.html' %}
-{% block extrascripts %}
-<script src="{{ base_url }}/js/ckeditor/ckeditor.js?{{ version }}"></script>
-<script src="{{ base_url }}/js/ckeditor-customize.js?{{ version }}"></script>
-<script src="{{ base_url }}/js/ckeditor-attach.js?{{ version }}"></script>
-{% endblock %}
 {% block content %}
-
 <form action="{{request.path}}" method="post" class="edit_page">
     {% csrf_token %}
     {{form.as_p}}
