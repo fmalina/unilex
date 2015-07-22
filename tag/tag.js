@@ -32,7 +32,7 @@ var tag = {
         var password = window.localStorage.getItem('password');
         var username = window.localStorage.getItem('username');
         password = md5(password);
-        token = 'username=' + username + ':password=' + password + ':nso';
+        token = 'username=' + username + ':password=' + password;
         return md5(token);
     },
     
