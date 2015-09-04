@@ -1,9 +1,34 @@
 {% extends 'vocabulary/base.html' %}
-
 {% block title %}{{ vocabulary.title }}{% endblock %}
 
 {% block extrastyles %}
-    <link rel="stylesheet" href="{{ base_url }}/css/megadropdown.css?{{ version }}" />
+<style>
+#mega a.level1,
+#mega .level2-wrap,
+#mega-hr{border:2px solid #aaa}
+#mega-hr{clear:both;border-width:2px 0 0 0;position:relative;top:-2px;z-index:0}
+#mega{font-size:12px;clear:both;position:relative;margin:2em 0;padding:0 0 0 .5em}
+#mega a{text-decoration:none}
+#mega a:hover{text-decoration:underline}
+#mega a.level1{margin:0 .2em 0 0;font-size:1.2em;padding:.5em 1em;border-radius:4px 4px 0 0;
+    background:#fff}
+#mega .hovering .level1{border-bottom-color:#fff}
+#mega .level2{padding:.5em 0;font-weight:bold;display:block}
+#mega .level3{display:block;padding:.2em 0;margin:0}
+#mega .level1{display:block;padding:8px 12px}
+#mega .level1-inner-wrap{list-style:none;float:left;position:relative}
+#mega .level1-inner-wrap:hover{z-index:3}
+#mega .level1-inner-wrap:hover a.level1{position:relative;z-index:4;border-bottom-color:#fff}
+#mega .level2-wrap{position:absolute;top:2.9em;left:-1em;border-radius:4px;
+    z-index:3;display:none;background:#fff;padding:15px;margin:0}
+#mega .level2-wrap .haschildren a{margin-bottom:0}
+#mega .level2-inner-wrap{display:inline-block}
+#mega .level2-wrap{color:bold}
+#mega .level3-wrap{list-style:none;padding:0 0 1em 0;font-weight:normal}
+#mega .level1-inner-wrap.hovering .level2-wrap{display:block !important}
+#mega .level2-inner-wrap{width:14em;vertical-align:top;margin-right:1em}
+#mega .col5{margin-right:0}
+</style>
 {% endblock %}
 
 {% block extrascripts %}
@@ -13,13 +38,6 @@ $(function(){
 	function addMega(){$(this).addClass("hovering");}
 	function  rmMega(){$(this).removeClass("hovering");}
 	$("#mega > li").hoverIntent(addMega, rmMega);
-	$("#mega .level2-wrap").each(function(){
-		var pos = $(this).parent().position().left;
-		//var p_w = $(this).parent().width();
-		//var width = $(this).width();
-		var pos_px =  pos.toString() + 'px';
-		$(this).css({'left': pos_px});
-	});
 });
 </script>
 {% endblock %}
@@ -29,7 +47,8 @@ $(function(){
 	<ul id="mega">
 	{% include "vocabulary/ul-3levels.html" %}
 	</ul>
-	<h2>{{ vocabulary.title }}</h2>
+    <div id="mega-hr"></div>
+	<h1>{{ vocabulary.title }} nav. demo</h1>
 	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 	<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 	<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>

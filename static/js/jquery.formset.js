@@ -5,6 +5,7 @@
             flatExtraClasses = options.extraClasses.join(' '),
             totalForms = $('#id_' + options.prefix + '-TOTAL_FORMS'),
             maxForms = $('#id_' + options.prefix + '-MAX_NUM_FORMS'),
+            childElementSelector = 'input,select,textarea,label,div',
             $$ = $(this),
 
             applyExtraClasses = function(row, ndx) {
@@ -15,7 +16,7 @@
             },
 
             updateElementIndex = function(elem, prefix, ndx) {
-                var idRegex = new RegExp('(' + prefix + '-\\d+-)|(^)'),
+                var idRegex = new RegExp(prefix + '-(\\d+|__prefix__)-'),
                     replacement = prefix + '-' + ndx + '-';
                 if (elem.attr("for")) elem.attr("for", elem.attr("for").replace(idRegex, replacement));
                 if (elem.attr('id')) elem.attr('id', elem.attr('id').replace(idRegex, replacement));
@@ -23,20 +24,22 @@
             },
 
             hasChildElements = function(row) {
-                return row.find('input,select,textarea,label').length > 0;
+                return row.find(childElementSelector).length > 0;
             },
 
             showAddButton = function() {
                 return maxForms.length == 0 ||   // For Django versions pre 1.2
-                    (maxForms.val() == '' || (maxForms.val() - totalForms.val() > 0))
+                    (maxForms.val() == '' || (maxForms.val() - totalForms.val() > 0));
             },
 
             insertDeleteLink = function(row) {
+                var delCssSelector = options.deleteCssClass.trim().replace(/\s+/g, '.'),
+                    addCssSelector = options.addCssClass.trim().replace(/\s+/g, '.');
                 row.prepend('<a class="' + options.deleteCssClass + '" href="javascript:void(0)">' + options.deleteText +'</a>');
-                row.find('a.' + options.deleteCssClass).bind('click', function() {
+                row.find('a.' + delCssSelector).click(function() {
                     var row = $(this).parents('.' + options.formCssClass),
                         del = row.find('input:hidden[id $= "-DELETE"]'),
-                        buttonRow = row.siblings("a." + options.addCssClass + ', .' + options.formCssClass + '-add'),
+                        buttonRow = row.siblings("a." + addCssSelector + ', .' + options.formCssClass + '-add'),
                         forms;
                     if (del.length) {
                         // We're dealing with an inline formset.
@@ -51,13 +54,13 @@
                         forms = $('.' + options.formCssClass).not('.formset-custom-template');
                         totalForms.val(forms.length);
                     }
-                    // Apply extraClasses to form rows so they're nicely alternating.
-                    // Also update names and IDs for all child controls, if this isn't a delete-able
-                    // inline formset, so they remain in sequence.
                     for (var i=0, formCount=forms.length; i<formCount; i++) {
+                        // Apply `extraClasses` to form rows so they're nicely alternating:
                         applyExtraClasses(forms.eq(i), i);
                         if (!del.length) {
-                            forms.eq(i).find('input,select,textarea,label').each(function() {
+                            // Also update names and IDs for all child controls (if this isn't
+                            // a delete-able inline formset) so they remain in sequence:
+                            forms.eq(i).find(childElementSelector).each(function() {
                                 updateElementIndex($(this), options.prefix, i);
                             });
                         }
@@ -105,8 +108,8 @@
                 // If a form template was specified, we'll clone it to generate new form instances:
                 template = (options.formTemplate instanceof $) ? options.formTemplate : $(options.formTemplate);
                 template.removeAttr('id').addClass(options.formCssClass + ' formset-custom-template');
-                template.find('input,select,textarea,label').each(function() {
-                    updateElementIndex($(this), options.prefix, 2012);
+                template.find(childElementSelector).each(function() {
+                    updateElementIndex($(this), options.prefix, '__prefix__');
                 });
                 insertDeleteLink(template);
             } else {
@@ -114,7 +117,8 @@
                 // extra (>= 1) forms (thnaks to justhamade for pointing this out):
                 template = $('.' + options.formCssClass + ':last').clone(true).removeAttr('id');
                 template.find('input:hidden[id $= "-DELETE"]').remove();
-                template.find('input,select,textarea,label').each(function() {
+                // Clear all cloned fields, except those the user wants to keep (thanks to brunogola for the suggestion):
+                template.find(childElementSelector).not(options.keepFieldValues).each(function() {
                     var elem = $(this);
                     // If this is a checkbox or radiobutton, uncheck it.
                     // This fixes Issue 1, reported by Wilson.Andrew.J:
@@ -128,18 +132,18 @@
             // FIXME: Perhaps using $.data would be a better idea?
             options.formTemplate = template;
 
-            // Otherwise, insert it immediately after the last form:
-            $$.filter(':last').after('<li><a class="' + options.addCssClass + '" href="javascript:void(0)">' + options.addText + '</a></li>');
-            addButton = $$.filter(':last').next();
-            if (hideAddButton) addButton.hide();
+                // Otherwise, insert it immediately after the last form:
+                $$.filter(':last').after('<li><a class="' + options.addCssClass + '" href="javascript:void(0)">' + options.addText + '</a></li>');
+                addButton = $$.filter(':last').next();
+                if (hideAddButton) addButton.hide();
 
-            addButton.bind('click', function() {
+            addButton.click(function() {
                 var formCount = parseInt(totalForms.val()),
                     row = options.formTemplate.clone(true).removeClass('formset-custom-template'),
                     buttonRow = $($(this).parents('tr.' + options.formCssClass + '-add').get(0) || this);
                 applyExtraClasses(row, formCount);
                 row.insertBefore(buttonRow).show();
-                row.find('input,select,textarea,label').each(function() {
+                row.find(childElementSelector).each(function() {
                     updateElementIndex($(this), options.prefix, formCount);
                 });
                 totalForms.val(formCount + 1);
@@ -152,7 +156,7 @@
         }
 
         return $$;
-    }
+    };
 
     /* Setup plugin defaults */
     $.fn.formset.defaults = {
@@ -164,7 +168,8 @@
         deleteCssClass: 'delete-row',    // CSS class applied to the delete link
         formCssClass: 'dynamic-form',    // CSS class applied to each form in a formset
         extraClasses: [],                // Additional CSS classes, which will be applied to each form in turn
+        keepFieldValues: '',             // jQuery selector for fields whose values should be kept when the form is cloned
         added: null,                     // Function called each time a new form is added
         removed: null                    // Function called each time a form is deleted
     };
-})(jQuery)
+})(jQuery);

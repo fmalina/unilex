@@ -1,6 +1,6 @@
 @import url('/css/autocomplete.css');
 
-body{font-family:"Open Sans", Arial, sans-serif;margin:0;padding:0;font-size:.83em}
+body{font-family:"Open Sans", Arial, sans-serif;margin:0;padding:0;font-size:.83em;color:#333}
 a{color:#23A4FF}
 a:hover{color:#005089}
 h1{font-size:3em;margin:0;padding:.2em 0 0 0}
@@ -9,32 +9,61 @@ fieldset{border:0;padding:0}
 dfn{border-bottom:1px dotted #ddd;cursor:help;font-style:normal}
 .clear{clear:both}
 .text-muted{color:silver}
+pre{color:green}
 .hide{display:none}
+.nowrap{white-space:nowrap}
 .beta{font-size:.5em}
 .external:after{font-family:"uxfont";content:" a";font-size:11px;color:#555}
 
-#header,#footer{padding:15px 30px;color:#333}
+#header,#footer,.content{padding:1em}
+#messages{padding:0 1em}
 #footer,.content{border-top:1px solid #ddd}
 #footer a{color:#0b66a6}
+#messages li{list-style:none}
+#messages .success{color:green}
 
-.content{padding:30px 50px;color:#333;position:relative}
+.content{color:#333;position:relative}
 .nav{font-size:1.1em;padding:0}
 .nav{list-style:none;margin:0}
 .nav ul{list-style:none}
 .nav a{text-decoration:none}
 
-#header .nav .sep{border-right:1px solid #ddd;padding-right:4px}
-#header .nav{display:inline;padding:0 30px 0 0}
-#header .nav li{display:inline-block;padding-right:1.1em}
-#header .nav a{text-transform:uppercase;color:#999;font-weight:600;font-size:13px}
+#header .nav{display:block;padding:0 3em 0 0;float:left}
+#header .nav .sep{color:#ddd;font-size:.9em}
+#header .nav .sep,
+#header .nav li,
+#header .nav a{display:inline-block}
+#header .nav a{text-transform:uppercase;color:#999;font-weight:600;font-size:.9em;padding:.5em 1em .5em 0}
 #header .nav a:hover{color:#333}
+#header .nav li:last-child a{padding-right:0}
+#header .nav a.logo{color:#444}
+#header .nav a.logo:hover{color:#111}
 
 form ul{margin:0;padding:10px 0}
 form ul li{list-style:none;padding:5px 0}
 form label{display:block;text-transform:uppercase;font-size:10px;color:#999}
-input,textarea{border:1px solid #ddd;border-radius:2px;background:#ffe}
-form input{width:350px;padding:5px;font-size:20px}
+input,textarea{
+	display:block;width:100%;max-width:350px;box-sizing:border-box;
+	border:1px solid #ddd;border-radius:2px;background:#ffe}
+form input{padding:5px;font-size:20px}
 form input[type="file"]{border:0;font-size:inherit;background:transparent}
+
+button,input[type="submit"],.btn{background:#23A4FF;color:#fff;
+    text-decoration:none;display:inline-block;padding:.5em 1em;
+    cursor:pointer;border:0;border-radius:5px;margin-top:1em}
+button:hover,
+input[type="submit"]:hover,.btn:hover{background:#005089;color:#fff;text-shadow:#440 0 0 3px}
+.btn-links{display:block;padding:1em}
+
+.call{padding:1em 1.5em;font-size:1.5em}
+.call small{font-size:.7em}
+
+hr{color:#ddd;clear:both}
+
+table{border-collapse:collapse}
+td,th{padding:2px 5px;border:1px solid #ddd}
+th{background:#f3f3f3;border-color:#bbb;font-weight:normal}
+thead b,tbody b{font-weight:normal}
 
 .details{font-size:10px;color:#666;float:right;padding:2px 0 0 10px}
 
@@ -44,29 +73,16 @@ div.paginator span{padding:.5em 1em;margin-right:.2em;border-radius:4px;border:1
 div.paginator a{text-decoration:none}
 div.paginator span{color:gray}
 
-button,input[type="submit"],.btn{background:#23A4FF;color:#fff;
-    text-decoration:none;display:inline-block;padding:.5em 1em;
-    cursor:pointer;border:0;border-radius:5px;margin-top:1em}
-button:hover,
-input[type="submit"]:hover,.btn:hover{background:#005089;color:#fff;text-shadow:#440 0 0 3px}
-
-.call{padding:1em 1.5em;font-size:1.5em}
-.call small{font-size:.7em}
-
-.col1,.col2{width:45%;float:left;padding-right:3%}
-hr{color:#ddd;clear:both}
-
 .inline{padding-left:0}
 .inline li{display:inline-block;list-style-type:none;padding:0 1em 1em 0}
 
-#search,#search div{display:inline-block}
-#search{padding:0 15px 0 5px}
+#search{position:relative;max-width:350px}
 #search button,
 #search input{padding:7px}
-#search input{background:#fff;border-radius:4px;border:1px solid #bbb;font-size:13px}
+#search input{display:block;background:#fff;border-radius:4px;border:1px solid #bbb;font-size:13px}
 #search input:active,
 #search input:focus{outline:none;box-shadow:0 0 3px #23A4FF}
-#search button{background:none;border:0;margin:0;padding:6px;height:24px;position:relative;top:2px;left:-27px}
+#search button{background:none;border:0;margin:0;padding:6px;height:24px;position:absolute;bottom:6px;right:3px}
 #search button i{color:#333;text-shadow:none;font-size:14px}
 #search button::-moz-focus-inner{border:0;padding:0}
 
@@ -77,20 +93,37 @@ hr{color:#ddd;clear:both}
 #sr p{padding:0;margin:0}
 #sr{width:600px}
 
-#feedback .placeholder{height:1.2em;overflow:hidden;color:gray}
+#feedback .placeholder{height:3.2em;overflow:hidden;color:gray}
 #feedback_status,#feedback_submit{display:none}
 #feedback_status{padding:0 10px;font-weight:bold;color:green}
 #feedback{clear:both;text-align:left}
-#feedback,#feedback textarea{width:560px}
-#feedback h3{margin:0;padding:0;font-size:12px}
+#feedback h3{margin:0;padding:0}
 #feedback label{font-weight:normal;display:block;padding:5px 0}
 #feedback textarea{margin:5px 0;font-family:sans-serif}
+#footer #feedback *{font-size:12px}
 #footer #feedback textarea,
-#footer #feedback input{font-size:12px;padding:3px;background:#fff}
-#footer #feedback button{margin:0}
-#footer fieldset{padding:0}
-#footer #feedback input{width:200px}
-#footer #feedback_optional label{display:inline-block;padding-right:5px}
-#footer #feedback_optional{float:right;margin-top:0;width:auto}
+#footer #feedback input{padding:3px;background:#fff}
+#footer #feedback button{margin:.5em 0 0 0}
+#footer #feedback_optional label{display:inline-block;padding-right:5px;text-transform:none}
 #footer #feedback_submit{float:none;margin-top:0;width:auto}
 #footer #queries{color:#ccc;margin-top:300px}
+
+@media screen and (min-width:640px){
+	#header,#footer,#messages{padding:1em 3em}
+	.content{padding:3em}
+	.col1,.col2{width:45%;max-width:500px;float:left;padding-right:3%}
+	.btn-links{display:inline-block}
+	#search{width:350px;float:left}
+	#search input{max-width:none}
+	#feedback,#feedback textarea{width:560px;max-width:none}
+	#feedback .placeholder{height:1.8em}
+	#feedback input{width:200px;display:inline}
+	#feedback_optional{float:right;margin-top:.5em}
+}
+@media screen and (max-width:640px){
+	h1{font-size:2em}
+	#header .nav{float:none}
+	#header .nav li{padding-top:0}
+	#tagging #demo{float:none;display:none}
+	table,pre{overflow-x:auto;display:block}
+}

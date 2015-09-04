@@ -105,23 +105,20 @@ var CHOOSER = {
         $('#id_query').val(sb);
     }
 }
-$(document).ready(function() {
-    $('#addNew').bind('click', function(event) {
+$(function() {
+    $('#addNew').on('click', function(event) {
         CHOOSER.addNewTerm();
         return false;
     });
-
-    $('.deleteSingleTerm').live('click', function(event) {
+    $(document).on('click', '.deleteSingleTerm', function(event) {
         CHOOSER.deleteSingleTerm($(this).parents('div.singleTerm'));
         return false;
     });
-
-    $('.convertToNot').live('click', function(event) {
+    $(document).on('click', '.convertToNot', function(event) {
         CHOOSER.convertToNot($(this).parents('div.andTerm'));
         return false;
     });
-
-    $('.orTerm').live('click', function(event) {
+    $(document).on('click', '.orTerm', function(event) {
         CHOOSER.orTerm($(this).parent('div.andTerm').children('div.termWrapper'));
         return false;
     });

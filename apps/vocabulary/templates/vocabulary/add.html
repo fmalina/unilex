@@ -1,8 +1,12 @@
 <p>
     <a href="{% url 'add' %}" class="btn call"><b>+</b> Start your vocabulary
         {% if not request.user.is_authenticated %}
-            <small>registration required</small>
+            <small class="nowrap">registration required</small>
         {% endif %}
-    </a> &nbsp; &nbsp; Import:
-    <a href="{% url 'load' 'xls' %}">spreadsheet</a>,
-    <a href="{% url 'load' 'skos' %}">SKOS</a></p>
+    </a>
+    <span class="nowrap btn-links">
+        Import:
+        <a href="{% url 'load' 'xls' %}">spreadsheet</a>,
+        <a href="{% url 'load' 'skos' %}">SKOS</a>
+    </span>
+</p>

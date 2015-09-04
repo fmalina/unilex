@@ -1,26 +1,28 @@
 #hypertree .content{padding:0}
 #infovis{
-    background:radial-gradient(circle at 300px 300px, #ffc 0%, #fff 70%);
-    position:relative;top:-20px;left:20px;height:650px;width:650px;margin:0;padding:0}
+    background:radial-gradient(circle at 50vh 50vh, #ffc 0%, #fff 70%);
+    height:calc(100vh - 70px);
+    width :calc(100vh - 70px)
+}
+#main h1{font-size:2em;line-height:.8em}
+#main h1 small{font-size:.5em}
 #vocabulary-list{padding:0}
-#vocabulary-list li{list-style:none;width:15em;float:left;padding:0 1.5em 1em 0}
+#vocabulary-list li{list-style:none;padding-bottom:1em}
 #vocabulary-list a{font-size:1.5em}
 
-#messages{padding:0 30px;font-size:11px;font-weight:bold}
-#messages li{list-style:none}
+#aside{padding:1em;width:300px;min-width:300px}
+#aside .info{color:green;display:block;position:relative;z-index:1}
+#aside{background:white;background:rgba(255,255,255,.95)}
 
-#main{float:left}
-#main h1{padding:15px 30px}
-#inner-details{float:right;padding:30px;z-index:1;min-height:90%;overflow:auto;border-left:1px solid #ddd}
-#inner-details ul{margin:0;padding:0}
-#inner-details li{list-style:none;margin:0;padding:0}
-#inner-details form input{padding:3px;font-size:13px}
-#inner-details form .title{margin-bottom:0}
-#inner-details form .node_id{margin-top:0}
-#inner-details form .node_id label{display:inline}
-#inner-details form .node_id input{display:inline-block;width:135px;border:0;border-bottom:1px dashed #ddd;color:#999;font-size:.8em;background:none;border-radius:0}
+#editing ul{margin:0;padding:0}
+#editing li{list-style:none;margin:0;padding:0}
+#editing form input{padding:3px;font-size:13px}
+#editing form .title{margin-bottom:0}
+#editing form .node_id{margin-top:0}
+#editing form .node_id label{display:inline}
+#editing form .node_id input{display:inline-block;width:128px;border:0;border-bottom:1px dashed #ddd;color:#999;font-size:.8em;background:none;border-radius:0}
 
-#tagging #inner-details{position:static;height:auto;margin:0 auto}
+#tagging #editing{position:static;height:auto;margin:0 auto}
 #indicator{float:right}
 
 form .buttons{text-align:right}
@@ -41,38 +43,29 @@ form li{list-style:none;text-shadow:none}
 #infovis .node,
 #infovis .node-depth-0{background-color:rgba(255,255,255,.5);}
 
-.drop-nav{position:absolute;z-index:200;top:0;left:500px;padding:10px 20px;color:gray}
+.drop-nav{position:absolute;z-index:999;top:0;padding:1em;color:gray;border-radius:10px}
 .drop-nav b{cursor:pointer}
 .drop-nav ul{list-style:none;display:none;padding:1em;border-radius:4px;background:#fff;box-shadow:0 0 20px rgba(0,0,0,.3)}
 .drop-nav li{padding-bottom:5px}
 .drop-nav a{text-decoration:none}
 .drop-nav a:hover{text-decoration:underline}
 
-.new_concept input,
-.new_concept select,
-.edit_concept input,
-.edit_concept select{max-width:300px;max-height:100px}
-
-#inner-details,
-#inner-details p input,
-#id_description,
-#id_query,
-.dynamic-form{width:300px;position:relative}
-#inner-details .set{width:310px}
+#editing input[type="checkbox"]{width:auto}
+#editing .set{padding:10px 20px 10px 30px;position:relative;left:-30px}
+#editing .set,
+.dynamic-form{width:100%}
 .dynamic-form{border-top:2px solid #000}
-#inner-details input[type="checkbox"]{width:auto}
 
 #add_operator,
 .test{font-weight:bold;font-size:14px;text-decoration:none}
 #panel a{text-decoration:none}
 #panel a:hover{text-decoration:underline}
 #panel .indent{padding-left:22px;margin-top:0}
-#inner-details .set{padding:10px 20px 10px 30px;position:relative;left:-30px}
+
 .set li{border-top:1px solid #eee}
 .set .delete-row{color:#ddd;font-size:17px}
 
 #id_description{font-family:Arial, sans-serif;padding:2px 1px;height:60px;font-size:12px}
-#inner-details li#synonyms{padding:10px 0 0 25px}
 
 .has_query:before{content:'✓ '}
 .try{font-size:12px}
@@ -87,16 +80,9 @@ button.delete b{color:#fcc;position:relative;top:-1px}
 #results{display:none}
 .add-row{text-decoration:none}
 
-#inner-details a{outline:0}
-#inner-details form{margin-bottom:50px}
-
-#excel{border-collapse:collapse}
-#excel td,#excel th{padding:2px 5px;border:1px solid #ddd}
-#excel th{background:#f3f3f3;border-color:#bbb;font-weight:normal}
-#excel caption{padding:10px 0 5px 0}
-#excel caption i{font-style:normal}
-#excel thead b,tbody b{font-weight:normal}
-#excel .p2,#excel .p3{display:none}
-#excel caption .p2,
-#excel tbody .p2{color:green}
-#excel .p3{color:gray}
+@media screen and (min-width:800px){
+	#aside{padding:2.5em;border-right:1px solid #ddd}
+	#infovis{float:right}
+	.drop-nav{left:370px}
+	#vocabulary-list li{width:15em;float:left;padding-right:1.5em}
+}

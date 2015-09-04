@@ -2,7 +2,7 @@
     <li>{% if concept %}
         {% for crumb in concept.breadcrumb %}
             {% if not forloop.last %}
-                <a href="{{ crumb.get_absolute_url }}">{{ crumb }}</a> &rarr; <br>
+                <a href="{{ crumb.get_absolute_url }}">{{ crumb }}</a> &rarr; 
             {% else %}
                 {% for parent in concept.parent.all %}
                     {% if parent != concept.mother %}<a href="{{ parent.get_absolute_url }}">&larr; {{ parent.name }}</a><br>{% endif %}
@@ -11,7 +11,6 @@
             {% endif %}
         {% endfor %}
     {% else %}
-        <h2>{{ vocabulary }}</h2>
         {% if vocabulary.description and not user.is_authenticated %}
             <p>{{ vocabulary.description }}
                 {% if vocabulary.source %}
@@ -21,24 +20,17 @@
     {% endif %}</li>
 
     {% for c in children %}
-        <li>&nbsp;&nbsp;&rarr; <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
-        {% if c.description and not user.is_authenticated %}
-            <p class="indent">{{ c.description }}</p>
+        <a href="{{ c.get_absolute_url }}">
+            {{ c.name }}</a><span class="text-muted">{% if c.description and not user.is_authenticated %}:
+            {{ c.description }}
         {% endif %}
-        </li>
+        {% if not forloop.last %} | {% endif %}</span>
     {% endfor %}
-
-    {% if concept.related.all %}
-    {% for r in concept.related.all %}
-    <li>&nbsp;&nbsp;&harr; <a href="{{ r.get_absolute_url }}">{{ r.name }}</a></li>
-    {% endfor %}
-    {% endif %}
+    
     {% if synonyms %}
-    <li id="synonyms"><b>Synonyms</b><br>
-        <ul>
+    <p><b>Synonyms</b>:
         {% for s in synonyms %}
-        <li>&ndash; {{ s }}</li>
-        {% endfor %}
-        </ul><li>
+        {{ s }}
+        {% endfor %}<p>
     {% endif %}
 </ul>
