@@ -1,8 +1,10 @@
+.content p{max-width:1000px}
 #demo{
     width:500px;
     height:300px;
-    box-shadow:0 0 48px rgba(0,0,0,.1);
     float:left;
+    box-shadow:0 0 48px rgba(0,0,0,.1);
+    margin-bottom:20px;
     position:relative;
     left:-70px;
     border:1px solid #eee;
@@ -22,7 +24,7 @@
 }
 #url span{color:gray}
 #tag{
-    top:68px;right:20px;
+    top:68px;left:80px;
     width:340px;
     padding:30px;
     box-shadow:0 0 20px rgba(0,0,0,.3);

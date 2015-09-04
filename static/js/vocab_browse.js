@@ -11,7 +11,7 @@ var VocabBrowser = {
         VocabBrowser.root = json.id;
         VocabBrowser.toproot = json.id;
         var infovis = document.getElementById('infovis');
-        var w = infovis.offsetWidth - 50, h = infovis.offsetHeight - 50;
+        var w = infovis.offsetWidth, h = infovis.offsetHeight;
         w = h = Math.min(w, h);
         // init Hypertree
         var ht = new $jit.Hypertree({
@@ -70,15 +70,14 @@ var VocabBrowser = {
                 var node = VocabBrowser.rootNode();
                 if (node && node.id.indexOf("v-") == -1){
                     $.get(VocabBrowser.conceptUri(node.id,'edit'), function (data) {
-                        $('#inner-details').html(data);
+                        $('#editing').html(data);
                         // update page title
                         var title = $('title').text().split(':')[0];
                         $('title').text(title + ': ' + node.name);
                     });
                 } else {
                     $.get('/vocabularies/' + VocabBrowser.id(VocabBrowser.root) + '/edit', function (data) {
-                        $('#inner-details').html(data);
-                        $('title').text(node.name);
+                        $('#editing').html(data);
                     });
                 }
             }
@@ -131,13 +130,13 @@ var VocabBrowser = {
             nid = VocabBrowser.id(node.id);
             $('#icon-add').bind('click', function () {
                 $.get('/vocabularies/' + nid + '/new', function (data) {
-                    $('#inner-details').prepend(data);
-                    $("#inner-details input[type='text']:first").focus();
+                    $('#editing').prepend(data);
+                    $("#editing input[type='text']:first").focus();
                 });
             });
             $('#icon-delete').bind('click', function () {
                 $.get('/vocabularies/' + nid + '/delete', function (data) {
-                    $('#inner-details').prepend(data);
+                    $('#editing').prepend(data);
                 });
             });
             $('#icon-paste').bind('click', function () {
@@ -148,13 +147,13 @@ var VocabBrowser = {
             $(domElement).append('<p id="editicons">' + add + del + cut + paste + '</p>');
             $('#icon-add').bind('click', function () {
                 $.get(VocabBrowser.conceptUri(node.id,'new'), function (data) {
-                    $('#inner-details').prepend(data);
-                    $("#inner-details input[type='text']:first").focus();
+                    $('#editing').prepend(data);
+                    $("#editing input[type='text']:first").focus();
                 });
             });
             $('#icon-delete').bind('click', function () {
                 $.get(VocabBrowser.conceptUri(node.id,'delete'), function (data) {
-                    $('#inner-details').prepend(data);
+                    $('#editing').prepend(data);
                 });
             });
             $('#icon-cut').bind('click', function () {
@@ -184,7 +183,7 @@ var VocabBrowser = {
 $(function(){
     $.cookie("cut", null);
     VocabBrowser.init();
-    $('.cancel').live('click', function(){
+    $(document).on('click', '.cancel', function(){
         $(this).parents('form:first').remove();
     });
     // Switch view dropdown

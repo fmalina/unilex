@@ -229,7 +229,7 @@ def concept_edit(request, vocab_node_id, node_id):
         Concept.related.through,
         fk_name="from_concept",
         form=RelatedForm,
-        extra=len(related),
+        extra=1,
         can_delete=True
     )
     ParentFormSet = inlineformset_factory(
@@ -237,7 +237,7 @@ def concept_edit(request, vocab_node_id, node_id):
         Concept.parent.through,
         fk_name="from_concept",
         form=ParentForm,
-        extra=len(parent),
+        extra=1,
         can_delete=True
     )
     if request.method == 'POST':

@@ -8,9 +8,9 @@
         <link rel="stylesheet" href="{{ base_url }}/css/vocabulary.css?{{ version }}">
         <link rel="stylesheet" href="{{ base_url }}/css/print.css?{{ version }}" media="print">
         <link rel="stylesheet" href="{{ base_url }}/uxfont/styles.css?{{ version }}">
-        <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-        <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-        <!--meta name="viewport" content="width=device-width, initial-scale=1"-->
+        {% if debug %}<script src="/admin/js/jquery.js"></script>{% else %}
+        <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>{% endif %}
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         {% block extrahead %}{% endblock %}
         {% block extrastyles %}{% endblock %}
         {% block extrascripts %}{% endblock %}
@@ -18,25 +18,29 @@
     <body{% block body_id %}{% endblock %}>
     <div id="header">
         <ul class="nav">
-            <li><a href="{{ base_url }}">Home</a>
+            <li><a href="{{ base_url }}" class="logo">Unilexicon</a>
             <li><a href="{{ base_url }}{% url 'listings' %}"
                 title="Visual Taxonomy Editor for Controlled Vocabularies, Taxonomies and Thesauri">Vocabularies</a>
             <li><a href="{{ base_url }}{% url 'tag.views.about' %}" title="Contextual Tagging using Controlled Vocabularies">Tagging</a>
-            <li><a href="{{ base_url }}{% url 'docs' %}" title="Visual Vocabulary Suite Documentation">Documentation</a>
+            <li><a href="{{ base_url }}{% url 'docs' %}">Docs</a>
             {% if user.is_staff %}
-            <li><a href="{{ base_url }}/admin/">Admin</a>{% endif %}
+            <li><a href="{{ base_url }}/admin/" title="Admin">
+                <span class="icon icon-edit"></span></a>{% endif %}
             {% if user.is_anonymous %}
-            <li><a class="sep" id="loginlink"
+            <li><a id="loginlink"
                 href="{% url 'auth_login' %}{% if request.path != '/accounts/logout/' %}?next={{request.path}}{% endif %}">Login</a>
+                <span class="sep">|</span>
                 <a href="{% url 'registration_register' %}">Register</a>
             {% else %}
-            <li><a class="sep" href="{% url 'profile' %}">Your profile</a> 
+            <li><a href="{% url 'profile' %}">Your profile</a>
+                <span class="sep">|</span>
                 <a href="{% url 'auth_logout' %}">Logout</a>
             {% endif %}
         </ul>
         {% block search %}
             {% include 'vocabulary/search-input.html' %}
         {% endblock %}
+        <div class="clear"></div>
     </div>
     {% include 'messages.html' %}
     <div class="content">

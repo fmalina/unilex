@@ -19,7 +19,7 @@ $(document).ready(function(){
 
 <form id="search" method="get" action="{{ base_url }}{% url 'vocabulary.views.search' %}">
     <div>
-        <input type="text" id="q" name="q" value="{{ q }}" /><button type="submit">
+        <input type="text" id="q" name="q" value="{{ q }}" placeholder="Search vocabularies" /><button type="submit">
             <i class="icon-search"></i></button>
     </div>
 </form>
