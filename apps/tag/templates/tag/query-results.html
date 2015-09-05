@@ -1,9 +1,9 @@
 {% include 'messages.html' %}
 <ul>
-{% for link in links %}
-    {% if forloop.first %}<li>Top 10 out of <b>{{ link.no }}</b> result{{ link.no|pluralize }}:</li>{% endif %}
-    <li><p><b><a class="external" target="_blank" href="{{ tag_server_url }}node/{{ link.n_id }}">{{ link.title }}</a></b><br>
-    {% if link.desc %}{{ link.desc|truncatewords:18 }}{% endif %}</p></li>
+{% for r in records %}
+    {% if forloop.first %}<li>Top 10 out of <b>{{ r.no }}</b> result{{ r.no|pluralize }}:</li>{% endif %}
+    <li><p><b><a class="external" target="_blank" href="{{ r.url }}">{{ r.title }}</a></b><br>
+    {% if r.desc %}{{ r.desc|truncatewords:18 }}{% endif %}</p></li>
 {% empty %}
     <li>no results</li>
 {% endfor %}

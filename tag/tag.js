@@ -60,6 +60,7 @@ var tag = {
         var state = window.localStorage.getItem(id);
     
         if(state == undefined){
+            console.log(tag.repository);
             body.load(tag.repository + '/tag/'+id, function(){
                 // save state
                 tag.save(id);
@@ -67,6 +68,7 @@ var tag = {
             });
         }
         else {
+            console.log(state);
             // retrieve last state
             body.html(state);
             

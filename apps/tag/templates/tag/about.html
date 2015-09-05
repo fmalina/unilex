@@ -8,9 +8,10 @@
             href="#https://chrome.google.com/webstore/detail/tagging/HASH">
             <i class="icon-tags"></i>
             Download tagging
-            <small>for Google Chrome<br>
+            <small class="nowrap">for Google Chrome</small><br>
+            <small>
                 Sorry, evaluation installation is currently unavailable
-                due to updates in Chrome security policy
+                due to updates in Chrome security&nbsp;policy
             </small>
             </a>
         </p>
@@ -18,4 +19,5 @@
             Please leave a message below to arrange a walkthrough
             or sneak peek into the <a href="/docs#tagging">documentation</a>.</p>
         <!--p>Once installed, you need to fill in your credentials in the extension options.</p-->
+        <p><a href="{% url 'records' %}">Recently tagged resources</a></p>
 {% endblock %}

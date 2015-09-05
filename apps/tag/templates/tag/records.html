@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>{{ title }}</h1>
+<ul>
+{% for record in records %}
+<li><h2><a href="{{ record.url }}">{{ record.title }}</a>
+    (<a href="{% url 'tag' record.id %}">edit</a>)</h2>
+    <p>{{ record.desc }}
+    <p><b>Tags</b>:
+    {% for tag in record.tag_set.all %}
+        <a href="{{ tag.concept.get_absolute_url }}">
+            {{ tag.concept.name }}
+        </a>{% if not forloop.last %}, {% endif %}
+    {% endfor %}
+{% endfor %}
+</ul>
+{% endblock %}
