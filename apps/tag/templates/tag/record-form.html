@@ -2,11 +2,7 @@
 {% include "messages.html" %}
 {% csrf_token %}
 {{ form.errors }}
-<p>
-    <button class="send" type="submit">Send</button>
-    <button class="save">Save now</button>
-    <button class="discard" title="discard changes">Discard</button>
-</p>
+
 {% include "vocabulary/concept-set-formset.html" %}
 
 <ul>

@@ -1,5 +1,0 @@
-{% extends 'content/site.html' %}
-{% block content %}
-<h1>{{ page.title }} {% if user.is_staff %}<a href="{{ page.get_absolute_url }}/edit">edit</a>{% endif %}</h1>
-{{ page.body|safe }}
-{% endblock %}

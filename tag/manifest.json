@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
-  "name": "Tagging",
-  "description": "Tag things using meaningful concepts from unilexicon.com",
+  "name": "Unilexicon Tagging",
+  "description": "Classify resources using taxonomies from Unilexicon",
   "version": "0.2",
   "homepage_url": "http://unilexicon.com/",
   "background": {"page": "background.html"},
