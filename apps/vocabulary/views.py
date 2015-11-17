@@ -199,11 +199,7 @@ def concept_new(request, vocab_node_id, node_id=0):
             if add_parent:
                 c.parent.add(parent)
             c.save()
-            if(c.mother()):
-                gobackto = c.mother().get_absolute_url()
-            else:
-                gobackto = c.vocabulary.get_absolute_url()
-            return redirect(gobackto)
+            return redirect(parent.get_absolute_url())
     else:
         form = NewChildConceptForm(instance=c)
     return render(request, 'vocabulary/new-concept.html', {
