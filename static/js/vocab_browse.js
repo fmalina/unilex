@@ -117,8 +117,8 @@ var VocabBrowser = {
     showIcons: function (domElement, node) {
         $('#editicons').remove();
         var del   = '<i class="icon-delete"  title="Delete"   id="icon-delete" ><b>×</b></i>';
-        var cut   = '<i class="icon-cut-out" title="Cut out"  id="icon-cut"    ></i>';
-        var paste = '<i class="icon-put-in"  title="Put in"   id="icon-paste"  ></i>';
+        var cut   = '<i class="icon-cut"     title="Cut out"  id="icon-cut"    ></i>';
+        var paste = '<i class="icon-put"     title="Put in"   id="icon-paste"  ></i>';
         var add   = '<i class="icon-add"     title="Add"      id="icon-add"    ><b>+</b></i>';
         var edit  = '<i class="icon-edit"    title="Edit"     id="icon-edit"   ></i>';
         var save  = '<i class="icon-save"    title="Download" id="icon-save"   ></i>';
