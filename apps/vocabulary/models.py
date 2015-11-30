@@ -78,7 +78,7 @@ class Vocabulary(models.Model):
 
     def save(self, *args, **kwargs):
         self.updated_at = datetime.now()
-        if not self.pk and not self.node_id:
+        if not self.pk and not self.node_id or self.node_id.startswith('new-vocabulary'):
             # must be a new vocabulary or excel import without node_id
             self.node_id = self.make_node_id(self.title)
         if not self.pk:
