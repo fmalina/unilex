@@ -1,22 +1,27 @@
-from django.conf.urls import url, patterns, include
+from django.conf.urls import url, include
 from django.conf import settings
+from django.views.static import serve
 from django.contrib import admin
 admin.autodiscover()
 
-urlpatterns = patterns('',
-    (r'^$', 'views.home'),
-    (r'^feedback$', 'feedback.views.feedback'),
-    (r'^vocabularies/', include('vocabulary.urls')),
-    (r'^tag/', include('tag.urls')),
-    (r'^accounts/', include('registration.backends.default.urls')),
-    (r'^accounts/', include('django.contrib.auth.urls')),
-    (r'^admin/doc/', include('django.contrib.admindocs.urls')),
-    (r'^admin/', include(admin.site.urls)),
-    url(r'^profile$', 'profile.profile', name='profile'),
-    url(r'^docs$', 'views.docs', name='docs'),
-       (r'^docs-nav-queries$', 'views.docs'),
-    url(r'^logout/$', 'views.logmeout', name='auth_logout'),
-    url(r'^sitemap.xml$', 'views.sitemap', name='sitemap'),
+from views import home, docs, logmeout, sitemap
+from feedback.views import feedback
+from profile import profile
+
+urlpatterns = [
+    url(r'^$', home),
+    url(r'^feedback$', feedback),
+    url(r'^vocabularies/', include('vocabulary.urls')),
+    url(r'^tag/', include('tag.urls')),
+    url(r'^accounts/', include('registration.backends.default.urls')),
+    url(r'^accounts/', include('django.contrib.auth.urls')),
+    url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+    url(r'^admin/', include(admin.site.urls)),
+    url(r'^profile$', profile, name='profile'),
+    url(r'^docs$', docs, name='docs'),
+    url(r'^docs-nav-queries$', docs),
+    url(r'^logout/$', logmeout, name='auth_logout'),
+    url(r'^sitemap.xml$', sitemap, name='sitemap'),
     # uncomment if you don't use a reverse proxy
-    (r'^(.*)', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
-)
+    url(r'^(.*)', serve, {'document_root': settings.STATIC_ROOT}),
+]
