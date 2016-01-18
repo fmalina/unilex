@@ -1,5 +1,6 @@
 import settings
-from django.contrib.sites.models import Site, RequestSite
+from django.contrib.sites.models import Site
+from django.contrib.sites.requests import RequestSite
 
 def current_site_url(site):
     protocol = getattr(settings, 'MY_SITE_PROTOCOL', 'http')
