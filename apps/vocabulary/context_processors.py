@@ -11,9 +11,9 @@ def current_site_url(site):
     return url
 
 def current_site(request):
-    '''A context processor to add the "current site" to the current Context
+    """Context processor to add the "current site" to the current Context,
     also ads fully qualified URL (no trailing slash) for the current site.
-    '''
+    """
     version = settings.VERSION
     try:
         site = Site.objects.get_current()

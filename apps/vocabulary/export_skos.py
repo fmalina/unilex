@@ -1,4 +1,5 @@
-'''Export a vocabulary as SKOS in RDF/XML format.'''
+"""Export a vocabulary as SKOS in RDF/XML format.
+"""
 
 from django.template import Template, Context
 from vocabulary.load_skos import xmlns
@@ -39,11 +40,11 @@ def concept_to_skos(concept):
     return CONCEPT_TEMPLATE.render(Context({'concept': concept}))
 
 def export_skos(vocab):
-    '''A generator to output a SKOS file for vocab piecewise.
+    """A generator to output a SKOS file for vocab piecewise.
 
     Using a generator allows the WSGI machinery to transfer the document
     without buffering the whole file in memory.
-    '''
+    """
     yield '<?xml version="1.0" encoding="UTF-8"?>\n'
     yield '<rdf:RDF '+NAMESPACES+'>\n'
     yield vocab_to_skos(vocab) 
