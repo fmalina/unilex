@@ -3,6 +3,7 @@ from django.db.models import Q
 from django.http import HttpResponse
 from django.template import RequestContext
 from django.template.loader import render_to_string
+from django.template.defaultfilters import slugify
 from django.forms.models import inlineformset_factory
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
@@ -14,7 +15,7 @@ from vocabulary.forms import *
 from vocabulary.export_skos import export_skos
 from vocabulary.export_csv import export_csv
 from vocabulary.export_json import vocab_to_dict
-from utils import getCamelCase, ajax_login_required
+from utils import ajax_login_required
 from paging import simple_paging
 from datetime import datetime
 
@@ -104,7 +105,8 @@ def json(request, vocab_node_id):
 def export(request, vocab, data, extension, mime):
     timestamp = datetime.today().strftime('%Y-%m-%d')
     response = HttpResponse(data, content_type=mime)
-    response['Content-Disposition'] = 'attachment; filename="%s-%s.%s"' % (getCamelCase(vocab.title), timestamp, extension)
+    response['Content-Disposition'] = 'attachment; filename="%s-%s.%s"' % (
+        slugify(vocab.title), timestamp, extension)
     return response
 
 def skos(request, vocab_node_id):
