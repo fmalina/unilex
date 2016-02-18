@@ -1,4 +1,4 @@
-'''
+"""
 Convert numbers from base 10 integers to base X strings and back again.
 
 Original: http://www.djangosnippets.org/snippets/1431/
@@ -10,7 +10,7 @@ Sample usage:
 '31e'
 >>> base20.from_decimal('31e')
 1234
-'''
+"""
 import string
 decimal_digits = '0123456789'
 
