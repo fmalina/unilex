@@ -3,7 +3,6 @@ from django.db.models import Q
 from django.http import HttpResponse
 from django.template import RequestContext
 from django.template.loader import render_to_string
-from django.template.defaultfilters import slugify
 from django.forms.models import inlineformset_factory
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
@@ -106,7 +105,7 @@ def export(request, vocab, data, extension, mime):
     timestamp = datetime.today().strftime('%Y-%m-%d')
     response = HttpResponse(data, content_type=mime)
     response['Content-Disposition'] = 'attachment; filename="%s-%s.%s"' % (
-        slugify(vocab.title), timestamp, extension)
+        vocab.node_id, timestamp, extension)
     return response
 
 def skos(request, vocab_node_id):
