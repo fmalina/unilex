@@ -16,6 +16,7 @@ Create, Export, Import, Explore, Manage, Iteratively improve
 - Tagging in context
  
 Standard technology: HTML+CSS+JS, Python
+
 Standard formats: SKOS, JSON, Excel/CSV
 
 Server Installation - Vocabulary editor & repository
