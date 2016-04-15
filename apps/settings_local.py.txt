@@ -1,0 +1,14 @@
+DEBUG = False
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'unilex',
+        'USER': '',
+        'PASSWORD': ''
+    }
+}
+DB_HOST = 'localhost'
+ALLOWED_HOSTS = ['localhost', '...']
+DEFAULT_FROM_EMAIL = "noreply@example.com"
+ADMINS = MANAGERS = [('Admin', 'admin@example.com'),]
+SECRET_KEY = 'foobar'
