@@ -23,12 +23,16 @@ Standard formats: SKOS, JSON, Excel/CSV
 
 Server Installation - Vocabulary editor & repository
 ----------------------------------------------------
-Install Python, Django, MySQL and mysqlclient bindings
-Create database and add name, user and password to settings_local.py.
+Install Python, MySQL or your database of choice and all required packages.
+
+   pip install -r requirements.txt
+
+Create database and add name, user and password to settings_local.py based on the text template provided.
 
 Run:
 
-    $ ./manage.py migrate
+    ./manage.py migrate
+    ./manage.py runserver
 
 For MySQL enable fulltext indexes.
 
@@ -37,11 +41,7 @@ For MySQL enable fulltext indexes.
 
 Import SKOS vocabularies from disk (or upload them later):
 
-    $ ./manage.py load_skos -r <directory of the vocabularies to import e.g.:  /home/f/repos/vocabs/>
-
-    $ ./manage.py runserver
-
-Visit http://127.0.0.1:8000/
+    ./manage.py load_skos -r <directory of the vocabularies to import e.g.:  /path/to/vocabs/>
 
 Browser Installation - Tagging tool
 -----------------------------------
@@ -49,7 +49,7 @@ User: In Chrome browser go to your vocabulary editor > click tagging > Install.
 
 Developer: hit Wrench > Tools > Extensions >
 Expand + Developer Mode > Load unpacked extension >
-Choose folder to load sources from. It should be ./static/tagging
+Choose folder to load sources from. It should be ./tag/
 
 Credits
 ---------
@@ -97,16 +97,4 @@ Cross Site Scripting(XSS) security controls.
 Tagging extension
 -----------------
 Tagging extension for Google Chrome has a bit of configuration on top of the
-tag.js file. Unpacked code is in meta/static/tagging/
-
-Signature file for packaging is in meta/static/tagging.pem
-
-Whenever a new version is packed, updates.xml file needs to be updated so that
-all users update automatically next time they launch their browser.
-
-
-IPTables
---------
-In deployment IPtables are also setup so that port 8080 (Gunicorn) is only open to requests
-on local loopback interface. Only ports 80, 443 and a some high SSH port are
-allowed to recieve connections from the outside world.
+tag.js file. Unpacked code is in the /tag folder.
