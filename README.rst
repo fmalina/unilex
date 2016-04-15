@@ -1,4 +1,6 @@
-Unilexicon https://unilexicon.com
+Unilexicon: taxonomy editor and tagging suite
+=============================================
+https://unilexicon.com
 
 Visual tool for managing controlled vocabularies
  - uses hypertree graphs to allow users exploring and editing vocabularies
