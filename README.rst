@@ -1,3 +1,5 @@
+Unilexicon https://unilexicon.com
+
 Visual tool for managing controlled vocabularies
  - uses hypertree graphs to allow users exploring and editing vocabularies
  - helps users to comprehend relations in large taxonomies
@@ -22,15 +24,19 @@ Install Python, Django, MySQL and mysqlclient bindings
 Create database and add name, user and password to settings_local.py.
 
 Run:
-$ ./manage.py migrate
+
+    $ ./manage.py migrate
 
 For MySQL enable fulltext indexes.
-ALTER TABLE concepts ADD FULLTEXT(name);
-ALTER TABLE concepts ADD FULLTEXT(description);
+
+    ALTER TABLE concepts ADD FULLTEXT(name);
+    ALTER TABLE concepts ADD FULLTEXT(description);
 
 Import SKOS vocabularies from disk (or upload them later):
-$ ./manage.py load_skos -r <directory of the vocabularies to import e.g.:  /home/f/repos/vocabs/>
-$ ./manage.py runserver
+
+    $ ./manage.py load_skos -r <directory of the vocabularies to import e.g.:  /home/f/repos/vocabs/>
+
+    $ ./manage.py runserver
 
 Visit http://127.0.0.1:8000/
 
@@ -44,10 +50,15 @@ Choose folder to load sources from. It should be ./static/tagging
 
 Credits
 ---------
-Graph visualisation - the Jit   - thejit.org
-Templates, ORM, MVC - Django    - djangoproject.com
-Frontend JS         - jQuery    - jquery.com
-Icons               - jQuery UI - ui.jquery.com
++---------------------+----------+-------------------+
+| Graph visualisation | the Jit  | thejit.org        |
++---------------------+----------+-------------------+
+| Templates, ORM, MVC | Django   | djangoproject.com |
++---------------------+----------+-------------------+
+| Frontend JS         | jQuery   | jquery.com        |
++---------------------+----------+-------------------+
+| Icons               | jQuery UI| ui.jquery.com     |
++---------------------+----------+-------------------+
 
 Keywords
 --------
@@ -74,7 +85,7 @@ so this needs changing for deployment.
 
 Another important bit of the config file is:
 
-add_header Access-Control-Allow-Origin...
+    add_header Access-Control-Allow-Origin...
 
 This allows the Chrome tagging extension to get on with the AJAX
 Cross Site Scripting(XSS) security controls.
