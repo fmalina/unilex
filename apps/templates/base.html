@@ -27,7 +27,7 @@
             <li><a href="{{ base_url }}/admin/" title="Admin">
                 <span class="icon icon-edit"></span></a>{% endif %}
             {% if user.is_anonymous %}
-            <li><a id="loginlink"
+            <li><a id="loginlink" rel="nofollow"
                 href="{% url 'auth_login' %}{% if request.path != '/accounts/logout/' %}?next={{request.path}}{% endif %}">Login</a>
                 <span class="sep">|</span>
                 <a href="{% url 'registration_register' %}">Register</a>
