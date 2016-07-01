@@ -21,7 +21,7 @@ xmlns = {
     'rdf': 'http://www.w3.org/1999/02/22-rdf-syntax-ns#',
     'rdfs': 'http://www.w3.org/2000/01/rdf-schema#',
     'skos': 'http://www.w3.org/2004/02/skos/core#',
-    'zthes': 'http://unilexicon.com/'
+    'zthes': 'https://unilexicon.com/'
 }
 expand_tag = lambda ns, tag: '{%s}%s' % (xmlns[ns], tag)
 TAG = lambda ns_colon_tag: expand_tag(*ns_colon_tag.split(':'))
