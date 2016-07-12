@@ -22,7 +22,8 @@
 					url: '{% url 'ordering' vocabulary.node_id %}',
 					success: function(){
 						$(this).addClass("done");
-						window.location.reload(); // TODO now re-key the li IDs instead
+                        // TODO re-key the li IDs instead of reload
+						window.location.reload(); 
 					}
 				});
 			}
@@ -33,7 +34,8 @@
 {% endblock %}
 
 {% block content %}
-	<div id="views"><a href="./">&laquo; back to editing</a> &middot; drag and drop concepts, order will be saved automatically</div>
+	<div id="views"><a href="./">&laquo; back to editing</a> &middot;
+        drag and drop concepts, order will be saved automatically</div>
 	<h2>{{ vocabulary.title }}</h2>
 	<ul class="nav sort isotope">
 	{% include "vocabulary/ul-3levels.html" %}
