@@ -5,7 +5,7 @@ urlpatterns = [
     url(r'^$',                        listings, name='listings'),
     url(r'^add$',                     vocabulary_add, name='add'),
     url(r'^autocomplete$',            autocomplete, name='autocomplete'),
-    url(r'^search$',                  search),
+    url(r'^search$',                  search, name='search'),
     url(r'^load-(?P<format>[a-z]+)$', load_vocab, name='load'),
     url(r'^(?P<vocab_node_id>[a-z0-9-_]+)/$',         detail, name='vocabulary'),
     url(r'^(?P<vocab_node_id>[a-z0-9-_]+)/edit$',     vocabulary_edit),
