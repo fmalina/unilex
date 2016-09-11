@@ -1,7 +1,7 @@
 <script src="{{ base_url }}/js/jquery.autocomplete.js?{{ version }}"></script>
 <script>
 $(document).ready(function(){
-    $("#q").autocomplete("{{ base_url }}{% url 'vocabulary.views.autocomplete' %}", {
+    $("#q").autocomplete("{{ base_url }}{% url 'autocomplete' %}", {
         width: 380,
         scrollHeight: 'auto',
         selectFirst: false,
