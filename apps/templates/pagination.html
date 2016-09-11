@@ -4,7 +4,7 @@
     {% if page_obj.has_previous %}<a rel="prev" href="{{ path }}?page={{ page_obj.previous_page_number }}{{ getvars }}">‹&nbsp;previous</a>{% endif %}
     {% for page in pages %}
         {% if page %}
-            {% if page = page_obj.number %}
+            {% if page == page_obj.number %}
                 <span class="active{% if forloop.last %} last{% endif %}">{{ page }}</span>
             {% else %}
                 <a{% if forloop.last %} class="last"{% endif %} href="{{ path }}?page={{ page }}{{ getvars }}">{{ page }}</a>
