@@ -21,7 +21,7 @@
             <li><a href="{{ base_url }}" class="logo">Unilexicon</a>
             <li><a href="{{ base_url }}{% url 'listings' %}"
                 title="Visual Taxonomy Editor for Controlled Vocabularies, Taxonomies and Thesauri">Vocabularies</a>
-            <li><a href="{{ base_url }}{% url 'tag.views.about' %}" title="Contextual Tagging using Controlled Vocabularies">Tagging</a>
+            <li><a href="{{ base_url }}{% url 'about' %}" title="Contextual Tagging using Controlled Vocabularies">Tagging</a>
             <li><a href="{{ base_url }}{% url 'docs' %}">Docs</a>
             {% if user.is_staff %}
             <li><a href="{{ base_url }}/admin/" title="Admin">
