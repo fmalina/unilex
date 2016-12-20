@@ -8,8 +8,7 @@
         <link rel="stylesheet" href="{{ base_url }}/css/vocabulary.css?{{ version }}">
         <link rel="stylesheet" href="{{ base_url }}/css/print.css?{{ version }}" media="print">
         <link rel="stylesheet" href="{{ base_url }}/uxfont/styles.css?{{ version }}">
-        {% if debug %}<script src="/admin/js/jquery.js"></script>{% else %}
-        <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>{% endif %}
+        <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         {% block extrahead %}{% endblock %}
         {% block extrastyles %}{% endblock %}
@@ -21,7 +20,7 @@
             <li><a href="{{ base_url }}" class="logo">Unilexicon</a>
             <li><a href="{{ base_url }}{% url 'listings' %}"
                 title="Visual Taxonomy Editor for Controlled Vocabularies, Taxonomies and Thesauri">Vocabularies</a>
-            <li><a href="{{ base_url }}{% url 'tag.views.about' %}" title="Contextual Tagging using Controlled Vocabularies">Tagging</a>
+            <li><a href="{{ base_url }}{% url 'about' %}" title="Contextual Tagging using Controlled Vocabularies">Tagging</a>
             <li><a href="{{ base_url }}{% url 'docs' %}">Docs</a>
             {% if user.is_staff %}
             <li><a href="{{ base_url }}/admin/" title="Admin">
