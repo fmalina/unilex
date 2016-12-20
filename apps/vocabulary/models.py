@@ -1,6 +1,6 @@
 from django.db import models
 from django.conf import settings
-from django.utils.html import strip_tags, strip_entities
+from django.utils.html import strip_tags
 from django.template.defaultfilters import slugify
 from vocabulary.baseconv import base36
 from datetime import datetime
@@ -144,7 +144,7 @@ class Concept(models.Model):
         return (self.level()-2) * ','
 
     def forward_path(self):
-        return strip_entities(strip_tags(' » '.join(self.get_path())))
+        return strip_tags(' » '.join(self.get_path()))
 
     def backwards_path(self):
         p = self.get_path()

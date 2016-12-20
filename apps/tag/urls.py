@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from tag.views import *
+from tag.views import about, tag, records, record_json, query
 
 urlpatterns = [
     url(r'^about$', about, name="about"),
