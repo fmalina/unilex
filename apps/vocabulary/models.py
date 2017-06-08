@@ -43,7 +43,7 @@ class Vocabulary(models.Model):
     language    = models.ForeignKey(Language, blank=True, null=True)
     authority   = models.ForeignKey(Authority, blank=True, null=True)
     queries     = models.BooleanField(verbose_name="Enable queries?", default=False)
-    private     = models.BooleanField(verbose_name="Private vocabulary", default=False,
+    private     = models.BooleanField(verbose_name="Private vocabulary", default=True,
         help_text="Private vocabulary can be edited only by the users belonging to its authority.")
     source      = models.URLField(blank=True)
     updated_at  = models.DateTimeField(default=datetime.now, editable=False)
