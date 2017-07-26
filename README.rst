@@ -98,3 +98,23 @@ Tagging extension
 -----------------
 Tagging extension for Google Chrome has a bit of configuration on top of the
 tag.js file. Unpacked code is in the /tag folder.
+
+
+Dual Licensing
+--------------
+
+Commercial license
+~~~~~~~~~~~~~~~~~~
+If you want to use Unilexicon to develop and run commercial projects and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+
+Once purchased, you are granted a commercial BSD style license and all set to use Unilexicon in your business.
+
+`Small Team License (£2500) <https://fmalina.github.io/pay.html?amount=2500&msg=Unilexicon_Team_License>`_
+Small Team License for up to 8 developers
+
+`Organization License (£4500) <https://fmalina.github.io/pay.html?amount=4500&msg=Unilexicon_Organization_License>`_
+Commercial Organization License for Unlimited developers
+
+Open source license
+~~~~~~~~~~~~~~~~~~~
+If you are creating an open source application under a license compatible with the GNU GPL license v3, you may use Unilexicon under the terms of the GPLv3.
