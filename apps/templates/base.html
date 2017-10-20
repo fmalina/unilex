@@ -52,8 +52,9 @@
     {% block sidebar %}{% endblock %}
     <div id="footer">
         {% include 'feedback/form.html' %}
-        <p>&copy; Copyright <a href="https://fmalina.github.io">F. Malina</a>
-            {% now "Y" %}. All rights reserved.</p>
+        <p>&copy; {% now "Y" %} Etcetera Media Group Ltd. All rights reserved.
+            Created by <a href="https://fmalina.github.io"
+                title="Django / JS web developer">Francis Malina</a>.</p>
         {% include 'debug.html' %}
     </div>
     {% if not debug %}
