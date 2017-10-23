@@ -9,7 +9,7 @@
             {% if user.is_authenticated %}
                 <small>{{ concept.node_id|highlight:q }}{% if concept.count %}, {{ concept.count }} use{{ concept.count|pluralize }}{% endif %}</small>
             {% endif %}</h2>
-        <p>{% if concept.description %}{% searchexcerpt q 5 %}{{ concept.description|highlight:q }}{% endsearchexcerpt %}<br>{% endif %}
+        <p>{% if concept.description %}{{ concept.description|highlight:q }}<br>{% endif %}
             {{ concept.backwards_path|highlight:q }}</p>
         </li>
     {% empty %}
