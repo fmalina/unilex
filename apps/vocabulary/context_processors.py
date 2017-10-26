@@ -2,13 +2,15 @@ import settings
 from django.contrib.sites.models import Site
 from django.contrib.sites.requests import RequestSite
 
+
 def current_site_url(site):
-    protocol = getattr(settings, 'MY_SITE_PROTOCOL', 'http')
+    protocol = getattr(settings, 'MY_SITE_PROTOCOL', 'https')
     port     = getattr(settings, 'MY_SITE_PORT', '')
     url = '%s://%s' % (protocol, site.domain)
     if port:
         url += ':%s' % port
     return url
+
 
 def current_site(request):
     """Context processor to add the "current site" to the current Context,
