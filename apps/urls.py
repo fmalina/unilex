@@ -20,6 +20,7 @@ urlpatterns = [
     url(r'^profile$', profile, name='profile'),
     url(r'^docs$', docs, name='docs'),
     url(r'^docs-nav-queries$', docs),
+    url(r'^pay/', include('pay.urls')),
     url(r'^logout/$', logmeout, name='auth_logout'),
     url(r'^sitemap.xml$', sitemap, name='sitemap'),
     # uncomment if you don't use a reverse proxy
