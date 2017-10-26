@@ -5,7 +5,7 @@ from django.contrib.sites.requests import RequestSite
 
 def current_site_url(site):
     protocol = getattr(settings, 'MY_SITE_PROTOCOL', 'https')
-    port     = getattr(settings, 'MY_SITE_PORT', '')
+    port = getattr(settings, 'MY_SITE_PORT', '')
     url = '%s://%s' % (protocol, site.domain)
     if port:
         url += ':%s' % port

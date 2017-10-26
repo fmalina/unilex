@@ -14,7 +14,7 @@ USE_I18N = False
 USE_L10N = True
 MEDIA_ROOT  = PROJECT_ROOT+'media/'
 STATIC_ROOT = PROJECT_ROOT+'static/'
-STATIC_URL = '/'
+STATIC_URL = '/static/'
 ACCOUNT_ACTIVATION_DAYS = 2
 REGISTRATION_AUTO_LOGIN = True
 LOGIN_REDIRECT_URL = '/'
@@ -60,11 +60,13 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
+    'django.contrib.staticfiles',
     'django.contrib.messages',
     'django.contrib.admin',
     'django.contrib.admindocs',
     'vocabulary',
     'tag',
+    'pay',
     'registration',
     'feedback',
 )
