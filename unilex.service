@@ -1,0 +1,12 @@
+[Unit]
+Description=unilex
+After=network.target
+
+[Service]
+User=f
+Group=f
+WorkingDirectory=/home/f/SITES/unilex/apps
+ExecStart=gunicorn wsgi:application -p /tmp/unilex.pid -b 127.0.0.1:8001 -w 3
+
+[Install]
+WantedBy=multi-user.target
