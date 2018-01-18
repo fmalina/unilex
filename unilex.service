@@ -3,12 +3,13 @@ Description=unilex
 After=network.target
 
 [Service]
+PIDFile=/tmp/unilex.pid
 User=f
 Group=f
 WorkingDirectory=/home/f/SITES/unilex/apps
 ExecStart=/usr/local/bin/gunicorn wsgi:application -p /tmp/unilex.pid -b 127.0.0.1:8001 -w 3
-ExecReload=/bin/kill -s HUP `cat /tmp/unilex.pid`
-ExecStop=/bin/kill -s TERM `cat /tmp/unilex.pid`
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s TERM $MAINPID
 
 [Install]
 WantedBy=multi-user.target
