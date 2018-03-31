@@ -1,16 +1,15 @@
 from json import dumps
 from django.db.models import Q
 from django.http import HttpResponse
-from django.template import RequestContext
-from django.template.loader import render_to_string
 from django.forms.models import inlineformset_factory
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
 
-from vocabulary.models import *
-from vocabulary.forms import *
+from vocabulary.forms import UploadFileForm, VocabularyForm,\
+    ConceptForm, NewChildConceptForm, RelatedForm, ParentForm
+from vocabulary.models import Vocabulary, Concept
 from vocabulary.export_skos import export_skos
 from vocabulary.export_csv import export_csv
 from vocabulary.export_json import vocab_to_dict
@@ -18,14 +17,16 @@ from utils import ajax_login_required
 from paging import simple_paging
 from datetime import datetime
 
+
 def listings(request, *args, **kwargs):
     ls = Vocabulary.objects.with_counts().exclude(private=True).order_by('user_id','title')
     return render(request, 'vocabulary/listings.html', {'ls': ls})
 
+
 def autocomplete(request):
     q = request.GET.get('q','').strip()
     concepts = Concept.objects.filter(
-        Q(name__search=q) |
+        Q(name__icontains=q) |
         Q(node_id__istartswith=q)
     )
     if not concepts:
@@ -36,11 +37,12 @@ def autocomplete(request):
     concepts = concepts.order_by('-count')
     return render(request, 'vocabulary/autocomplete.txt', {'concepts': concepts})
 
+
 def search(request):
-    q = request.GET.get('q','').strip()
+    q = request.GET.get('q', '').strip()
     ls = Concept.objects.filter(
-        Q(name__search=q) |
-        Q(description__search=q) |
+        Q(name__icontains=q) |
+        Q(description__icontains=q) |
         Q(node_id__istartswith=q)
     ).order_by('-count')
     if not q:
@@ -50,22 +52,22 @@ def search(request):
         'ls': ls, 'count': count, 'paging': paging,
         'q': q,
         'title': '%s - Search results' % q
-        })
+    })
 
 
 def load_vocab(request, format='xls'):
     from vocabulary.load_xls import load_xls
     from vocabulary.load_skos import SKOSLoader
     
-    if request.method == 'POST' and request.user.is_authenticated():
+    if request.method == 'POST' and request.user.is_authenticated:
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
             file = request.FILES['file']
             fn = file.name.split('.')[0].split('/')[-1]
             f = file.read()
-            if format=='xls':
+            if format == 'xls':
                 goto = load_xls(request, f, fn)
-            if format=='skos':
+            if format == 'skos':
                 loader = SKOSLoader(request)
                 goto = loader.load_skos_vocab(f)
                 
@@ -76,12 +78,14 @@ def load_vocab(request, format='xls'):
         form = UploadFileForm()
     return render(request, 'vocabulary/upload.html', {'form':form, 'format': format})
 
+
 @login_required
 def vocabulary_add(request):
     vocab = Vocabulary(title='New vocabulary')
     vocab.user = request.user
     vocab.save()
     return redirect(vocab.get_absolute_url())
+
 
 def detail(request, vocab_node_id):
     vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
@@ -90,7 +94,9 @@ def detail(request, vocab_node_id):
     return render(request, 'vocabulary/detail.html', {
         'vocabulary': vocab,
         'count': count,
-        'concepts': concepts})
+        'concepts': concepts
+    })
+
 
 def json(request, vocab_node_id):
     vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
@@ -101,6 +107,7 @@ def json(request, vocab_node_id):
     jsondata = dumps(vocab_to_dict(vocab, max_depth), indent=4)
     return HttpResponse(jsondata, content_type='application/json')
 
+
 def export(request, vocab, data, extension, mime):
     timestamp = datetime.today().strftime('%Y-%m-%d')
     response = HttpResponse(data, content_type=mime)
@@ -108,14 +115,17 @@ def export(request, vocab, data, extension, mime):
         vocab.node_id, timestamp, extension)
     return response
 
+
 def skos(request, vocab_node_id):
     vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
     return export(request, vocab, export_skos(vocab), 'xml', 'application/rdf+xml')
+
 
 def csv(request, vocab_node_id):
     vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
     s = export_csv(vocab)
     return export(request, vocab, s, 'csv', 'text/comma-separated-values')
+
 
 def ul(request, vocab_node_id, style='meeting'):
     vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
@@ -123,7 +133,8 @@ def ul(request, vocab_node_id, style='meeting'):
     return render(request, 'vocabulary/view-%s.html' % style, {
         'vocabulary': vocab,
         'concepts': concepts
-        })
+    })
+
 
 @ajax_login_required
 @csrf_exempt
@@ -164,11 +175,12 @@ def ordering(request, vocab_node_id):
         x = 'Updated order'
     return HttpResponse(x)
 
+
 @csrf_exempt
 def vocabulary_edit(request, vocab_node_id):
     vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
     if request.method == 'POST':
-        if request.user.is_authenticated():
+        if request.user.is_authenticated:
             form = VocabularyForm(request.POST, instance=vocab)
             if form.is_valid():
                 form.save()
@@ -181,7 +193,8 @@ def vocabulary_edit(request, vocab_node_id):
         'vocabulary': vocab,
         'children': vocab.get_children(),
         'form': form
-        })
+    })
+
 
 @ajax_login_required
 def concept_new(request, vocab_node_id, node_id=0):
@@ -207,7 +220,8 @@ def concept_new(request, vocab_node_id, node_id=0):
         'concept': c,
         'parent': parent,
         'form': form
-        })
+    })
+
 
 @csrf_exempt
 def concept_edit(request, vocab_node_id, node_id):
@@ -238,7 +252,7 @@ def concept_edit(request, vocab_node_id, node_id):
         can_delete=True
     )
     if request.method == 'POST':
-        if request.user.is_authenticated():
+        if request.user.is_authenticated:
             form = ConceptForm(request.POST, instance=c)
             formset = RelatedFormSet(request.POST, instance=c, prefix='rf')
             parent_formset = ParentFormSet(request.POST, instance=c, prefix='pf')
@@ -262,7 +276,8 @@ def concept_edit(request, vocab_node_id, node_id):
         'parent_formset': parent_formset,
         'forms_and_set': zip(formset.forms, related),
         'parent_forms_and_set': zip(parent_formset.forms, parent)
-        })
+    })
+
 
 @csrf_exempt
 @ajax_login_required
@@ -273,12 +288,13 @@ def concept_adopt(request, vocab_node_id, node_id):
     if request.POST['mother'] != 'orphanate':
         mother = Concept.objects.get(node_id=request.POST['mother'])
     if request.method == 'POST':
-        if child != mother: # protect from pasting to itself
+        if child != mother:  # protect from pasting to itself
             child.parent.remove(child.mother())
             if mother:
                 child.parent.add(mother)
             child.save()
     return HttpResponse('ok')
+
 
 @ajax_login_required
 def concept_delete(request, vocab_node_id, node_id):
@@ -301,6 +317,7 @@ def concept_delete(request, vocab_node_id, node_id):
             c.delete()
         return redirect(gobackto)
     return render(request, 'vocabulary/concept-delete.html', {'concept': c})
+
 
 @ajax_login_required
 def vocabulary_delete(request, vocab_node_id):

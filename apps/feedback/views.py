@@ -18,7 +18,7 @@ def feedback(request):
     url = strip_domain(request, request.META.get('HTTP_REFERER', '').replace('\n', '').strip())
     ip = request.META.get('HTTP_X_FORWARDED_FOR', '') or request.META.get('REMOTE_ADDR', '')
     
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
         user=request.user
         email=user.email
     else:

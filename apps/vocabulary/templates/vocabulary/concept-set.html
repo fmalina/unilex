@@ -5,5 +5,5 @@
         <span>{{ concept.backwards_path }}</span><br>
         <small>{{ concept.node_id }}{% if concept.count %}, {{ concept.count }} use{{ concept.count|pluralize }}{% endif %}</small>
     </p>
-    <div>{% endspaceless %}{% if autocomplete %}|{{ concept.id }}
+    </div>{% endspaceless %}{% if autocomplete %}|{{ concept.id }}
 {% endif %}{%endif%}

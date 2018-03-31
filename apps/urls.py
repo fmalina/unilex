@@ -1,28 +1,31 @@
 from django.conf.urls import url, include
+from django.urls import path
 from django.conf import settings
-from django.views.static import serve
 from django.contrib import admin
-admin.autodiscover()
+from django.views.static import serve
 
 from views import home, docs, logmeout, sitemap
 from feedback.views import feedback
 from profile import profile
 
 urlpatterns = [
-    url(r'^$', home),
-    url(r'^feedback$', feedback),
-    url(r'^vocabularies/', include('vocabulary.urls')),
-    url(r'^tag/', include('tag.urls')),
+    path('', home),
+    path('feedback', feedback),
+    path('vocabularies/', include('vocabulary.urls')),
+    path('tag/', include('tag.urls')),
+
     url(r'^accounts/', include('registration.backends.default.urls')),
     url(r'^accounts/', include('django.contrib.auth.urls')),
-    url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^profile$', profile, name='profile'),
-    url(r'^docs$', docs, name='docs'),
-    url(r'^docs-nav-queries$', docs),
-    url(r'^pay/', include('pay.urls')),
-    url(r'^logout/$', logmeout, name='auth_logout'),
-    url(r'^sitemap.xml$', sitemap, name='sitemap'),
+
+    path('admin/doc/', include('django.contrib.admindocs.urls')),
+    path('admin/', admin.site.urls),
+    path('profile', profile, name='profile'),
+    path('docs', docs, name='docs'),
+    path('docs-nav-queries', docs),
+    path('pay/', include('pay.urls')),
+    path('logout/', logmeout, name='auth_logout'),
+    path('sitemap.xml', sitemap, name='sitemap'),
+
     # uncomment if you don't use a reverse proxy
     url(r'^(.*)', serve, {'document_root': settings.STATIC_ROOT}),
 ]

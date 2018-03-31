@@ -1,8 +1,9 @@
 from django.forms.formsets import formset_factory
+from django.conf import settings
 from django.template import RequestContext
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.decorators import login_required
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.http import HttpResponseRedirect, HttpResponse
 from django.utils.safestring import mark_safe
 from django.views.decorators.csrf import csrf_exempt
@@ -12,16 +13,18 @@ from vocabulary.models import Concept, Vocabulary
 from tag.forms import TagForm, RecordForm
 from tag.models import Tag, Record
 from tag.client import Client
-import settings
 import json
 
+
 def about(request):
-    """Introducton to tagging, install Chrome extension link"""
+    """Introduction to tagging, install Chrome extension link
+    """
     return render(request, 'tag/about.html', {})
 
 
 def record_edit(request, record_id):
-    """ Local editing mockup."""
+    """Local editing mock-up.
+    """
     record = get_object_or_404(Record, pk=record_id)
     if request.method == 'POST':
         form = RecordForm(request.POST, instance=record)
@@ -43,12 +46,12 @@ def tag(request, node_id, remote=False):
     """
     if request.method == 'POST':
         form = RecordForm(request.POST)
-        if record_form.is_valid():
+        if form.is_valid():
             d = form.cleaned_data
             auth_token = d['auth_token']
             record = {
-                'title'  : d['title'],
-                'desc'   : d['desc'],
+                'title': d['title'],
+                'desc': d['desc'],
                 'node_id': d['node_id'],
             }
             TagFormSet = formset_factory(form=TagForm)
@@ -61,7 +64,7 @@ def tag(request, node_id, remote=False):
             response = HttpResponse(Client.post_tags(record, tags, auth_token))
         else:
             response = HttpResponse('Record form was invalid.')
-    else: # GET
+    else:  # GET
         tag_concepts = []
         tag_forms = []
         
@@ -110,12 +113,15 @@ def tag(request, node_id, remote=False):
     response['Access-Control-Allow-Origin'] = '*'
     return response
 
+
 def query(request):
-    """Return list of results for a given tag query"""
+    """Return list of results for a given tag query
+    """
     q = request.POST['query']
     return render(request, 'tag/query-results.html', {
         'records': Client(request, q).get_tags()
         })
+
 
 def records(request):
     return render(request, 'tag/records.html', {
@@ -126,8 +132,10 @@ def records(request):
         )
     })
 
+
 def record_json(request, record_id):
-    """ JSON rendered single record with its tags """
+    """JSON rendered single record with its tags
+    """
     record = get_object_or_404(Record, pk=record_id)
     tags = record.tag_set.all()
     return render(request, 'tag/record.js',

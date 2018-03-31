@@ -3,7 +3,7 @@ Generic pagination reusable at view level.
 
 Paging middleware needs installing in the settings:
 
-    MIDDLEWARE_CLASSES = (
+    MIDDLEWARE = (
         ... almost at the end...
         'paging.PagingMiddleware',
 
@@ -26,14 +26,16 @@ Include paging in your listings template:
 from django.template.loader import render_to_string
 from django.core.paginator import Paginator, EmptyPage
 from django.http import HttpResponseRedirect
+from django.utils.deprecation import MiddlewareMixin
 
 
-class PagingMiddleware(object):
+class PagingMiddleware(MiddlewareMixin):
     def process_request(self, request):
         try:
             request.page = int(request.GET.get('page', 1))
-        except ValueError: # redirect invalid page numbers to root page
+        except ValueError:  # redirect invalid page numbers to root page
             return HttpResponseRedirect(request.path)
+
 
 def simple_paging(request, qs, limit):
     pager = Paginator(qs, limit)
@@ -43,13 +45,14 @@ def simple_paging(request, qs, limit):
     except EmptyPage:
         page_obj = {}
         qs = qs.none()
-    
+
     pages = pager.page_range
     count = pager.count
-    
+
     paginate = render_paging(request, pages, page_obj, count, limit)
-    
+
     return qs, count, paginate
+
 
 def render_paging(request, pages, page_obj, count, limit):
     pages = sample(pages, request.page)
@@ -65,8 +68,10 @@ def render_paging(request, pages, page_obj, count, limit):
         'getvars': '&' + get.urlencode() if get else ''
     })
 
+
 def sample(pages, current):
-    """Show first few, few around the current page & a last page"""
+    """Show first few, few around the current page & a last page
+    """
     if len(pages) > 20:
         ls = []
         prev = False
