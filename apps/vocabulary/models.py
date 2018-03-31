@@ -8,8 +8,10 @@ import random
 import re
 import time
 
+
 class Language(models.Model):
-    """Language of a vocabulary or Concept label"""
+    """Language of a vocabulary or Concept label
+    """
     iso = models.CharField(primary_key=True, max_length=5, verbose_name='ISO code')
     name = models.CharField(max_length=60)
     
@@ -19,9 +21,11 @@ class Language(models.Model):
     class Meta:
         db_table = 'languages'
 
+
 class Authority(models.Model):
     """Authority is an organisation, author or maintainer whose
-    decisions on development of a vocabulary are definitive"""
+    decisions on development of a vocabulary are definitive
+    """
     code = models.CharField(primary_key=True, max_length=5)
     name = models.CharField(max_length=150)
     # users = models.ManyToManyField(settings.AUTH_USER_MODEL,
@@ -30,24 +34,27 @@ class Authority(models.Model):
     def __str__(self):
         return self.code
 
+
 class VocabularyManager(models.Manager):
     def with_counts(self):
         return self.annotate(concept_count=models.Count('concept'))
 
+
 class Vocabulary(models.Model):
-    """Vocabulary is a hierarchy of concepts"""
-    node_id     = models.SlugField(db_index=True, max_length=60, verbose_name='Permalink: /vocabularies/')
-    user        = models.ForeignKey(settings.AUTH_USER_MODEL)
-    title       = models.CharField(max_length=75)
+    """Vocabulary is a hierarchy of concepts
+    """
+    node_id = models.SlugField(db_index=True, max_length=60, verbose_name='Permalink: /vocabularies/')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
+    title = models.CharField(max_length=75)
     description = models.TextField(max_length=200, blank=True, null=True)
-    language    = models.ForeignKey(Language, blank=True, null=True)
-    authority   = models.ForeignKey(Authority, blank=True, null=True)
-    queries     = models.BooleanField(verbose_name="Enable queries?", default=False)
-    private     = models.BooleanField(verbose_name="Private vocabulary", default=True,
+    language = models.ForeignKey(Language, blank=True, null=True, on_delete=models.PROTECT)
+    authority = models.ForeignKey(Authority, blank=True, null=True, on_delete=models.PROTECT)
+    queries = models.BooleanField(verbose_name="Enable queries?", default=False)
+    private = models.BooleanField(verbose_name="Private vocabulary", default=True,
         help_text="Private vocabulary can be edited only by the users belonging to its authority.")
-    source      = models.URLField(blank=True)
-    updated_at  = models.DateTimeField(default=datetime.now, editable=False)
-    created_at  = models.DateTimeField(default=datetime.now, editable=False)
+    source = models.URLField(blank=True)
+    updated_at = models.DateTimeField(default=datetime.now, editable=False)
+    created_at = models.DateTimeField(default=datetime.now, editable=False)
 
     objects = VocabularyManager()
     
@@ -65,10 +72,10 @@ class Vocabulary(models.Model):
         return '/vocabularies/%s/' % self.node_id
 
     def increment_slug(self, slug):
-        suff = re.search("\d+$", slug) # get the current number suffix if present
+        suff = re.search("\d+$", slug)  # get the current number suffix if present
         suff = suff and suff.group() or 0
-        nxt  = str(int(suff) +1) # increment it & turn to string for re.sub
-        return re.sub("(\d+)?$", nxt, slug) # replace with higher suffix, try again
+        nxt = str(int(suff) +1)  # increment it & turn to string for re.sub
+        return re.sub("(\d+)?$", nxt, slug)  # replace with higher suffix, try again
 
     def make_node_id(self, slugbase):
         slug = slugify(slugbase)
@@ -91,20 +98,22 @@ class Vocabulary(models.Model):
         db_table = 'vocabularies'
         verbose_name_plural = "Vocabularies"
 
+
 class Concept(models.Model):
-    """A Concept is a term within a vocabulary."""
-    node_id     = models.SlugField('Permalink ID', db_index=True, max_length=60, blank=True)
-    vocabulary  = models.ForeignKey(Vocabulary)
-    name        = models.CharField(db_index=True, max_length=255) # prefLabel
+    """A Concept is a term within a vocabulary.
+    """
+    node_id = models.SlugField('Permalink ID', db_index=True, max_length=60, blank=True)
+    vocabulary = models.ForeignKey(Vocabulary, on_delete=models.CASCADE)
+    name = models.CharField(db_index=True, max_length=255) # prefLabel
     description = models.TextField(blank=True)
-    order       = models.IntegerField(blank=True, null=True)
-    parent      = models.ManyToManyField('self', blank=True, symmetrical=False, related_name='children')
-    related     = models.ManyToManyField('self', blank=True, symmetrical=False, related_name='related_concepts')
-    query       = models.TextField(blank=True)
-    count       = models.IntegerField(blank=True, null=True)
-    active      = models.BooleanField(default=True)
-    updated_at  = models.DateTimeField(default=datetime.now, editable=False)
-    created_at  = models.DateTimeField(default=datetime.now, editable=False)
+    order = models.IntegerField(blank=True, null=True)
+    parent = models.ManyToManyField('self', blank=True, symmetrical=False, related_name='children')
+    related = models.ManyToManyField('self', blank=True, symmetrical=False, related_name='related_concepts')
+    query = models.TextField(blank=True)
+    count = models.IntegerField(blank=True, null=True)
+    active = models.BooleanField(default=True)
+    updated_at = models.DateTimeField(default=datetime.now, editable=False)
+    created_at = models.DateTimeField(default=datetime.now, editable=False)
     
     def mother(self):
         return self.parent.first()
@@ -177,8 +186,9 @@ class Concept(models.Model):
         ordering = 'name',
         unique_together = (('node_id', 'vocabulary'),)
 
+
 class Synonym(models.Model):
-    concept = models.ForeignKey(Concept)
+    concept = models.ForeignKey(Concept, on_delete=models.CASCADE)
     name = models.CharField(max_length=150)
 
     def __str__(self):
@@ -189,16 +199,15 @@ class Synonym(models.Model):
         unique_together = ('concept', 'name')
 
 
-
-
-# custom fields - not implemeted
+# custom fields - not implemented
 
 VALIDATIONS = [
     ('vocabulary.validation_utils.validation_simple',  'One or more characters'),
     ('vocabulary.validation_utils.validation_integer', 'Integer number'),
-    ('vocabulary.validation_utils.validation_yesno',   'Yes or No'),
+    ('vocabulary.validation_utils.validation_yesno', 'Yes or No'),
     ('vocabulary.validation_utils.validation_decimal', 'Decimal number'),
 ]
+
 
 class AttributeOption(models.Model):
     """
@@ -211,10 +220,10 @@ class AttributeOption(models.Model):
     used to validate the structure of the input.
     Possible usage for a book: ISBN, Pages, Author, etc
     """
-    description   = models.CharField("Description", max_length=100)
-    name          = models.SlugField("Attribute name", max_length=100)
-    validation    = models.CharField("Field Validations", choices=VALIDATIONS, max_length=100)
-    sort_order    = models.IntegerField("Sort Order", default=1)
+    description = models.CharField("Description", max_length=100)
+    name = models.SlugField("Attribute name", max_length=100)
+    validation = models.CharField("Field Validations", choices=VALIDATIONS, max_length=100)
+    sort_order = models.IntegerField("Sort Order", default=1)
     error_message = models.CharField("Error Message", default="Invalid Entry", max_length=100)
 
     class Meta:
@@ -232,10 +241,11 @@ class ConceptAttribute(models.Model):
     If you want more structure than this, create your own subtype to add
     whatever you want to your Concepts.
     """
-    concept      = models.ForeignKey(Concept)
-    #languagecode = models.CharField(_('language'), max_length=10, choices=settings.LANGUAGES, null=True, blank=True)
-    option       = models.ForeignKey(AttributeOption)
-    value        = models.CharField("Value", max_length=255)
+    concept = models.ForeignKey(Concept, on_delete=models.CASCADE)
+    # language_code = models.CharField(_('language'), max_length=10,
+    #     choices=settings.LANGUAGES, null=True, blank=True)
+    option = models.ForeignKey(AttributeOption, on_delete=models.CASCADE)
+    value = models.CharField("Value", max_length=255)
 
     @property
     def name(self):

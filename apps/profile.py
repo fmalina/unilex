@@ -2,9 +2,10 @@ from django import forms
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.shortcuts import redirect
 from vocabulary.models import Vocabulary
+
 
 class UpdateProfile(forms.ModelForm):
     username = forms.CharField(required=True)
@@ -16,6 +17,7 @@ class UpdateProfile(forms.ModelForm):
         model = User
         fields = ('username', 'email', 'first_name', 'last_name')
 
+
 @login_required
 def profile(request):
     if request.method == 'POST':
@@ -25,11 +27,9 @@ def profile(request):
             return redirect(reverse('profile'))
     else:
         form = UpdateProfile(instance=request.user)
-    
+
     ls = Vocabulary.objects.with_counts().filter(user=request.user)
     return render(request, 'profile.html', {
         'ls': ls,
         'form': form
     })
-    
-    

@@ -37,7 +37,7 @@ class Migration(migrations.Migration):
             name='Concept',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', primary_key=True, serialize=False, auto_created=True)),
-                ('node_id', models.SlugField(max_length=60, blank=True)),
+                ('node_id', models.SlugField(max_length=60, blank=True, verbose_name='Permalink ID')),
                 ('name', models.CharField(max_length=255, db_index=True)),
                 ('description', models.TextField(blank=True)),
                 ('order', models.IntegerField(null=True, blank=True)),
@@ -59,8 +59,8 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', primary_key=True, serialize=False, auto_created=True)),
                 ('value', models.CharField(verbose_name='Value', max_length=255)),
-                ('concept', models.ForeignKey(to='vocabulary.Concept')),
-                ('option', models.ForeignKey(to='vocabulary.AttributeOption')),
+                ('concept', models.ForeignKey(to='vocabulary.Concept', on_delete=models.CASCADE)),
+                ('option', models.ForeignKey(to='vocabulary.AttributeOption', on_delete=models.CASCADE)),
             ],
             options={
                 'db_table': 'concepts_attributes',
@@ -83,7 +83,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', primary_key=True, serialize=False, auto_created=True)),
                 ('name', models.CharField(max_length=150)),
-                ('concept', models.ForeignKey(to='vocabulary.Concept')),
+                ('concept', models.ForeignKey(to='vocabulary.Concept', on_delete=models.CASCADE)),
             ],
             options={
                 'db_table': 'concepts_synonyms',
@@ -99,8 +99,8 @@ class Migration(migrations.Migration):
                 ('queries', models.BooleanField(default=False, verbose_name='Enable queries?')),
                 ('updated_at', models.DateTimeField(default=datetime.datetime.now, editable=False)),
                 ('created_at', models.DateTimeField(default=datetime.datetime.now, editable=False)),
-                ('authority', models.ForeignKey(to='vocabulary.Authority', blank=True, null=True)),
-                ('language', models.ForeignKey(to='vocabulary.Language', blank=True, null=True)),
+                ('authority', models.ForeignKey(to='vocabulary.Authority', on_delete=models.CASCADE, blank=True, null=True)),
+                ('language', models.ForeignKey(to='vocabulary.Language', on_delete=models.CASCADE, blank=True, null=True)),
             ],
             options={
                 'db_table': 'vocabularies',
@@ -110,7 +110,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='concept',
             name='vocabulary',
-            field=models.ForeignKey(to='vocabulary.Vocabulary'),
+            field=models.ForeignKey(to='vocabulary.Vocabulary', on_delete=models.CASCADE),
         ),
         migrations.AlterUniqueTogether(
             name='synonym',
