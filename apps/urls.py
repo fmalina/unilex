@@ -1,5 +1,4 @@
-from django.conf.urls import url, include
-from django.urls import path
+from django.urls import include, path, re_path
 from django.conf import settings
 from django.contrib import admin
 from django.views.static import serve
@@ -14,8 +13,8 @@ urlpatterns = [
     path('vocabularies/', include('vocabulary.urls')),
     path('tag/', include('tag.urls')),
 
-    url(r'^accounts/', include('registration.backends.default.urls')),
-    url(r'^accounts/', include('django.contrib.auth.urls')),
+    path('accounts/', include('registration.backends.default.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
 
     path('admin/doc/', include('django.contrib.admindocs.urls')),
     path('admin/', admin.site.urls),
@@ -27,5 +26,5 @@ urlpatterns = [
     path('sitemap.xml', sitemap, name='sitemap'),
 
     # uncomment if you don't use a reverse proxy
-    url(r'^(.*)', serve, {'document_root': settings.STATIC_ROOT}),
+    re_path(r'^(.*)', serve, {'document_root': settings.STATIC_ROOT}),
 ]
