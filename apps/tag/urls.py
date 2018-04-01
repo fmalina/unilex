@@ -1,10 +1,10 @@
-from django.conf.urls import url
+from django.urls import path
 from tag.views import about, tag, records, record_json, query
 
 urlpatterns = [
-    url(r'^about$', about, name="about"),
-    url(r'^(?P<node_id>\d+)', tag, name="tag"),
-    url(r'^records$', records, name="records"),
-    url(r'^json/(?P<record_id>\d+)$', record_json, name="record_json"),
-    url(r'^query$', query, name="query"),
+    path('about', about, name="about"),
+    path('<int:node_id>', tag, name="tag"),
+    path('records', records, name="records"),
+    path('json/<int:record_id>', record_json, name="record_json"),
+    path('query', query, name="query"),
 ]
