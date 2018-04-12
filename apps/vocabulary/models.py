@@ -43,7 +43,7 @@ class VocabularyManager(models.Manager):
 class Vocabulary(models.Model):
     """Vocabulary is a hierarchy of concepts
     """
-    node_id = models.SlugField(db_index=True, max_length=60, verbose_name='Permalink: /vocabularies/')
+    node_id = models.SlugField(unique=True, max_length=60, verbose_name='Permalink: /vocabularies/')
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
     title = models.CharField(max_length=75)
     description = models.TextField(max_length=200, blank=True, null=True)
@@ -79,7 +79,7 @@ class Vocabulary(models.Model):
 
     def make_node_id(self, slugbase):
         slug = slugify(slugbase)
-        while(Vocabulary.objects.filter(node_id__iexact=slug).count()): # if it's not unique
+        while(Vocabulary.objects.filter(node_id__iexact=slug).count()):  # if it's not unique
             slug = self.increment_slug(slug)
         return slug
 
