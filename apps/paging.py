@@ -5,7 +5,7 @@ Paging middleware needs installing in the settings:
 
     MIDDLEWARE = (
         ... almost at the end...
-        'paging.PagingMiddleware',
+        'paging.paging_middleware',
 
 Use in a view like so:
 
@@ -26,15 +26,18 @@ Include paging in your listings template:
 from django.template.loader import render_to_string
 from django.core.paginator import Paginator, EmptyPage
 from django.http import HttpResponseRedirect
-from django.utils.deprecation import MiddlewareMixin
 
 
-class PagingMiddleware(MiddlewareMixin):
-    def process_request(self, request):
+def paging_middleware(get_response):
+    def middleware(request):
         try:
             request.page = int(request.GET.get('page', 1))
         except ValueError:  # redirect invalid page numbers to root page
             return HttpResponseRedirect(request.path)
+        response = get_response(request)
+        return response
+
+    return middleware
 
 
 def simple_paging(request, qs, limit):
