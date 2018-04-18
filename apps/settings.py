@@ -50,7 +50,7 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'paging.PagingMiddleware',
+    'paging.paging_middleware',
 ]
 
 ROOT_URLCONF = 'urls'
