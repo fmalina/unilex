@@ -1,12 +1,10 @@
-from django.db import models
-from django.conf import settings
-from django.utils.html import strip_tags
-from django.template.defaultfilters import slugify
-from vocabulary.baseconv import base36
-from datetime import datetime
-import random
 import re
-import time
+from datetime import datetime
+
+from django.conf import settings
+from django.db import models
+from django.template.defaultfilters import slugify
+from django.utils.html import strip_tags
 
 
 class Language(models.Model):
@@ -14,7 +12,7 @@ class Language(models.Model):
     """
     iso = models.CharField(primary_key=True, max_length=5, verbose_name='ISO code')
     name = models.CharField(max_length=60)
-    
+
     def __str__(self):
         return self.iso
 
@@ -28,9 +26,10 @@ class Authority(models.Model):
     """
     code = models.CharField(primary_key=True, max_length=5)
     name = models.CharField(max_length=150)
+
     # users = models.ManyToManyField(settings.AUTH_USER_MODEL,
     #     help_text="Authority can have many users. Vocabulary can have one authority.")
-    
+
     def __str__(self):
         return self.code
 
@@ -51,20 +50,20 @@ class Vocabulary(models.Model):
     authority = models.ForeignKey(Authority, blank=True, null=True, on_delete=models.PROTECT)
     queries = models.BooleanField(verbose_name="Enable queries?", default=False)
     private = models.BooleanField(verbose_name="Private vocabulary", default=True,
-        help_text="Private vocabulary can be edited only by the users belonging to its authority.")
+                                  help_text="Private vocabulary can be edited only by the users belonging to its authority.")
     source = models.URLField(blank=True)
     updated_at = models.DateTimeField(default=datetime.now, editable=False)
     created_at = models.DateTimeField(default=datetime.now, editable=False)
 
     objects = VocabularyManager()
-    
+
     @property
     def name(self):
         return self.title
-    
+
     def get_children(self):
         return Concept.objects.filter(vocabulary=self, parent__isnull=True).order_by('order')
-    
+
     def __str__(self):
         return self.title
 
@@ -74,12 +73,12 @@ class Vocabulary(models.Model):
     def increment_slug(self, slug):
         suff = re.search("\d+$", slug)  # get the current number suffix if present
         suff = suff and suff.group() or 0
-        nxt = str(int(suff) +1)  # increment it & turn to string for re.sub
+        nxt = str(int(suff) + 1)  # increment it & turn to string for re.sub
         return re.sub("(\d+)?$", nxt, slug)  # replace with higher suffix, try again
 
     def make_node_id(self, slugbase):
         slug = slugify(slugbase)
-        while(Vocabulary.objects.filter(node_id__iexact=slug).count()):  # if it's not unique
+        while (Vocabulary.objects.filter(node_id__iexact=slug).count()):  # if it's not unique
             slug = self.increment_slug(slug)
         return slug
 
@@ -104,7 +103,7 @@ class Concept(models.Model):
     """
     node_id = models.SlugField('Permalink ID', db_index=True, max_length=60, blank=True)
     vocabulary = models.ForeignKey(Vocabulary, on_delete=models.CASCADE)
-    name = models.CharField(db_index=True, max_length=255) # prefLabel
+    name = models.CharField(db_index=True, max_length=255)  # prefLabel
     description = models.TextField(blank=True)
     order = models.IntegerField(blank=True, null=True)
     parent = models.ManyToManyField('self', blank=True, symmetrical=False, related_name='children')
@@ -114,10 +113,10 @@ class Concept(models.Model):
     active = models.BooleanField(default=True)
     updated_at = models.DateTimeField(default=datetime.now, editable=False)
     created_at = models.DateTimeField(default=datetime.now, editable=False)
-    
+
     def mother(self):
         return self.parent.first()
-    
+
     def _recurse_for_parents(self, o):
         ls = []
         if o:
@@ -128,29 +127,29 @@ class Concept(models.Model):
         if o == self and ls:
             ls.reverse()
         return ls
-    
+
     def get_children(self):
         return Concept.objects.filter(parent=self).order_by('order')
-    
+
     def get_descendants(self):
         ls = list(self.get_children())
         for c in ls:
             ls += list(c.get_descendants())
         return ls
-    
+
     def breadcrumb(self):
         ls = self._recurse_for_parents(self)
         ls.pop(0)
         return [self.vocabulary] + ls + [self]
-    
+
     def get_path(self):
         return [x.name for x in self.breadcrumb()]
-    
+
     def level(self):
         return len(self.get_path())
 
     def depth_indent(self):
-        return (self.level()-2) * ','
+        return (self.level() - 2) * ','
 
     def forward_path(self):
         return strip_tags(' » '.join(self.get_path()))
@@ -165,22 +164,22 @@ class Concept(models.Model):
 
     def get_edit_url(self):
         return '/vocabularies/%s/%s/' % (self.vocabulary.node_id, self.node_id)
-    
+
     def __str__(self):
         return self.name
-    
+
     def make_node_id(self):
         slug = slugify(self.name)
-        while(Concept.objects.filter(node_id__iexact=slug, vocabulary=self.vocabulary).count()): # if it's not unique
+        while (Concept.objects.filter(node_id__iexact=slug, vocabulary=self.vocabulary).count()):  # if it's not unique
             slug = Vocabulary.increment_slug(self.vocabulary, slug)
         return slug
-    
+
     def save(self, *args, **kwargs):
         self.updated_at = datetime.now()
         if not self.node_id:
             self.node_id = self.make_node_id()
         super(Concept, self).save(*args, **kwargs)
-        
+
     class Meta:
         db_table = 'concepts'
         ordering = 'name',
@@ -202,7 +201,7 @@ class Synonym(models.Model):
 # custom fields - not implemented
 
 VALIDATIONS = [
-    ('vocabulary.validation_utils.validation_simple',  'One or more characters'),
+    ('vocabulary.validation_utils.validation_simple', 'One or more characters'),
     ('vocabulary.validation_utils.validation_integer', 'Integer number'),
     ('vocabulary.validation_utils.validation_yesno', 'Yes or No'),
     ('vocabulary.validation_utils.validation_decimal', 'Decimal number'),

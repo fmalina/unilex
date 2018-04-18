@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 import shutil
 
-for asset in 'jquery.autocomplete jquery.formset vocab_set'.split():
+for asset in ['file_path_1', 'file_path_2']:
     print('Copying %s.js' % asset)
-    shutil.copy('static/js/%s.js' % asset, 'tag/js.build/')
+    shutil.copy('static/%s' % asset, 'tag/build/')
 
 print('Packing tag.zip ready for Chrome Web Store.')
 shutil.make_archive('tag', 'zip', 'tag')
