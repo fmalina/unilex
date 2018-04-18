@@ -1,1 +1,3 @@
+# Object location algo.
+# pip3 install tensorflow
 # ...

@@ -35,7 +35,9 @@ def autocomplete(request):
             Q(node_id__istartswith=q)
         )
     concepts = concepts.order_by('-count')
-    return render(request, 'vocabulary/autocomplete.txt', {'concepts': concepts})
+    response = render(request, 'vocabulary/autocomplete.txt', {'concepts': concepts})
+    response['Access-Control-Allow-Origin'] = '*'
+    return response
 
 
 def search(request):

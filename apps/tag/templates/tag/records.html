@@ -1,17 +1,42 @@
 {% extends 'base.html' %}
 {% block content %}
+<style>
+    .tagged-records{list-style:none;padding:0}
+    .tagged-records li{border-bottom:1px solid #eee}
+    h2, h2 > p{padding-bottom:0;margin-bottom:0}
+    h2 a{text-decoration:none}
+</style>
+
 <h1>{{ title }}</h1>
-<ul>
+
+<ul class="tagged-records">
 {% for record in records %}
-<li><h2><a href="{{ record.url }}">{{ record.title }}</a>
-    (<a href="{% url 'tag' record.id %}">edit</a>)</h2>
-    <p>{{ record.desc }}
-    <p><b>Tags</b>:
-    {% for tag in record.tag_set.all %}
-        <a href="{{ tag.concept.get_absolute_url }}">
-            {{ tag.concept.name }}
-        </a>{% if not forloop.last %}, {% endif %}
-    {% endfor %}
+<li>
+    <h2>
+        <small>
+            <a href="{% url 'tag' record.url %}">
+                <i class="icon icon-edit"></i>
+            </a>
+        </small>
+        {{ record.title }}
+    </h2>
+    <p>
+        {{ record.desc }}
+        <a href="{{ record.url }}">{{ record.url }}
+            <i class="icon icon-external"></i></a>
+    </p>
+
+    {% if record.tag_set.all %}
+        <p>
+            <b>Tags</b>:
+            {% for tag in record.tag_set.all %}
+                <a href="{{ tag.concept.get_absolute_url }}">
+                    {{ tag.concept.name }}
+                </a>{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+        </p>
+    {% endif %}
+</li>
 {% endfor %}
 </ul>
 {% endblock %}

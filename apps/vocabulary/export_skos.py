@@ -33,11 +33,14 @@ CONCEPT_TEMPLATE = Template('''
     </skos:Concept>
 ''')
 
+
 def vocab_to_skos(vocab):
     return VOCAB_TEMPLATE.render(Context({'v': vocab}))
 
+
 def concept_to_skos(concept):
     return CONCEPT_TEMPLATE.render(Context({'concept': concept}))
+
 
 def export_skos(vocab):
     """A generator to output a SKOS file for vocab piecewise.

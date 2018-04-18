@@ -1,6 +1,8 @@
 from django.test import TestCase
 
-class LoadTestCase(TestCase):
-    def test_loading(self):
-        url = "/tags/"
-        self.assertEqual(url, '/tags/')
+
+class TaggingTestCase(TestCase):
+
+    def test_tagging(self):
+        foo = 'bar'
+        self.assertEqual(foo, 'bar')

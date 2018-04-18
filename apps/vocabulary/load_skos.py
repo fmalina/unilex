@@ -2,19 +2,20 @@
 Use from a command line for bulk imports and in the SKOS upload script view.
 """
 
-import sys, os, os.path
-import traceback
 import logging
-
-from decimal import Decimal
+import os
+import os.path
 from tempfile import NamedTemporaryFile
 from xml.etree.ElementTree import ElementTree
+
 from django.contrib import messages
+from django.conf import settings
+
 from vocabulary.models import *
-import settings
 
 logfile = settings.PROJECT_ROOT + 'load_skos.log'
 logging.basicConfig(filename=logfile, level=logging.DEBUG)
+
 
 xmlns = {
     'dc': 'http://purl.org/dc/elements/1.1/',
@@ -23,6 +24,7 @@ xmlns = {
     'skos': 'http://www.w3.org/2004/02/skos/core#',
     'zthes': 'https://unilexicon.com/'
 }
+
 expand_tag = lambda ns, tag: '{%s}%s' % (xmlns[ns], tag)
 TAG = lambda ns_colon_tag: expand_tag(*ns_colon_tag.split(':'))
 expand_map = lambda tag_map: {TAG(k):v for k,v in tag_map.items()}
@@ -86,8 +88,10 @@ CONCEPT_TAG_MAP = expand_map({
     ),
 })
 
+
 class XMLFormatError(Exception):
     """A problem importing our dialect of SKOS"""
+
 
 def load_fields_from_node(node, tag_map):
     """Convert an XML node in a format defined by tag_map to a simple dictionary.
@@ -152,6 +156,7 @@ def load_fields_from_node(node, tag_map):
                     )
                 map[mapped_field] = value
     return map
+
 
 class SKOSLoader(object):
     def __init__(self, request=False, log=False):

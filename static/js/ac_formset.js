@@ -18,8 +18,8 @@ function makeAutocomplete(sel, url){
 	});
 }
 
-function conceptFormset(base_url, formset_prefix){   
-    makeAutocomplete($('.show .autocomplete'), base_url + '/vocabularies/autocomplete');
+function acFormset(ac_url, formset_prefix){
+    makeAutocomplete($('.show .autocomplete'), ac_url);
     $('#'+ formset_prefix +' li').formset({
         prefix: formset_prefix,
         formCssClass: formset_prefix + '-row',
@@ -30,7 +30,7 @@ function conceptFormset(base_url, formset_prefix){
             var txt = li.find('.autocomplete');
             txt.unbind();
             txt.show();
-            makeAutocomplete(txt, base_url + '/vocabularies/autocomplete');
+            makeAutocomplete(txt, ac_url);
         }
     });
     $('.set li input[type=text]').not('.show input').hide();
