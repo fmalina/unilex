@@ -101,6 +101,7 @@ class FunctionProxyNode(Node):
     def string_value(self, value):
         return value
 
+
 class SearchContextNode(FunctionProxyNode):
     def get_value(self, *args):
         return searchexcerpt(*args)

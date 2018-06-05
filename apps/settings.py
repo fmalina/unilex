@@ -1,10 +1,11 @@
+import os.path
+from settings_local import *
+from django.utils.log import DEFAULT_LOGGING as LOGGING
+
 VERSION = '1.1'
 
-import os.path
 PWD = os.path.dirname(os.path.realpath(__file__ ))
 PROJECT_ROOT = PWD.replace('apps', '')
-
-from settings_local import *
 
 INTERNAL_IPS = ['127.0.0.1']
 TIME_ZONE = 'Europe/London'
@@ -18,8 +19,6 @@ STATIC_URL = '/static/'
 ACCOUNT_ACTIVATION_DAYS = 2
 REGISTRATION_AUTO_LOGIN = True
 LOGIN_REDIRECT_URL = '/'
-
-from django.utils.log import DEFAULT_LOGGING as LOGGING
 LOGGING['handlers']['mail_admins']['include_html'] = True
 
 TEMPLATES = [

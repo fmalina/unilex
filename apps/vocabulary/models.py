@@ -106,8 +106,10 @@ class Concept(models.Model):
     name = models.CharField(db_index=True, max_length=255)  # prefLabel
     description = models.TextField(blank=True)
     order = models.IntegerField(blank=True, null=True)
-    parent = models.ManyToManyField('self', blank=True, symmetrical=False, related_name='children')
-    related = models.ManyToManyField('self', blank=True, symmetrical=False, related_name='related_concepts')
+    parent = models.ManyToManyField('self', blank=True, symmetrical=False,
+                                    related_name='children')
+    related = models.ManyToManyField('self', blank=True, symmetrical=False,
+                                     related_name='related_concepts')
     query = models.TextField(blank=True)
     count = models.IntegerField(blank=True, null=True)
     active = models.BooleanField(default=True)
@@ -182,8 +184,8 @@ class Concept(models.Model):
 
     class Meta:
         db_table = 'concepts'
-        ordering = 'name',
-        unique_together = (('node_id', 'vocabulary'),)
+        ordering = ['name']
+        unique_together = [('node_id', 'vocabulary')]
 
 
 class Synonym(models.Model):

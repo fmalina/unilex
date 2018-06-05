@@ -155,11 +155,10 @@ def ordering(request, vocab_node_id):
     Ordering the 1st level differs as instead of parent concept PK we get a vocab PK.
     """
     vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
-    concepts = Concept.objects.filter(vocabulary=vocab)
     x = 'Order concepts'
     if request.method == 'POST':
         orderword_modelword_pk, seq = list(dict(request.POST).items())[0]
-        orderword,modelword,pk = orderword_modelword_pk.split('_')
+        orderword, modelword, pk = orderword_modelword_pk.split('_')
         pk=int(pk.replace('[]',''))
         if modelword == 'concept':
             model = Concept
@@ -170,7 +169,7 @@ def ordering(request, vocab_node_id):
         sequence = list(enumerate([int(x) for x in seq], start=1)) # new order mapping
         # print(children) >>> {1: <Concept: CSS>, 2: <Concept: JS>, 3: <Concept: HTML>}
         # print(sequence) >>> [(1, 3), (2, 1), (3, 2)] # desired order HTML, CSS, JS
-        for new_concept_order,forloop_counter in sequence:
+        for new_concept_order, forloop_counter in sequence:
             concept = children[forloop_counter]
             concept.order = new_concept_order
             concept.save()
@@ -303,7 +302,7 @@ def concept_delete(request, vocab_node_id, node_id):
     vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
     c = get_object_or_404(Concept, node_id=node_id, vocabulary=vocab)
     if request.method == 'POST':
-        if(c.mother()):
+        if c.mother():
             gobackto = c.mother().get_absolute_url()
         else:
             gobackto = c.vocabulary.get_absolute_url()
@@ -332,9 +331,8 @@ def vocabulary_delete(request, vocab_node_id):
                 vocab.delete()
                 messages.success(request, '"%s" is now deleted.' % vocab.title)
                 return redirect('/vocabularies/')
-            else:
-                messages.info(request, 'Not deleted. You need to tick the box to confirm.')
-                return redirect(vocab.get_absolute_url())
+            messages.info(request, 'Not deleted. You need to tick the box to confirm.')
+            return redirect(vocab.get_absolute_url())
     return render(request, 'vocabulary/vocabulary-delete.html', {
         'vocabulary': vocab,
         'allowed': allowed

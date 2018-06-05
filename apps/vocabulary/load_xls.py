@@ -4,8 +4,10 @@ from django.contrib import messages
 import xlrd
 import csv
 
+
 def has_unique_ids(col):
     return len(col) == len(set(col))
+
 
 def last_full_cell(row_data):
     """Return last cell with text in and its column number"""
@@ -17,10 +19,12 @@ def last_full_cell(row_data):
     last_full_cell = len(row_data) - len(rear_cells)
     return row_data[last_full_cell], last_full_cell
 
+
 def handle_error(request, vocab, error):
     messages.error(request, error)
     vocab.delete()
     return '/vocabularies/load-xls'
+
 
 def load_xls(request, file, title):
     """Import a hierarchy into the DB from Excel

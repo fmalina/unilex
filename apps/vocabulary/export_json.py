@@ -17,18 +17,22 @@ def concept_to_dict(concept, depth, max_depth):
             depth += 1
         else:
             depth -= 1
-        d['children'] = [concept_to_dict(child, depth, max_depth) for child in children]
+        d['children'] = [concept_to_dict(child, depth, max_depth)
+                         for child in children]
         d['data']['depth'] = depth
     return d
 
+
 def vocab_to_dict(vocab, max_depth=0):
     children = vocab.concept_set.filter(parent__isnull=True)
-    vocabulary_id = 'v-%s' % vocab.node_id # prepending 'v', vocabulary ID cannot match any concept id on the same page
+    # prepending 'v', vocabulary ID cannot match any concept id on the same page
+    vocabulary_id = 'v-%s' % vocab.node_id
     return {
         'id': vocabulary_id,
         'name': vocab.title,
         'queries': vocab.queries,
         'description': vocab.description,
-        'children': [concept_to_dict(child, depth=1, max_depth=max_depth) for child in children],
+        'children': [concept_to_dict(child, depth=1, max_depth=max_depth)
+                     for child in children],
         'data': {'type': 'vocab'}
     }

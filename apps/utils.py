@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-import string
+
 
 def ajax_login_required(view_func):
     def wrap(request, *args, **kwargs):

@@ -3,13 +3,14 @@ from django.contrib.sites.models import Site
 from django.http import Http404, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 import datetime
-import re
+
 
 def strip_domain(request, url):
     site = Site.objects.get_current()
-    return url.replace('http://','')\
-              .replace('https://','')\
-              .replace(site.domain,'')
+    return url.replace('http://', '')\
+              .replace('https://', '')\
+              .replace(site.domain, '')
+
 
 @csrf_exempt
 def feedback(request):
@@ -19,11 +20,11 @@ def feedback(request):
     ip = request.META.get('HTTP_X_FORWARDED_FOR', '') or request.META.get('REMOTE_ADDR', '')
     
     if request.user.is_authenticated:
-        user=request.user
-        email=user.email
+        user = request.user
+        email = user.email
     else:
-        user=None
-        email=request.POST.get('feedback_email', '').strip()
+        user = None
+        email = request.POST.get('feedback_email', '').strip()
     Feedback.objects.create(
         user=user,
         url=url,
