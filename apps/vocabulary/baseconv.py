@@ -14,16 +14,17 @@ Sample usage:
 import string
 decimal_digits = '0123456789'
 
+
 class BaseConverter(object):
     def __init__(self, digits):
         self.digits = digits
-    
+
     def from_decimal(self, i):
         return self.convert(i, decimal_digits, self.digits)
-    
+
     def to_decimal(self, s):
         return int(self.convert(s, self.digits, decimal_digits))
-    
+
     def convert(number, fromdigits, todigits):
         # Based on http://code.activestate.com/recipes/111286/
         if str(number)[0] == '-':
@@ -36,7 +37,7 @@ class BaseConverter(object):
         x = 0
         for digit in str(number):
            x = x * len(fromdigits) + fromdigits.index(digit)
-    
+
         # create the result in base 'len(todigits)'
         if x == 0:
             res = todigits[0]
@@ -51,7 +52,8 @@ class BaseConverter(object):
         return res
     convert = staticmethod(convert)
 
-bin     = BaseConverter('01')
+
+bin = BaseConverter('01')
 hexconv = BaseConverter(decimal_digits + 'ABCDEF')
-base62  = BaseConverter(string.ascii_uppercase + decimal_digits + string.ascii_lowercase)
-base36  = BaseConverter(decimal_digits + string.ascii_lowercase)
+base62 = BaseConverter(string.ascii_uppercase + decimal_digits + string.ascii_lowercase)
+base36 = BaseConverter(decimal_digits + string.ascii_lowercase)

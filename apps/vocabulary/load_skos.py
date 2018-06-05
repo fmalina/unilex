@@ -16,7 +16,6 @@ from vocabulary.models import *
 logfile = settings.PROJECT_ROOT + 'load_skos.log'
 logging.basicConfig(filename=logfile, level=logging.DEBUG)
 
-
 xmlns = {
     'dc': 'http://purl.org/dc/elements/1.1/',
     'rdf': 'http://www.w3.org/1999/02/22-rdf-syntax-ns#',

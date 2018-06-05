@@ -20,6 +20,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='vocabulary',
             name='node_id',
-            field=models.SlugField(max_length=60, unique=True, verbose_name='Permalink: /vocabularies/'),
+            field=models.SlugField(max_length=60, unique=True,
+                                   verbose_name='Permalink: /vocabularies/'),
         ),
     ]

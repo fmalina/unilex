@@ -16,7 +16,8 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='vocabulary',
             name='user',
-            field=models.ForeignKey(to=settings.AUTH_USER_MODEL, default=1, on_delete=models.CASCADE),
+            field=models.ForeignKey(to=settings.AUTH_USER_MODEL, default=1,
+                                    on_delete=models.CASCADE),
             preserve_default=False,
         ),
     ]

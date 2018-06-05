@@ -1,5 +1,6 @@
-from decimal import Decimal
+from decimal import Decimal, InvalidOperation
 import string
+
 
 def validation_simple(value, obj=None):
     """
@@ -8,8 +9,8 @@ def validation_simple(value, obj=None):
     """
     if len(value) > 1:
         return True, value
-    else:
-        return False, value
+    return False, value
+
 
 def validation_integer(value, obj=None):
     """
@@ -17,10 +18,11 @@ def validation_integer(value, obj=None):
    No change is made to the value
     """
     try:
-        check = int(value)
+        int(value)
         return True, value
-    except:
+    except ValueError:
         return False, value
+
 
 def validation_yesno(value, obj=None):
     """
@@ -29,18 +31,19 @@ def validation_yesno(value, obj=None):
     """
     if string.upper(value) in ["YES","NO"]:
         return True, string.capitalize(value)
-    else:
-        return False, value
+    return False, value
+
 
 def validation_decimal(value, obj=None):
     """
     Validates that the number can be converted to a decimal
     """
     try:
-        check = Decimal(value)
+        Decimal(value)
         return True, value
-    except:
+    except InvalidOperation:
         return False, value
+
 
 def validate_attribute_value(attribute, value, obj):
     """

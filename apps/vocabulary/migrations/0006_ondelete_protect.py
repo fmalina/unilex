@@ -12,16 +12,21 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='vocabulary',
             name='authority',
-            field=models.ForeignKey(blank=True, null=True, on_delete=models.PROTECT, to='vocabulary.Authority'),
+            field=models.ForeignKey(blank=True, null=True,
+                                    on_delete=models.PROTECT,
+                                    to='vocabulary.Authority'),
         ),
         migrations.AlterField(
             model_name='vocabulary',
             name='language',
-            field=models.ForeignKey(blank=True, null=True, on_delete=models.PROTECT, to='vocabulary.Language'),
+            field=models.ForeignKey(blank=True, null=True,
+                                    on_delete=models.PROTECT,
+                                    to='vocabulary.Language'),
         ),
         migrations.AlterField(
             model_name='vocabulary',
             name='user',
-            field=models.ForeignKey(on_delete=models.PROTECT, to=settings.AUTH_USER_MODEL),
+            field=models.ForeignKey(on_delete=models.PROTECT,
+                                    to=settings.AUTH_USER_MODEL),
         ),
     ]
