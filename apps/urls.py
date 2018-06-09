@@ -28,3 +28,6 @@ urlpatterns = [
     # uncomment if you don't use a reverse proxy
     re_path(r'^(.*)', serve, {'document_root': settings.STATIC_ROOT}),
 ]
+
+admin.site.site_header = settings.SITE_NAME + ' Administration'
+admin.site.site_title = settings.SITE_NAME + ' Admin'
