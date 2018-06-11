@@ -1,6 +1,11 @@
 @import url('/css/autocomplete.css');
 
-body{font-family:"Open Sans", Arial, sans-serif;margin:0;padding:0;font-size:.83em;color:#333}
+body{
+    font-family:Garamond,serif;
+    border-top:7px solid #EAA000;
+    color:#333;
+    margin:0;padding:0;
+}
 a{color:#23A4FF}
 a:hover{color:#005089}
 h1{font-size:3em;margin:0;padding:.2em 0 0 0}
@@ -33,7 +38,8 @@ pre{color:green}
 #header .nav .sep,
 #header .nav li,
 #header .nav a{display:inline-block}
-#header .nav a{text-transform:uppercase;color:#999;font-weight:600;font-size:.9em;padding:.5em 1em .5em 0}
+#header .nav a{text-transform:uppercase;color:#999;
+    font-size:.9em;padding:.5em 1em .5em 0}
 #header .nav a:hover{color:#333}
 #header .nav li:last-child a{padding-right:0}
 #header .nav a.logo{color:#444}
@@ -102,8 +108,7 @@ div.paginator span{color:gray}
 #feedback{clear:both;text-align:left}
 #feedback h3{margin:0;padding:0}
 #feedback label{font-weight:normal;display:block;padding:5px 0}
-#feedback textarea{margin:5px 0;font-family:sans-serif}
-#footer #feedback *{font-size:12px}
+#feedback textarea{margin:5px 0}
 #footer #feedback textarea,
 #footer #feedback input{padding:3px;background:#fff}
 #footer #feedback button{margin:.5em 0 0 0}

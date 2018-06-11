@@ -3,7 +3,6 @@
     <head>
         <meta charset="utf-8" /> 
         <title>{% block title %}{{ title }}{% endblock %}</title>
-        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600">
         <link rel="stylesheet" href="{{ base_url }}/css/screen.css?{{ version }}">
         <link rel="stylesheet" href="{{ base_url }}/css/vocabulary.css?{{ version }}">
         <link rel="stylesheet" href="{{ base_url }}/css/print.css?{{ version }}" media="print">
@@ -55,7 +54,7 @@
     <div id="footer">
         {% include 'feedback/form.html' %}
         <p>&copy; {% now "Y" %} Etcetera Media Group Ltd. All rights reserved.
-            Created by <a href="https://fmalina.github.io"
+            Created by <a href="https://vizualbod.com"
                 title="Django / JS web developer">Francis Malina</a>.</p>
         {% include 'debug.html' %}
     </div>
