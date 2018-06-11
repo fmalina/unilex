@@ -15,8 +15,8 @@
 #tab,#url,#tag,#tip{position:absolute}
 #tag,#tip{background:#fff}
 #tab{
-    top:16px;left:107px;
-    font-size:11px;
+    top:18px;left:107px;
+    font:12px sans-serif;
 }
 #url{
     top:45px;left:120px;
