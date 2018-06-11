@@ -7,7 +7,7 @@ PIDFile=/tmp/unilex.pid
 User=f
 Group=f
 WorkingDirectory=/home/f/SITES/unilex/apps
-ExecStart=/usr/local/bin/gunicorn wsgi:application -p /tmp/unilex.pid -b 127.0.0.1:8001 -w 3
+ExecStart=/usr/local/bin/gunicorn wsgi:application -p /tmp/unilex.pid -b 127.0.0.1:8001 -w 3 -n unilex_gunicorn
 ExecReload=/bin/kill -s HUP $MAINPID
 ExecStop=/bin/kill -s TERM $MAINPID
 
