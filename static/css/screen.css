@@ -54,9 +54,9 @@ input,textarea{
 form input{padding:5px;font-size:20px}
 form input[type="file"]{border:0;font-size:inherit;background:transparent}
 
-button,input[type="submit"],.btn{background:#23A4FF;color:#fff;
+button,input[type="submit"],.btn{background:#00aaad;color:#fff;
     text-decoration:none;display:inline-block;padding:.5em 1em;
-    cursor:pointer;border:0;border-radius:5px;margin-top:1em}
+    cursor:pointer;border:0;margin-top:1em}
 button:hover,
 input[type="submit"]:hover,.btn:hover{background:#005089;color:#fff;text-shadow:#440 0 0 3px}
 .btn-links{display:block;padding:1em}
