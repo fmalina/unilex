@@ -5,6 +5,7 @@ function makeAutocomplete(sel, url){
 		selectFirst: true,
 		autoFill: false,
 		minChars: 2,
+		cacheLength: 0,
         formatItem: function(row) {
             return row[0];
         }
