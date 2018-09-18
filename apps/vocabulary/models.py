@@ -101,7 +101,7 @@ class Vocabulary(models.Model):
 class Concept(models.Model):
     """A Concept is a term within a vocabulary.
     """
-    node_id = models.SlugField('Permalink ID', db_index=True, max_length=60, blank=True)
+    node_id = models.SlugField('Permalink ID', db_index=True, max_length=127, blank=True)
     vocabulary = models.ForeignKey(Vocabulary, on_delete=models.CASCADE)
     name = models.CharField(db_index=True, max_length=255)  # prefLabel
     description = models.TextField(blank=True)
