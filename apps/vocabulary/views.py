@@ -285,14 +285,15 @@ def concept_edit(request, vocab_node_id, node_id):
 def concept_adopt(request, vocab_node_id, node_id):
     vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
     child = get_object_or_404(Concept, node_id=node_id, vocabulary=vocab)
-    mother = False
-    if request.POST['mother'] != 'orphanate':
-        mother = Concept.objects.get(node_id=request.POST['mother'])
+    dad = None
+    parent_id = request.POST['mother']
+    if parent_id != 'orphanate':
+        dad = Concept.objects.filter(node_id=parent_id, vocabulary=vocab).first()
     if request.method == 'POST':
-        if child != mother:  # protect from pasting to itself
+        if child != dad:  # protect from pasting to itself
             child.parent.remove(child.mother())
-            if mother:
-                child.parent.add(mother)
+            if dad:
+                child.parent.add(dad)
             child.save()
     return HttpResponse('ok')
 
