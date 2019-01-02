@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.contrib.auth.views import logout
+from django.contrib.auth import logout
 from django.contrib import messages
 from django.http import HttpResponse
 from django.template.loader import render_to_string

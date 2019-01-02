@@ -27,3 +27,5 @@ Don't use output from other "intelligent" systems to feed Ola's input, ever.
 Don't give her bullshit either or you'll get cut off.
 """
 # WIP
+
+from vocabulary.models import Vocabulary

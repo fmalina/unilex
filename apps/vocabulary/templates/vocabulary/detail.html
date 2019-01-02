@@ -12,7 +12,7 @@
 <div id="main">
 {% if count %}
 <div class="drop-nav">
-    <b>Switch view <i class="icon-caret"></i></b>
+    <span class="drop-nav__head">Switch view <i class="icon-caret"></i></span>
     <ul>
         <li>Editing vocabulary
         <li><a href="{% url 'order' vocabulary.node_id %}">Cards, order priorities</a>
@@ -20,30 +20,32 @@
         <li><a href="{% url 'nav'   vocabulary.node_id %}">Tabs and dropdowns</a>
             <br><br>
         <li>Export:
-            <a href="{% url 'json'  vocabulary.node_id %}">JSON</a> /
+            <a href="{% url 'json'  vocabulary.node_id %}" target="_blank">JSON</a> /
             <a href="{% url 'skos'  vocabulary.node_id %}">SKOS</a> /
             <a href="{% url 'csv'   vocabulary.node_id %}">CSV</a>
     </ul>
 </div><!-- /switch view -->
 {% endif %}
 
-<div id="infovis">
-</div><!-- /infovis -->
-<div id="aside">
-<h1>{{ vocabulary.title }} <small>
-    {% if count == 0 %}
-        <br>empty, use <b>+</b> to add a concept
-    {% else %}
-        {{ count }} concept{{ count|pluralize }}
-    {% endif %}
-    </small></h1>
-    <div id="editing"></div><!-- /editing -->
-    {% if count > 1000 %}
-        <p class="info">
-            Only first 3 levels of taxonomies over thousand concepts large are shown in Beta.<br>
-            Switch view to more suitable display.
-    {% endif %}
-</div><!-- /aside -->
+<div class="editor">
+    <div id="infovis"></div><!-- /infovis -->
+    <div class="aside">
+        <h1>{{ vocabulary.title }} <small>
+        {% if count == 0 %}
+            <br>empty, use <b>+</b> to add a concept
+        {% else %}
+            {{ count }} concept{{ count|pluralize }}
+        {% endif %}
+        </small></h1>
+        <div id="editing"></div><!-- /editing -->
+        {% if count > 1000 %}
+            <p class="info">
+                Only first 3 levels of taxonomies over thousand concepts large are shown.<br>
+                Switch view to a more suitable display.
+        {% endif %}
+    </div><!-- /aside -->
+</div><!-- /editor -->
+
 </div><!-- /main -->
 <div id="log"></div>
 {% endblock %}
