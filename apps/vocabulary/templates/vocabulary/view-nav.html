@@ -3,31 +3,29 @@
 
 {% block extrastyles %}
 <style>
-#mega a.level1,
-#mega .level2-wrap,
-#mega-hr{border:2px solid #aaa}
-#mega-hr{clear:both;border-width:2px 0 0 0;position:relative;top:-2px;z-index:0}
-#mega{font-size:12px;clear:both;position:relative;margin:2em 0;padding:0 0 0 .5em}
-#mega a{text-decoration:none}
-#mega a:hover{text-decoration:underline}
-#mega a.level1{margin:0 .2em 0 0;font-size:1.2em;padding:.5em 1em;border-radius:4px 4px 0 0;
-    background:#fff}
-#mega .hovering .level1{border-bottom-color:#fff}
-#mega .level2{padding:.5em 0;font-weight:bold;display:block}
-#mega .level3{display:block;padding:.2em 0;margin:0}
-#mega .level1{display:block;padding:8px 12px}
-#mega .level1-inner-wrap{list-style:none;float:left;position:relative}
-#mega .level1-inner-wrap:hover{z-index:3}
-#mega .level1-inner-wrap:hover a.level1{position:relative;z-index:4;border-bottom-color:#fff}
-#mega .level2-wrap{position:absolute;top:2.9em;left:-1em;border-radius:4px;
-    z-index:3;display:none;background:#fff;padding:15px;margin:0}
-#mega .level2-wrap .haschildren a{margin-bottom:0}
-#mega .level2-inner-wrap{display:inline-block}
-#mega .level2-wrap{color:bold}
-#mega .level3-wrap{list-style:none;padding:0 0 1em 0;font-weight:normal}
-#mega .level1-inner-wrap.hovering .level2-wrap{display:block !important}
-#mega .level2-inner-wrap{width:14em;vertical-align:top;margin-right:1em}
-#mega .col5{margin-right:0}
+.mega-menu,
+.mega-menu a.level1,
+.mega-menu .level2-wrap{border:1px solid #aaa}
+.mega-menu{background:#eee;font-size:.8rem;clear:both;position:relative;margin:2em 0;padding:1em 1em 0 1em;border-radius:2px}
+.mega-menu a{text-decoration:none}
+.mega-menu a:hover{text-decoration:underline}
+.mega-menu a.level1{padding:.5em 1em;border-radius:2px 2px 0 0;background:#fff}
+.mega-menu .hovering .level1{border-bottom-color:#fff}
+.mega-menu .level2{padding:.5em 0;font-weight:bold;display:block}
+.mega-menu .level3{display:block;padding:.2em 0;margin:0}
+.mega-menu a.level1{display:block;padding:8px 12px;border-bottom:0}
+.mega-menu .level1-inner-wrap{list-style:none;display:inline-block;position:relative}
+.mega-menu .level1-inner-wrap:hover{z-index:3}
+.mega-menu .level1-inner-wrap:hover a.level1{position:relative;z-index:4;border-bottom-color:#fff}
+.mega-menu .level2-wrap{position:absolute;top:1.9rem;border-radius:2px;z-index:3;display:none;
+	                    background:#fff;padding:1rem;margin:0}
+.mega-menu .level2-wrap .haschildren a{margin-bottom:0}
+.mega-menu .level2-inner-wrap{display:inline-block}
+.mega-menu .level2-wrap{color:bold}
+.mega-menu .level3-wrap{list-style:none;padding:0 0 1em 0;font-weight:normal}
+.mega-menu .level1-inner-wrap.hovering .level2-wrap{display:block !important}
+.mega-menu .level2-inner-wrap{width:14em;vertical-align:top;margin-right:1em}
+.mega-menu .col5{margin-right:0}
 </style>
 {% endblock %}
 
@@ -37,17 +35,16 @@
 $(function(){
 	function addMega(){$(this).addClass("hovering");}
 	function  rmMega(){$(this).removeClass("hovering");}
-	$("#mega > li").hoverIntent(addMega, rmMega);
+	$(".mega-menu > li").hoverIntent(addMega, rmMega);
 });
 </script>
 {% endblock %}
 
 {% block content %}
 	<div id="views"><a href="./">&laquo; back to editing</a>  &middot; see how this taxonomy might work if used for tabs and dropdowns navigation</div>
-	<ul id="mega">
+	<ul class="mega-menu">
 	{% include "vocabulary/ul-3levels.html" %}
 	</ul>
-    <div id="mega-hr"></div>
 	<h1>{{ vocabulary.title }} nav. demo</h1>
 	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 	<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>

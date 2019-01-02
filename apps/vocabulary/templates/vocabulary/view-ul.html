@@ -3,12 +3,15 @@
 
 {% block content %}
 <style>
-.content ul a{color:#333;text-decoration:none}
-.content a.level1{font-weight:bold}
+.nested-menu{padding:0}
+.nested-menu li{list-style-type:none}
+.nested-menu li a.level1{font-weight:bold}
+.nested-menu li a:hover{font-weight:bold}
 </style>
-	<div id="views"><a href="./">&laquo; back to editing</a> &middot; preview the top 3 levels as nested list</div>
+	<div id="views"><a href="./">&laquo; back to editing</a>
+		&middot; preview the top 3 levels as nested list</div>
 	<h2>{{ vocabulary.title }}</h2>
-	<ul id="mega">
+	<ul class="nested-menu">
 	{% include "vocabulary/ul-3levels.html" %}
 	</ul>
 {% endblock %}

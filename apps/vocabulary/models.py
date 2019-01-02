@@ -6,6 +6,8 @@ from django.db import models
 from django.template.defaultfilters import slugify
 from django.utils.html import strip_tags
 
+import reversion
+
 
 class Language(models.Model):
     """Language of a vocabulary or Concept label
@@ -39,6 +41,7 @@ class VocabularyManager(models.Manager):
         return self.annotate(concept_count=models.Count('concept'))
 
 
+@reversion.register()
 class Vocabulary(models.Model):
     """Vocabulary is a hierarchy of concepts
     """
@@ -98,6 +101,7 @@ class Vocabulary(models.Model):
         verbose_name_plural = "Vocabularies"
 
 
+@reversion.register()
 class Concept(models.Model):
     """A Concept is a term within a vocabulary.
     """

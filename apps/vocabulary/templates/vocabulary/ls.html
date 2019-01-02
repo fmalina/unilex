@@ -1,6 +1,13 @@
-<ul id="vocabulary-list">
-{% for v in ls %}
-    <li><a href="{{v.get_absolute_url}}">{{ v.title }} ({{ v.concept_count }})</a><br>
-    {{ v.description }}</li>
-{% endfor %}
+<ul class="vocab-list">
+	{% regroup ls by language as languages %}
+	{% for lang in languages %}
+	<li>{% if lang.grouper.name %}<h2>{{ lang.grouper.name }}</h2>{% endif %}
+		<ul>
+		{% for v in lang.list %}
+		    <li><a href="{{v.get_absolute_url}}">
+				{{ v.title }} ({{ v.concept_count }})</a><br>
+		    	{{ v.description }}</li>
+		{% endfor %}
+		</ul></li>
+	{% endfor %}
 </ul>

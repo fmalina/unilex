@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.forms import models, ValidationError
+from django.forms import models
 from vocabulary.models import (
     Vocabulary,
     Concept,
@@ -8,6 +8,7 @@ from vocabulary.models import (
     AttributeOption
 )
 from vocabulary.validation_utils import validate_attribute_value
+from reversion.admin import VersionAdmin
 import re
 
 
@@ -30,6 +31,7 @@ class AttributeOptionForm(models.ModelForm):
         return validation
 
 
+@admin.register(AttributeOption)
 class AttributeOptionAdmin(admin.ModelAdmin):
     form = AttributeOptionForm
     prepopulated_fields = {"name": ("description",)}
@@ -37,7 +39,8 @@ class AttributeOptionAdmin(admin.ModelAdmin):
 
 class ConceptAttributeInlineForm(models.ModelForm):
     def clean_value(self):
-        return clean_attribute_value(self.cleaned_data, self.cleaned_data['concept'])
+        return clean_attribute_value(self.cleaned_data,
+                                     self.cleaned_data['concept'])
 
 
 class ConceptAttribute_Inline(admin.TabularInline):
@@ -46,18 +49,15 @@ class ConceptAttribute_Inline(admin.TabularInline):
     form = ConceptAttributeInlineForm
 
 
-class LanguageAdmin(admin.ModelAdmin):
-    # admin.site.disable_action('delete_selected',)
-    pass
-
-
-class VocabularyAdmin(admin.ModelAdmin):
+@admin.register(Vocabulary)
+class VocabularyAdmin(VersionAdmin):
     prepopulated_fields = {"node_id": ("title",)}
     list_display = ('title', 'node_id', 'user', 'language',
                     'private', 'updated_at', 'created_at')
 
 
-class ConceptAdmin(admin.ModelAdmin):
+@admin.register(Concept)
+class ConceptAdmin(VersionAdmin):
     search_fields = ['id','name']
     inlines = [ConceptAttribute_Inline]
     list_display = ('name', 'mother', 'vocabulary', 'forward_path')
@@ -65,7 +65,4 @@ class ConceptAdmin(admin.ModelAdmin):
     exclude = ('parent', 'related', 'query')
 
 
-admin.site.register(Language, LanguageAdmin)
-admin.site.register(Concept, ConceptAdmin)
-admin.site.register(Vocabulary, VocabularyAdmin)
-admin.site.register(AttributeOption, AttributeOptionAdmin)
+admin.site.register(Language)
