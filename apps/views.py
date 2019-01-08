@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth import logout
 from django.contrib import messages
 from django.http import HttpResponse
@@ -30,4 +30,5 @@ def docs(request, tpl=''):
 def logmeout(request):
     messages.success(request, '<b>Logged out.</b> Thanks for spending some'
                               'quality time with the Web site today.')
-    return logout(request, '/')
+    logout(request)
+    return redirect('/')
