@@ -76,4 +76,4 @@ def load_xls(request, file, title):
     msg = "First column had unique IDs, these were used." if id_col\
      else "First column didn't have unique IDs, created new ones."
     messages.info(request, msg)
-    return vocab.get_absolute_url()
+    return vocab

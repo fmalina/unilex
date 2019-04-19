@@ -217,7 +217,7 @@ class SKOSLoader(object):
         
         for vocab in doc.findall('.//'+TAG('skos:ConceptScheme')):
             vocab = self.load_vocab_instance(vocab)
-            goto = vocab.get_absolute_url()
+            goto = vocab
 
         for concept in doc.findall('.//'+TAG('skos:Concept')):
             self.load_concept_instance(concept)
