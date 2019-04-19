@@ -63,7 +63,8 @@ def search(request):
 def load_vocab(request, format='xls'):
     from vocabulary.load_xls import load_xls
     from vocabulary.load_skos import SKOSLoader
-    
+
+    form = UploadFileForm()
     if request.method == 'POST' and request.user.is_authenticated:
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
@@ -71,9 +72,10 @@ def load_vocab(request, format='xls'):
             fn = file.name.split('.')[0].split('/')[-1]
             f = file.read()
             # save the raw file into an S3 bucket
-            conn = tinys3.Connection(settings.S3_ACCESS_KEY,
-                                     settings.S3_SECRET_KEY, tls=True)
-            conn.upload(file.name, file, settings.S3_BUCKET)
+            if form.cleaned_data.get('permit', False):
+                conn = tinys3.Connection(settings.S3_ACCESS_KEY,
+                                         settings.S3_SECRET_KEY, tls=True)
+                conn.upload(file.name, file, settings.S3_BUCKET)
             # parse and load into the DB
             if format == 'xls':
                 goto = load_xls(request, f, fn)
@@ -84,8 +86,7 @@ def load_vocab(request, format='xls'):
                 loader.save_relationships()
                 messages.success(request, loader)
             return redirect(goto)
-    else:
-        form = UploadFileForm()
+
     return render(request, 'vocabulary/upload.html', {'form':form, 'format': format})
 
 
