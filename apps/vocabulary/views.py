@@ -5,6 +5,7 @@ from django.forms.models import inlineformset_factory
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
+from django.conf import settings
 from django.contrib import messages
 
 from vocabulary.forms import UploadFileForm, VocabularyForm,\
@@ -16,6 +17,7 @@ from vocabulary.export_json import vocab_to_dict
 from utils import ajax_login_required
 from paging import simple_paging
 from datetime import datetime
+import tinys3
 
 
 def listings(request, *args, **kwargs):
@@ -68,6 +70,11 @@ def load_vocab(request, format='xls'):
             file = request.FILES['file']
             fn = file.name.split('.')[0].split('/')[-1]
             f = file.read()
+            # save the raw file into an S3 bucket
+            conn = tinys3.Connection(settings.S3_ACCESS_KEY,
+                                     settings.S3_SECRET_KEY, tls=True)
+            conn.upload(file.name, file, settings.S3_BUCKET)
+            # parse and load into the DB
             if format == 'xls':
                 goto = load_xls(request, f, fn)
             if format == 'skos':

@@ -12,3 +12,8 @@ ALLOWED_HOSTS = ['localhost', '...']
 DEFAULT_FROM_EMAIL = "noreply@example.com"
 ADMINS = MANAGERS = [('Admin', 'admin@example.com'),]
 SECRET_KEY = 'foobar'
+
+
+S3_ACCESS_KEY = ''
+S3_SECRET_KEY = ''
+S3_BUCKET = ''

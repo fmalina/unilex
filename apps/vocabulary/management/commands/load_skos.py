@@ -2,6 +2,7 @@ from django.core.management.base import BaseCommand
 from vocabulary.load_skos import SKOSLoader
 from optparse import make_option
 
+
 class Command(BaseCommand):
     help = 'Import SKOS files'
     args = '<SKOS files>'

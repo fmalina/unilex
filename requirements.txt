@@ -6,3 +6,4 @@ xlrd  # Excel reader
 docutils  # to generate documentation
 git+git://github.com/macropin/django-registration.git  # django-registration
 django-reversion
+tinys3
