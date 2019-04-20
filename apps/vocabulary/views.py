@@ -87,7 +87,7 @@ def load_vocab(request, format='xls'):
                 messages.success(request, loader)
             return redirect(goto)
 
-    return render(request, 'vocabulary/upload.html', {'form':form, 'format': format})
+    return render(request, 'vocabulary/upload.html', {'form': form, 'format': format})
 
 
 @login_required

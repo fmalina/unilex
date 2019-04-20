@@ -33,8 +33,10 @@ class VocabularyForm(forms.ModelForm):
 
 class UploadFileForm(forms.Form):
     file = forms.FileField()
-    permit = forms.BooleanFiels(
-        label='Permit raw file storage for inspection and troubleshooting')
+    permit = forms.BooleanField(
+        required=True,
+        label='Permit storage of your raw file for inspection and troubleshooting'
+    )
 
 
 TO_CONCEPT = forms.ModelChoiceField(
