@@ -1,12 +1,6 @@
 from django.contrib import admin
 from django.forms import models, ValidationError
-from vocabulary.models import (
-    Vocabulary,
-    Concept,
-    Language,
-    ConceptAttribute,
-    AttributeOption
-)
+from vocabulary import models as vocabs
 from vocabulary.validation_utils import validate_attribute_value
 import re
 
@@ -41,13 +35,16 @@ class ConceptAttributeInlineForm(models.ModelForm):
 
 
 class ConceptAttribute_Inline(admin.TabularInline):
-    model = ConceptAttribute
+    model = vocabs.ConceptAttribute
     extra = 2
     form = ConceptAttributeInlineForm
 
 
 class LanguageAdmin(admin.ModelAdmin):
-    # admin.site.disable_action('delete_selected',)
+    admin.site.disable_action('delete_selected',)
+
+
+class AuthorityAdmin(admin.ModelAdmin):
     pass
 
 
@@ -65,7 +62,8 @@ class ConceptAdmin(admin.ModelAdmin):
     exclude = ('parent', 'related', 'query')
 
 
-admin.site.register(Language, LanguageAdmin)
-admin.site.register(Concept, ConceptAdmin)
-admin.site.register(Vocabulary, VocabularyAdmin)
-admin.site.register(AttributeOption, AttributeOptionAdmin)
+admin.site.register(vocabs.Language, LanguageAdmin)
+admin.site.register(vocabs.Concept, ConceptAdmin)
+admin.site.register(vocabs.Vocabulary, VocabularyAdmin)
+admin.site.register(vocabs.AttributeOption, AttributeOptionAdmin)
+admin.site.register(vocabs.Authority, AuthorityAdmin)

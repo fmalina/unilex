@@ -8,8 +8,8 @@ from django.utils.html import strip_tags
 
 
 class Language(models.Model):
-    """Language of a vocabulary or Concept label
-    """
+    """Language of a vocabulary or Concept label"""
+
     iso = models.CharField(primary_key=True, max_length=5, verbose_name='ISO code')
     name = models.CharField(max_length=60)
 
@@ -22,13 +22,14 @@ class Language(models.Model):
 
 class Authority(models.Model):
     """Authority is an organisation, author or maintainer whose
-    decisions on development of a vocabulary are definitive
-    """
+    decisions on development of a vocabulary are definitive"""
+
     code = models.CharField(primary_key=True, max_length=5)
     name = models.CharField(max_length=150)
 
-    # users = models.ManyToManyField(settings.AUTH_USER_MODEL,
-    #     help_text="Authority can have many users. Vocabulary can have one authority.")
+    users = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        help_text="Authority can have many users. Vocabulary can have one authority.")
 
     def __str__(self):
         return self.code
@@ -40,8 +41,8 @@ class VocabularyManager(models.Manager):
 
 
 class Vocabulary(models.Model):
-    """Vocabulary is a hierarchy of concepts
-    """
+    """Vocabulary is a hierarchy of concepts"""
+
     node_id = models.SlugField(unique=True, max_length=60, verbose_name='Permalink: /vocabularies/')
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
     title = models.CharField(max_length=75)
@@ -49,8 +50,9 @@ class Vocabulary(models.Model):
     language = models.ForeignKey(Language, blank=True, null=True, on_delete=models.PROTECT)
     authority = models.ForeignKey(Authority, blank=True, null=True, on_delete=models.PROTECT)
     queries = models.BooleanField(verbose_name="Enable queries?", default=False)
-    private = models.BooleanField(verbose_name="Private vocabulary", default=True,
-                                  help_text="Private vocabulary can be edited only by the users belonging to its authority.")
+    private = models.BooleanField(
+        verbose_name="Private vocabulary", default=True,
+        help_text="Private vocabulary can be edited only by the users belonging to its authority.")
     source = models.URLField(blank=True)
     updated_at = models.DateTimeField(default=datetime.now, editable=False)
     created_at = models.DateTimeField(default=datetime.now, editable=False)
@@ -99,8 +101,8 @@ class Vocabulary(models.Model):
 
 
 class Concept(models.Model):
-    """A Concept is a term within a vocabulary.
-    """
+    """A Concept is a term within a vocabulary"""
+
     node_id = models.SlugField('Permalink ID', db_index=True, max_length=127, blank=True)
     vocabulary = models.ForeignKey(Vocabulary, on_delete=models.CASCADE)
     name = models.CharField(db_index=True, max_length=255)  # prefLabel
