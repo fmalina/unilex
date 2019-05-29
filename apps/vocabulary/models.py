@@ -25,11 +25,10 @@ class Language(models.Model):
 class Authority(models.Model):
     """Authority is an organisation, author or maintainer whose
     decisions on development of a vocabulary are definitive"""
-
-    code = models.CharField(primary_key=True, max_length=5,
+    code = models.CharField(
+        max_length=5, db_index=True,
         help_text='Uppercase shorthand, no spaces')
     name = models.CharField(max_length=150)
-
     users = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
         help_text='Authority can have many users. Vocabulary can have one authority.')
