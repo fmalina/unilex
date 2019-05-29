@@ -46,9 +46,11 @@ unmark_ignore.short_description = "Don't ignore selected"
 
 class FeedbackAdmin(admin.ModelAdmin):
     raw_id_fields = ('user',)
-    list_display = ('created_at','email','message','url','done', 'awesome', 'ignore')
+    list_display = ('created_at', 'email', 'message',
+                    'url', 'done', 'awesome', 'ignore')
     list_filter = ('created_at', 'done', 'awesome', 'ignore')
-    actions = [mark_done, unmark_done, mark_awesome, unmark_awesome, mark_ignore, unmark_ignore]
+    actions = [mark_done, unmark_done, mark_awesome,
+               unmark_awesome, mark_ignore, unmark_ignore]
 
 
 admin.site.register(Feedback, FeedbackAdmin)

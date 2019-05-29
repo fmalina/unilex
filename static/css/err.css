@@ -1,5 +1,5 @@
 p{text-align:center}
 #err{padding-top:200px;font:normal 15px arial,sans-serif;color:#333}
-a{display:block;text-decoration:none;
-    width:253px;height:24px;margin:0 auto;
+a.logo{display:block;text-decoration:none;
+    width:100px;height:100px;margin:0 auto;
     background:url(/img/icon.svg) no-repeat}

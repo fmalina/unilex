@@ -5,4 +5,4 @@ mysqlclient  # database bindings, any Django supported DB works though
 xlrd  # Excel reader
 docutils  # to generate documentation
 git+git://github.com/macropin/django-registration.git  # django-registration
-
+django-reversion

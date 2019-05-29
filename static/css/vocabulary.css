@@ -6,13 +6,14 @@
 }
 #main h1{font-size:2em;line-height:.8em}
 #main h1 small{font-size:.5em}
-#vocabulary-list{padding:0}
-#vocabulary-list li{list-style:none;padding-bottom:1em}
-#vocabulary-list a{font-size:1.5em}
 
-#aside{padding:1em;width:300px;min-width:300px}
-#aside .info{color:green;display:block;position:relative;z-index:1}
-#aside{background:white;background:rgba(255,255,255,.95)}
+.vocab-list,
+.vocab-list ul{padding:0;margin:0}
+.vocab-list li{list-style:none;padding:0 0 1em 0;margin:0;}
+.vocab-list a{font-size:1.5em}
+
+.aside{padding:10px;width:320px;box-sizing:border-box}
+.aside .info{color:green;display:block;position:relative;z-index:1}
 
 #editing ul{margin:0;padding:0}
 #editing li{list-style:none;margin:0;padding:0}
@@ -44,8 +45,10 @@ form li{list-style:none;text-shadow:none}
 #infovis .node-depth-0{background-color:rgba(255,255,255,.5);}
 
 .drop-nav{position:absolute;z-index:999;top:0;padding:1em;color:gray;border-radius:10px}
-.drop-nav b{cursor:pointer}
-.drop-nav ul{list-style:none;display:none;padding:1em;border-radius:4px;background:#fff;box-shadow:0 0 20px rgba(0,0,0,.3)}
+.drop-nav__head{cursor:pointer;font-size:smaller;padding-left:1em}
+.drop-nav__head .icon-caret{position:relative;top:2px}
+.drop-nav ul{list-style:none;display:none;padding:1em;border-radius:4px;
+    background:#fff;box-shadow:0 0 20px rgba(0,0,0,.3)}
 .drop-nav li{padding-bottom:5px}
 .drop-nav a{text-decoration:none}
 .drop-nav a:hover{text-decoration:underline}
@@ -81,8 +84,8 @@ button.delete b{color:#fcc;position:relative;top:-1px}
 .add-row{text-decoration:none}
 
 @media screen and (min-width:800px){
-	#aside{padding:2.5em;border-right:1px solid #ddd}
+	.aside{padding:25px;background:#eee}
 	#infovis{float:right}
 	.drop-nav{left:370px}
-	#vocabulary-list li{width:15em;float:left;padding-right:1.5em}
+	.vocab-list{column-count:3;column-gap:2rem}
 }
