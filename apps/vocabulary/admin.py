@@ -50,7 +50,7 @@ class LanguageAdmin(admin.ModelAdmin):
 
 @admin.register(vocabs.Authority)
 class AuthorityAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('code', 'name')
 
 
 @admin.register(vocabs.Vocabulary)
