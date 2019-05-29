@@ -12,6 +12,8 @@ Tagging tool for tagging resources using controlled vocabularies
 
 Content findability toolkit
 ---------------------------
+Aiding data exchange, categorisation, classification and searching.
+
 Create, Export, Import, Explore, Manage, Iteratively improve
 
 - Vocabulary, Classification, Taxonomy

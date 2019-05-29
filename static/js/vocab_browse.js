@@ -188,7 +188,7 @@ $(function(){
     });
     // Switch view dropdown
     var ul = $('.drop-nav ul');
-    $('.drop-nav b').on('click', function(e) {
+    $('.drop-nav__head').on('click', function(e) {
         ul.toggle();
         e.stopPropagation();
     });

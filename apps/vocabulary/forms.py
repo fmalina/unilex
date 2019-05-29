@@ -27,7 +27,8 @@ class VocabularyForm(forms.ModelForm):
 
     class Meta:
         model = Vocabulary
-        fields = ('title', 'node_id', 'description', 'private', 'source')
+        fields = ('title', 'node_id', 'description', 'language',
+                  'private', 'source')
 
 
 class UploadFileForm(forms.Form):

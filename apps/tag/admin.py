@@ -9,10 +9,8 @@ class TagInline(admin.TabularInline):
     extra = 0
 
 
+@admin.register(Record)
 class RecordAdmin(admin.ModelAdmin):
     search_fields = ['title', 'desc', 'url']
     list_display = ('title', 'url',)
     inlines = [TagInline]
-
-
-admin.site.register(Record, RecordAdmin)

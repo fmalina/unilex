@@ -69,4 +69,5 @@ INSTALLED_APPS = (
     'pay',
     'registration',
     'feedback',
+    'reversion',
 )

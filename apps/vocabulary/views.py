@@ -19,7 +19,8 @@ from datetime import datetime
 
 
 def listings(request, *args, **kwargs):
-    ls = Vocabulary.objects.with_counts().exclude(private=True).order_by('user_id','title')
+    ls = Vocabulary.objects.with_counts().exclude(private=True).order_by(
+        'language', 'user_id', 'title')
     return render(request, 'vocabulary/listings.html', {'ls': ls})
 
 

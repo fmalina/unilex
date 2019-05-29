@@ -17,7 +17,6 @@ dfn{border-bottom:1px dotted #ddd;cursor:help;font-style:normal}
 pre{color:green}
 .hide{display:none}
 .nowrap{white-space:nowrap}
-.beta{font-size:.5em}
 .external:after{font-family:"uxfont";content:" a";font-size:11px;color:#555}
 
 #header,#footer,.content{padding:1em}
