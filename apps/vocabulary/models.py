@@ -31,10 +31,13 @@ class Authority(models.Model):
 
     users = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
-        help_text="Authority can have many users. Vocabulary can have one authority.")
+        help_text='Authority can have many users. Vocabulary can have one authority.')
 
     def __str__(self):
         return self.code
+
+    class Meta:
+        verbose_name_plural = 'Authorities'
 
 
 class VocabularyManager(models.Manager):
@@ -100,7 +103,7 @@ class Vocabulary(models.Model):
 
     class Meta:
         db_table = 'vocabularies'
-        verbose_name_plural = "Vocabularies"
+        verbose_name_plural = 'Vocabularies'
 
 
 @reversion.register()
