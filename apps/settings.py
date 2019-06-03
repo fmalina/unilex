@@ -1,6 +1,5 @@
-import os.path
 from settings_local import *
-from django.utils.log import DEFAULT_LOGGING as LOGGING
+import os.path
 
 VERSION = '1.1'
 
@@ -20,7 +19,6 @@ STATIC_URL = '/static/'
 ACCOUNT_ACTIVATION_DAYS = 2
 REGISTRATION_AUTO_LOGIN = True
 LOGIN_REDIRECT_URL = '/'
-LOGGING['handlers']['mail_admins']['include_html'] = True
 
 TEMPLATES = [
     {

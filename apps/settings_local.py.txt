@@ -1,3 +1,11 @@
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+
+sentry_sdk.init(
+    dsn="SENTRY_URL_HERE",
+    integrations=[DjangoIntegration()]
+)
+
 DEBUG = False
 DATABASES = {
     'default': {
