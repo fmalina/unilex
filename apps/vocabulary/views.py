@@ -32,9 +32,9 @@ def autocomplete(request):
         Q(name__icontains=q) |
         Q(node_id__istartswith=q)
     ).filter(
-        Q(concept__vocabulary__private=False) |
-        Q(concept__vocabulary__user=request.user) |
-        Q(concept__vocabulary__authority__users=request.user)
+        Q(vocabulary__private=False) |
+        Q(vocabulary__user=request.user) |
+        Q(vocabulary__authority__users=request.user)
     ).order_by('-count')
     response = render(request, 'vocabulary/autocomplete.txt', {'concepts': concepts})
     response['Access-Control-Allow-Origin'] = '*'
@@ -48,9 +48,9 @@ def search(request):
         Q(description__icontains=q) |
         Q(node_id__istartswith=q)
     ).filter(
-        Q(concept__vocabulary__private=False) |
-        Q(concept__vocabulary__user=request.user) |
-        Q(concept__vocabulary__authority__users=request.user)
+        Q(vocabulary__private=False) |
+        Q(vocabulary__user=request.user) |
+        Q(vocabulary__authority__users=request.user)
     ).order_by('-count')
     if not q:
         ls = []
