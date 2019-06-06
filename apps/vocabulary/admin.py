@@ -33,8 +33,10 @@ class AttributeOptionAdmin(admin.ModelAdmin):
 
 class ConceptAttributeInlineForm(models.ModelForm):
     def clean_value(self):
-        return clean_attribute_value(self.cleaned_data,
-                                     self.cleaned_data['concept'])
+        return clean_attribute_value(
+            self.cleaned_data,
+            self.cleaned_data['concept']
+        )
 
 
 class ConceptAttribute_Inline(admin.TabularInline):
@@ -48,16 +50,24 @@ class LanguageAdmin(admin.ModelAdmin):
     admin.site.disable_action('delete_selected',)
 
 
+class AuthorityMembershipInline(admin.TabularInline):
+    model = vocabs.Authority.users.through
+    raw_id_fields = ('user',)
+
 @admin.register(vocabs.Authority)
 class AuthorityAdmin(admin.ModelAdmin):
     list_display = ('code', 'name')
+    inlines = [AuthorityMembershipInline]
+    exclude = ['users']
 
 
 @admin.register(vocabs.Vocabulary)
 class VocabularyAdmin(VersionAdmin):
     prepopulated_fields = {"node_id": ("title",)}
-    list_display = ('title', 'node_id', 'user', 'language',
-                    'private', 'updated_at', 'created_at')
+    list_display = (
+        'title', 'node_id', 'user', 'language',
+        'private', 'updated_at', 'created_at'
+    )
 
 
 @admin.register(vocabs.Concept)
