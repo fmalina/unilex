@@ -34,7 +34,7 @@ def autocomplete(request):
     ).filter(
         Q(vocabulary__private=False) |
         Q(vocabulary__user=request.user) |
-        Q(vocabulary__authority__users=request.user)
+        Q(vocabulary__authority__users__email=request.user.email)
     ).order_by('-count')
     response = render(request, 'vocabulary/autocomplete.txt', {'concepts': concepts})
     response['Access-Control-Allow-Origin'] = '*'
