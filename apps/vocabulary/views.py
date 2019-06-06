@@ -31,13 +31,11 @@ def autocomplete(request):
     concepts = Concept.objects.filter(
         Q(name__icontains=q) |
         Q(node_id__istartswith=q)
-    )
-    if not concepts:
-        concepts = Concept.objects.filter(
-            Q(name__icontains=q) |
-            Q(node_id__istartswith=q)
-        )
-    concepts = concepts.order_by('-count')
+    ).filter(
+        Q(concept__vocabulary__private=False) |
+        Q(concept__vocabulary__user=request.user) |
+        Q(concept__vocabulary__authority__users=request.user)
+    ).order_by('-count')
     response = render(request, 'vocabulary/autocomplete.txt', {'concepts': concepts})
     response['Access-Control-Allow-Origin'] = '*'
     return response
@@ -49,6 +47,10 @@ def search(request):
         Q(name__icontains=q) |
         Q(description__icontains=q) |
         Q(node_id__istartswith=q)
+    ).filter(
+        Q(concept__vocabulary__private=False) |
+        Q(concept__vocabulary__user=request.user) |
+        Q(concept__vocabulary__authority__users=request.user)
     ).order_by('-count')
     if not q:
         ls = []
