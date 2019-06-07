@@ -109,7 +109,7 @@ def vocabulary_add(request):
 
 def is_allowed(user, vocab):
     """Say whether this user has permission to access this vocab."""
-    if vocab.authority and vocab.authority.users.filter(user=user):
+    if vocab.authority and user in vocab.authority.users.all():
         return True
     return (
         user is vocab.user or
