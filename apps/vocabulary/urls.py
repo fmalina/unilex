@@ -4,9 +4,12 @@ from vocabulary import views as v
 urlpatterns = [
     path('', v.listings, name='listings'),
     path('add', v.vocabulary_add, name='add'),
+    path('load-<slug:format>', v.load_vocab, name='load'),
+    path('authority/<slug:authority_code>/', v.authority, name='authority'),
+    path('authority/<slug:authority_code>/add', v.vocabulary_add, name='authority_add'),
+    path('authority/<slug:authority_code>/load-<slug:format>', v.load_vocab, name='authority_load'),
     path('autocomplete', v.autocomplete, name='autocomplete'),
     path('search', v.search, name='search'),
-    path('load-<slug:format>', v.load_vocab, name='load'),
 
     path('<slug:vocab_node_id>/', v.detail, name='vocabulary'),
     path('<slug:vocab_node_id>/edit', v.vocabulary_edit),

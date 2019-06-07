@@ -10,7 +10,7 @@ from django.contrib import messages
 
 from vocabulary.forms import UploadFileForm, VocabularyForm,\
     ConceptForm, NewChildConceptForm, RelatedForm, ParentForm
-from vocabulary.models import Vocabulary, Concept
+from vocabulary.models import Authority, Vocabulary, Concept
 from vocabulary.export_skos import export_skos
 from vocabulary.export_csv import export_csv
 from vocabulary.export_json import vocab_to_dict
@@ -68,7 +68,7 @@ def search(request):
     })
 
 
-def load_vocab(request, format='xls'):
+def load_vocab(request, format='xls', authority_code=''):
     from vocabulary.load_xls import load_xls
     from vocabulary.load_skos import SKOSLoader
 
@@ -94,15 +94,21 @@ def load_vocab(request, format='xls'):
                 
                 loader.save_relationships()
                 messages.success(request, loader)
+            if isinstance(goto, Vocabulary) and authority_code:
+                vocab = goto
+                vocab.authority = get_object_or_404(Authority, code=authority_code)
+
             return redirect(goto)
 
     return render(request, 'vocabulary/upload.html', {'form': form, 'format': format})
 
 
 @login_required
-def vocabulary_add(request):
+def vocabulary_add(request, authority_code=''):
     vocab = Vocabulary(title='New vocabulary')
     vocab.user = request.user
+    if authority_code:
+        vocab.authority = get_object_or_404(Authority, code=authority_code)
     vocab.save()
     return redirect(vocab.get_absolute_url())
 
@@ -116,6 +122,22 @@ def is_allowed(user, vocab):
         user.is_superuser or
         user.is_staff
     )
+
+
+def authority(request, authority_code):
+    """Authority and its vocabularies."""
+    a = get_object_or_404(Authority, code=authority_code)
+    ls = Vocabulary.objects.with_counts().filter(authority=a)
+    private_access = request.user in a.users.all()
+    if not private_access:
+        ls = ls.filter(private=False)
+
+    return render(request, 'vocabulary/authority.html', {
+        'ls': ls,
+        'authority': a,
+        'authority_code': a.code,
+        'private_access': private_access
+    })
 
 
 def detail(request, vocab_node_id):
