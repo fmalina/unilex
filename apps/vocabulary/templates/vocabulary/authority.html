@@ -1,0 +1,23 @@
+{% extends 'vocabulary/base.html' %}
+{% block title %}{{ authority.name }} ({{ authority.code }}){% endblock %}
+{% block content %}
+    <h1>{{ authority.name }} ({{ authority.code }})</h1>
+    <p>
+        Vocabularies belonging to {{ authority.name }}
+        {% if authority.website %}
+            <a href="{{ authority.website }}">{{ authority.website }}</a>
+        {% endif %}
+    </p>
+    {% if private_access %}
+        <p>
+            <a href="{% url 'authority_add' authority.code %}" class="btn">+ Add vocabulary</a>
+            <span class="nowrap btn-links">
+                Import:
+                <a href="{% url 'authority_load' 'xls' authority.code %}">spreadsheet</a>,
+                <a href="{% url 'authority_load' 'skos' authority.code %}">SKOS</a>
+            </span>
+        </p>
+    {% endif %}
+
+    {% include 'vocabulary/ls.html' %}
+{% endblock %}

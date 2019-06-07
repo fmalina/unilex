@@ -9,6 +9,12 @@
         {{ field }}
     </p>
     {% endfor %}
+    {% if vocabulary.authority %}
+        <p><small>Managed by
+            <a href="{% url 'authority' vocabulary.authority.code %}">
+                {{ vocabulary.authority.name }}</a></small></p>
+    {% endif %}
+
     <p><button type="submit"><i class="icon-check"></i> Save</button></p>
 </form>
 {% endif %}
