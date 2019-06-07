@@ -26,20 +26,29 @@ def listings(request, *args, **kwargs):
     return render(request, 'vocabulary/listings.html', {'ls': ls})
 
 
+def filter_private(qs, user):
+    """Filters out private terms"""
+    if user.is_authenticated:
+        qs = qs.filter(
+            Q(vocabulary__private=False) |
+            Q(vocabulary__user=user) |
+            Q(vocabulary__authority__users=user)
+        )
+    else:
+        qs = qs.filter(vocabulary__private=False)
+    return qs.order_by('-count')
+
+
 def autocomplete(request):
     q = request.GET.get('q','').strip()
     concepts = Concept.objects.filter(
         Q(name__icontains=q) |
         Q(node_id__istartswith=q)
-    ).filter(
-        Q(vocabulary__private=False) |
-        Q(vocabulary__user=request.user) |
-        Q(vocabulary__authority__users__email=request.user.email)
-    ).order_by('-count')
+    )
+    concepts = filter_private(concepts, request.user)
     response = render(request, 'vocabulary/autocomplete.txt', {'concepts': concepts})
     response['Access-Control-Allow-Origin'] = '*'
     return response
-
 
 def search(request):
     q = request.GET.get('q', '').strip()
@@ -47,11 +56,8 @@ def search(request):
         Q(name__icontains=q) |
         Q(description__icontains=q) |
         Q(node_id__istartswith=q)
-    ).filter(
-        Q(vocabulary__private=False) |
-        Q(vocabulary__user=request.user) |
-        Q(vocabulary__authority__users=request.user)
-    ).order_by('-count')
+    )
+    ls = filter_private(ls, request.user)
     if not q:
         ls = []
     ls, count, paging = simple_paging(request, ls, 10)
