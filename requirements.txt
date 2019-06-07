@@ -8,6 +8,5 @@ docutils     # generate documentation
 git+git://github.com/macropin/django-registration.git
 git+git://github.com/fmalina/django-pay.git#egg=pay
 django-reversion
-tinys3
 sentry_sdk
 google-cloud-translate
