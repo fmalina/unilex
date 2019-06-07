@@ -1,6 +1,6 @@
 from json import dumps
 from django.db.models import Q
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.forms.models import inlineformset_factory
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
@@ -106,8 +106,20 @@ def vocabulary_add(request):
     return redirect(vocab.get_absolute_url())
 
 
+def is_allowed(user, vocab):
+    """Say whether this user has permission to access this vocab."""
+    return (
+        user is vocab.user or
+        user in vocab.authority.users or
+        user.is_superuser or
+        user.is_staff
+    )
+
+
 def detail(request, vocab_node_id):
     vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
+    if vocab.private and not is_allowed(request.user, vocab):
+        raise Http404
     count = Concept.objects.filter(vocabulary=vocab).count()
     concepts = vocab.concept_set.filter(parent__isnull=True)
     return render(request, 'vocabulary/detail.html', {
