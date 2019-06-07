@@ -17,7 +17,7 @@ from vocabulary.export_json import vocab_to_dict
 from utils import ajax_login_required
 from paging import simple_paging
 from datetime import datetime
-import tinys3
+import os
 
 
 def listings(request, *args, **kwargs):
@@ -81,9 +81,10 @@ def load_vocab(request, format='xls'):
             f = file.read()
             # save the raw file into an S3 bucket
             if form.cleaned_data.get('permit', False):
-                conn = tinys3.Connection(settings.S3_ACCESS_KEY,
-                                         settings.S3_SECRET_KEY, tls=True)
-                conn.upload(file.name, file, settings.S3_BUCKET)
+                upload_path = os.path.join(settings.PROJECT_ROOT, 'uploads', file.name)
+                fw = open(upload_path, 'wb')
+                fw.write(f)
+                fw.close()
             # parse and load into the DB
             if format == 'xls':
                 goto = load_xls(request, f, fn)
