@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/"
+xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+xmlns:zthes="https://unilexicon.com/"
+xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+
+    <skos:ConceptScheme rdf:nodeID="unilexicon">
+        <skos:prefLabel>Unilexicon</skos:prefLabel>
+        <skos:definition>Vocabulary outlining Unilexicon features, types of categorisation systems, uses in content findability and technologies.</skos:definition>
+        
+        
+        
+        <dc:date>28-06-2015</dc:date>
+    </skos:ConceptScheme>
+
+    <skos:Concept rdf:nodeID="better-information-architecture">
+        <skos:inScheme rdf:nodeID="unilexicon"/>
+        <skos:prefLabel>Better Information architecture</skos:prefLabel>
+        <skos:broader rdf:nodeID="content-findability"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="classification">
+        <skos:inScheme rdf:nodeID="unilexicon"/>
+        <skos:prefLabel>Classification</skos:prefLabel>
+        <skos:broader rdf:nodeID="vocabulary-development"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="content-findability">
+        <skos:inScheme rdf:nodeID="unilexicon"/>
+        <skos:prefLabel>Content findability</skos:prefLabel>
+        <skos:topConceptOf rdf:nodeID="unilexicon"/>
+        <skos:narrower rdf:nodeID="better-information-architecture"/>
+        <skos:narrower rdf:nodeID="process-efficiency"/>
+        <skos:narrower rdf:nodeID="meaningful-navigation-optimisation"/>
+        <skos:narrower rdf:nodeID="streamlined-user-experience"/>
+        <skos:narrower rdf:nodeID="search-engine-optimisation"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="controlled-vocabulary">
+        <skos:inScheme rdf:nodeID="unilexicon"/>
+        <skos:prefLabel>Controlled vocabulary</skos:prefLabel>
+        <skos:broader rdf:nodeID="vocabulary-development"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="css3">
+        <skos:inScheme rdf:nodeID="unilexicon"/>
+        <skos:prefLabel>CSS3</skos:prefLabel>
+        <skos:broader rdf:nodeID="front-end"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="custom-cms-integration">
+        <skos:inScheme rdf:nodeID="unilexicon"/>
+        <skos:prefLabel>Custom CMS integration</skos:prefLabel>
+        <skos:broader rdf:nodeID="tagging-in-context"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="django">
+        <skos:inScheme rdf:nodeID="unilexicon"/>
+        <skos:prefLabel>Django</skos:prefLabel>
+        <skos:broader rdf:nodeID="python"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="docutils">
+        <skos:inScheme rdf:nodeID="unilexicon"/>
+        <skos:prefLabel>Docutils</skos:prefLabel>
+        <skos:broader rdf:nodeID="python"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="excel-csv">
+        <skos:inScheme rdf:nodeID="unilexicon"/>
+        <skos:prefLabel>Excel - CSV</skos:prefLabel>
+        <skos:broader rdf:nodeID="standard-formats"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="front-end">
+        <skos:inScheme rdf:nodeID="unilexicon"/>
+        <skos:prefLabel>Front-end</skos:prefLabel>
+        <skos:broader rdf:nodeID="standard-web-technologies"/>
+        
+        <skos:narrower rdf:nodeID="css3"/>
+        <skos:narrower rdf:nodeID="html5"/>
+        <skos:narrower rdf:nodeID="javascript"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="git">
+        <skos:inScheme rdf:nodeID="unilexicon"/>
+        <skos:prefLabel>Git</skos:prefLabel>
+        <skos:broader rdf:nodeID="live-platform"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="gunicorn">
+        <skos:inScheme rdf:nodeID="unilexicon"/>
+        <skos:prefLabel>Gunicorn</skos:prefLabel>
+        <skos:broader rdf:nodeID="python"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="html5">
+        <skos:inScheme rdf:nodeID="unilexicon"/>
+        <skos:prefLabel>HTML5</skos:prefLabel>
+        <skos:broader rdf:nodeID="front-end"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="javascript">
+        <skos:inScheme rdf:nodeID="unilexicon"/>
+        <skos:prefLabel>JavaScript</skos:prefLabel>
+        <skos:broader rdf:nodeID="front-end"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="json">
+        <skos:inScheme rdf:nodeID="unilexicon"/>
+        <skos:prefLabel>JSON</skos:prefLabel>
+        <skos:definition>JavaScript Objects Notation</skos:definition>
+        <skos:broader rdf:nodeID="standard-formats"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="live-platform">
+        <skos:inScheme rdf:nodeID="unilexicon"/>
+        <skos:prefLabel>Live platform</skos:prefLabel>
+        <skos:definition>Specific to live deployment. Enterprise deployment is independent of these choices.</skos:definition>
+        <skos:broader rdf:nodeID="standard-web-technologies"/>
+        
+        <skos:narrower rdf:nodeID="git"/>
+        <skos:narrower rdf:nodeID="nginx"/>
+        <skos:narrower rdf:nodeID="ubuntu"/>
+        <skos:narrower rdf:nodeID="mysql"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="lxml">
+        <skos:inScheme rdf:nodeID="unilexicon"/>
+        <skos:prefLabel>LXML</skos:prefLabel>
+        <skos:broader rdf:nodeID="python"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="meaningful-navigation-optimisation">
+        <skos:inScheme rdf:nodeID="unilexicon"/>
+        <skos:prefLabel>Meaningful navigation optimisation</skos:prefLabel>
+        <skos:broader rdf:nodeID="content-findability"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="mysql">
+        <skos:inScheme rdf:nodeID="unilexicon"/>
+        <skos:prefLabel>MySQL</skos:prefLabel>
+        <skos:broader rdf:nodeID="live-platform"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="navigation">
+        <skos:inScheme rdf:nodeID="unilexicon"/>
+        <skos:prefLabel>Navigation</skos:prefLabel>
+        <skos:broader rdf:nodeID="vocabulary-development"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="nginx">
+        <skos:inScheme rdf:nodeID="unilexicon"/>
+        <skos:prefLabel>Nginx</skos:prefLabel>
+        <skos:broader rdf:nodeID="live-platform"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="owl-ontology-tool">
+        <skos:inScheme rdf:nodeID="unilexicon"/>
+        <skos:prefLabel>OWL ontology tool</skos:prefLabel>
+        <skos:definition>Unilexicon creates vocabularies not OWL ontologies. Transforming SKOS to OWL is beyond scope of Unilexicon.</skos:definition>
+        <skos:broader rdf:nodeID="what-it-isnt"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="process-efficiency">
+        <skos:inScheme rdf:nodeID="unilexicon"/>
+        <skos:prefLabel>Process efficiency</skos:prefLabel>
+        <skos:broader rdf:nodeID="content-findability"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="python">
+        <skos:inScheme rdf:nodeID="unilexicon"/>
+        <skos:prefLabel>Python</skos:prefLabel>
+        <skos:broader rdf:nodeID="standard-web-technologies"/>
+        
+        <skos:narrower rdf:nodeID="django"/>
+        <skos:narrower rdf:nodeID="docutils"/>
+        <skos:narrower rdf:nodeID="gunicorn"/>
+        <skos:narrower rdf:nodeID="lxml"/>
+        <skos:narrower rdf:nodeID="xlrd"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="rdf-toolkit">
+        <skos:inScheme rdf:nodeID="unilexicon"/>
+        <skos:prefLabel>RDF toolkit</skos:prefLabel>
+        <skos:definition>Unilexicon is not an RDF toolkit. SKOS XML is one of the supported export and import formats for vocabularies.</skos:definition>
+        <skos:broader rdf:nodeID="what-it-isnt"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="ready-cms-modules">
+        <skos:inScheme rdf:nodeID="unilexicon"/>
+        <skos:prefLabel>Ready CMS modules</skos:prefLabel>
+        <skos:broader rdf:nodeID="tagging-in-context"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="restful-api-integration">
+        <skos:inScheme rdf:nodeID="unilexicon"/>
+        <skos:prefLabel>Restful API integration</skos:prefLabel>
+        <skos:broader rdf:nodeID="tagging-in-context"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="search-engine-optimisation">
+        <skos:inScheme rdf:nodeID="unilexicon"/>
+        <skos:prefLabel>Search engine optimisation</skos:prefLabel>
+        <skos:broader rdf:nodeID="content-findability"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="skos">
+        <skos:inScheme rdf:nodeID="unilexicon"/>
+        <skos:prefLabel>SKOS</skos:prefLabel>
+        <skos:definition>Simple Knowledge Organisation System</skos:definition>
+        <skos:broader rdf:nodeID="standard-formats"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="standard-formats">
+        <skos:inScheme rdf:nodeID="unilexicon"/>
+        <skos:prefLabel>Standard formats</skos:prefLabel>
+        <skos:broader rdf:nodeID="standard-web-technologies"/>
+        
+        <skos:narrower rdf:nodeID="excel-csv"/>
+        <skos:narrower rdf:nodeID="json"/>
+        <skos:narrower rdf:nodeID="skos"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="standard-web-technologies">
+        <skos:inScheme rdf:nodeID="unilexicon"/>
+        <skos:prefLabel>Standard web technologies</skos:prefLabel>
+        <skos:definition>Standard web software technologies used in creating and deployment of Unilexicon.</skos:definition>
+        <skos:topConceptOf rdf:nodeID="unilexicon"/>
+        <skos:narrower rdf:nodeID="front-end"/>
+        <skos:narrower rdf:nodeID="live-platform"/>
+        <skos:narrower rdf:nodeID="python"/>
+        <skos:narrower rdf:nodeID="standard-formats"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="streamlined-user-experience">
+        <skos:inScheme rdf:nodeID="unilexicon"/>
+        <skos:prefLabel>Streamlined user experience</skos:prefLabel>
+        <skos:broader rdf:nodeID="content-findability"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="tagging-in-context">
+        <skos:inScheme rdf:nodeID="unilexicon"/>
+        <skos:prefLabel>Tagging in context</skos:prefLabel>
+        <skos:topConceptOf rdf:nodeID="unilexicon"/>
+        <skos:narrower rdf:nodeID="custom-cms-integration"/>
+        <skos:narrower rdf:nodeID="ready-cms-modules"/>
+        <skos:narrower rdf:nodeID="restful-api-integration"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="taxonomy">
+        <skos:inScheme rdf:nodeID="unilexicon"/>
+        <skos:prefLabel>Taxonomy</skos:prefLabel>
+        <skos:broader rdf:nodeID="vocabulary-development"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="triple-store">
+        <skos:inScheme rdf:nodeID="unilexicon"/>
+        <skos:prefLabel>Triple store</skos:prefLabel>
+        <skos:definition>Unilexicon is not a triple store. Unilexicon uses relational database in the backend and focuses on pragmatic streamlined vocabulary development and content tagging.</skos:definition>
+        <skos:broader rdf:nodeID="what-it-isnt"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="ubuntu">
+        <skos:inScheme rdf:nodeID="unilexicon"/>
+        <skos:prefLabel>Ubuntu</skos:prefLabel>
+        <skos:broader rdf:nodeID="live-platform"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="vocabulary-development">
+        <skos:inScheme rdf:nodeID="unilexicon"/>
+        <skos:prefLabel>Vocabulary development</skos:prefLabel>
+        <skos:definition>Fast prototyping of vocabularies. Multiple visualisation formats.</skos:definition>
+        <skos:topConceptOf rdf:nodeID="unilexicon"/>
+        <skos:narrower rdf:nodeID="classification"/>
+        <skos:narrower rdf:nodeID="controlled-vocabulary"/>
+        <skos:narrower rdf:nodeID="navigation"/>
+        <skos:narrower rdf:nodeID="taxonomy"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="what-it-isnt">
+        <skos:inScheme rdf:nodeID="unilexicon"/>
+        <skos:prefLabel>What it isn&#39;t</skos:prefLabel>
+        <skos:topConceptOf rdf:nodeID="unilexicon"/>
+        <skos:narrower rdf:nodeID="owl-ontology-tool"/>
+        <skos:narrower rdf:nodeID="rdf-toolkit"/>
+        <skos:narrower rdf:nodeID="triple-store"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="xlrd">
+        <skos:inScheme rdf:nodeID="unilexicon"/>
+        <skos:prefLabel>XLRD</skos:prefLabel>
+        <skos:broader rdf:nodeID="python"/>
+        
+        
+    </skos:Concept>
+</rdf:RDF>

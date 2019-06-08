@@ -1,0 +1,885 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/"
+xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+xmlns:zthes="https://unilexicon.com/"
+xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+
+    <skos:ConceptScheme rdf:nodeID="animals">
+        <skos:prefLabel>Animals</skos:prefLabel>
+        <skos:definition>Sample classical taxonomy defining animalian tree of life. Yes, dolphins are not fish.</skos:definition>
+        
+        
+        
+        <dc:date>11-05-2015</dc:date>
+    </skos:ConceptScheme>
+
+    <skos:Concept rdf:nodeID="amphibians">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Amphibians</skos:prefLabel>
+        <skos:broader rdf:nodeID="vertebrates"/>
+        
+        <skos:narrower rdf:nodeID="frogs"/>
+        <skos:narrower rdf:nodeID="newts"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="apes">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Apes</skos:prefLabel>
+        <skos:broader rdf:nodeID="primates"/>
+        
+        <skos:narrower rdf:nodeID="human"/>
+        <skos:narrower rdf:nodeID="gorilla"/>
+        <skos:narrower rdf:nodeID="chimpazee"/>
+        <skos:narrower rdf:nodeID="bonobo"/>
+        <skos:narrower rdf:nodeID="gibon"/>
+        <skos:narrower rdf:nodeID="orangutan"/>
+        <skos:narrower rdf:nodeID="yeti"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="arachnids">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Arachnids</skos:prefLabel>
+        <skos:broader rdf:nodeID="arthropods"/>
+        
+        <skos:narrower rdf:nodeID="spiders"/>
+        <skos:narrower rdf:nodeID="ticks"/>
+        <skos:narrower rdf:nodeID="mites"/>
+        <skos:narrower rdf:nodeID="scorpions"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="arthropods">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Arthropods</skos:prefLabel>
+        <skos:broader rdf:nodeID="invertebrates"/>
+        
+        <skos:narrower rdf:nodeID="arachnids"/>
+        <skos:narrower rdf:nodeID="crustaceans"/>
+        <skos:narrower rdf:nodeID="insects"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="baboon-spider">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Baboon spider</skos:prefLabel>
+        <skos:broader rdf:nodeID="spiders"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="barnacles">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Barnacles</skos:prefLabel>
+        <skos:broader rdf:nodeID="crustaceans"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="birds">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Birds</skos:prefLabel>
+        <skos:broader rdf:nodeID="vertebrates"/>
+        
+        <skos:narrower rdf:nodeID="ducks"/>
+        <skos:narrower rdf:nodeID="penguins"/>
+        <skos:narrower rdf:nodeID="pigeons"/>
+        <skos:narrower rdf:nodeID="songbirds"/>
+        <skos:narrower rdf:nodeID="crows"/>
+        <skos:narrower rdf:nodeID="owls"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="bonobo">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Bonobo</skos:prefLabel>
+        <skos:broader rdf:nodeID="apes"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="bony-fish">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Bony fish</skos:prefLabel>
+        <skos:broader rdf:nodeID="fish"/>
+        
+        <skos:narrower rdf:nodeID="carps"/>
+        <skos:narrower rdf:nodeID="salmon"/>
+        <skos:narrower rdf:nodeID="cychlids"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="brazilian-wandering-spider">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Brazilian wandering spider</skos:prefLabel>
+        <skos:broader rdf:nodeID="spiders"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="camels">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Camels</skos:prefLabel>
+        <skos:broader rdf:nodeID="ungulates"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="carnivores">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Carnivores</skos:prefLabel>
+        <skos:broader rdf:nodeID="mammals"/>
+        
+        <skos:narrower rdf:nodeID="dogs"/>
+        <skos:narrower rdf:nodeID="cats"/>
+        <skos:narrower rdf:nodeID="mustelids"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="carps">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Carps</skos:prefLabel>
+        <skos:broader rdf:nodeID="bony-fish"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="cartilaginous">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Cartilaginous</skos:prefLabel>
+        <skos:broader rdf:nodeID="fish"/>
+        
+        <skos:narrower rdf:nodeID="sharks"/>
+        <skos:narrower rdf:nodeID="rays"/>
+        <skos:narrower rdf:nodeID="chimaeras"/>
+        <skos:narrower rdf:nodeID="skates"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="cats">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Cats</skos:prefLabel>
+        <skos:broader rdf:nodeID="carnivores"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="cephalopods">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Cephalopods</skos:prefLabel>
+        <skos:broader rdf:nodeID="molluscs"/>
+        
+        <skos:narrower rdf:nodeID="squid"/>
+        <skos:narrower rdf:nodeID="octopus"/>
+        <skos:narrower rdf:nodeID="cuttlefish"/>
+        <skos:narrower rdf:nodeID="nautilus"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="chimaeras">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Chimaeras</skos:prefLabel>
+        <skos:broader rdf:nodeID="cartilaginous"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="chimpazee">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Chimpazee</skos:prefLabel>
+        <skos:broader rdf:nodeID="apes"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="chitons">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Chitons</skos:prefLabel>
+        <skos:broader rdf:nodeID="molluscs"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="cows">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Cows</skos:prefLabel>
+        <skos:broader rdf:nodeID="ungulates"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="crab">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Crab</skos:prefLabel>
+        <skos:broader rdf:nodeID="crustaceans"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="crayfish">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Crayfish</skos:prefLabel>
+        <skos:broader rdf:nodeID="crustaceans"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="crickets">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Crickets</skos:prefLabel>
+        <skos:broader rdf:nodeID="insects"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="crocodiles">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Crocodiles</skos:prefLabel>
+        <skos:broader rdf:nodeID="reptiles"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="crows">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Crows</skos:prefLabel>
+        <skos:broader rdf:nodeID="birds"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="crustaceans">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Crustaceans</skos:prefLabel>
+        <skos:broader rdf:nodeID="arthropods"/>
+        
+        <skos:narrower rdf:nodeID="barnacles"/>
+        <skos:narrower rdf:nodeID="crab"/>
+        <skos:narrower rdf:nodeID="crayfish"/>
+        <skos:narrower rdf:nodeID="shrimp"/>
+        <skos:narrower rdf:nodeID="lobster"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="cuttlefish">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Cuttlefish</skos:prefLabel>
+        <skos:broader rdf:nodeID="cephalopods"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="cychlids">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Cychlids</skos:prefLabel>
+        <skos:broader rdf:nodeID="bony-fish"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="daddy-long-legs">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Daddy long-legs</skos:prefLabel>
+        <skos:broader rdf:nodeID="house-spiders"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="deer">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Deer</skos:prefLabel>
+        <skos:broader rdf:nodeID="ungulates"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="dogs">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Dogs</skos:prefLabel>
+        <skos:broader rdf:nodeID="carnivores"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="dolphins">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Dolphins</skos:prefLabel>
+        <skos:broader rdf:nodeID="whales"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="ducks">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Ducks</skos:prefLabel>
+        <skos:broader rdf:nodeID="birds"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="fish">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Fish</skos:prefLabel>
+        <skos:broader rdf:nodeID="vertebrates"/>
+        
+        <skos:narrower rdf:nodeID="bony-fish"/>
+        <skos:narrower rdf:nodeID="cartilaginous"/>
+        <skos:narrower rdf:nodeID="hagfish"/>
+        <skos:narrower rdf:nodeID="lamprey"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="fleas">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Fleas</skos:prefLabel>
+        <skos:broader rdf:nodeID="insects"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="flies">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Flies</skos:prefLabel>
+        <skos:broader rdf:nodeID="insects"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="frogs">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Frogs</skos:prefLabel>
+        <skos:broader rdf:nodeID="amphibians"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="gastropods">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Gastropods</skos:prefLabel>
+        <skos:broader rdf:nodeID="molluscs"/>
+        
+        <skos:narrower rdf:nodeID="snails"/>
+        <skos:narrower rdf:nodeID="slugs"/>
+        <skos:narrower rdf:nodeID="limpets"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="gibon">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Gibon</skos:prefLabel>
+        <skos:broader rdf:nodeID="apes"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="giraffe">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Giraffe</skos:prefLabel>
+        <skos:broader rdf:nodeID="ungulates"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="goliath-bird-eating-spider">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Goliath bird-eating spider</skos:prefLabel>
+        <skos:broader rdf:nodeID="spiders"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="gorilla">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Gorilla</skos:prefLabel>
+        <skos:broader rdf:nodeID="apes"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="great-raft-spider">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Great raft spider</skos:prefLabel>
+        <skos:broader rdf:nodeID="spiders"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="hagfish">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Hagfish</skos:prefLabel>
+        <skos:broader rdf:nodeID="fish"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="hippos">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Hippos</skos:prefLabel>
+        <skos:broader rdf:nodeID="ungulates"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="horses">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Horses</skos:prefLabel>
+        <skos:broader rdf:nodeID="ungulates"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="house-spiders">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>House spiders</skos:prefLabel>
+        <skos:broader rdf:nodeID="spiders"/>
+        
+        <skos:narrower rdf:nodeID="daddy-long-legs"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="human">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Human</skos:prefLabel>
+        <skos:broader rdf:nodeID="apes"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="insects">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Insects</skos:prefLabel>
+        <skos:broader rdf:nodeID="arthropods"/>
+        
+        <skos:narrower rdf:nodeID="crickets"/>
+        <skos:narrower rdf:nodeID="fleas"/>
+        <skos:narrower rdf:nodeID="flies"/>
+        <skos:narrower rdf:nodeID="midgets"/>
+        <skos:narrower rdf:nodeID="praying-mantis"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="invertebrates">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Invertebrates</skos:prefLabel>
+        <skos:topConceptOf rdf:nodeID="animals"/>
+        <skos:narrower rdf:nodeID="arthropods"/>
+        <skos:narrower rdf:nodeID="molluscs"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="lamprey">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Lamprey</skos:prefLabel>
+        <skos:broader rdf:nodeID="fish"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="lemurs">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Lemurs</skos:prefLabel>
+        <skos:broader rdf:nodeID="primates"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="limpets">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Limpets</skos:prefLabel>
+        <skos:broader rdf:nodeID="gastropods"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="lizards">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Lizards</skos:prefLabel>
+        <skos:broader rdf:nodeID="reptiles"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="lobster">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Lobster</skos:prefLabel>
+        <skos:broader rdf:nodeID="crustaceans"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="mammals">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Mammals</skos:prefLabel>
+        <skos:broader rdf:nodeID="vertebrates"/>
+        
+        <skos:narrower rdf:nodeID="carnivores"/>
+        <skos:narrower rdf:nodeID="primates"/>
+        <skos:narrower rdf:nodeID="whales"/>
+        <skos:narrower rdf:nodeID="ungulates"/>
+        <skos:narrower rdf:nodeID="rodents"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="midgets">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Midgets</skos:prefLabel>
+        <skos:broader rdf:nodeID="insects"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="mites">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Mites</skos:prefLabel>
+        <skos:broader rdf:nodeID="arachnids"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="molluscs">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Molluscs</skos:prefLabel>
+        <skos:broader rdf:nodeID="invertebrates"/>
+        
+        <skos:narrower rdf:nodeID="cephalopods"/>
+        <skos:narrower rdf:nodeID="chitons"/>
+        <skos:narrower rdf:nodeID="gastropods"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="monkeys">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Monkeys</skos:prefLabel>
+        <skos:broader rdf:nodeID="primates"/>
+        
+        <skos:narrower rdf:nodeID="new-world"/>
+        <skos:narrower rdf:nodeID="old-world-monkeys"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="mustelids">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Mustelids</skos:prefLabel>
+        <skos:broader rdf:nodeID="carnivores"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="nautilus">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Nautilus</skos:prefLabel>
+        <skos:broader rdf:nodeID="cephalopods"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="new-world">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>New world</skos:prefLabel>
+        <skos:broader rdf:nodeID="monkeys"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="newts">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Newts</skos:prefLabel>
+        <skos:broader rdf:nodeID="amphibians"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="octopus">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Octopus</skos:prefLabel>
+        <skos:broader rdf:nodeID="cephalopods"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="old-world-monkeys">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Old world monkeys</skos:prefLabel>
+        <skos:broader rdf:nodeID="monkeys"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="orangutan">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Orangutan</skos:prefLabel>
+        <skos:broader rdf:nodeID="apes"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="owls">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Owls</skos:prefLabel>
+        <skos:broader rdf:nodeID="birds"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="paralysis-tick">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Paralysis tick</skos:prefLabel>
+        <skos:broader rdf:nodeID="ticks"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="penguins">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Penguins</skos:prefLabel>
+        <skos:broader rdf:nodeID="birds"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="pigeons">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Pigeons</skos:prefLabel>
+        <skos:broader rdf:nodeID="birds"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="pigs">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Pigs</skos:prefLabel>
+        <skos:broader rdf:nodeID="ungulates"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="praying-mantis">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Praying mantis</skos:prefLabel>
+        <skos:broader rdf:nodeID="insects"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="primates">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Primates</skos:prefLabel>
+        <skos:broader rdf:nodeID="mammals"/>
+        
+        <skos:narrower rdf:nodeID="apes"/>
+        <skos:narrower rdf:nodeID="monkeys"/>
+        <skos:narrower rdf:nodeID="lemurs"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="rays">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Rays</skos:prefLabel>
+        <skos:broader rdf:nodeID="cartilaginous"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="reptiles">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Reptiles</skos:prefLabel>
+        <skos:broader rdf:nodeID="vertebrates"/>
+        
+        <skos:narrower rdf:nodeID="crocodiles"/>
+        <skos:narrower rdf:nodeID="lizards"/>
+        <skos:narrower rdf:nodeID="turtles"/>
+        <skos:narrower rdf:nodeID="snakes"/>
+        <skos:narrower rdf:nodeID="tuatara"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="rodents">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Rodents</skos:prefLabel>
+        <skos:broader rdf:nodeID="mammals"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="salmon">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Salmon</skos:prefLabel>
+        <skos:broader rdf:nodeID="bony-fish"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="scorpions">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Scorpions</skos:prefLabel>
+        <skos:broader rdf:nodeID="arachnids"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="sharks">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Sharks</skos:prefLabel>
+        <skos:broader rdf:nodeID="cartilaginous"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="sheep">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Sheep</skos:prefLabel>
+        <skos:broader rdf:nodeID="ungulates"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="shrimp">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Shrimp</skos:prefLabel>
+        <skos:broader rdf:nodeID="crustaceans"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="skates">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Skates</skos:prefLabel>
+        <skos:broader rdf:nodeID="cartilaginous"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="slugs">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Slugs</skos:prefLabel>
+        <skos:broader rdf:nodeID="gastropods"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="snails">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Snails</skos:prefLabel>
+        <skos:broader rdf:nodeID="gastropods"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="snakes">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Snakes</skos:prefLabel>
+        <skos:broader rdf:nodeID="reptiles"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="songbirds">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Songbirds</skos:prefLabel>
+        <skos:broader rdf:nodeID="birds"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="spiders">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Spiders</skos:prefLabel>
+        <skos:broader rdf:nodeID="arachnids"/>
+        
+        <skos:narrower rdf:nodeID="baboon-spider"/>
+        <skos:narrower rdf:nodeID="goliath-bird-eating-spider"/>
+        <skos:narrower rdf:nodeID="great-raft-spider"/>
+        <skos:narrower rdf:nodeID="house-spiders"/>
+        <skos:narrower rdf:nodeID="tarantula"/>
+        <skos:narrower rdf:nodeID="brazilian-wandering-spider"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="squid">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Squid</skos:prefLabel>
+        <skos:broader rdf:nodeID="cephalopods"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="tarantula">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Tarantula</skos:prefLabel>
+        <skos:broader rdf:nodeID="spiders"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="ticks">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Ticks</skos:prefLabel>
+        <skos:broader rdf:nodeID="arachnids"/>
+        
+        <skos:narrower rdf:nodeID="paralysis-tick"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="tuatara">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Tuatara</skos:prefLabel>
+        <skos:broader rdf:nodeID="reptiles"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="turtles">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Turtles</skos:prefLabel>
+        <skos:broader rdf:nodeID="reptiles"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="ungulates">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Ungulates</skos:prefLabel>
+        <skos:broader rdf:nodeID="mammals"/>
+        
+        <skos:narrower rdf:nodeID="cows"/>
+        <skos:narrower rdf:nodeID="horses"/>
+        <skos:narrower rdf:nodeID="camels"/>
+        <skos:narrower rdf:nodeID="sheep"/>
+        <skos:narrower rdf:nodeID="deer"/>
+        <skos:narrower rdf:nodeID="hippos"/>
+        <skos:narrower rdf:nodeID="giraffe"/>
+        <skos:narrower rdf:nodeID="pigs"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="vertebrates">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Vertebrates</skos:prefLabel>
+        <skos:topConceptOf rdf:nodeID="animals"/>
+        <skos:narrower rdf:nodeID="amphibians"/>
+        <skos:narrower rdf:nodeID="birds"/>
+        <skos:narrower rdf:nodeID="fish"/>
+        <skos:narrower rdf:nodeID="mammals"/>
+        <skos:narrower rdf:nodeID="reptiles"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="whales">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Whales</skos:prefLabel>
+        <skos:broader rdf:nodeID="mammals"/>
+        
+        <skos:narrower rdf:nodeID="dolphins"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="yeti">
+        <skos:inScheme rdf:nodeID="animals"/>
+        <skos:prefLabel>Yeti</skos:prefLabel>
+        <skos:broader rdf:nodeID="apes"/>
+        
+        
+    </skos:Concept>
+</rdf:RDF>

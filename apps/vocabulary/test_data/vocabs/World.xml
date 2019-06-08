@@ -1,0 +1,2427 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/"
+xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+xmlns:zthes="https://unilexicon.com/"
+xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+
+    <skos:ConceptScheme rdf:nodeID="un-world-001">
+        <skos:prefLabel>World</skos:prefLabel>
+        <skos:definition>UN World Regions taxonomy defines composition of continental regions and geographical sub-regions.</skos:definition>
+        
+        
+        
+        <dc:date>29-06-2015</dc:date>
+    </skos:ConceptScheme>
+
+    <skos:Concept rdf:nodeID="004">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Afghanistan</skos:prefLabel>
+        <skos:broader rdf:nodeID="034"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="002">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Africa</skos:prefLabel>
+        <skos:topConceptOf rdf:nodeID="un-world-001"/>
+        <skos:narrower rdf:nodeID="014"/>
+        <skos:narrower rdf:nodeID="017"/>
+        <skos:narrower rdf:nodeID="015"/>
+        <skos:narrower rdf:nodeID="018"/>
+        <skos:narrower rdf:nodeID="011"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="248">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Åland Islands</skos:prefLabel>
+        <skos:broader rdf:nodeID="154"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="008">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Albania</skos:prefLabel>
+        <skos:broader rdf:nodeID="039"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="012">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Algeria</skos:prefLabel>
+        <skos:broader rdf:nodeID="015"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="016">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>American Samoa</skos:prefLabel>
+        <skos:broader rdf:nodeID="061"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="019">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Americas</skos:prefLabel>
+        <skos:topConceptOf rdf:nodeID="un-world-001"/>
+        <skos:narrower rdf:nodeID="419"/>
+        <skos:narrower rdf:nodeID="021"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="020">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Andorra</skos:prefLabel>
+        <skos:broader rdf:nodeID="039"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="024">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Angola</skos:prefLabel>
+        <skos:broader rdf:nodeID="017"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="660">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Anguilla</skos:prefLabel>
+        <skos:broader rdf:nodeID="029"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="028">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Antigua and Barbuda</skos:prefLabel>
+        <skos:broader rdf:nodeID="029"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="032">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Argentina</skos:prefLabel>
+        <skos:broader rdf:nodeID="005"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="051">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Armenia</skos:prefLabel>
+        <skos:broader rdf:nodeID="145"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="533">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Aruba</skos:prefLabel>
+        <skos:broader rdf:nodeID="029"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="142">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Asia</skos:prefLabel>
+        <skos:topConceptOf rdf:nodeID="un-world-001"/>
+        <skos:narrower rdf:nodeID="143"/>
+        <skos:narrower rdf:nodeID="030"/>
+        <skos:narrower rdf:nodeID="034"/>
+        <skos:narrower rdf:nodeID="035"/>
+        <skos:narrower rdf:nodeID="145"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="036">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Australia</skos:prefLabel>
+        <skos:broader rdf:nodeID="053"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="053">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Australia and New Zealand</skos:prefLabel>
+        <skos:broader rdf:nodeID="009"/>
+        
+        <skos:narrower rdf:nodeID="036"/>
+        <skos:narrower rdf:nodeID="554"/>
+        <skos:narrower rdf:nodeID="574"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="040">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Austria</skos:prefLabel>
+        <skos:broader rdf:nodeID="155"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="031">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Azerbaijan</skos:prefLabel>
+        <skos:broader rdf:nodeID="145"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="044">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Bahamas</skos:prefLabel>
+        <skos:broader rdf:nodeID="029"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="048">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Bahrain</skos:prefLabel>
+        <skos:broader rdf:nodeID="145"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="050">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Bangladesh</skos:prefLabel>
+        <skos:broader rdf:nodeID="034"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="052">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Barbados</skos:prefLabel>
+        <skos:broader rdf:nodeID="029"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="112">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Belarus</skos:prefLabel>
+        <skos:broader rdf:nodeID="151"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="056">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Belgium</skos:prefLabel>
+        <skos:broader rdf:nodeID="155"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="084">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Belize</skos:prefLabel>
+        <skos:broader rdf:nodeID="013"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="204">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Benin</skos:prefLabel>
+        <skos:broader rdf:nodeID="011"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="060">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Bermuda</skos:prefLabel>
+        <skos:broader rdf:nodeID="021"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="064">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Bhutan</skos:prefLabel>
+        <skos:broader rdf:nodeID="034"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="068">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Bolivia (Plurinational State of)</skos:prefLabel>
+        <skos:broader rdf:nodeID="005"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="535">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Bonaire, Sint Eustatius and Saba</skos:prefLabel>
+        <skos:broader rdf:nodeID="029"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="070">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Bosnia and Herzegovina</skos:prefLabel>
+        <skos:broader rdf:nodeID="039"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="072">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Botswana</skos:prefLabel>
+        <skos:broader rdf:nodeID="018"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="076">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Brazil</skos:prefLabel>
+        <skos:broader rdf:nodeID="005"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="092">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>British Virgin Islands</skos:prefLabel>
+        <skos:broader rdf:nodeID="029"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="096">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Brunei Darussalam</skos:prefLabel>
+        <skos:broader rdf:nodeID="035"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="100">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Bulgaria</skos:prefLabel>
+        <skos:broader rdf:nodeID="151"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="854">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Burkina Faso</skos:prefLabel>
+        <skos:broader rdf:nodeID="011"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="108">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Burundi</skos:prefLabel>
+        <skos:broader rdf:nodeID="014"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="132">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Cabo Verde</skos:prefLabel>
+        <skos:broader rdf:nodeID="011"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="116">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Cambodia</skos:prefLabel>
+        <skos:broader rdf:nodeID="035"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="120">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Cameroon</skos:prefLabel>
+        <skos:broader rdf:nodeID="017"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="124">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Canada</skos:prefLabel>
+        <skos:broader rdf:nodeID="021"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="029">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Caribbean</skos:prefLabel>
+        <skos:broader rdf:nodeID="419"/>
+        
+        <skos:narrower rdf:nodeID="660"/>
+        <skos:narrower rdf:nodeID="028"/>
+        <skos:narrower rdf:nodeID="533"/>
+        <skos:narrower rdf:nodeID="044"/>
+        <skos:narrower rdf:nodeID="052"/>
+        <skos:narrower rdf:nodeID="535"/>
+        <skos:narrower rdf:nodeID="092"/>
+        <skos:narrower rdf:nodeID="136"/>
+        <skos:narrower rdf:nodeID="192"/>
+        <skos:narrower rdf:nodeID="531"/>
+        <skos:narrower rdf:nodeID="212"/>
+        <skos:narrower rdf:nodeID="214"/>
+        <skos:narrower rdf:nodeID="308"/>
+        <skos:narrower rdf:nodeID="312"/>
+        <skos:narrower rdf:nodeID="332"/>
+        <skos:narrower rdf:nodeID="388"/>
+        <skos:narrower rdf:nodeID="474"/>
+        <skos:narrower rdf:nodeID="500"/>
+        <skos:narrower rdf:nodeID="630"/>
+        <skos:narrower rdf:nodeID="652"/>
+        <skos:narrower rdf:nodeID="659"/>
+        <skos:narrower rdf:nodeID="662"/>
+        <skos:narrower rdf:nodeID="663"/>
+        <skos:narrower rdf:nodeID="670"/>
+        <skos:narrower rdf:nodeID="534"/>
+        <skos:narrower rdf:nodeID="780"/>
+        <skos:narrower rdf:nodeID="796"/>
+        <skos:narrower rdf:nodeID="850"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="136">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Cayman Islands</skos:prefLabel>
+        <skos:broader rdf:nodeID="029"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="140">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Central African Republic</skos:prefLabel>
+        <skos:broader rdf:nodeID="017"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="013">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Central America</skos:prefLabel>
+        <skos:broader rdf:nodeID="419"/>
+        
+        <skos:narrower rdf:nodeID="084"/>
+        <skos:narrower rdf:nodeID="188"/>
+        <skos:narrower rdf:nodeID="222"/>
+        <skos:narrower rdf:nodeID="320"/>
+        <skos:narrower rdf:nodeID="340"/>
+        <skos:narrower rdf:nodeID="484"/>
+        <skos:narrower rdf:nodeID="558"/>
+        <skos:narrower rdf:nodeID="591"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="143">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Central Asia</skos:prefLabel>
+        <skos:broader rdf:nodeID="142"/>
+        
+        <skos:narrower rdf:nodeID="398"/>
+        <skos:narrower rdf:nodeID="417"/>
+        <skos:narrower rdf:nodeID="762"/>
+        <skos:narrower rdf:nodeID="795"/>
+        <skos:narrower rdf:nodeID="860"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="148">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Chad</skos:prefLabel>
+        <skos:broader rdf:nodeID="017"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="830">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Channel Islands</skos:prefLabel>
+        <skos:broader rdf:nodeID="154"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="152">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Chile</skos:prefLabel>
+        <skos:broader rdf:nodeID="005"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="156">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>China</skos:prefLabel>
+        <skos:broader rdf:nodeID="030"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="344">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>China, Hong Kong Special Administrative Region</skos:prefLabel>
+        <skos:broader rdf:nodeID="030"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="446">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>China, Macao Special Administrative Region</skos:prefLabel>
+        <skos:broader rdf:nodeID="030"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="170">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Colombia</skos:prefLabel>
+        <skos:broader rdf:nodeID="005"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="174">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Comoros</skos:prefLabel>
+        <skos:broader rdf:nodeID="014"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="178">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Congo</skos:prefLabel>
+        <skos:broader rdf:nodeID="017"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="184">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Cook Islands</skos:prefLabel>
+        <skos:broader rdf:nodeID="061"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="188">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Costa Rica</skos:prefLabel>
+        <skos:broader rdf:nodeID="013"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="384">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Cote d&#39;Ivoire</skos:prefLabel>
+        <skos:broader rdf:nodeID="011"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="191">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Croatia</skos:prefLabel>
+        <skos:broader rdf:nodeID="039"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="192">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Cuba</skos:prefLabel>
+        <skos:broader rdf:nodeID="029"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="531">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Curaçao</skos:prefLabel>
+        <skos:broader rdf:nodeID="029"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="196">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Cyprus</skos:prefLabel>
+        <skos:broader rdf:nodeID="145"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="203">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Czech Republic</skos:prefLabel>
+        <skos:broader rdf:nodeID="151"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="408">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Democratic People&#39;s Republic of Korea</skos:prefLabel>
+        <skos:broader rdf:nodeID="030"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="180">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Democratic Republic of the Congo</skos:prefLabel>
+        <skos:broader rdf:nodeID="017"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="208">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Denmark</skos:prefLabel>
+        <skos:broader rdf:nodeID="154"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="262">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Djibouti</skos:prefLabel>
+        <skos:broader rdf:nodeID="014"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="212">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Dominica</skos:prefLabel>
+        <skos:broader rdf:nodeID="029"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="214">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Dominican Republic</skos:prefLabel>
+        <skos:broader rdf:nodeID="029"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="014">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Eastern Africa</skos:prefLabel>
+        <skos:broader rdf:nodeID="002"/>
+        
+        <skos:narrower rdf:nodeID="108"/>
+        <skos:narrower rdf:nodeID="174"/>
+        <skos:narrower rdf:nodeID="262"/>
+        <skos:narrower rdf:nodeID="232"/>
+        <skos:narrower rdf:nodeID="231"/>
+        <skos:narrower rdf:nodeID="404"/>
+        <skos:narrower rdf:nodeID="450"/>
+        <skos:narrower rdf:nodeID="454"/>
+        <skos:narrower rdf:nodeID="480"/>
+        <skos:narrower rdf:nodeID="175"/>
+        <skos:narrower rdf:nodeID="508"/>
+        <skos:narrower rdf:nodeID="638"/>
+        <skos:narrower rdf:nodeID="646"/>
+        <skos:narrower rdf:nodeID="690"/>
+        <skos:narrower rdf:nodeID="706"/>
+        <skos:narrower rdf:nodeID="728"/>
+        <skos:narrower rdf:nodeID="800"/>
+        <skos:narrower rdf:nodeID="834"/>
+        <skos:narrower rdf:nodeID="894"/>
+        <skos:narrower rdf:nodeID="716"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="030">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Eastern Asia</skos:prefLabel>
+        <skos:broader rdf:nodeID="142"/>
+        
+        <skos:narrower rdf:nodeID="156"/>
+        <skos:narrower rdf:nodeID="344"/>
+        <skos:narrower rdf:nodeID="446"/>
+        <skos:narrower rdf:nodeID="408"/>
+        <skos:narrower rdf:nodeID="392"/>
+        <skos:narrower rdf:nodeID="496"/>
+        <skos:narrower rdf:nodeID="410"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="151">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Eastern Europe</skos:prefLabel>
+        <skos:broader rdf:nodeID="150"/>
+        
+        <skos:narrower rdf:nodeID="112"/>
+        <skos:narrower rdf:nodeID="100"/>
+        <skos:narrower rdf:nodeID="203"/>
+        <skos:narrower rdf:nodeID="348"/>
+        <skos:narrower rdf:nodeID="616"/>
+        <skos:narrower rdf:nodeID="498"/>
+        <skos:narrower rdf:nodeID="642"/>
+        <skos:narrower rdf:nodeID="643"/>
+        <skos:narrower rdf:nodeID="703"/>
+        <skos:narrower rdf:nodeID="804"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="218">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Ecuador</skos:prefLabel>
+        <skos:broader rdf:nodeID="005"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="818">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Egypt</skos:prefLabel>
+        <skos:broader rdf:nodeID="015"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="222">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>El Salvador</skos:prefLabel>
+        <skos:broader rdf:nodeID="013"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="226">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Equatorial Guinea</skos:prefLabel>
+        <skos:broader rdf:nodeID="017"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="232">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Eritrea</skos:prefLabel>
+        <skos:broader rdf:nodeID="014"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="233">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Estonia</skos:prefLabel>
+        <skos:broader rdf:nodeID="154"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="231">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Ethiopia</skos:prefLabel>
+        <skos:broader rdf:nodeID="014"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="150">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Europe</skos:prefLabel>
+        <skos:topConceptOf rdf:nodeID="un-world-001"/>
+        <skos:narrower rdf:nodeID="151"/>
+        <skos:narrower rdf:nodeID="154"/>
+        <skos:narrower rdf:nodeID="039"/>
+        <skos:narrower rdf:nodeID="155"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="234">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Faeroe Islands</skos:prefLabel>
+        <skos:broader rdf:nodeID="154"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="238">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Falkland Islands (Malvinas)</skos:prefLabel>
+        <skos:broader rdf:nodeID="005"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="242">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Fiji</skos:prefLabel>
+        <skos:broader rdf:nodeID="054"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="246">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Finland</skos:prefLabel>
+        <skos:broader rdf:nodeID="154"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="250">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>France</skos:prefLabel>
+        <skos:broader rdf:nodeID="155"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="254">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>French Guiana</skos:prefLabel>
+        <skos:broader rdf:nodeID="005"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="258">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>French Polynesia</skos:prefLabel>
+        <skos:broader rdf:nodeID="061"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="266">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Gabon</skos:prefLabel>
+        <skos:broader rdf:nodeID="017"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="270">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Gambia</skos:prefLabel>
+        <skos:broader rdf:nodeID="011"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="268">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Georgia</skos:prefLabel>
+        <skos:broader rdf:nodeID="145"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="276">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Germany</skos:prefLabel>
+        <skos:broader rdf:nodeID="155"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="288">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Ghana</skos:prefLabel>
+        <skos:broader rdf:nodeID="011"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="292">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Gibraltar</skos:prefLabel>
+        <skos:broader rdf:nodeID="039"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="300">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Greece</skos:prefLabel>
+        <skos:broader rdf:nodeID="039"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="304">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Greenland</skos:prefLabel>
+        <skos:broader rdf:nodeID="021"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="308">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Grenada</skos:prefLabel>
+        <skos:broader rdf:nodeID="029"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="312">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Guadeloupe</skos:prefLabel>
+        <skos:broader rdf:nodeID="029"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="316">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Guam</skos:prefLabel>
+        <skos:broader rdf:nodeID="057"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="320">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Guatemala</skos:prefLabel>
+        <skos:broader rdf:nodeID="013"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="831">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Guernsey</skos:prefLabel>
+        <skos:broader rdf:nodeID="154"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="324">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Guinea</skos:prefLabel>
+        <skos:broader rdf:nodeID="011"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="624">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Guinea-Bissau</skos:prefLabel>
+        <skos:broader rdf:nodeID="011"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="328">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Guyana</skos:prefLabel>
+        <skos:broader rdf:nodeID="005"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="332">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Haiti</skos:prefLabel>
+        <skos:broader rdf:nodeID="029"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="336">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Holy See</skos:prefLabel>
+        <skos:broader rdf:nodeID="039"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="340">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Honduras</skos:prefLabel>
+        <skos:broader rdf:nodeID="013"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="348">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Hungary</skos:prefLabel>
+        <skos:broader rdf:nodeID="151"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="352">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Iceland</skos:prefLabel>
+        <skos:broader rdf:nodeID="154"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="356">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>India</skos:prefLabel>
+        <skos:broader rdf:nodeID="034"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="360">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Indonesia</skos:prefLabel>
+        <skos:broader rdf:nodeID="035"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="364">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Iran (Islamic Republic of)</skos:prefLabel>
+        <skos:broader rdf:nodeID="034"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="368">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Iraq</skos:prefLabel>
+        <skos:broader rdf:nodeID="145"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="372">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Ireland</skos:prefLabel>
+        <skos:broader rdf:nodeID="154"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="833">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Isle of Man</skos:prefLabel>
+        <skos:broader rdf:nodeID="154"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="376">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Israel</skos:prefLabel>
+        <skos:broader rdf:nodeID="145"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="380">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Italy</skos:prefLabel>
+        <skos:broader rdf:nodeID="039"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="388">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Jamaica</skos:prefLabel>
+        <skos:broader rdf:nodeID="029"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="392">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Japan</skos:prefLabel>
+        <skos:broader rdf:nodeID="030"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="832">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Jersey</skos:prefLabel>
+        <skos:broader rdf:nodeID="154"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="400">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Jordan</skos:prefLabel>
+        <skos:broader rdf:nodeID="145"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="398">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Kazakhstan</skos:prefLabel>
+        <skos:broader rdf:nodeID="143"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="404">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Kenya</skos:prefLabel>
+        <skos:broader rdf:nodeID="014"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="296">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Kiribati</skos:prefLabel>
+        <skos:broader rdf:nodeID="057"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="414">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Kuwait</skos:prefLabel>
+        <skos:broader rdf:nodeID="145"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="417">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Kyrgyzstan</skos:prefLabel>
+        <skos:broader rdf:nodeID="143"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="418">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Lao People&#39;s Democratic Republic</skos:prefLabel>
+        <skos:broader rdf:nodeID="035"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="419">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Latin America and the Caribbean</skos:prefLabel>
+        <skos:broader rdf:nodeID="019"/>
+        
+        <skos:narrower rdf:nodeID="029"/>
+        <skos:narrower rdf:nodeID="013"/>
+        <skos:narrower rdf:nodeID="005"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="428">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Latvia</skos:prefLabel>
+        <skos:broader rdf:nodeID="154"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="422">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Lebanon</skos:prefLabel>
+        <skos:broader rdf:nodeID="145"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="426">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Lesotho</skos:prefLabel>
+        <skos:broader rdf:nodeID="018"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="430">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Liberia</skos:prefLabel>
+        <skos:broader rdf:nodeID="011"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="434">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Libya</skos:prefLabel>
+        <skos:broader rdf:nodeID="015"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="438">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Liechtenstein</skos:prefLabel>
+        <skos:broader rdf:nodeID="155"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="440">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Lithuania</skos:prefLabel>
+        <skos:broader rdf:nodeID="154"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="442">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Luxembourg</skos:prefLabel>
+        <skos:broader rdf:nodeID="155"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="450">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Madagascar</skos:prefLabel>
+        <skos:broader rdf:nodeID="014"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="454">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Malawi</skos:prefLabel>
+        <skos:broader rdf:nodeID="014"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="458">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Malaysia</skos:prefLabel>
+        <skos:broader rdf:nodeID="035"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="462">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Maldives</skos:prefLabel>
+        <skos:broader rdf:nodeID="034"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="466">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Mali</skos:prefLabel>
+        <skos:broader rdf:nodeID="011"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="470">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Malta</skos:prefLabel>
+        <skos:broader rdf:nodeID="039"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="584">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Marshall Islands</skos:prefLabel>
+        <skos:broader rdf:nodeID="057"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="474">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Martinique</skos:prefLabel>
+        <skos:broader rdf:nodeID="029"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="478">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Mauritania</skos:prefLabel>
+        <skos:broader rdf:nodeID="011"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="480">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Mauritius</skos:prefLabel>
+        <skos:broader rdf:nodeID="014"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="175">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Mayotte</skos:prefLabel>
+        <skos:broader rdf:nodeID="014"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="054">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Melanesia</skos:prefLabel>
+        <skos:broader rdf:nodeID="009"/>
+        
+        <skos:narrower rdf:nodeID="242"/>
+        <skos:narrower rdf:nodeID="540"/>
+        <skos:narrower rdf:nodeID="598"/>
+        <skos:narrower rdf:nodeID="090"/>
+        <skos:narrower rdf:nodeID="548"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="484">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Mexico</skos:prefLabel>
+        <skos:broader rdf:nodeID="013"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="057">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Micronesia</skos:prefLabel>
+        <skos:broader rdf:nodeID="009"/>
+        
+        <skos:narrower rdf:nodeID="316"/>
+        <skos:narrower rdf:nodeID="296"/>
+        <skos:narrower rdf:nodeID="584"/>
+        <skos:narrower rdf:nodeID="583"/>
+        <skos:narrower rdf:nodeID="520"/>
+        <skos:narrower rdf:nodeID="580"/>
+        <skos:narrower rdf:nodeID="585"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="583">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Micronesia (Federated States of)</skos:prefLabel>
+        <skos:broader rdf:nodeID="057"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="017">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Middle Africa</skos:prefLabel>
+        <skos:broader rdf:nodeID="002"/>
+        
+        <skos:narrower rdf:nodeID="024"/>
+        <skos:narrower rdf:nodeID="120"/>
+        <skos:narrower rdf:nodeID="140"/>
+        <skos:narrower rdf:nodeID="148"/>
+        <skos:narrower rdf:nodeID="178"/>
+        <skos:narrower rdf:nodeID="180"/>
+        <skos:narrower rdf:nodeID="226"/>
+        <skos:narrower rdf:nodeID="266"/>
+        <skos:narrower rdf:nodeID="678"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="492">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Monaco</skos:prefLabel>
+        <skos:broader rdf:nodeID="155"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="496">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Mongolia</skos:prefLabel>
+        <skos:broader rdf:nodeID="030"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="499">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Montenegro</skos:prefLabel>
+        <skos:broader rdf:nodeID="039"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="500">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Montserrat</skos:prefLabel>
+        <skos:broader rdf:nodeID="029"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="504">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Morocco</skos:prefLabel>
+        <skos:broader rdf:nodeID="015"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="508">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Mozambique</skos:prefLabel>
+        <skos:broader rdf:nodeID="014"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="104">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Myanmar</skos:prefLabel>
+        <skos:broader rdf:nodeID="035"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="516">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Namibia</skos:prefLabel>
+        <skos:broader rdf:nodeID="018"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="520">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Nauru</skos:prefLabel>
+        <skos:broader rdf:nodeID="057"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="524">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Nepal</skos:prefLabel>
+        <skos:broader rdf:nodeID="034"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="528">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Netherlands</skos:prefLabel>
+        <skos:broader rdf:nodeID="155"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="540">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>New Caledonia</skos:prefLabel>
+        <skos:broader rdf:nodeID="054"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="554">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>New Zealand</skos:prefLabel>
+        <skos:broader rdf:nodeID="053"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="558">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Nicaragua</skos:prefLabel>
+        <skos:broader rdf:nodeID="013"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="562">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Niger</skos:prefLabel>
+        <skos:broader rdf:nodeID="011"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="566">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Nigeria</skos:prefLabel>
+        <skos:broader rdf:nodeID="011"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="570">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Niue</skos:prefLabel>
+        <skos:broader rdf:nodeID="061"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="574">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Norfolk Island</skos:prefLabel>
+        <skos:broader rdf:nodeID="053"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="015">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Northern Africa</skos:prefLabel>
+        <skos:broader rdf:nodeID="002"/>
+        
+        <skos:narrower rdf:nodeID="012"/>
+        <skos:narrower rdf:nodeID="818"/>
+        <skos:narrower rdf:nodeID="434"/>
+        <skos:narrower rdf:nodeID="504"/>
+        <skos:narrower rdf:nodeID="729"/>
+        <skos:narrower rdf:nodeID="788"/>
+        <skos:narrower rdf:nodeID="732"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="021">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Northern America</skos:prefLabel>
+        <skos:broader rdf:nodeID="019"/>
+        
+        <skos:narrower rdf:nodeID="060"/>
+        <skos:narrower rdf:nodeID="124"/>
+        <skos:narrower rdf:nodeID="304"/>
+        <skos:narrower rdf:nodeID="666"/>
+        <skos:narrower rdf:nodeID="840"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="154">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Northern Europe</skos:prefLabel>
+        <skos:broader rdf:nodeID="150"/>
+        
+        <skos:narrower rdf:nodeID="248"/>
+        <skos:narrower rdf:nodeID="830"/>
+        <skos:narrower rdf:nodeID="208"/>
+        <skos:narrower rdf:nodeID="233"/>
+        <skos:narrower rdf:nodeID="234"/>
+        <skos:narrower rdf:nodeID="246"/>
+        <skos:narrower rdf:nodeID="831"/>
+        <skos:narrower rdf:nodeID="352"/>
+        <skos:narrower rdf:nodeID="372"/>
+        <skos:narrower rdf:nodeID="833"/>
+        <skos:narrower rdf:nodeID="832"/>
+        <skos:narrower rdf:nodeID="428"/>
+        <skos:narrower rdf:nodeID="440"/>
+        <skos:narrower rdf:nodeID="578"/>
+        <skos:narrower rdf:nodeID="680"/>
+        <skos:narrower rdf:nodeID="744"/>
+        <skos:narrower rdf:nodeID="752"/>
+        <skos:narrower rdf:nodeID="826"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="580">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Northern Mariana Islands</skos:prefLabel>
+        <skos:broader rdf:nodeID="057"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="578">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Norway</skos:prefLabel>
+        <skos:broader rdf:nodeID="154"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="009">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Oceania</skos:prefLabel>
+        <skos:topConceptOf rdf:nodeID="un-world-001"/>
+        <skos:narrower rdf:nodeID="053"/>
+        <skos:narrower rdf:nodeID="054"/>
+        <skos:narrower rdf:nodeID="057"/>
+        <skos:narrower rdf:nodeID="061"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="512">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Oman</skos:prefLabel>
+        <skos:broader rdf:nodeID="145"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="586">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Pakistan</skos:prefLabel>
+        <skos:broader rdf:nodeID="034"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="585">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Palau</skos:prefLabel>
+        <skos:broader rdf:nodeID="057"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="591">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Panama</skos:prefLabel>
+        <skos:broader rdf:nodeID="013"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="598">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Papua New Guinea</skos:prefLabel>
+        <skos:broader rdf:nodeID="054"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="600">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Paraguay</skos:prefLabel>
+        <skos:broader rdf:nodeID="005"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="604">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Peru</skos:prefLabel>
+        <skos:broader rdf:nodeID="005"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="608">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Philippines</skos:prefLabel>
+        <skos:broader rdf:nodeID="035"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="612">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Pitcairn</skos:prefLabel>
+        <skos:broader rdf:nodeID="061"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="616">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Poland</skos:prefLabel>
+        <skos:broader rdf:nodeID="151"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="061">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Polynesia</skos:prefLabel>
+        <skos:broader rdf:nodeID="009"/>
+        
+        <skos:narrower rdf:nodeID="016"/>
+        <skos:narrower rdf:nodeID="184"/>
+        <skos:narrower rdf:nodeID="258"/>
+        <skos:narrower rdf:nodeID="570"/>
+        <skos:narrower rdf:nodeID="612"/>
+        <skos:narrower rdf:nodeID="882"/>
+        <skos:narrower rdf:nodeID="772"/>
+        <skos:narrower rdf:nodeID="776"/>
+        <skos:narrower rdf:nodeID="798"/>
+        <skos:narrower rdf:nodeID="876"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="620">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Portugal</skos:prefLabel>
+        <skos:broader rdf:nodeID="039"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="630">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Puerto Rico</skos:prefLabel>
+        <skos:broader rdf:nodeID="029"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="634">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Qatar</skos:prefLabel>
+        <skos:broader rdf:nodeID="145"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="410">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Republic of Korea</skos:prefLabel>
+        <skos:broader rdf:nodeID="030"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="498">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Republic of Moldova</skos:prefLabel>
+        <skos:broader rdf:nodeID="151"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="638">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Réunion</skos:prefLabel>
+        <skos:broader rdf:nodeID="014"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="642">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Romania</skos:prefLabel>
+        <skos:broader rdf:nodeID="151"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="643">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Russian Federation</skos:prefLabel>
+        <skos:broader rdf:nodeID="151"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="646">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Rwanda</skos:prefLabel>
+        <skos:broader rdf:nodeID="014"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="654">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Saint Helena</skos:prefLabel>
+        <skos:broader rdf:nodeID="011"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="659">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Saint Kitts and Nevis</skos:prefLabel>
+        <skos:broader rdf:nodeID="029"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="662">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Saint Lucia</skos:prefLabel>
+        <skos:broader rdf:nodeID="029"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="663">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Saint Martin (French part)</skos:prefLabel>
+        <skos:broader rdf:nodeID="029"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="666">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Saint Pierre and Miquelon</skos:prefLabel>
+        <skos:broader rdf:nodeID="021"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="670">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Saint Vincent and the Grenadines</skos:prefLabel>
+        <skos:broader rdf:nodeID="029"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="652">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Saint-Barthélemy</skos:prefLabel>
+        <skos:broader rdf:nodeID="029"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="882">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Samoa</skos:prefLabel>
+        <skos:broader rdf:nodeID="061"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="674">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>San Marino</skos:prefLabel>
+        <skos:broader rdf:nodeID="039"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="678">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Sao Tome and Principe</skos:prefLabel>
+        <skos:broader rdf:nodeID="017"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="680">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Sark</skos:prefLabel>
+        <skos:broader rdf:nodeID="154"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="682">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Saudi Arabia</skos:prefLabel>
+        <skos:broader rdf:nodeID="145"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="686">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Senegal</skos:prefLabel>
+        <skos:broader rdf:nodeID="011"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="688">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Serbia</skos:prefLabel>
+        <skos:broader rdf:nodeID="039"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="690">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Seychelles</skos:prefLabel>
+        <skos:broader rdf:nodeID="014"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="694">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Sierra Leone</skos:prefLabel>
+        <skos:broader rdf:nodeID="011"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="702">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Singapore</skos:prefLabel>
+        <skos:broader rdf:nodeID="035"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="534">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Sint Maarten (Dutch part)</skos:prefLabel>
+        <skos:broader rdf:nodeID="029"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="703">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Slovakia</skos:prefLabel>
+        <skos:broader rdf:nodeID="151"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="705">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Slovenia</skos:prefLabel>
+        <skos:broader rdf:nodeID="039"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="090">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Solomon Islands</skos:prefLabel>
+        <skos:broader rdf:nodeID="054"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="706">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Somalia</skos:prefLabel>
+        <skos:broader rdf:nodeID="014"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="710">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>South Africa</skos:prefLabel>
+        <skos:broader rdf:nodeID="018"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="005">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>South America</skos:prefLabel>
+        <skos:broader rdf:nodeID="419"/>
+        
+        <skos:narrower rdf:nodeID="032"/>
+        <skos:narrower rdf:nodeID="068"/>
+        <skos:narrower rdf:nodeID="076"/>
+        <skos:narrower rdf:nodeID="152"/>
+        <skos:narrower rdf:nodeID="170"/>
+        <skos:narrower rdf:nodeID="218"/>
+        <skos:narrower rdf:nodeID="238"/>
+        <skos:narrower rdf:nodeID="254"/>
+        <skos:narrower rdf:nodeID="328"/>
+        <skos:narrower rdf:nodeID="600"/>
+        <skos:narrower rdf:nodeID="604"/>
+        <skos:narrower rdf:nodeID="740"/>
+        <skos:narrower rdf:nodeID="858"/>
+        <skos:narrower rdf:nodeID="862"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="728">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>South Sudan</skos:prefLabel>
+        <skos:broader rdf:nodeID="014"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="035">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>South-Eastern Asia</skos:prefLabel>
+        <skos:broader rdf:nodeID="142"/>
+        
+        <skos:narrower rdf:nodeID="096"/>
+        <skos:narrower rdf:nodeID="116"/>
+        <skos:narrower rdf:nodeID="360"/>
+        <skos:narrower rdf:nodeID="418"/>
+        <skos:narrower rdf:nodeID="458"/>
+        <skos:narrower rdf:nodeID="104"/>
+        <skos:narrower rdf:nodeID="608"/>
+        <skos:narrower rdf:nodeID="702"/>
+        <skos:narrower rdf:nodeID="764"/>
+        <skos:narrower rdf:nodeID="626"/>
+        <skos:narrower rdf:nodeID="704"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="018">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Southern Africa</skos:prefLabel>
+        <skos:broader rdf:nodeID="002"/>
+        
+        <skos:narrower rdf:nodeID="072"/>
+        <skos:narrower rdf:nodeID="426"/>
+        <skos:narrower rdf:nodeID="516"/>
+        <skos:narrower rdf:nodeID="710"/>
+        <skos:narrower rdf:nodeID="748"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="034">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Southern Asia</skos:prefLabel>
+        <skos:broader rdf:nodeID="142"/>
+        
+        <skos:narrower rdf:nodeID="004"/>
+        <skos:narrower rdf:nodeID="050"/>
+        <skos:narrower rdf:nodeID="064"/>
+        <skos:narrower rdf:nodeID="356"/>
+        <skos:narrower rdf:nodeID="364"/>
+        <skos:narrower rdf:nodeID="462"/>
+        <skos:narrower rdf:nodeID="524"/>
+        <skos:narrower rdf:nodeID="586"/>
+        <skos:narrower rdf:nodeID="144"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="039">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Southern Europe</skos:prefLabel>
+        <skos:broader rdf:nodeID="150"/>
+        
+        <skos:narrower rdf:nodeID="008"/>
+        <skos:narrower rdf:nodeID="020"/>
+        <skos:narrower rdf:nodeID="070"/>
+        <skos:narrower rdf:nodeID="191"/>
+        <skos:narrower rdf:nodeID="292"/>
+        <skos:narrower rdf:nodeID="300"/>
+        <skos:narrower rdf:nodeID="336"/>
+        <skos:narrower rdf:nodeID="380"/>
+        <skos:narrower rdf:nodeID="470"/>
+        <skos:narrower rdf:nodeID="499"/>
+        <skos:narrower rdf:nodeID="620"/>
+        <skos:narrower rdf:nodeID="674"/>
+        <skos:narrower rdf:nodeID="688"/>
+        <skos:narrower rdf:nodeID="705"/>
+        <skos:narrower rdf:nodeID="724"/>
+        <skos:narrower rdf:nodeID="807"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="724">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Spain</skos:prefLabel>
+        <skos:broader rdf:nodeID="039"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="144">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Sri Lanka</skos:prefLabel>
+        <skos:broader rdf:nodeID="034"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="275">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>State of Palestine</skos:prefLabel>
+        <skos:broader rdf:nodeID="145"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="729">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Sudan</skos:prefLabel>
+        <skos:broader rdf:nodeID="015"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="740">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Suriname</skos:prefLabel>
+        <skos:broader rdf:nodeID="005"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="744">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Svalbard and Jan Mayen Islands</skos:prefLabel>
+        <skos:broader rdf:nodeID="154"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="748">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Swaziland</skos:prefLabel>
+        <skos:broader rdf:nodeID="018"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="752">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Sweden</skos:prefLabel>
+        <skos:broader rdf:nodeID="154"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="756">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Switzerland</skos:prefLabel>
+        <skos:broader rdf:nodeID="155"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="760">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Syrian Arab Republic</skos:prefLabel>
+        <skos:broader rdf:nodeID="145"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="762">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Tajikistan</skos:prefLabel>
+        <skos:broader rdf:nodeID="143"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="764">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Thailand</skos:prefLabel>
+        <skos:broader rdf:nodeID="035"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="807">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>The former Yugoslav Republic of Macedonia</skos:prefLabel>
+        <skos:broader rdf:nodeID="039"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="626">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Timor-Leste</skos:prefLabel>
+        <skos:broader rdf:nodeID="035"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="768">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Togo</skos:prefLabel>
+        <skos:broader rdf:nodeID="011"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="772">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Tokelau</skos:prefLabel>
+        <skos:broader rdf:nodeID="061"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="776">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Tonga</skos:prefLabel>
+        <skos:broader rdf:nodeID="061"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="780">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Trinidad and Tobago</skos:prefLabel>
+        <skos:broader rdf:nodeID="029"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="788">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Tunisia</skos:prefLabel>
+        <skos:broader rdf:nodeID="015"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="792">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Turkey</skos:prefLabel>
+        <skos:broader rdf:nodeID="145"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="795">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Turkmenistan</skos:prefLabel>
+        <skos:broader rdf:nodeID="143"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="796">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Turks and Caicos Islands</skos:prefLabel>
+        <skos:broader rdf:nodeID="029"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="798">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Tuvalu</skos:prefLabel>
+        <skos:broader rdf:nodeID="061"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="800">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Uganda</skos:prefLabel>
+        <skos:broader rdf:nodeID="014"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="804">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Ukraine</skos:prefLabel>
+        <skos:broader rdf:nodeID="151"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="784">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>United Arab Emirates</skos:prefLabel>
+        <skos:broader rdf:nodeID="145"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="826">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>United Kingdom of Great Britain and Northern Ireland</skos:prefLabel>
+        <skos:broader rdf:nodeID="154"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="834">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>United Republic of Tanzania</skos:prefLabel>
+        <skos:broader rdf:nodeID="014"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="840">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>United States of America</skos:prefLabel>
+        <skos:broader rdf:nodeID="021"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="850">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>United States Virgin Islands</skos:prefLabel>
+        <skos:broader rdf:nodeID="029"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="858">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Uruguay</skos:prefLabel>
+        <skos:broader rdf:nodeID="005"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="860">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Uzbekistan</skos:prefLabel>
+        <skos:broader rdf:nodeID="143"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="548">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Vanuatu</skos:prefLabel>
+        <skos:broader rdf:nodeID="054"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="862">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Venezuela (Bolivarian Republic of)</skos:prefLabel>
+        <skos:broader rdf:nodeID="005"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="704">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Viet Nam</skos:prefLabel>
+        <skos:broader rdf:nodeID="035"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="876">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Wallis and Futuna Islands</skos:prefLabel>
+        <skos:broader rdf:nodeID="061"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="011">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Western Africa</skos:prefLabel>
+        <skos:broader rdf:nodeID="002"/>
+        
+        <skos:narrower rdf:nodeID="204"/>
+        <skos:narrower rdf:nodeID="854"/>
+        <skos:narrower rdf:nodeID="132"/>
+        <skos:narrower rdf:nodeID="384"/>
+        <skos:narrower rdf:nodeID="270"/>
+        <skos:narrower rdf:nodeID="288"/>
+        <skos:narrower rdf:nodeID="324"/>
+        <skos:narrower rdf:nodeID="624"/>
+        <skos:narrower rdf:nodeID="430"/>
+        <skos:narrower rdf:nodeID="466"/>
+        <skos:narrower rdf:nodeID="478"/>
+        <skos:narrower rdf:nodeID="562"/>
+        <skos:narrower rdf:nodeID="566"/>
+        <skos:narrower rdf:nodeID="654"/>
+        <skos:narrower rdf:nodeID="686"/>
+        <skos:narrower rdf:nodeID="694"/>
+        <skos:narrower rdf:nodeID="768"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="145">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Western Asia</skos:prefLabel>
+        <skos:broader rdf:nodeID="142"/>
+        
+        <skos:narrower rdf:nodeID="051"/>
+        <skos:narrower rdf:nodeID="031"/>
+        <skos:narrower rdf:nodeID="048"/>
+        <skos:narrower rdf:nodeID="196"/>
+        <skos:narrower rdf:nodeID="268"/>
+        <skos:narrower rdf:nodeID="368"/>
+        <skos:narrower rdf:nodeID="376"/>
+        <skos:narrower rdf:nodeID="400"/>
+        <skos:narrower rdf:nodeID="414"/>
+        <skos:narrower rdf:nodeID="422"/>
+        <skos:narrower rdf:nodeID="512"/>
+        <skos:narrower rdf:nodeID="634"/>
+        <skos:narrower rdf:nodeID="682"/>
+        <skos:narrower rdf:nodeID="275"/>
+        <skos:narrower rdf:nodeID="760"/>
+        <skos:narrower rdf:nodeID="792"/>
+        <skos:narrower rdf:nodeID="784"/>
+        <skos:narrower rdf:nodeID="887"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="155">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Western Europe</skos:prefLabel>
+        <skos:broader rdf:nodeID="150"/>
+        
+        <skos:narrower rdf:nodeID="040"/>
+        <skos:narrower rdf:nodeID="056"/>
+        <skos:narrower rdf:nodeID="250"/>
+        <skos:narrower rdf:nodeID="276"/>
+        <skos:narrower rdf:nodeID="438"/>
+        <skos:narrower rdf:nodeID="442"/>
+        <skos:narrower rdf:nodeID="492"/>
+        <skos:narrower rdf:nodeID="528"/>
+        <skos:narrower rdf:nodeID="756"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="732">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Western Sahara</skos:prefLabel>
+        <skos:broader rdf:nodeID="015"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="887">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Yemen</skos:prefLabel>
+        <skos:broader rdf:nodeID="145"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="894">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Zambia</skos:prefLabel>
+        <skos:broader rdf:nodeID="014"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="716">
+        <skos:inScheme rdf:nodeID="un-world-001"/>
+        <skos:prefLabel>Zimbabwe</skos:prefLabel>
+        <skos:broader rdf:nodeID="014"/>
+        
+        
+    </skos:Concept>
+</rdf:RDF>

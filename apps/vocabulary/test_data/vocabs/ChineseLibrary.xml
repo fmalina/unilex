@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+xmlns:zthes="https://unilexicon.com/"
+xmlns:dc="http://purl.org/dc/elements/1.1/"
+xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+
+    <skos:ConceptScheme rdf:nodeID="chinese">
+        <skos:prefLabel>语文</skos:prefLabel>
+        <skos:definition>Chinese language taxonomy sample that could be used for organisation of chinese learning resources.</skos:definition>
+        
+        
+        <dc:language>zh-cn</dc:language>
+        <dc:date>15-05-2015</dc:date>
+    </skos:ConceptScheme>
+
+    <skos:Concept rdf:nodeID="composition">
+        <skos:inScheme rdf:nodeID="chinese"/>
+        <skos:prefLabel>作文</skos:prefLabel>
+        <skos:topConceptOf rdf:nodeID="chinese"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="rhetoric">
+        <skos:inScheme rdf:nodeID="chinese"/>
+        <skos:prefLabel>修辞手法</skos:prefLabel>
+        <skos:broader rdf:nodeID="language-use"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="transform-sentence">
+        <skos:inScheme rdf:nodeID="chinese"/>
+        <skos:prefLabel>变换句式</skos:prefLabel>
+        <skos:broader rdf:nodeID="language-use"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="poetry-reading">
+        <skos:inScheme rdf:nodeID="chinese"/>
+        <skos:prefLabel>古诗文阅读</skos:prefLabel>
+        <skos:topConceptOf rdf:nodeID="chinese"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="sentence">
+        <skos:inScheme rdf:nodeID="chinese"/>
+        <skos:prefLabel>句子</skos:prefLabel>
+        <skos:broader rdf:nodeID="language-use"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="font">
+        <skos:inScheme rdf:nodeID="chinese"/>
+        <skos:prefLabel>字形</skos:prefLabel>
+        <skos:broader rdf:nodeID="language-use"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="pronunciation">
+        <skos:inScheme rdf:nodeID="chinese"/>
+        <skos:prefLabel>字音</skos:prefLabel>
+        <skos:broader rdf:nodeID="language-use"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="joining">
+        <skos:inScheme rdf:nodeID="chinese"/>
+        <skos:prefLabel>对联</skos:prefLabel>
+        <skos:broader rdf:nodeID="language-use"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="literary-cultural-knowledge-famous">
+        <skos:inScheme rdf:nodeID="chinese"/>
+        <skos:prefLabel>文学常识、文化常识和名句名篇</skos:prefLabel>
+        <skos:topConceptOf rdf:nodeID="chinese"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="punctuation">
+        <skos:inScheme rdf:nodeID="chinese"/>
+        <skos:prefLabel>标点符号</skos:prefLabel>
+        <skos:broader rdf:nodeID="language-use"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="phraseology">
+        <skos:inScheme rdf:nodeID="chinese"/>
+        <skos:prefLabel>熟语</skos:prefLabel>
+        <skos:broader rdf:nodeID="language-use"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="modern-reading">
+        <skos:inScheme rdf:nodeID="chinese"/>
+        <skos:prefLabel>现代文阅读</skos:prefLabel>
+        <skos:topConceptOf rdf:nodeID="chinese"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="term">
+        <skos:inScheme rdf:nodeID="chinese"/>
+        <skos:prefLabel>词语</skos:prefLabel>
+        <skos:broader rdf:nodeID="language-use"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="language-use">
+        <skos:inScheme rdf:nodeID="chinese"/>
+        <skos:prefLabel>语言文字运用</skos:prefLabel>
+        <skos:topConceptOf rdf:nodeID="chinese"/>
+        <skos:narrower rdf:nodeID="pronunciation"/>
+        <skos:narrower rdf:nodeID="font"/>
+        <skos:narrower rdf:nodeID="term"/>
+        <skos:narrower rdf:nodeID="joining"/>
+        <skos:narrower rdf:nodeID="sentence"/>
+        <skos:narrower rdf:nodeID="rhetoric"/>
+        <skos:narrower rdf:nodeID="punctuation"/>
+        <skos:narrower rdf:nodeID="phraseology"/>
+        <skos:narrower rdf:nodeID="language"/>
+        <skos:narrower rdf:nodeID="transform-sentence"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="language">
+        <skos:inScheme rdf:nodeID="chinese"/>
+        <skos:prefLabel>语言表达</skos:prefLabel>
+        <skos:broader rdf:nodeID="language-use"/>
+        
+        
+    </skos:Concept>
+</rdf:RDF>
