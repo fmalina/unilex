@@ -13,8 +13,8 @@
             <a href="{% url 'authority_add' authority.code %}" class="btn">+ Add vocabulary</a>
             <span class="nowrap btn-links">
                 Import:
-                <a href="{% url 'authority_load' 'xls' authority.code %}">spreadsheet</a>,
-                <a href="{% url 'authority_load' 'skos' authority.code %}">SKOS</a>
+                <a href="{% url 'authority_load' authority_code=authority.code format='xls' %}">spreadsheet</a>,
+                <a href="{% url 'authority_load' authority_code=authority.code format='skos' %}">SKOS</a>
             </span>
         </p>
     {% endif %}
