@@ -38,9 +38,11 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Authority',
             fields=[
-                ('code', models.CharField(primary_key=True, serialize=False, max_length=5)),
+                ('code', models.CharField(primary_key=True, serialize=False, max_length=5,
+                                          help_text='Uppercase shorthand, no spaces, only set once')),
                 ('name', models.CharField(max_length=150)),
             ],
+            options={'verbose_name_plural': 'Authorities'},
         ),
         migrations.CreateModel(
             name='Concept',

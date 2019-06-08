@@ -29,6 +29,7 @@ class Authority(models.Model):
         max_length=5, primary_key=True,
         help_text='Uppercase shorthand, no spaces, only set once')
     name = models.CharField(max_length=150)
+    website = models.URLField(blank=True)
     users = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
         help_text='Authority can have many users. Vocabulary can have one authority.')
