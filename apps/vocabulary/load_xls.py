@@ -39,7 +39,6 @@ def load_xls(request, file, title):
         col1 = [x.value for x in sheet1.col(0)]
         reader = [[x.value for x in sheet1.row(row_no)] for row_no in range(sheet1.nrows)]
     except xlrd.XLRDError:
-        messages.info(request, "That wasn't XLS format. Trying CSV.")
         try:
             f = file.decode().splitlines()
         except UnicodeDecodeError:
