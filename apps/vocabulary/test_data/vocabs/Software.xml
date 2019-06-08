@@ -1,0 +1,727 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/"
+xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+xmlns:zthes="https://unilexicon.com/"
+xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+
+    <skos:ConceptScheme rdf:nodeID="software">
+        <skos:prefLabel>Software</skos:prefLabel>
+        <skos:definition>Python Package Index based software taxonomy  focused on end users as well as developers.</skos:definition>
+        
+        
+        
+        <dc:date>18-05-2015</dc:date>
+    </skos:ConceptScheme>
+
+    <skos:Concept rdf:nodeID="telecom">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel> Telecom</skos:prefLabel>
+        <skos:broader rdf:nodeID="industry"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="adware">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Adware</skos:prefLabel>
+        <skos:broader rdf:nodeID="revenue"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="alpha">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Alpha</skos:prefLabel>
+        <skos:broader rdf:nodeID="experimental"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="android">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Android</skos:prefLabel>
+        <skos:broader rdf:nodeID="mobile"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="api">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>API</skos:prefLabel>
+        <skos:broader rdf:nodeID="web"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="artistic">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Artistic</skos:prefLabel>
+        <skos:broader rdf:nodeID="license"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="audience">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Audience</skos:prefLabel>
+        <skos:topConceptOf rdf:nodeID="software"/>
+        <skos:narrower rdf:nodeID="industry"/>
+        <skos:narrower rdf:nodeID="technical"/>
+        <skos:narrower rdf:nodeID="non-technical"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="beta">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Beta</skos:prefLabel>
+        <skos:broader rdf:nodeID="experimental"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="bsd">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>BSD</skos:prefLabel>
+        <skos:broader rdf:nodeID="open-source"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="client">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Client</skos:prefLabel>
+        <skos:broader rdf:nodeID="web"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="closed-source">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Closed source</skos:prefLabel>
+        <skos:broader rdf:nodeID="license"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="communications">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Communications</skos:prefLabel>
+        <skos:broader rdf:nodeID="topic"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="console">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Console</skos:prefLabel>
+        <skos:broader rdf:nodeID="platform"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="customer-service">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Customer Service</skos:prefLabel>
+        <skos:broader rdf:nodeID="non-technical"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="database">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Database</skos:prefLabel>
+        <skos:broader rdf:nodeID="topic"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="desktop">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Desktop</skos:prefLabel>
+        <skos:broader rdf:nodeID="platform"/>
+        
+        <skos:narrower rdf:nodeID="os-x"/>
+        <skos:narrower rdf:nodeID="windows"/>
+        <skos:narrower rdf:nodeID="linux"/>
+        <skos:narrower rdf:nodeID="os-independent"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="developers">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Developers</skos:prefLabel>
+        <skos:broader rdf:nodeID="technical"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="documentation">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Documentation</skos:prefLabel>
+        <skos:broader rdf:nodeID="topic"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="education2">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Education</skos:prefLabel>
+        <skos:broader rdf:nodeID="industry"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="education">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Education</skos:prefLabel>
+        <skos:broader rdf:nodeID="topic"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="embedded">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Embedded</skos:prefLabel>
+        <skos:broader rdf:nodeID="platform"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="end-users">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>End-users</skos:prefLabel>
+        <skos:broader rdf:nodeID="non-technical"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="experimental">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Experimental</skos:prefLabel>
+        <skos:broader rdf:nodeID="phase"/>
+        
+        <skos:narrower rdf:nodeID="pre-alpha"/>
+        <skos:narrower rdf:nodeID="alpha"/>
+        <skos:narrower rdf:nodeID="beta"/>
+        <skos:narrower rdf:nodeID="rc"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="financial-and-insurance">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Financial and insurance</skos:prefLabel>
+        <skos:broader rdf:nodeID="industry"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="free-for">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Free for</skos:prefLabel>
+        <skos:broader rdf:nodeID="license"/>
+        
+        <skos:narrower rdf:nodeID="free-for-home-use"/>
+        <skos:narrower rdf:nodeID="free-for-non-commercial-use"/>
+        <skos:narrower rdf:nodeID="free-for-educational-use"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="free-for-educational-use">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Free for educational use</skos:prefLabel>
+        <skos:broader rdf:nodeID="free-for"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="free-for-home-use">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Free for home use</skos:prefLabel>
+        <skos:broader rdf:nodeID="free-for"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="free-for-non-commercial-use">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Free for non-commercial use</skos:prefLabel>
+        <skos:broader rdf:nodeID="free-for"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="freeware">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Freeware</skos:prefLabel>
+        <skos:broader rdf:nodeID="revenue"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="games-entertainment">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Games / Entertainment</skos:prefLabel>
+        <skos:broader rdf:nodeID="topic"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="gpl">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>GPL</skos:prefLabel>
+        <skos:broader rdf:nodeID="open-source"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="graphics">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Graphics</skos:prefLabel>
+        <skos:broader rdf:nodeID="topic"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="healthcare">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Healthcare</skos:prefLabel>
+        <skos:broader rdf:nodeID="industry"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="home-automation">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Home Automation</skos:prefLabel>
+        <skos:broader rdf:nodeID="topic"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="inactive">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Inactive</skos:prefLabel>
+        <skos:broader rdf:nodeID="phase"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="industry">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Industry</skos:prefLabel>
+        <skos:broader rdf:nodeID="audience"/>
+        
+        <skos:narrower rdf:nodeID="healthcare"/>
+        <skos:narrower rdf:nodeID="legal"/>
+        <skos:narrower rdf:nodeID="telecom"/>
+        <skos:narrower rdf:nodeID="manufacturing"/>
+        <skos:narrower rdf:nodeID="education2"/>
+        <skos:narrower rdf:nodeID="information-technology"/>
+        <skos:narrower rdf:nodeID="financial-and-insurance"/>
+        <skos:narrower rdf:nodeID="non-profit"/>
+        <skos:narrower rdf:nodeID="real-estate"/>
+        <skos:narrower rdf:nodeID="scienceresearch"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="information-technology">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Information Technology</skos:prefLabel>
+        <skos:broader rdf:nodeID="industry"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="internet">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Internet</skos:prefLabel>
+        <skos:broader rdf:nodeID="topic"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="ios">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>iOS</skos:prefLabel>
+        <skos:broader rdf:nodeID="mobile"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="legal">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Legal</skos:prefLabel>
+        <skos:broader rdf:nodeID="industry"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="license">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>License</skos:prefLabel>
+        <skos:topConceptOf rdf:nodeID="software"/>
+        <skos:narrower rdf:nodeID="open-source"/>
+        <skos:narrower rdf:nodeID="closed-source"/>
+        <skos:narrower rdf:nodeID="artistic"/>
+        <skos:narrower rdf:nodeID="free-for"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="linux">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Linux</skos:prefLabel>
+        <skos:broader rdf:nodeID="desktop"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="manufacturing">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Manufacturing</skos:prefLabel>
+        <skos:broader rdf:nodeID="industry"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="mature">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Mature</skos:prefLabel>
+        <skos:broader rdf:nodeID="phase"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="mobile">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Mobile</skos:prefLabel>
+        <skos:broader rdf:nodeID="platform"/>
+        
+        <skos:narrower rdf:nodeID="android"/>
+        <skos:narrower rdf:nodeID="ios"/>
+        <skos:narrower rdf:nodeID="windows-phone"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="multimedia">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Multimedia</skos:prefLabel>
+        <skos:broader rdf:nodeID="topic"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="non-profit">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Non-profit</skos:prefLabel>
+        <skos:definition>Social, religious etc</skos:definition>
+        <skos:broader rdf:nodeID="industry"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="non-technical">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Non-technical</skos:prefLabel>
+        <skos:broader rdf:nodeID="audience"/>
+        
+        <skos:narrower rdf:nodeID="customer-service"/>
+        <skos:narrower rdf:nodeID="end-users"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="officebusiness">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Office/Business</skos:prefLabel>
+        <skos:broader rdf:nodeID="topic"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="open-source">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Open source</skos:prefLabel>
+        <skos:broader rdf:nodeID="license"/>
+        
+        <skos:narrower rdf:nodeID="public-domain"/>
+        <skos:narrower rdf:nodeID="gpl"/>
+        <skos:narrower rdf:nodeID="bsd"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="os-independent">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>OS independent</skos:prefLabel>
+        <skos:broader rdf:nodeID="desktop"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="os-x">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>OS X</skos:prefLabel>
+        <skos:broader rdf:nodeID="desktop"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="paid-proprietary">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Paid proprietary</skos:prefLabel>
+        <skos:broader rdf:nodeID="revenue"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="phase">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Phase</skos:prefLabel>
+        <skos:topConceptOf rdf:nodeID="software"/>
+        <skos:narrower rdf:nodeID="planning"/>
+        <skos:narrower rdf:nodeID="experimental"/>
+        <skos:narrower rdf:nodeID="stable"/>
+        <skos:narrower rdf:nodeID="mature"/>
+        <skos:narrower rdf:nodeID="inactive"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="planning">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Planning</skos:prefLabel>
+        <skos:broader rdf:nodeID="phase"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="platform">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Platform</skos:prefLabel>
+        <skos:topConceptOf rdf:nodeID="software"/>
+        <skos:narrower rdf:nodeID="desktop"/>
+        <skos:narrower rdf:nodeID="mobile"/>
+        <skos:narrower rdf:nodeID="embedded"/>
+        <skos:narrower rdf:nodeID="web"/>
+        <skos:narrower rdf:nodeID="console"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="pre-alpha">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Pre-alpha</skos:prefLabel>
+        <skos:broader rdf:nodeID="experimental"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="printing">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Printing</skos:prefLabel>
+        <skos:broader rdf:nodeID="topic"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="public-domain">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Public Domain</skos:prefLabel>
+        <skos:broader rdf:nodeID="open-source"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="rc">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>RC</skos:prefLabel>
+        <skos:definition>Release candidate</skos:definition>
+        <skos:broader rdf:nodeID="experimental"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="real-estate">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Real estate</skos:prefLabel>
+        <skos:broader rdf:nodeID="industry"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="revenue">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Revenue</skos:prefLabel>
+        <skos:topConceptOf rdf:nodeID="software"/>
+        <skos:narrower rdf:nodeID="shareware"/>
+        <skos:narrower rdf:nodeID="paid-proprietary"/>
+        <skos:narrower rdf:nodeID="freeware"/>
+        <skos:narrower rdf:nodeID="adware"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="scienceresearch">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Science/Research</skos:prefLabel>
+        <skos:broader rdf:nodeID="industry"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="scientific-engineering">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Scientific / Engineering</skos:prefLabel>
+        <skos:broader rdf:nodeID="topic"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="security">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Security</skos:prefLabel>
+        <skos:broader rdf:nodeID="topic"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="server">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Server</skos:prefLabel>
+        <skos:broader rdf:nodeID="web"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="shareware">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Shareware</skos:prefLabel>
+        <skos:broader rdf:nodeID="revenue"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="software-development">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Software Development</skos:prefLabel>
+        <skos:broader rdf:nodeID="topic"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="stable">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Stable</skos:prefLabel>
+        <skos:broader rdf:nodeID="phase"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="system-administrators2">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>System administrators</skos:prefLabel>
+        <skos:definition>Sysadmin</skos:definition>
+        <skos:broader rdf:nodeID="technical"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="system-administrators">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>System administrators</skos:prefLabel>
+        <skos:broader rdf:nodeID="topic"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="technical">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Technical</skos:prefLabel>
+        <skos:broader rdf:nodeID="audience"/>
+        
+        <skos:narrower rdf:nodeID="system-administrators2"/>
+        <skos:narrower rdf:nodeID="developers"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="terminal">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Terminal</skos:prefLabel>
+        <skos:broader rdf:nodeID="topic"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="text-editors">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Text Editors</skos:prefLabel>
+        <skos:broader rdf:nodeID="topic"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="text-processing">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Text Processing</skos:prefLabel>
+        <skos:broader rdf:nodeID="topic"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="topic">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Topic</skos:prefLabel>
+        <skos:topConceptOf rdf:nodeID="software"/>
+        <skos:narrower rdf:nodeID="graphics"/>
+        <skos:narrower rdf:nodeID="communications"/>
+        <skos:narrower rdf:nodeID="database"/>
+        <skos:narrower rdf:nodeID="documentation"/>
+        <skos:narrower rdf:nodeID="education"/>
+        <skos:narrower rdf:nodeID="games-entertainment"/>
+        <skos:narrower rdf:nodeID="home-automation"/>
+        <skos:narrower rdf:nodeID="internet"/>
+        <skos:narrower rdf:nodeID="multimedia"/>
+        <skos:narrower rdf:nodeID="officebusiness"/>
+        <skos:narrower rdf:nodeID="printing"/>
+        <skos:narrower rdf:nodeID="scientific-engineering"/>
+        <skos:narrower rdf:nodeID="security"/>
+        <skos:narrower rdf:nodeID="software-development"/>
+        <skos:narrower rdf:nodeID="system-administrators"/>
+        <skos:narrower rdf:nodeID="terminal"/>
+        <skos:narrower rdf:nodeID="text-editors"/>
+        <skos:narrower rdf:nodeID="text-processing"/>
+        <skos:narrower rdf:nodeID="utilities"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="utilities">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Utilities</skos:prefLabel>
+        <skos:broader rdf:nodeID="topic"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="web">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Web</skos:prefLabel>
+        <skos:broader rdf:nodeID="platform"/>
+        
+        <skos:narrower rdf:nodeID="client"/>
+        <skos:narrower rdf:nodeID="server"/>
+        <skos:narrower rdf:nodeID="api"/>
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="windows">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Windows</skos:prefLabel>
+        <skos:broader rdf:nodeID="desktop"/>
+        
+        
+    </skos:Concept>
+
+    <skos:Concept rdf:nodeID="windows-phone">
+        <skos:inScheme rdf:nodeID="software"/>
+        <skos:prefLabel>Windows phone</skos:prefLabel>
+        <skos:broader rdf:nodeID="mobile"/>
+        
+        
+    </skos:Concept>
+</rdf:RDF>
