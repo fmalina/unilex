@@ -97,6 +97,7 @@ def load_vocab(request, format='xls', authority_code=''):
             if goto and isinstance(goto, Vocabulary) and authority_code:
                 vocab = goto
                 vocab.authority = get_object_or_404(Authority, code=authority_code)
+                vocab.save()
 
             return redirect(goto)
 
