@@ -158,7 +158,7 @@ def json(request, vocab_node_id):
     vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
     count = Concept.objects.filter(vocabulary=vocab).count()
     max_depth = 0
-    if not count < 1000:
+    if not count < 2000:
         max_depth = 3
     jsondata = dumps(vocab_to_dict(vocab, max_depth), indent=4)
     return HttpResponse(jsondata, content_type='application/json')
