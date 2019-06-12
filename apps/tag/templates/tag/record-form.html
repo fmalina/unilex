@@ -3,20 +3,16 @@
     <ul>
         {{ form.as_ul }}
     </ul>
-    <a href="{{ record.url }}" taget="_blank">{{ record.url }}</a>
-    <br>
+    {% if record.url and 'http' in record.url %}
+        <a href="{{ record.url }}" taget="_blank">{{ record.url }}</a>
+    {% endif %}
 
-    <h2>Tags</h2>
     {% csrf_token %}
     {{ form.errors }}
     {{ formset.management_form }}
 
+    <h2>Record concepts</h2>
     {% include "vocabulary/concept-set-formset.html" %}
 
-    <p>
-        <br>
-        <button class="save">Save</button>
-        <button class="discard" title="discard changes">Discard</button>
-        Autosaved every 5 seconds.
-    </p>
+    <p><button class="save btn call">Save record</button></p>
 </form>
