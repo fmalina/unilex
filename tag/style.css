@@ -1,0 +1,8 @@
+body{min-width:320px;min-height:320px;padding:10px;font-family:sans-serif}
+ul,li{list-style:none;margin:0;padding:0}
+h2{font-size:13px;font-weight:bold}
+#tagging .ac_input,
+    input, textarea{padding:2px;border-radius:2px;border:1px inset #ddd}
+input, textarea{width:100%}
+label{padding-top:10px}
+a{color:#14a}

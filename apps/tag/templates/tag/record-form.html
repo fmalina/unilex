@@ -1,18 +1,22 @@
 <form method="post" action="{{ base_url }}{{ request.path }}" id="tagging">
-{% include "messages.html" %}
-{% csrf_token %}
-{{ form.errors }}
-
-{% include "vocabulary/concept-set-formset.html" %}
-
-<ul>
-{{ form.as_ul }}
-</ul>
-
-<p>{{ formset.management_form }}
+    {% include "messages.html" %}
+    <ul>
+        {{ form.as_ul }}
+    </ul>
+    <a href="{{ record.url }}" taget="_blank">{{ record.url }}</a>
     <br>
-    <button class="send" type="submit">Send</button>
-    <button class="save">Save now</button>
-    <button class="discard" title="discard changes">Discard</button> Autosaved every 5 seconds.
-</p>
+
+    <h2>Tags</h2>
+    {% csrf_token %}
+    {{ form.errors }}
+    {{ formset.management_form }}
+
+    {% include "vocabulary/concept-set-formset.html" %}
+
+    <p>
+        <br>
+        <button class="save">Save</button>
+        <button class="discard" title="discard changes">Discard</button>
+        Autosaved every 5 seconds.
+    </p>
 </form>

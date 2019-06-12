@@ -2,7 +2,7 @@
 <head>
     <meta charset="utf-8" />
     <title>Tagging options</title>
-    <script src="zepto.js"></script>
+    <script src="https://code.jquery.com/jquery.js"></script>
     <script src="options.js"></script>
     <style>
         body{font-family: Helvetica, Arial, sans-serif;font-size:11px}
@@ -17,15 +17,9 @@
     <div id="options">
     <h2>Tagging Options</h2>
     <ul>
-    <li><label for="name">First and last name</label>
-        <input type="text" id="name" name="name" value=""></li>
-    <li><label for="site">Domain of the site to be tagged</label>
-        <input type="text" id="site" name="site" value="unilexicon.com"></li>
-    <li><label for="username">Tagging username (same as your CMS username)</label>
-        <input type="text" id="username" name="username" value=""></li>
-    <li><label for="password">Password (your CMS password)</label>
-        <input type="password" id="password" name="password" title="Password stored here does not leave your computer." value=""></li>
-    <li><button>Done. Close!</button></li>
+    <li><label for="site">Enable only for</label>
+        <input type="text" id="site" name="site" value="" placeholder="Enter domain name"></li>
+    <li><button>Done</button></li>
     </ul>
     </div>
 </body>

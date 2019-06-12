@@ -17,5 +17,6 @@
 	},
   "permissions": [
     "tabs", "notifications"
-  ]
+  ],
+  "content_security_policy": "script-src 'self' 'unsafe-eval' https://code.jquery.com https://unilexicon.com; style-src 'self' https://unilexicon.co; font-src 'self' https://unilexicon.co; object-src 'self'"
 }
