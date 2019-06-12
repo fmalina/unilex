@@ -63,7 +63,6 @@ class TaggingView(View):
             'forms_and_set': zip(formset.forms, tags)
         })
 
-
     def get(self, request, url=None):
         tag_concepts = []
         tag_forms = []
@@ -116,14 +115,12 @@ class TaggingView(View):
 
 
 def about(request):
-    """Introduction to tagging, install Chrome extension link
-    """
+    """Introduction to tagging, install Chrome extension link."""
     return render(request, 'tag/about.html', {})
 
 
 def query(request):
-    """Return list of results for a given tag query
-    """
+    """Return list of results for a given tag query."""
     q = request.POST['query']
     return render(request, 'tag/query-results.html', {
         'records': Client(request, q).get_tags()
@@ -141,8 +138,7 @@ def records(request):
 
 
 def record_json(request, record_id):
-    """JSON rendered single record with its tags
-    """
+    """JSON rendered single record with its tags."""
     record = get_object_or_404(Record, pk=record_id)
     tags = record.tag_set.all()
     return render(request, 'tag/record.js',
