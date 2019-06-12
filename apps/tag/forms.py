@@ -8,7 +8,8 @@ class TagForm(forms.Form):
 
 
 class RecordForm(forms.ModelForm):
+    desc = forms.CharField(widget=forms.Textarea, label="Description")
+
     class Meta:
         model = Record
-        fields = ['title']
-        readonly_fields = ['url']
+        fields = ['title', 'desc', 'url']

@@ -10,6 +10,8 @@
     <script src="{{ base_url }}/js/ac_formset.js?{{ version }}"></script>
 {% endblock %}
 {% block content %}
+    {% if not record %}
+        <h1>Add a record</h1>
+    {% endif %}
     {% include 'tag/record-form.html' %}
-    <p><a href="{% url 'records' %}">&larr; All tags</a></p>
 {% endblock %}

@@ -23,7 +23,8 @@
     <p>
         {{ record.desc }}
         <a href="{{ record.url }}">{{ record.url }}
-            <i class="icon icon-external"></i></a>
+            <i class="icon icon-external"></i>
+        </a>
     </p>
 
     {% if record.tag_set.all %}
@@ -39,4 +40,7 @@
 </li>
 {% endfor %}
 </ul>
+
+<p><a href="{% url 'add-record' %}" class="btn">+ add a record</a></p>
+
 {% endblock %}

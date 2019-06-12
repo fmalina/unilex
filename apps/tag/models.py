@@ -14,8 +14,8 @@ class Record(models.Model):
     To be implemented as methods.
     """
     title = models.CharField(max_length=150)
-    desc = models.CharField(max_length=255, blank=True)
-    url = models.URLField(unique=True)
+    desc = models.CharField(max_length=255, blank=True, verbose_name="Description")
+    url = models.URLField(unique=True, verbose_name="URI / Unique Resource ID")
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
         blank=True, null=True,
         on_delete=models.SET_NULL)
@@ -46,9 +46,6 @@ class Tag(models.Model):
         blank=True, null=True)
     updated_at = models.DateTimeField(default=datetime.now, editable=False)
     created_at = models.DateTimeField(default=datetime.now, editable=False)
-    
-    def get_weight(self):
-        return 
 
     def __str__(self):
         return str(self.id)

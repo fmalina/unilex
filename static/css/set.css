@@ -33,4 +33,4 @@ label{text-transform:uppercase;color:#888;display:block;font-size:11px}
 #tagging small:hover{opacity:1}
 #tagging .go{color:#333}
 #tagging .set small{position:absolute;right:0;text-align:right;bottom:2px}
-#tagging .set li{border-top:1px solid #ddd;padding:5px 15px 5px 15px}
+#tagging .set li{border-top:1px solid #ddd;padding:5px 15px 5px 15px;max-width:350px}
