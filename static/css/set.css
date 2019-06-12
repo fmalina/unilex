@@ -26,13 +26,11 @@ label{text-transform:uppercase;color:#888;display:block;font-size:11px}
 .go{text-decoration:none;padding-right:5px;color:#bbb}
 
 .ac_results small{font-size:11px !important}
-#tagging{width:400px;font-size:12px}
-#tagging .ac_input{background:#fff;border:2px solid #e3e3e3;border-left:2px solid #e9e9e9;border-bottom:2px solid #f0f0f0}
-#tagging .ac_input:hover,
-#tagging .ac_input:focus{border:2px solid #ace}
+#tagging{font-size:13px}
+#tagging .ac_input{background:#fff}
 #tagging small{opacity:0}
 #tagging li:hover small{opacity:.5}
 #tagging small:hover{opacity:1}
 #tagging .go{color:#333}
-#tagging .set small{position:absolute;left:-5px;text-align:left;bottom:2px}
+#tagging .set small{position:absolute;right:0;text-align:right;bottom:2px}
 #tagging .set li{border-top:1px solid #ddd;padding:5px 15px 5px 15px}

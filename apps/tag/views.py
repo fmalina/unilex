@@ -1,76 +1,63 @@
-from django.forms.formsets import formset_factory
-from django.conf import settings
-from django.template import RequestContext
-from django.shortcuts import get_object_or_404, render, redirect
-from django.contrib.auth.decorators import login_required
-from django.urls import reverse
-from django.http import HttpResponseRedirect, HttpResponse
-from django.utils.safestring import mark_safe
-from django.views.decorators.csrf import csrf_exempt
-from django.contrib import messages
-from vocabulary.forms import *
-from vocabulary.models import Concept, Vocabulary
-from tag.forms import TagForm, RecordForm
-from tag.models import Tag, Record
-from tag.client import Client
 import json
 
+from django.forms.formsets import formset_factory
+from django.http import HttpResponse
+from django.shortcuts import get_object_or_404, render, redirect
+from django.utils.decorators import method_decorator
+from django.views import View
+from django.views.decorators.csrf import csrf_exempt
 
-def about(request):
-    """Introduction to tagging, install Chrome extension link
-    """
-    return render(request, 'tag/about.html', {})
-
-
-def record_edit(request, record_id):
-    """Local editing mock-up.
-    """
-    record = get_object_or_404(Record, pk=record_id)
-    if request.method == 'POST':
-        form = RecordForm(request.POST, instance=record)
-        if form.is_valid():
-            form.save()
-            return redirect(record.get_absolute_url())
-    else:
-        form = RecordForm(instance=record)
-    return render(request, 'tag/record-form.html', {'record': record, 'form': form })
+from tag.client import Client
+from tag.forms import TagForm, RecordForm
+from tag.models import Tag, Record
+from vocabulary.models import Concept, Vocabulary
 
 
-@csrf_exempt
-def tag(request, node_id, remote=False):
-    """For a given piece of content identified by its node_id
+class TaggingView(View):
+    """For a given piece of content identified by its URL
     GET: request tags & displays returned tags in a compelling interface
-    POST: post tags to save user entered tags for a given node_id.
-    
+    POST: post tags to save user entered tags for a given url.
+
     Communicate with local database or proxy remote source using Client.
     """
-    if request.method == 'POST':
-        form = RecordForm(request.POST)
-        if form.is_valid():
+    template_name = 'tag/record-form.html'
+    remote = False
+
+    @method_decorator(csrf_exempt)
+    def post(self, request, url):
+        record, created = Record.objects.get_or_create(url=url)
+        form = RecordForm(request.POST, instance=record)
+        tag_formset = formset_factory(form=TagForm)
+        formset = tag_formset(request.POST)
+
+        if not form.is_valid():
+            print(form.errors)
+        else:
             d = form.cleaned_data
-            auth_token = d['auth_token']
-            record = {
-                'title': d['title'],
-                'desc': d['desc'],
-                'node_id': d['node_id'],
-            }
-            TagFormSet = formset_factory(form=TagForm)
-            formset = TagFormSet(request.POST)
             tags = []
             for tag_form in formset.forms:
                 raw_tag = tag_form['to_concept'].data
-                tag = Concept.objects.get(pk=raw_tag)
-                tags.append(tag)
-            response = HttpResponse(Client.post_tags(record, tags, auth_token))
-        else:
-            response = HttpResponse('Record form was invalid.')
-    else:  # GET
+                if raw_tag:
+                    tag = Concept.objects.get(pk=raw_tag)
+                    tags.append(tag)
+            if self.remote:
+                print('remote')
+                response = HttpResponse(Client.post_tags(d, tags, d['auth_token']))
+            else:
+                record.title = d['title']
+                record.save()
+                for tag in tags:
+                    print(tag)
+                    _tag, _created = Tag.objects.get_or_create(record=record, concept=tag)
+                response = redirect(record.get_absolute_url())
+            return response
+
+    def get(self, request, url):
         tag_concepts = []
         tag_forms = []
-        
-        if remote:
-            # remote source of tagging data
-            query = node_id
+
+        if self.remote:  # remote source of tagging data
+            query = url
             try:
                 data = Client(request, query).get_tags()
                 json_record = json.loads(data)
@@ -78,7 +65,7 @@ def tag(request, node_id, remote=False):
                 msg = "Sorry, can't pull tags from the remote source right now.\nError was:\n\n"
                 import traceback
                 return HttpResponse(msg + traceback.format_exc(), content_type='text/plain')
-            
+
             record = Record.objects.get(id=json_record['id'])
             concepts = []
             for t in json_record['tags']:
@@ -88,11 +75,11 @@ def tag(request, node_id, remote=False):
                 concepts.append(concept)
         else:
             # local tag repository
-            record = Record.objects.get(id=node_id)
+            record, created = Record.objects.get_or_create(url=url)
             concepts = [tag.concept for tag in record.tag_set.all()]
-        
+
         for concept in concepts:
-            tag_form = {'to_concept': concept.id,}
+            tag_form = {'to_concept': concept.id, }
             tag_concepts.append(concept)
             tag_forms.append(tag_form)
             # messages.info(request, '''Concept "%s" from vocab "%s"
@@ -100,18 +87,25 @@ def tag(request, node_id, remote=False):
             # messages.info(request, '<b>%s</b> is not loaded in the repository.' % tag.concept)
         if not tag_concepts:
             tag_concepts = ['addfirst']
-        TagFormSet = formset_factory(form=TagForm, extra=len(tag_concepts), can_delete=True)
+        tag_formset = formset_factory(form=TagForm, extra=len(tag_concepts), can_delete=True)
         form = RecordForm(instance=record)
-        formset = TagFormSet(initial=tag_forms)
+        formset = tag_formset(initial=tag_forms)
         forms_and_tags = zip(formset.forms, tag_concepts)
-        response = render(request, 'tag/record-form.html', {
+        response = render(request, self.template_name, {
+            'record': record,
             'form': form,
             'formset': formset,
             'forms_and_set': forms_and_tags
         })
-    # CORS headers
-    response['Access-Control-Allow-Origin'] = '*'
-    return response
+        # CORS header
+        response['Access-Control-Allow-Origin'] = '*'
+        return response
+
+
+def about(request):
+    """Introduction to tagging, install Chrome extension link
+    """
+    return render(request, 'tag/about.html', {})
 
 
 def query(request):
@@ -120,7 +114,7 @@ def query(request):
     q = request.POST['query']
     return render(request, 'tag/query-results.html', {
         'records': Client(request, q).get_tags()
-        })
+    })
 
 
 def records(request):
@@ -139,5 +133,5 @@ def record_json(request, record_id):
     record = get_object_or_404(Record, pk=record_id)
     tags = record.tag_set.all()
     return render(request, 'tag/record.js',
-        {'record': record, 'tags': tags},
-        content_type="application/json")
+                  {'record': record, 'tags': tags},
+                  content_type="application/json")
