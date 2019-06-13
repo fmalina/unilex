@@ -36,7 +36,7 @@ def filter_private(qs, user):
         )
     else:
         qs = qs.filter(vocabulary__private=False)
-    return qs.order_by('-count')
+    return qs.distinct().order_by('-count')
 
 
 def autocomplete(request):
