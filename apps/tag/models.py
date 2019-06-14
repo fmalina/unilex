@@ -14,8 +14,8 @@ class Record(models.Model):
     To be implemented as methods.
     """
     title = models.CharField(max_length=150)
-    desc = models.CharField(max_length=255, blank=True, verbose_name="Description")
-    url = models.URLField(unique=True, verbose_name="URI / Unique Resource ID")
+    desc = models.TextField(blank=True, verbose_name="Description")
+    uri = models.URLField(unique=True, verbose_name="URI / Unique Resource ID")
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
         blank=True, null=True,
         on_delete=models.SET_NULL)

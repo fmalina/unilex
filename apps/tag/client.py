@@ -7,7 +7,7 @@ from django.template.loader import render_to_string
 
 
 class Client:
-    """ Get tags for a given query and parse. Return a list of records.
+    """Get tags for a given query and parse. Return a list of records.
     Each record is a dictionary of with its title, description, note & tags.
     """
 
