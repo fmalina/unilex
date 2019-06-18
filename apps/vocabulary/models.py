@@ -79,6 +79,9 @@ class Vocabulary(models.Model):
     def get_absolute_url(self):
         return '/vocabularies/%s/' % self.node_id
 
+    def json_url(self):
+        return '/vocabularies/%s/json' % self.node_id
+
     def increment_slug(self, slug):
         suff = re.search("\d+$", slug)  # get the current number suffix if present
         suff = suff and suff.group() or 0

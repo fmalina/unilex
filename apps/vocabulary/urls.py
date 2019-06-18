@@ -6,6 +6,7 @@ urlpatterns = [
     path('add', v.vocabulary_add, name='add'),
     path('load-<slug:format>', v.load_vocab, name='load'),
     path('authority/<slug:authority_code>/', v.authority, name='authority'),
+    path('authority/<slug:authority_code>/json', v.authority, {'json': True}, name='authority_json'),
     path('authority/<slug:authority_code>/add', v.vocabulary_add, name='authority_add'),
     path('authority/<slug:authority_code>/load-<slug:format>', v.load_vocab, name='authority_load'),
     path('autocomplete', v.autocomplete, name='autocomplete'),
