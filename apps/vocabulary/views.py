@@ -139,9 +139,12 @@ def authority(request, authority_code, json=False):
         'private_access': private_access
     }
     if json:
-        from django.core.serializers import serialize
-        data = serialize('json', ls)
-        return HttpResponse(data, content_type='application/json')
+        ls = [{
+            'name': v.title,
+            'node_id': v.node_id,
+            'url': v.get_absolute_url() + 'json'
+        } for v in ls]
+        return HttpResponse(dumps(ls), content_type='application/json')
     return render(request, 'vocabulary/authority.html', context)
 
 
