@@ -125,20 +125,24 @@ def is_allowed(user, vocab):
     )
 
 
-def authority(request, authority_code):
+def authority(request, authority_code, json=False):
     """Authority and its vocabularies."""
     a = get_object_or_404(Authority, code=authority_code)
     ls = Vocabulary.objects.with_counts().filter(authority=a)
     private_access = request.user in a.users.all()
     if not private_access:
         ls = ls.filter(private=False)
-
-    return render(request, 'vocabulary/authority.html', {
+    context = {
         'ls': ls,
         'authority': a,
         'authority_code': a.code,
         'private_access': private_access
-    })
+    }
+    if json:
+        from django.core.serializers import serialize
+        data = serialize('json', ls)
+        return HttpResponse(data, content_type='application/json')
+    return render(request, 'vocabulary/authority.html', context)
 
 
 def detail(request, vocab_node_id):
