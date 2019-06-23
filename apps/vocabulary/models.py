@@ -94,6 +94,16 @@ class Vocabulary(models.Model):
             slug = self.increment_slug(slug)
         return slug
 
+    def is_allowed_for(self, user):
+        """Say whether this user has permission to access this vocab."""
+        if self.authority and user in self.authority.users.all():
+            return True
+        return (
+                user is self.user or
+                user.is_superuser or
+                user.is_staff
+        )
+
     def save(self, *args, **kwargs):
         self.updated_at = datetime.now()
         if not self.pk and not self.node_id or self.node_id.startswith('new-vocabulary'):
