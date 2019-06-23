@@ -1,23 +1,25 @@
+import os
+from datetime import datetime
 from json import dumps
-from django.db.models import Q
-from django.http import HttpResponse, Http404
-from django.forms.models import inlineformset_factory
-from django.shortcuts import get_object_or_404, redirect, render
-from django.contrib.auth.decorators import login_required
-from django.views.decorators.csrf import csrf_exempt
+
 from django.conf import settings
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.db.models import Q
+from django.forms.models import inlineformset_factory
+from django.http import HttpResponse, Http404
+from django.shortcuts import get_object_or_404, redirect, render
+from django.views.decorators.csrf import csrf_exempt
 
-from vocabulary.forms import UploadFileForm, VocabularyForm,\
-    ConceptForm, NewChildConceptForm, RelatedForm, ParentForm
-from vocabulary.models import Authority, Vocabulary, Concept
-from vocabulary.export_skos import export_skos
+from paging import simple_paging
+from utils import ajax_login_required
 from vocabulary.export_csv import export_csv
 from vocabulary.export_json import vocab_to_dict
-from utils import ajax_login_required
-from paging import simple_paging
-from datetime import datetime
-import os
+from vocabulary.export_skos import export_skos
+from vocabulary.forms import UploadFileForm, VocabularyForm, \
+    ConceptForm, NewChildConceptForm, RelatedForm, ParentForm
+from vocabulary.models import Authority, Vocabulary, Concept
+
 
 NOT_ALLOWED = 'You are not allowed to edit this vocabulary.'
 
@@ -199,7 +201,7 @@ def ul(request, vocab_node_id, style='meeting'):
 @ajax_login_required
 @csrf_exempt
 def ordering(request, vocab_node_id):
-    """ Child concepts are ordered by ID if no order is specified.
+    """Child concepts are ordered by ID if no order is specified.
     
     This view allows to set new ordering using concept.order.
     
