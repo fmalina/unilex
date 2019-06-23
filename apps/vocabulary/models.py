@@ -99,7 +99,7 @@ class Vocabulary(models.Model):
         if self.authority and user in self.authority.users.all():
             return True
         return (
-                user is self.user or
+                user == self.user or
                 user.is_superuser or
                 user.is_staff
         )
