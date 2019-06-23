@@ -29,7 +29,7 @@ def validation_yesno(value, obj=None):
     Validates that yes or no is entered.
     Converts the yes or no to capitalized version
     """
-    if string.upper(value) in ["YES","NO"]:
+    if string.upper(value) in ["YES", "NO"]:
         return True, string.capitalize(value)
     return False, value
 

@@ -2,8 +2,6 @@
 
 from datetime import datetime
 from django.db import models
-
-from vocabulary.models import Concept
 from django.conf import settings
 
 
@@ -35,8 +33,8 @@ class Record(models.Model):
 
 class Tag(models.Model):
     """Tags linking concepts to records"""
-    concept = models.ForeignKey(Concept, on_delete=models.CASCADE)
-    record = models.ForeignKey(Record, on_delete=models.CASCADE)
+    record = models.ForeignKey('tag.Record', on_delete=models.CASCADE)
+    concept = models.ForeignKey('vocabulary.Concept', on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
         blank=True, null=True,
         on_delete=models.SET_NULL)

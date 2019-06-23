@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('title', models.CharField(max_length=150)),
                 ('desc', models.CharField(blank=True, max_length=255)),
-                ('url', models.URLField(unique=True)),
+                ('url', models.URLField(unique=True, verbose_name='URI / Unique Resource ID')),
             ],
         ),
         migrations.CreateModel(

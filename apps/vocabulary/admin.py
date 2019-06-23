@@ -54,6 +54,7 @@ class AuthorityMembershipInline(admin.TabularInline):
     model = vocabs.Authority.users.through
     raw_id_fields = ['user']
 
+
 @admin.register(vocabs.Authority)
 class AuthorityAdmin(admin.ModelAdmin):
     list_display = ('code', 'name')
