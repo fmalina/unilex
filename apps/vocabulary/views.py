@@ -54,6 +54,7 @@ def autocomplete(request):
     response['Access-Control-Allow-Origin'] = '*'
     return response
 
+
 def search(request):
     q = request.GET.get('q', '').strip()
     ls = Concept.objects.filter(
@@ -73,7 +74,7 @@ def search(request):
 
 
 def load_vocab(request, format='xls', authority_code=''):
-    from vocabulary.load_xls import load_xls
+    from vocabulary.load_xls import load_xls, XLSLoadException
     from vocabulary.load_skos import SKOSLoader
 
     form = UploadFileForm()
@@ -91,10 +92,15 @@ def load_vocab(request, format='xls', authority_code=''):
                 fw.close()
             # parse and load into the DB
             if format == 'xls':
-                goto = load_xls(request, f, fn)
+                try:
+                    goto = load_xls(request.user, f, fn)
+                except XLSLoadException as e:
+                    messages.error(request, e)
             if format == 'skos':
-                loader = SKOSLoader(request)
-                goto = loader.load_skos_vocab(f)
+                loader = SKOSLoader(request.user)
+                goto, msgs = loader.load_skos_vocab(f)
+                for level, msg in msgs:
+                    messages.add_message(request, level, msg)
                 
                 loader.save_relationships()
                 messages.success(request, loader)
@@ -301,7 +307,6 @@ def concept_edit(request, vocab_node_id, node_id):
 
     c = get_object_or_404(Concept, node_id=node_id, vocabulary=vocab)
     children = c.get_children()
-    synonyms = c.synonym_set.all()
     related = c.related.all()
     parent  = c.parent.all()
     if not related:
@@ -311,7 +316,7 @@ def concept_edit(request, vocab_node_id, node_id):
     RelatedFormSet = inlineformset_factory(
         Concept,
         Concept.related.through,
-        fk_name="from_concept",
+        fk_name="subject",
         form=RelatedForm,
         extra=1,
         can_delete=True
@@ -342,7 +347,6 @@ def concept_edit(request, vocab_node_id, node_id):
         parent_formset = ParentFormSet(instance=c, prefix='pf')
     return render(request, 'vocabulary/concept-edit.html', {
         'children': children,
-        'synonyms': synonyms,
         'concept': c,
         'form': form,
         'formset': formset,

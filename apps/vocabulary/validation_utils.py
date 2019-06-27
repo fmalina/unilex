@@ -1,5 +1,6 @@
 from decimal import Decimal, InvalidOperation
 import string
+import json
 
 
 def validation_simple(value, obj=None):
@@ -42,6 +43,15 @@ def validation_decimal(value, obj=None):
         Decimal(value)
         return True, value
     except InvalidOperation:
+        return False, value
+
+
+def validation_json(value, obj=None):
+    """Validates that value is valid JSON."""
+    try:
+        json.loads(value)
+        return True, value
+    except json.decoder.JSONDecodeError:
         return False, value
 
 

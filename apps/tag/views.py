@@ -21,21 +21,22 @@ class TaggingView(View):
     Communicate with local database or proxy remote source using Client.
     """
     template_name = 'tag/record-form.html'
+    form = RecordForm
     remote = False
 
     @method_decorator(csrf_exempt)
-    def post(self, request, url=None):
+    def post(self, request, uri=None):
         record = None
-        if url:
-            record, _created = Record.objects.get_or_create(url=url)
+        if uri:
+            record, _created = Record.objects.get_or_create(uri=uri)
 
-        form = RecordForm(request.POST, instance=record)
+        form = self.form(request.POST, instance=record)
         tag_formset = formset_factory(form=TagForm)
         formset = tag_formset(request.POST)
 
         tags = []
         for tag_form in formset.forms:
-            raw_tag = tag_form['to_concept'].data
+            raw_tag = tag_form['predicate'].data
             if raw_tag:
                 tag = Concept.objects.get(pk=raw_tag)
                 tags.append(tag)
@@ -63,14 +64,14 @@ class TaggingView(View):
             'forms_and_set': zip(formset.forms, tags)
         })
 
-    def get(self, request, url=None):
+    def get(self, request, uri=None):
         tag_concepts = []
         tag_forms = []
         concepts = []
         record = None
 
-        if self.remote and url:  # remote source of tagging data
-            query = url
+        if self.remote and uri:  # remote source of tagging data
+            query = uri
             try:
                 data = Client(request, query).get_tags()
                 json_record = json.loads(data)
@@ -85,13 +86,13 @@ class TaggingView(View):
                 vocab = Vocabulary.objects.get(node_id=t[0])
                 concept = Concept.objects.get(vocabulary=vocab, node_id=t[1])
                 concepts.append(concept)
-        elif url:
+        elif uri:
             # local tag repository
-            record, _created = Record.objects.get_or_create(url=url)
+            record, _created = Record.objects.get_or_create(uri=uri)
             concepts = [tag.concept for tag in record.tag_set.all()]
 
         for concept in concepts:
-            tag_form = {'to_concept': concept.id, }
+            tag_form = {'predicate': concept.id, }
             tag_concepts.append(concept)
             tag_forms.append(tag_form)
             # messages.info(request, '''Concept "%s" from vocab "%s"
@@ -100,7 +101,7 @@ class TaggingView(View):
         if not tag_concepts:
             tag_concepts = ['addfirst']
         tag_formset = formset_factory(form=TagForm, extra=len(tag_concepts), can_delete=True)
-        form = RecordForm(instance=record)
+        form = self.form(instance=record)
         formset = tag_formset(initial=tag_forms)
         forms_and_tags = zip(formset.forms, tag_concepts)
         response = render(request, self.template_name, {

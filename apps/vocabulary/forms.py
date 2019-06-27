@@ -47,11 +47,11 @@ TO_CONCEPT = forms.ModelChoiceField(
 
 
 class RelatedForm(forms.ModelForm):
-    to_concept = TO_CONCEPT
+    predicate = TO_CONCEPT
 
     class Meta:
         model = Concept.related.through
-        exclude = ('from',)
+        exclude = ('subject',)
 
 
 class ParentForm(forms.ModelForm):

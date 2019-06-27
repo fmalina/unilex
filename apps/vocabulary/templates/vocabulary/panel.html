@@ -26,11 +26,4 @@
         {% endif %}
         {% if not forloop.last %} | {% endif %}</span>
     {% endfor %}
-    
-    {% if synonyms %}
-    <p><b>Synonyms</b>:
-        {% for s in synonyms %}
-        {{ s }}
-        {% endfor %}<p>
-    {% endif %}
 </ul>

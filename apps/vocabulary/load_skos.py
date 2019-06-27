@@ -1,7 +1,6 @@
 """Import SKOS vocabularies (tested only with Lexaurus serialisation)
 Use from a command line for bulk imports and in the SKOS upload script view.
 """
-
 import logging
 import os
 import os.path
@@ -9,7 +8,7 @@ from tempfile import NamedTemporaryFile
 from xml.etree.ElementTree import ElementTree
 
 from django.contrib import messages
-from django.conf import settings
+from django.contrib.auth.models import User
 
 from vocabulary.models import *
 
@@ -50,8 +49,7 @@ VOCAB_TAG_MAP = expand_map({
 
 CONCEPT_TAG_MAP = expand_map({
     'skos:prefLabel': 'name',
-    'skos:altLabel': 'synonyms[]',
-    'skos:topConceptOf': None, # deduceable from inScheme when no broader
+    'skos:topConceptOf': None,  # deduceable from inScheme when no broader
     'skos:inScheme': 'vocabulary',
     'skos:broader': 'parent[]',
     'skos:narrower': 'children[]',
@@ -112,7 +110,7 @@ def load_fields_from_node(node, tag_map):
         try:
             mapped_field = tag_map[child.tag]
         except KeyError:
-            raise XMLFormatError("Unknown element found in %s: %s" % (node.tag, child.tag))
+            raise XMLFormatError(f"Unknown element found in {node.tag}: {child.tag}")
 
         if isinstance(mapped_field, tuple):
             attribute, attribute_mapping = mapped_field
@@ -120,11 +118,7 @@ def load_fields_from_node(node, tag_map):
             try:
                 mapped_field = attribute_mapping[attribute_value]
             except KeyError:
-                raise XMLFormatError("Unknown %s value found for %s: %s" % (
-                    attribute,
-                    child.tag,
-                    attribute_value
-                ))
+                raise XMLFormatError(f"Unknown {attribute} value found for {child.tag}: {attribute_value}")
 
         if mapped_field is not None:
             value = child.text
@@ -147,28 +141,25 @@ def load_fields_from_node(node, tag_map):
             else:
                 if mapped_field in map and map[mapped_field] != value:
                     raise XMLFormatError(
-                        "Duplicate value '%s' for field %s in node %s" % (
-                            value,
-                            mapped_field,
-                            node.get(xmlns_nid)
-                        )
+                        f"Duplicate value '{value}' for field {mapped_field} in node {node.get(xmlns_nid)}"
                     )
                 map[mapped_field] = value
     return map
 
 
 class SKOSLoader(object):
-    def __init__(self, request=False, log=False):
-        self.request = request
+    def __init__(self, user=None, log=None):
+        self.user = user
         self.log = log
         self.concepts_relationships = []
+        self.messages = []
     
     def message(self, level, message):
         """Log message to a log file or display in the browser"""
         if self.log:
             logging.log(level, message)
         else:
-            messages.add_message(self.request, level, message)
+            messages.append((level, message))
     
     def add_parent_relationship(self, parent, child):
         self.concepts_relationships.append((parent, 'parent of', child))
@@ -178,15 +169,17 @@ class SKOSLoader(object):
 
     def save_relationships(self):
         for subject, predicate, object in self.concepts_relationships:
-            try:
-                subject = Concept.objects.filter(node_id=subject[1], vocabulary=subject[0])[0]
-            except Concept.DoesNotExist as e:
-                self.message(20, "No subject Concept matching node_id '%s' in %s" % (subject[1], subject[0]))
+            sub_vocab, sub_node_id = subject
+            obj_vocab, obj_node_id = object
+
+            subject = Concept.objects.filter(node_id=sub_node_id, vocabulary=sub_vocab).first()
+            if not subject:
+                self.message(20, f"No subject Concept matching node_id '{sub_node_id}' in {sub_vocab}")
                 continue
-            try:
-                object = Concept.objects.filter(node_id=object[1], vocabulary=object[0])[0]
-            except Exception as e:
-                self.message(20, "problem importing %s no %s: %s → %s " % (object[0], predicate, subject, object[1]))
+
+            object = Concept.objects.filter(node_id=obj_node_id, vocabulary=obj_vocab).first()
+            if not object:
+                self.message(20, f"Problem importing {obj_vocab} no {predicate}: {subject} → {obj_node_id}")
                 continue
             if predicate == 'parent of':
                 object.parent.add(subject)
@@ -208,7 +201,7 @@ class SKOSLoader(object):
             doc.parse(f.name)
             os.unlink(f.name)
         except TypeError:
-            self.message(40, 'Sorry, that wasn\'t a SKOS RDF file.')
+            self.message(40, "That wasn't a SKOS RDF file.")
             goto = '/vocabularies/load-skos'
             
         if doc.getroot().tag != TAG('rdf:RDF'):
@@ -222,7 +215,7 @@ class SKOSLoader(object):
         for concept in doc.findall('.//'+TAG('skos:Concept')):
             self.load_concept_instance(concept)
         
-        return goto
+        return goto, self.messages
 
     def get_node_id(self, element):
         identifiers = []
@@ -234,30 +227,26 @@ class SKOSLoader(object):
             identifiers.append(node_url)
         node_fragment = element.get(TAG('rdf:ID'))
         if node_fragment:
-            identifiers.append('#' + node_fragment)
+            identifiers.append(f'#{node_fragment}')
         if not identifiers:
-            raise XMLFormatError("No node identifier found for " + element.tag)
+            raise XMLFormatError(f"No node identifier found for {element.tag}")
         if len(identifiers) > 1:
-            raise XMLFormatError("Duplicate identifiers found for %s: %s" % (element.tag, identifiers))
+            raise XMLFormatError(f"Duplicate identifiers found for {element.tag}: {identifiers}")
         return identifiers[0]
 
     def load_vocab_instance(self, vocab):
         """Parse a Vocabulary instance from an ElementTree skos:ConceptScheme node."""
         vocab_dict = {
-            'node_id': self.get_node_id(vocab) 
+            'node_id': self.get_node_id(vocab),
+            'user': self.user
         }
         vocab_dict.update(load_fields_from_node(vocab, VOCAB_TAG_MAP))
         # Find or create a Language instance for vocab_dict['language']
         if 'language' in vocab_dict:
             language, created = Language.objects.get_or_create(iso=vocab_dict['language'])
             vocab_dict['language'] = language
-        try:
-            v = Vocabulary.objects.get(vocab_dict['node_id'])
-            v.delete()
-        except:
-            pass
+
         v = Vocabulary(**vocab_dict)
-        v.user = self.request.user
         v.save()
         return v
 
@@ -266,31 +255,27 @@ class SKOSLoader(object):
         node_id = self.get_node_id(node)
         concept_dict = {'node_id': node_id}
         concept_dict.update(load_fields_from_node(node, CONCEPT_TAG_MAP))
-        vocabulary = concept_dict.pop('vocabulary', None)
-        parent     = concept_dict.pop('parent', [])
-        related    = concept_dict.pop('related', [])
-        category   = concept_dict.pop('category', [])
-        children   = concept_dict.pop('children', [])
-        synonyms   = concept_dict.pop('synonyms', [])
-        try:
-            vocabulary = Vocabulary.objects.get(node_id=vocabulary)
-        except Vocabulary.DoesNotExist:
-            raise XMLFormatError("No Vocabulary with node_id '%s' found for Concept '%s'" % (vocabulary, node_id)) 
-        else:
-            concept_dict['vocabulary'] = vocabulary
+        vocab_node_id = concept_dict.pop('vocabulary', None)
+        parent = concept_dict.pop('parent', [])
+        related = concept_dict.pop('related', [])
+        category = concept_dict.pop('category', [])
+        children = concept_dict.pop('children', [])
+
+        vocab = Vocabulary.objects.filter(node_id=vocab_node_id).first()
+        if not vocab:
+            raise XMLFormatError(f"No Vocabulary with node_id '{vocab}' found for Concept '{node_id}'")
+        concept_dict['vocabulary'] = vocab
         c = Concept(**concept_dict)
         c.save()
-        for s in synonyms:
-            c.synonym_set.create(name=s)
         # Queue relationships to be saved once all concepts have been created
         for par in parent:
-            self.add_parent_relationship(child=(vocabulary, node_id), parent=(vocabulary, par))
+            self.add_parent_relationship(child=(vocab, node_id), parent=(vocab, par))
         for child in children:
-            self.add_parent_relationship(child=(vocabulary, child), parent=(vocabulary, node_id))
+            self.add_parent_relationship(child=(vocab, child), parent=(vocab, node_id))
         for rel in related:
-            self.add_related_relationship(subject=(vocabulary, node_id), related=(vocabulary, rel))
+            self.add_related_relationship(subject=(vocab, node_id), related=(vocab, rel))
         for rel in category:
-            self.add_related_relationship(subject=(vocabulary, node_id), related=(vocabulary, rel))
+            self.add_related_relationship(subject=(vocab, node_id), related=(vocab, rel))
 
     def load_recursive(self, path):
         for subdir, dirs, files in os.walk(path, followlinks=True):

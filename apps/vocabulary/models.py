@@ -132,7 +132,9 @@ class Concept(models.Model):
     parent = models.ManyToManyField('self', blank=True, symmetrical=False,
                                     related_name='children')
     related = models.ManyToManyField('self', blank=True, symmetrical=False,
-                                     related_name='related_concepts')
+                                     related_name='relations',
+                                     through='vocabulary.Relation',
+                                     through_fields=('subject', 'predicate'))
     query = models.TextField(blank=True)
     count = models.IntegerField(blank=True, null=True)
     active = models.BooleanField(default=True)
@@ -211,78 +213,36 @@ class Concept(models.Model):
         unique_together = [('node_id', 'vocabulary')]
 
 
-class Synonym(models.Model):
-    concept = models.ForeignKey(Concept, on_delete=models.CASCADE)
-    name = models.CharField(max_length=150)
+class Relation(models.Model):
+    """Simple related concepts, custom relation triples, synonyms, attribute values etc."""
+    VALUE_TYPES = [
+        ('char', 'vocabulary.validation_utils.validation_simple', 'One or more characters'),
+        ('bool', 'vocabulary.validation_utils.validation_yesno', 'Yes or No'),
+        ('json', 'vocabulary.validation_utils.validation_json', 'Valid JSON'),
+        ('int', 'vocabulary.validation_utils.validation_integer', 'Integer number'),
+        ('dec', 'vocabulary.validation_utils.validation_decimal', 'Decimal number'),
+    ]
+    VALUE_TYPE_CHOICES = [(x, z) for x, y, z in VALUE_TYPES]
+    VALIDATIONS = [(y, z) for x, y, z in VALUE_TYPES]
 
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        db_table = 'concepts_synonyms'
-        unique_together = ('concept', 'name')
-
-
-# custom fields - not implemented
-
-VALIDATIONS = [
-    ('vocabulary.validation_utils.validation_simple', 'One or more characters'),
-    ('vocabulary.validation_utils.validation_integer', 'Integer number'),
-    ('vocabulary.validation_utils.validation_yesno', 'Yes or No'),
-    ('vocabulary.validation_utils.validation_decimal', 'Decimal number'),
-]
-
-
-class AttributeOption(models.Model):
-    """
-    Type of a note
-    
-    Allows arbitrary name/value pairs to be attached to a concept.
-    By defining the list, the user will be presented with a predefined
-    list of attributes instead of a free form field.
-    The validation field should contain a regular expression that can be
-    used to validate the structure of the input.
-    Possible usage for a book: ISBN, Pages, Author, etc
-    """
-    description = models.CharField("Description", max_length=100)
-    name = models.SlugField("Attribute name", max_length=100)
-    validation = models.CharField("Field Validations", choices=VALIDATIONS, max_length=100)
-    sort_order = models.IntegerField("Sort Order", default=1)
-    error_message = models.CharField("Error Message", default="Invalid Entry", max_length=100)
-
-    class Meta:
-        db_table = 'concepts_attribute_options'
-        ordering = ('sort_order',)
-
-    def __str__(self):
-        return self.description
-
-
-class ConceptAttribute(models.Model):
-    """
-    Allows arbitrary name/value pairs (as strings) to be attached to a concept.
-    This is a simple way to add extra text or numeric info to a concept.
-    If you want more structure than this, create your own subtype to add
-    whatever you want to your Concepts.
-    """
-    concept = models.ForeignKey(Concept, on_delete=models.CASCADE)
-    # language_code = models.CharField(_('language'), max_length=10,
-    #     choices=settings.LANGUAGES, null=True, blank=True)
-    option = models.ForeignKey(AttributeOption, on_delete=models.CASCADE)
-    value = models.CharField("Value", max_length=255)
+    subject = models.ForeignKey(Concept, related_name='subject', on_delete=models.CASCADE)
+    predicate = models.ForeignKey(Concept, related_name='predicate', on_delete=models.CASCADE)
+    object = models.ForeignKey(Concept, related_name='object', on_delete=models.CASCADE, null=True, blank=True)
+    object_value_type = models.CharField("Object type", choices=VALUE_TYPE_CHOICES, max_length=4, null=True, blank=True)
+    object_value = models.TextField("Object value", null=True, blank=True)
 
     @property
     def name(self):
-        return self.option.name
+        return self.object.name
 
     @property
     def description(self):
-        return self.option.description
+        return self.object.description
 
     class Meta:
-        db_table = 'concepts_attributes'
-        verbose_name = "Note: Concept Attribute"
-        verbose_name_plural = "Notes: Concept Attributes"
+        db_table = 'concept_relations'
+        verbose_name = "Concept Relation"
+        verbose_name_plural = "Concept Relations"
 
     def __str__(self):
-        return self.option.name
+        return self.object.name
