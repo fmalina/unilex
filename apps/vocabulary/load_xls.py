@@ -20,18 +20,16 @@ def last_full_cell(row_data):
     return row_data[last_full_cell], last_full_cell
 
 
-def handle_error(request, vocab, error):
-    messages.error(request, error)
-    vocab.delete()
-    return '/vocabularies/load-xls'
+class XLSLoadException(Exception):
+    pass
 
 
-def load_xls(request, file, title):
+def load_xls(user, file, title):
     """Import a hierarchy into the DB from Excel
     Adds messages and returns redirect URL"""
     vocab = Vocabulary(title=title)
     vocab.node_id = slugify(title)
-    vocab.user = request.user
+    vocab.user = user
     vocab.save()
     try:
         book = xlrd.open_workbook(file_contents=file)
@@ -42,14 +40,12 @@ def load_xls(request, file, title):
         try:
             f = file.decode().splitlines()
         except UnicodeDecodeError:
-            error = "Not a CSV."
-            return handle_error(request, vocab, error)
+            raise XLSLoadException("Not a CSV.")
         reader = [x for x in csv.reader(f)]
         try:
             col1 = [x[0] for x in reader]
         except IndexError:
-            error = "Not a good CSV. Blank lines."
-            return handle_error(request, vocab, error)
+            raise XLSLoadException("Remove blank lines!")
         
     id_col = has_unique_ids(col1)
     conceptstack = []
@@ -61,8 +57,8 @@ def load_xls(request, file, title):
             blank -= 1 # to account for ID column
         concept.save()
         if len(conceptstack) < blank:
-            return handle_error(request, vocab,
-                "Wrong indent on line %d or non unique IDs. Fix it and try again." % (line + 1))
+            raise XLSLoadException(
+                f"Wrong indent on line {line + 1} or non unique IDs. Fix it and try again.")
         if len(conceptstack) > blank:
             for i in range(len(conceptstack) - blank):
                 conceptstack.pop()
@@ -71,8 +67,4 @@ def load_xls(request, file, title):
             concept.save()
         conceptstack.append(concept)
 
-    messages.success(request, 'Success, taxonomy loaded.')
-    msg = "First column had unique IDs, these were used." if id_col\
-     else "First column didn't have unique IDs, created new ones."
-    messages.info(request, msg)
     return vocab

@@ -6,7 +6,7 @@ from reversion.admin import VersionAdmin
 import re
 
 
-def clean_attribute_value(cleaned_data, obj):
+def clean_relation_value(cleaned_data, obj):
     value = cleaned_data['value']
     attribute = cleaned_data['option']
     success, valid_value = validate_attribute_value(attribute, value, obj)
@@ -15,7 +15,7 @@ def clean_attribute_value(cleaned_data, obj):
     return valid_value
 
 
-class AttributeOptionForm(models.ModelForm):
+class RelationForm(models.ModelForm):
     def clean_validation(self):
         validation = self.cleaned_data['validation']
         try:
@@ -25,24 +25,22 @@ class AttributeOptionForm(models.ModelForm):
         return validation
 
 
-@admin.register(vocabs.AttributeOption)
-class AttributeOptionAdmin(admin.ModelAdmin):
-    form = AttributeOptionForm
-    prepopulated_fields = {"name": ("description",)}
+class RelationInlineForm(models.ModelForm):
+    form = RelationForm
 
-
-class ConceptAttributeInlineForm(models.ModelForm):
     def clean_value(self):
-        return clean_attribute_value(
+        return clean_relation_value(
             self.cleaned_data,
             self.cleaned_data['concept']
         )
 
 
-class ConceptAttribute_Inline(admin.TabularInline):
-    model = vocabs.ConceptAttribute
+class RelationInline(admin.TabularInline):
+    model = vocabs.Relation
     extra = 2
-    form = ConceptAttributeInlineForm
+    form = RelationInlineForm
+    fk_name = 'subject'
+    raw_id_fields = ['predicate', 'object']
 
 
 @admin.register(vocabs.Language)
@@ -74,7 +72,7 @@ class VocabularyAdmin(VersionAdmin):
 @admin.register(vocabs.Concept)
 class ConceptAdmin(VersionAdmin):
     search_fields = ['id','name']
-    inlines = [ConceptAttribute_Inline]
+    inlines = [RelationInline]
     list_display = ('name', 'mother', 'vocabulary', 'forward_path')
     list_filter = ('vocabulary',)
     exclude = ('parent', 'related', 'query')

@@ -23,9 +23,7 @@ LOGIN_REDIRECT_URL = '/'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            PWD + '/templates/',
-        ],
+        'DIRS': [PWD + '/templates/'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -38,9 +36,9 @@ TEMPLATES = [
                 'django.template.context_processors.tz',
                 'django.template.context_processors.request',
                 'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
+            ]
+        }
+    }
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

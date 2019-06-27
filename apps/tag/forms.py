@@ -4,7 +4,7 @@ from vocabulary.forms import TO_CONCEPT
 
 
 class TagForm(forms.Form):
-    to_concept = TO_CONCEPT
+    predicate = TO_CONCEPT
 
 
 class RecordForm(forms.ModelForm):

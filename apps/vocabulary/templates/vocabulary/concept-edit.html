@@ -8,13 +8,6 @@
     <p class="title">{{ form.name.label_tag }} {{ form.name }}<br>
     <p class="node_id">{{ form.node_id.label_tag }} {{ form.node_id }}</p>
     <p>{{ form.description.label_tag }} {{ form.description }}</p>
-    
-    <div><label>Parents</label></div>
-    {% with parent_forms_and_set as forms_and_set %}
-    {% with parent_formset as formset %}
-        {% include "vocabulary/concept-set-formset.html" %}
-    {% endwith %}
-    {% endwith %}
 
     <div><label>{% if not concept.vocabulary.queries %}Related{% else %}Query{% endif %} concepts</label></div>
     <div{% if concept.vocabulary.queries %} id="queries"{% endif %}>

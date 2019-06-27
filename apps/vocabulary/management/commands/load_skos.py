@@ -1,6 +1,7 @@
 from django.core.management.base import BaseCommand
 from vocabulary.load_skos import SKOSLoader
 from optparse import make_option
+from .dev_setup import create_user
 
 
 class Command(BaseCommand):
@@ -13,9 +14,10 @@ class Command(BaseCommand):
     
     def handle(self, *args, **options):   
         if not args:
-            parser.error("You must specify some SKOS files to import.")
+            print("You must specify some SKOS files to import.")
+            exit()
         try:
-            loader = SKOSLoader(request=False, log=True)
+            loader = SKOSLoader(user=create_user(), log=True)
             if options.get('recursive', False):
                 for a in args:
                     loader.load_recursive(a)
