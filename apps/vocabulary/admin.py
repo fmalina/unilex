@@ -62,7 +62,9 @@ class AuthorityAdmin(admin.ModelAdmin):
 
 @admin.register(vocabs.Vocabulary)
 class VocabularyAdmin(VersionAdmin):
+    search_fields = ['node_id', 'title', 'description']
     prepopulated_fields = {"node_id": ("title",)}
+    list_filter = ('private',)
     list_display = (
         'title', 'node_id', 'user', 'language',
         'private', 'updated_at', 'created_at'
