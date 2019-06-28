@@ -358,22 +358,34 @@ def concept_edit(request, vocab_node_id, node_id):
 
 @csrf_exempt
 @ajax_login_required
-def concept_adopt(request, vocab_node_id, node_id):
-    vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
-    if not vocab.is_allowed_for(request.user):
-        raise Http404(NOT_ALLOWED)
+def concept_adopt(request):
+    if request.method != 'POST':
+        raise Http404('post only')
 
-    child = get_object_or_404(Concept, node_id=node_id, vocabulary=vocab)
-    dad = None
-    parent_id = request.POST['mother']
-    if parent_id != 'orphanate':
-        dad = Concept.objects.filter(node_id=parent_id, vocabulary=vocab).first()
-    if request.method == 'POST':
-        if child != dad:  # protect from pasting to itself
-            child.parent.remove(child.mother())
-            if dad:
-                child.parent.add(dad)
-            child.save()
+    def get_uri(uri):
+        if not uri:
+            raise Http404('no data')
+        vocab_node_id, node_id = uri.split('/')
+        vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
+        if not vocab.is_allowed_for(request.user):
+            raise Http404(NOT_ALLOWED)
+
+        concept = None
+        if node_id != 'direct_to_parent_vocab':
+            concept = get_object_or_404(Concept, node_id=node_id, vocabulary=vocab)
+        return vocab, concept
+
+    child_vocab, child = get_uri(request.POST.get('child'))
+    parent_vocab, parent_concept = get_uri(request.POST.get('parent'))
+
+    if child == parent_concept:
+        return HttpResponse('protected from pasting to itself')
+
+    child.vocabulary = parent_vocab
+    child.parent.remove(child.mother())
+    if parent_concept:
+        child.parent.add(parent_concept)
+    child.save()
     return HttpResponse('ok')
 
 
