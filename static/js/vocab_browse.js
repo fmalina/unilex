@@ -139,9 +139,9 @@ var VocabBrowser = {
                     $('#editing').prepend(data);
                 });
             });
-            $('#icon-paste').bind('click', function () {
+            $('#icon-paste').bind('click', function (e) {
                 VocabBrowser.paste('direct_to_parent_vocab');
-                location.reload();
+                e.preventDefault();
             });
         } else {
             $(domElement).append('<p id="editicons">' + add + del + cut + paste + '</p>');
@@ -161,9 +161,9 @@ var VocabBrowser = {
                 localStorage.setItem("cut", VocabBrowser.id(VocabBrowser.toproot) + ':' + node.id);
                 $(this).css('opacity', '0.3');
             });
-            $('#icon-paste').bind('click', function () {
+            $('#icon-paste').bind('click', function (e) {
                 VocabBrowser.paste(node.id);
-                location.reload();
+                e.preventDefault();
             });
         }
         $('#editicons').show();
@@ -172,6 +172,8 @@ var VocabBrowser = {
         $.post('/vocabularies/adopt', {
             child: localStorage.getItem("cut"),
             parent: VocabBrowser.id(VocabBrowser.toproot) + ':' + nodeId
+        }).done(function() {
+            location.reload();
         });
     },
     hideIcons: function (domElement, node) {
