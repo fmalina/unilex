@@ -128,9 +128,10 @@ def authority(request, authority_code, json=False):
     """Authority and its vocabularies."""
     a = get_object_or_404(Authority, code=authority_code)
     ls = Vocabulary.objects.with_counts().filter(authority=a)
-    private_access = request.user in a.users.all()
-    if not private_access:
-        ls = ls.filter(private=False)
+    # TODO: ACL API
+    # private_access = request.user in a.users.all()
+    # if not private_access:
+    #     ls = ls.filter(private=False)
     context = {
         'ls': ls,
         'authority': a,
@@ -162,8 +163,9 @@ def detail(request, vocab_node_id):
 
 def json(request, vocab_node_id):
     vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
-    if vocab.private and not vocab.is_allowed_for(request.user):
-        raise Http404(NOT_ALLOWED)
+    # TODO: ACL API
+    # if vocab.private and not vocab.is_allowed_for(request.user):
+    #    raise Http404(NOT_ALLOWED)
     count = Concept.objects.filter(vocabulary=vocab).count()
     max_depth = 0
     if not count < 2000:
