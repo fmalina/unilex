@@ -381,10 +381,15 @@ def concept_adopt(request):
     if child == parent_concept:
         return HttpResponse('protected from pasting to itself')
 
-    child.vocabulary = parent_vocab
     child.parent.remove(child.mother())
     if parent_concept:
         child.parent.add(parent_concept)
+
+    if child_vocab != parent_vocab:
+        child.vocabulary = parent_vocab
+        for d in child.get_descendants():
+            d.vocabulary = parent_vocab
+            d.save()
     child.save()
     return HttpResponse('ok')
 
