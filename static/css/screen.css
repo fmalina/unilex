@@ -1,14 +1,15 @@
 @import url('/css/autocomplete.css');
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Open+Sans&display=swap')
 
 body{
-    font-family:Garamond,serif;
-    border-top:7px solid #EAA000;
+    font-family:'Open Sans',sans-serif;
     color:#333;
     margin:0;padding:0;
 }
+
 a{color:#23A4FF}
 a:hover{color:#005089}
-h1{font-size:3em;margin:0;padding:.2em 0 0 0}
+h1{font-size:3em;margin:0;padding:.2em 0 0 0;font-family:'Montserrat',sans-serif;font-weight:200}
 .content h1,h2{font-weight:300}
 fieldset{border:0;padding:0}
 dfn{border-bottom:1px dotted #ddd;cursor:help;font-style:normal}
@@ -32,17 +33,18 @@ pre{color:green}
 .nav ul{list-style:none}
 .nav a{text-decoration:none}
 
+#header{background:#8174fe;box-shadow: 0 0 8px #8174fe;border-bottom:1px solid #ddd;
+    text-align:left;padding:1.5rem 1.5rem 1rem 2rem}
+#header .logo{color:white;padding-right:1.5rem;text-transform:uppercase;text-decoration:none;
+    font-family:'Montserrat',sans-serif;font-weight:200;letter-spacing:4px;font-size:14px}
 #header .nav{display:block;padding:0 3em 0 0;float:left}
-#header .nav .sep{color:#ddd;font-size:.9em}
+#header .nav .sep{color:#fff;font-size:.9em}
 #header .nav .sep,
 #header .nav li,
 #header .nav a{display:inline-block}
-#header .nav a{text-transform:uppercase;color:#999;
-    font-size:.9em;padding:.5em 1em .5em 0}
-#header .nav a:hover{color:#333}
+#header .nav a{text-transform:uppercase;color:#fff;padding:.5em 1em .5em 0}
+#header .nav a:hover{color:gold}
 #header .nav li:last-child a{padding-right:0}
-#header .nav a.logo{color:#444}
-#header .nav a.logo:hover{color:#111}
 
 form ul{margin:0;padding:10px 0}
 form ul li{list-style:none;padding:5px 0}
