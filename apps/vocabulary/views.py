@@ -384,13 +384,18 @@ def concept_adopt(request):
     child.parent.remove(child.mother())
     if parent_concept:
         child.parent.add(parent_concept)
+    child.save()
 
     if child_vocab != parent_vocab:
         child.vocabulary = parent_vocab
+        child.save()
         for d in child.get_descendants():
             d.vocabulary = parent_vocab
-            d.save()
-    child.save()
+            try:
+                d.save()
+            except:
+                pass
+
     return HttpResponse('ok')
 
 
