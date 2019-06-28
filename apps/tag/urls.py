@@ -7,6 +7,7 @@ urlpatterns = [
     path('records', records, name="records"),
     path('json/<int:record_id>', record_json, name="record_json"),
     path('query', query, name="query"),
+    path('test', TaggingView.as_view(), name="test-record"),
     path('-<path:uri>', TaggingView.as_view(), name="tag-record"),
     path('<path:uri>', TaggingView.as_view(template_name='tag/record.html'), name="tag"),
 ]
