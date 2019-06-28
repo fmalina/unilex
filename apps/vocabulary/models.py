@@ -98,11 +98,11 @@ class Vocabulary(models.Model):
         """Say whether this user has permission to access this vocab."""
         if self.authority and user in self.authority.users.all():
             return True
-        return (
-                user == self.user or
-                user.is_superuser or
-                user.is_staff
-        )
+        if user.pk == self.user.pk:
+            return True
+        if user.is_superuser or user.is_staff:
+            return True
+        return False
 
     def save(self, *args, **kwargs):
         self.updated_at = datetime.now()
