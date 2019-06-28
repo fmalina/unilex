@@ -1,5 +1,5 @@
 <p>
-    <a href="{% url 'add' %}" class="btn call"><b>+</b> Start your vocabulary
+    <a href="{% url 'add' %}" class="btn call">Start your vocabulary
         {% if not request.user.is_authenticated %}
             <small class="nowrap">registration required</small>
         {% endif %}
