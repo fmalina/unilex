@@ -140,7 +140,7 @@ var VocabBrowser = {
                 });
             });
             $('#icon-paste').bind('click', function () {
-                VocabBrowser.paste('orphanate');
+                VocabBrowser.paste('direct_to_parent_vocab');
                 location.reload();
             });
         } else {
@@ -158,7 +158,7 @@ var VocabBrowser = {
             });
             $('#icon-cut').bind('click', function () {
                 $.cookie("cut", null);
-                $.cookie("cut", node.id);
+                $.cookie("cut", VocabBrowser.id(VocabBrowser.toproot) + '/' + node.id);
                 $(this).css('opacity', '0.3');
             });
             $('#icon-paste').bind('click', function () {
@@ -168,9 +168,11 @@ var VocabBrowser = {
         }
         $('#editicons').show();
     },
-    paste: function (node_id) {
-        var child = $.cookie("cut");
-        $.post(VocabBrowser.conceptUri(child,'adopt'), { mother: node_id, save: "Save" });
+    paste: function (nodeId) {
+        $.post('/vocabularies/adopt', {
+            child: $.cookie("cut"),
+            parent: VocabBrowser.id(VocabBrowser.toproot) + '/' + nodeId
+        });
     },
     hideIcons: function (domElement, node) {
         $(domElement).html(node.name);
