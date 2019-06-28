@@ -362,10 +362,10 @@ def concept_adopt(request):
     if request.method != 'POST':
         raise Http404('post only')
 
-    def get_uri(uri):
-        if not uri:
+    def get_objs(node_ids):
+        if not node_ids:
             raise Http404('no data')
-        vocab_node_id, node_id = uri.split('/')
+        vocab_node_id, node_id = node_ids.split(':')
         vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
         if not vocab.is_allowed_for(request.user):
             raise Http404(NOT_ALLOWED)
@@ -375,8 +375,8 @@ def concept_adopt(request):
             concept = get_object_or_404(Concept, node_id=node_id, vocabulary=vocab)
         return vocab, concept
 
-    child_vocab, child = get_uri(request.POST.get('child'))
-    parent_vocab, parent_concept = get_uri(request.POST.get('parent'))
+    child_vocab, child = get_objs(request.POST.get('child'))
+    parent_vocab, parent_concept = get_objs(request.POST.get('parent'))
 
     if child == parent_concept:
         return HttpResponse('protected from pasting to itself')

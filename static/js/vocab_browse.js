@@ -157,8 +157,8 @@ var VocabBrowser = {
                 });
             });
             $('#icon-cut').bind('click', function () {
-                $.cookie("cut", null);
-                $.cookie("cut", VocabBrowser.id(VocabBrowser.toproot) + '/' + node.id);
+                localStorage.removeItem("cut");
+                localStorage.setItem("cut", VocabBrowser.id(VocabBrowser.toproot) + ':' + node.id);
                 $(this).css('opacity', '0.3');
             });
             $('#icon-paste').bind('click', function () {
@@ -170,8 +170,8 @@ var VocabBrowser = {
     },
     paste: function (nodeId) {
         $.post('/vocabularies/adopt', {
-            child: $.cookie("cut"),
-            parent: VocabBrowser.id(VocabBrowser.toproot) + '/' + nodeId
+            child: localStorage.getItem("cut"),
+            parent: VocabBrowser.id(VocabBrowser.toproot) + ':' + nodeId
         });
     },
     hideIcons: function (domElement, node) {
