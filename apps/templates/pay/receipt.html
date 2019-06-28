@@ -1,0 +1,30 @@
+{% extends 'pay/base.html' %}
+{% block head %}
+<style media="print">
+    .noprint{display:none}
+</style>
+{% endblock %}
+{% block content %}
+<p class="clear noprint">You can
+	<a href="#" onclick="window.print()">print the receipt</a>
+	below for your records.</p>
+
+<h1>Invoice from <u>unilexicon.com</u></h1>
+
+
+<h3>Bill to</h3>
+{% with payment.cardreceipt.paycard as card %}
+<p><b>{{ payment.user.get_full_name }}</b><br>
+	&lt;<u>{{ payment.user.email }}</u>&gt;</p>
+
+{% endwith %}
+
+<h3>Billing summary </h3>
+<p><b>{{ payment.time_stamp }}</b><br>
+<p>Taxonomy management services</p>
+<p>Total: £{{ payment.amount }}</p>
+
+<p>Thank you for your business.<br>
+    Unilexicon management</p>
+
+{% endblock %}
