@@ -136,7 +136,7 @@ def authority(request, authority_code, json=False):
         'ls': ls,
         'authority': a,
         'authority_code': a.code,
-        'private_access': private_access
+        # 'private_access': private_access
     }
     if json:
         ls = [{
