@@ -1,7 +1,7 @@
 from settings_local import *
 import os.path
 
-VERSION = '1.1'
+VERSION = '1.2'
 
 PWD = os.path.dirname(os.path.realpath(__file__ ))
 PROJECT_ROOT = PWD.replace('apps', '')
