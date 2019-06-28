@@ -181,7 +181,6 @@ var VocabBrowser = {
 }
     
 $(function(){
-    $.cookie("cut", null);
     VocabBrowser.init();
     $(document).on('click', '.cancel', function(){
         $(this).parents('form:first').remove();
