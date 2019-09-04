@@ -12,4 +12,4 @@ class RecordForm(forms.ModelForm):
 
     class Meta:
         model = Record
-        fields = ['title', 'desc', 'uri']
+        fields = ['title', 'desc', 'key']
