@@ -14,7 +14,7 @@
 <li>
     <h2>
         <small>
-            <a href="{% url 'tag' record.url %}">
+            <a href="{% url 'tag' record.key %}">
                 <i class="icon icon-edit"></i>
             </a>
         </small>
@@ -22,7 +22,7 @@
     </h2>
     <p>
         {{ record.desc }}
-        <a href="{{ record.url }}">{{ record.url }}
+        <a href="{{ record.key }}">{{ record.key }}
             <i class="icon icon-external"></i>
         </a>
     </p>
