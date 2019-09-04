@@ -25,10 +25,10 @@ class TaggingView(View):
     remote = False
 
     @method_decorator(csrf_exempt)
-    def post(self, request, uri=None):
+    def post(self, request, key=None):
         record = None
-        if uri:
-            record, _created = Record.objects.get_or_create(uri=uri)
+        if key:
+            record, _created = Record.objects.get_or_create(key=key)
 
         form = self.form(request.POST, instance=record)
         tag_formset = formset_factory(form=TagForm)
@@ -64,14 +64,14 @@ class TaggingView(View):
             'forms_and_set': zip(formset.forms, tags)
         })
 
-    def get(self, request, uri=None):
+    def get(self, request, key=None):
         tag_concepts = []
         tag_forms = []
         concepts = []
         record = None
 
-        if self.remote and uri:  # remote source of tagging data
-            query = uri
+        if self.remote and key:  # remote source of tagging data
+            query = key
             try:
                 data = Client(request, query).get_tags()
                 json_record = json.loads(data)
@@ -86,9 +86,9 @@ class TaggingView(View):
                 vocab = Vocabulary.objects.get(node_id=t[0])
                 concept = Concept.objects.get(vocabulary=vocab, node_id=t[1])
                 concepts.append(concept)
-        elif uri:
+        elif key:
             # local tag repository
-            record, _created = Record.objects.get_or_create(uri=uri)
+            record, _created = Record.objects.get_or_create(key=key)
             concepts = [tag.concept for tag in record.tag_set.all()]
 
         for concept in concepts:
