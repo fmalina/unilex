@@ -53,9 +53,7 @@
     {% block sidebar %}{% endblock %}
     <div id="footer">
         {% include 'feedback/form.html' %}
-        <p>&copy; {% now "Y" %} Etcetera Media Group Ltd. All rights reserved.
-            Created by <a href="https://vizualbod.com"
-                title="Django / JS web developer">Francis Malina</a>.</p>
+        <p>&copy; {% now "Y" %} <a href="https://vizualbod.com">F. Malina</a></p>
         {% include 'debug.html' %}
     </div>
     {% if not debug %}
