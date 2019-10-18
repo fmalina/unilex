@@ -1,7 +1,6 @@
-from django.urls import include, path, re_path
+from django.urls import include, path
 from django.conf import settings
 from django.contrib import admin
-from django.views.static import serve
 
 from views import home, docs, logmeout, sitemap
 from feedback.views import feedback
@@ -24,9 +23,6 @@ urlpatterns = [
     path('pay/', include('pay.urls')),
     path('logout/', logmeout, name='auth_logout'),
     path('sitemap.xml', sitemap, name='sitemap'),
-
-    # uncomment if you don't use a reverse proxy
-    re_path(r'^(.*)', serve, {'document_root': settings.STATIC_ROOT}),
 ]
 
 admin.site.site_header = settings.SITE_NAME
