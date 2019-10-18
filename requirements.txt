@@ -1,12 +1,20 @@
-# pip3 install -r requirements.txt --upgrade
-
 django>=2.1  # web framework
 gunicorn     # backend server
 mysqlclient  # database bindings
+PyMySQL      #  for MySQL
 xlrd         # Excel reader
+lxml         # parsing DM+D export data
+requests     # network requests
 docutils     # generate documentation
+sentry_sdk   # error reporting
+fabric       # updates
+invoke
 git+git://github.com/macropin/django-registration.git
 git+git://github.com/fmalina/django-pay.git#egg=pay
+git+git://github.com/fmalina/medd.git#egg=medd
 django-reversion
-sentry_sdk
-google-cloud-translate
+rest_framework
+
+# Install using:
+# sudo pip3 install -r requirements.txt --upgrade
+
