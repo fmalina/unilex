@@ -38,11 +38,11 @@ pre{color:green}
 .header .logo{color:white;padding-right:1.5rem;text-transform:uppercase;text-decoration:none;
     font-weight:200;letter-spacing:4px}
 .header .nav{display:block;padding:0 3em 0 0;float:left}
-.header .nav .sep{color:#fff;font-size:.9em}
+.header .nav .sep{color:#ddd;font-size:.9em}
 .header .nav .sep,
 .header .nav li,
 .header .nav a{display:inline-block;font-size:14px}
-.header .nav a{text-transform:uppercase;color:#fff;padding:.5em 1em .5em 0}
+.header .nav a{text-transform:uppercase;color:#3E92CC;padding:.5em 1em .5em 0}
 .header .nav a:hover{color:gold}
 .header .nav li:last-child a{padding-right:0}
 
