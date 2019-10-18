@@ -16,9 +16,10 @@ $(document).ready(function(){
 });
 </script>
 
-<form id="search" method="get" action="{{ base_url }}{% url 'search' %}">
+<form class="search" method="get" action="{{ base_url }}{% url 'search' %}">
     <div>
-        <input type="text" id="q" name="q" value="{{ q }}" placeholder="Search vocabularies" /><button type="submit">
+        <input type="text" id="q" name="q" value="{{ q }}"
+               placeholder="Search vocabularies" /><button type="submit">
             <i class="icon-search"></i></button>
     </div>
 </form>

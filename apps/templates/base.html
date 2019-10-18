@@ -16,7 +16,7 @@
         {% block extrascripts %}{% endblock %}
     </head>
     <body{% block body_id %}{% endblock %}>
-    <div id="header">
+    <div class="header">
         <ul class="nav">
             <li><a href="{{ base_url }}" class="logo">Unilexicon</a>
             <li><a href="{{ base_url }}{% url 'listings' %}"
@@ -51,9 +51,8 @@
         <div class="clear"></div>
     </div>
     {% block sidebar %}{% endblock %}
-    <div id="footer">
-        {% include 'feedback/form.html' %}
-        <p>&copy; {% now "Y" %} <a href="https://vizualbod.com">F. Malina</a></p>
+    <div class="footer">
+        <p><small>&copy; {% now "Y" %} <a href="/fm">FM</a></small></p>
         {% include 'debug.html' %}
     </div>
     {% if not debug %}
