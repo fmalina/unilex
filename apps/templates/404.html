@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
+{% block title %}Not found{% endblock %}
 {% block content %}
 <h1>Page not found <small>{{ reason }}</small></h1>
-<p>Site administrator just received an automated e-mail. If this is a broken link on our site, we'll fix it ASAP.</p>
-<p>If the page still exists on the site, you may find it by searching above.</p>
+<p>We didn't find anything under the requested URL.
+<p><b>Try the search above</b>, you may still find what you are looking for.
+<p>If there's a broken link, we'll look into fixing it.
+<p>&hellip; or start from the <a href="/">homepage</a>.
 {% endblock %}
