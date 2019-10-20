@@ -39,6 +39,25 @@ hr{margin:20px 0;border:0;border-top:1px solid white;border-bottom:1px solid whi
 .clear{clear:both}
 .left-padded{float:left;margin-right:1em}
 
+table{padding-top:20px}
+table th,table td{padding:3px 10px}
+table th{vertical-align:top;text-align:left;float:left;width:150px;padding-right:10px}
+table td{vertical-align:bottom}
+table li{margin-left:20px;list-style:disc}
+.odd{background:#f5f5f5}
+
+.pagination{display:inline-block;color:#999;margin:25px 0;border:1px solid #ddd;
+    border-radius:5px;box-shadow:0 1px 2px #eee}
+.pagination a{text-decoration:none}
+.pagination a,
+.pagination span{display:inline-block;border-right:1px solid #ddd;padding:6px 12px}
+.pagination .last{border-right:0}
+.pagination .next{border-right:0;border-left:1px solid #ddd}
+.pagination a:hover,.pagination a:active,
+.pagination .active{background:#eee;text-decoration:none}
+
+.a-z{font-size:11px;margin-top:0}
+
 @media(max-width:768px){
     .header,.content,.footer{padding:1em 3em}
     .content{margin-left:0}

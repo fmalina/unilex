@@ -2,15 +2,6 @@
 {% load tags %}
 {% block title %}{{ object }} ‹ {{ object.model.verbose_name|capfirst }}{% endblock %}
 
-{% block style %}
-table{padding-top:20px}
-table th,table td{padding:3px 10px}
-table th{vertical-align:top;text-align:left;float:left;width:150px;padding-right:10px}
-table td{vertical-align:bottom}
-table li{margin-left:20px;list-style:disc}
-.odd{background:#f5f5f5}
-{% endblock %}
-
 {% block content %}
 <p class="breadcrumbs">
     <a href="{{ site_url }}">Home</a> /

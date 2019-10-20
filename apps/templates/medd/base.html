@@ -6,7 +6,7 @@
     <title>{% block title %}{% endblock %}{% if not app_list %} - {{ site_name }}{% endif %}</title>
     {% if description %}<meta name="description" content="{% block description %}{% endblock %}">{% endif %}
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-    <link rel="canonical" href="https://unilexicon.com/{{ site_url|cut:'/' }}{{ request.path_info }}">
+    <link rel="canonical" href="https://unilexicon.com/{{ request.path_info }}">
     <link rel="stylesheet" href="/css/medd.css">
     <style>{% block style %}{% endblock %}</style>
     {% block head %}{% endblock %}
