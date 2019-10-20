@@ -1,12 +1,8 @@
 @import url('/css/autocomplete.css');
 @import url('https://fonts.googleapis.com/css?family=Montserrat|Open+Sans:300,400&display=swap');
 
-body{
-    font-family:'Open Sans',sans-serif;
-    color:#333;
-    margin:0;padding:0;
-}
-
+body{font-family:'Open Sans',sans-serif;
+    background:white;color:#333;margin:0;padding:0}
 a{color:#23A4FF}
 a:hover{color:#005089}
 h1{font-size:3em;margin:0;padding:.2em 0 0 0;font-weight:300}
@@ -43,7 +39,7 @@ pre{color:green}
 .header .nav li,
 .header .nav a{display:inline-block;font-size:14px}
 .header .nav a{text-transform:uppercase;color:#3E92CC;padding:.5em 1em .5em 0}
-.header .nav a:hover{color:gold}
+.header .nav a:hover{color:#005089}
 .header .nav li:last-child a{padding-right:0}
 
 form ul{margin:0;padding:10px 0}

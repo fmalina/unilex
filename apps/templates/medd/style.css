@@ -1,7 +1,9 @@
-body{font-family:sans-serif;
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Open+Sans:300,400&display=swap');
+
+body{font-family:'Open Sans',sans-serif;
     background:white;color:#333;margin:0;padding:0}
-a{color:#08c;text-decoration:none}
-a:hover{color:#06a;text-decoration:underline}
+a{color:#23A4FF;text-decoration:none}
+a:hover{color:#005089;text-decoration:underline}
 a.badge:hover{color:white;text-decoration:none}
 ul,li{margin:0;padding:0;list-style:none}
 h1,h2{font-weight:normal}
@@ -16,6 +18,8 @@ hr{margin:20px 0;border:0;border-top:1px solid white;border-bottom:1px solid whi
 .breadcrumbs span{padding:0 .5ex}
 .breadcrumbs a:first-child{padding-left:0}
 .breadcrumbs .active{color:gray}
+
+.header{font-family:'Montserrat',sans-serif}
 .header,.content,.footer{padding:15px 25px}
 .header .logo{padding:.3em 1em .5em 0;float:left}
 .header .logo span{padding:0 .8em 0 .7em;color:lightgray}
@@ -36,7 +40,7 @@ hr{margin:20px 0;border:0;border-top:1px solid white;border-bottom:1px solid whi
 .left-padded{float:left;margin-right:1em}
 
 @media(max-width:768px){
-    .header,.content,.footer{padding:1.5rem}
+    .header,.content,.footer{padding:1em 3em}
     .content{margin-left:0}
 	.cols{column-count:2}
 	.flex-grid{display:block;margin:0}
