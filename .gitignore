@@ -10,3 +10,4 @@ static/pay
 .idea
 *.pyc
 uploads
+static/med

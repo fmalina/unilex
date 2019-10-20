@@ -1,4 +1,5 @@
 from settings_local import *
+from medd.db_router import MEDD_APPS
 import os.path
 
 VERSION = '1.2'
@@ -28,6 +29,7 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'vocabulary.context_processors.current_site',
+                'medd.browse.context_processor.base',
                 'django.contrib.auth.context_processors.auth',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.i18n',
@@ -47,11 +49,14 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'paging.paging_middleware',
+    'medd.browse.middleware.SiteMiddleware',
 ]
 
 ROOT_URLCONF = 'urls'
+CACHING = True
+DATABASE_ROUTERS = ['medd.db_router.MeddDbRouter']
 
-INSTALLED_APPS = (
+INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -66,4 +71,5 @@ INSTALLED_APPS = (
     'registration',
     'feedback',
     'reversion',
-)
+    'rest_framework',
+] + MEDD_APPS

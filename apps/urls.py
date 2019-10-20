@@ -1,6 +1,7 @@
 from django.urls import include, path
 from django.conf import settings
 from django.contrib import admin
+from django.views.generic.base import RedirectView
 
 from views import home, docs, logmeout, sitemap
 from feedback.views import feedback
@@ -23,6 +24,9 @@ urlpatterns = [
     path('pay/', include('pay.urls')),
     path('logout/', logmeout, name='auth_logout'),
     path('sitemap.xml', sitemap, name='sitemap'),
+
+    path('med', RedirectView.as_view(url='/med/', permanent=True)),
+    path('med/', include('medd.urls')),
 ]
 
 admin.site.site_header = settings.SITE_NAME

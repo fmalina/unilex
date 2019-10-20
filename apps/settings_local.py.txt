@@ -13,6 +13,12 @@ DATABASES = {
         'NAME': 'unilex',
         'USER': '',
         'PASSWORD': ''
+    },
+    'medd': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'medd',
+        'USER': '',
+        'PASSWORD': ''
     }
 }
 DB_HOST = 'localhost'
