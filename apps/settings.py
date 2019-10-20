@@ -1,12 +1,10 @@
 from settings_local import *
 from medd.db_router import MEDD_APPS
 import os.path
-import site
 
 VERSION = '1.2'
 
 PWD = os.path.dirname(os.path.realpath(__file__ ))
-PY_PWD = site.getsitepackages()[0]
 PROJECT_ROOT = PWD.replace('apps', '')
 
 INTERNAL_IPS = ['127.0.0.1']
@@ -26,7 +24,7 @@ LOGIN_REDIRECT_URL = '/'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [f'{PWD}/templates/', f'{PY_PWD}/medd/templates/', f'{PY_PWD}/medd/browse/templates/'],
+        'DIRS': [f'{PWD}/templates/'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

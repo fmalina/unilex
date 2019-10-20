@@ -1,0 +1,24 @@
+{% if is_paginated %}
+<div class="pagination">
+{% if page_obj.has_previous %}
+    <a rel="prev" title="previous"
+       href=".{% if page_obj.previous_page_number == 1 %}/{% else %}{{ page_obj.previous_page_number }}{% endif %}">
+        <small>◀</small>
+    </a>{% endif %}
+{% for page in pages %}
+     {% if page %}
+        {% if page == page_obj.number %}
+            <span class="active{% if forloop.last %} last{% endif %}">{{ page }}</span>
+        {% else %}
+            <a{% if forloop.last %} class="last"{% endif %} href=".{% if page == 1 %}/{% else %}{{ page }}{% endif %}">{{ page }}</a>
+        {% endif %}
+    {% else %}
+        <span>…</span>
+    {% endif %}
+{% endfor %}
+{% if page_obj.has_next %}
+    <a rel="next" title="next" class="next" href=".{{ page_obj.next_page_number }}">
+        <small>▶</small>
+    </a>{% endif %}
+</div>
+{% endif %}

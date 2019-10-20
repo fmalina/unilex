@@ -1,0 +1,50 @@
+body{font-family:sans-serif;
+    background:white;color:#333;margin:0;padding:0}
+a{color:#08c;text-decoration:none}
+a:hover{color:#06a;text-decoration:underline}
+a.badge:hover{color:white;text-decoration:none}
+ul,li{margin:0;padding:0;list-style:none}
+h1,h2{font-weight:normal}
+h1{font-size:2.5em;margin:.5em 0;max-width:22em;font-weight:300}
+h1 small, h2 small{color:gray;font-weight:normal}
+h1 small a{font-size:1.2em;font-weight:bold}
+h3{font-size:1rem}
+hr{margin:20px 0;border:0;border-top:1px solid white;border-bottom:1px solid white}
+
+.breadcrumbs{color:lightgray;margin-top:0}
+.breadcrumbs a,
+.breadcrumbs span{padding:0 .5ex}
+.breadcrumbs a:first-child{padding-left:0}
+.breadcrumbs .active{color:gray}
+.header,.content,.footer{padding:15px 25px}
+.header .logo{padding:.3em 1em .5em 0;float:left}
+.header .logo span{padding:0 .8em 0 .7em;color:lightgray}
+.header a{text-transform:uppercase;letter-spacing:4px;font-size:14px}
+.header a:hover{text-decoration:none}
+.footer{color:lightgray;clear:both}
+.searchbox{width:200px;font-size:14px;background:ivory;padding:4px 10px;
+    border:1px solid lightgray;border-radius:4px;opacity:.8}
+.searchbox:focus{opacity:1;outline:0}
+
+.badge{border-radius:7px;background:#3a87ad;color:white;
+    font-size:small;padding:2px 7px;vertical-align:super}
+.ls li{padding-bottom:.5em}
+.ls a:visited{color:purple}
+.cols{padding:20px 0 0 0;margin:0;list-style-type:none;
+      column-count:3;column-rule:1px solid ivory;column-gap:4em}
+.clear{clear:both}
+.left-padded{float:left;margin-right:1em}
+
+@media(max-width:768px){
+    .header,.content,.footer{padding:1.5rem}
+    .content{margin-left:0}
+	.cols{column-count:2}
+	.flex-grid{display:block;margin:0}
+    .flex-grid section{padding:0}
+}
+@media(max-width:480px){
+    .header{text-align:center}
+    .header .logo{float:none}
+    .header,.content,.footer{padding:12px}
+    .cols{column-count:1}
+}

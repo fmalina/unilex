@@ -1,0 +1,42 @@
+{% extends 'medd/base.html' %}
+{% load tags %}
+{% block title %}{{ q }}{% endblock %}
+{% block content %}
+
+{% if m %}<p>{{ m }}{% endif %}
+<h1><small>Results&nbsp;for:</small><br>{{ q }} <span class="badge">{{ total }}</span></h1>
+<hr>
+{% if total %}
+    <ul class="ls{% if total > 20 %} cols{% endif %}">
+        {% for app, results, count in sr %}
+            {% if count %}
+                <li><h3>{{ app }} <span class="badge">{{ count }}</span></h3>
+                <ul>{% for r in results %}
+                    <li><a href="{{ r.url }}">{{ r|highlight:q }}</a>
+                    {% if digit %}<br><small>{{ r.pk|highlight:q }}</small>{% endif %}
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No results using site search, alternative results using partner search engine:      
+    <div id="cse" style="width:760px">Loading</div>
+    <script src="http://www.google.co.uk/jsapi"></script>
+    <script type="text/javascript"> 
+      google.load('search', '1', {language : 'en', style : google.loader.themes.V2_DEFAULT});
+      google.setOnLoadCallback(function() {
+        var customSearchOptions = {};
+        var customSearchControl = new google.search.CustomSearchControl('partner-pub-7258089185308476:6405226960', customSearchOptions);
+        customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+        customSearchControl.draw('cse');
+        customSearchControl.execute("{{ q|escape }}");
+      }, true);
+    </script>
+    
+    <p>Site search can <b>look for names</b> of medicinal products or concepts. Try to reword your query if your results don't match.
+    <p>It can also <b>search the codes</b>, even partial ones, just type in at least 4 digits.
+    <p>There are <b>more types of lookup</b> listed on the <a href="{{ site_url }}">homepage</a>, such as suppliers, flavours or colours.
+    
+{% endif %}
+{% endblock %}
