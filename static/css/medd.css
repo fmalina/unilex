@@ -20,7 +20,7 @@ hr{margin:20px 0;border:0;border-top:1px solid white;border-bottom:1px solid whi
 .breadcrumbs .active{color:gray}
 
 .header{font-family:'Montserrat',sans-serif}
-.header,.content,.footer{padding:15px 25px}
+.header,.content,.footer{padding:1em 3em}
 .header .logo{padding:.3em 1em .5em 0;float:left}
 .header .logo span{padding:0 .8em 0 .7em;color:lightgray}
 .header a{text-transform:uppercase;letter-spacing:4px;font-size:14px}
@@ -70,7 +70,7 @@ kbd{display:inline-block;background:#eee;padding:5px 10px;margin-top:5px;border-
 
 
 @media(max-width:768px){
-    .header,.content,.footer{padding:1em 3em}
+    .header,.content,.footer{padding:1em}
     .content{margin-left:0}
 	.cols{column-count:2}
 	.flex-grid{display:block;margin:0}
