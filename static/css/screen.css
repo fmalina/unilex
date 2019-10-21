@@ -1,8 +1,6 @@
 @import url('/css/autocomplete.css');
-@import url('https://fonts.googleapis.com/css?family=Montserrat|Open+Sans:300,400&display=swap');
+@import url('/css/base.css');
 
-body{font-family:'Open Sans',sans-serif;
-    background:white;color:#333;margin:0;padding:0}
 a{color:#23A4FF}
 a:hover{color:#005089}
 h1{font-size:3em;margin:0;padding:.2em 0 0 0;font-weight:300}
@@ -30,8 +28,7 @@ pre{color:green}
 .nav a{text-decoration:none}
 
 .header{font-family:'Montserrat',sans-serif}
-.header .logo{color:white;padding-right:1.5rem;text-transform:uppercase;text-decoration:none;
-    font-weight:200;letter-spacing:4px}
+.header .logo{color:white;padding-right:1.5rem;text-decoration:none;font-weight:200}
 .header .nav{display:block;padding:0 1.5em 0 0;float:left}
 .header .nav .sep{color:#ddd;font-size:.9em}
 .header .nav .sep,

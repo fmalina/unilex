@@ -1,0 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Open+Sans:300,400&display=swap');
+
+body{font-family:'Open Sans',sans-serif;
+    background:white;color:#333;margin:0;padding:0}
+
+.logo{font-family:'Montserrat',sans-serif;text-align:left;
+    font-size:14px;letter-spacing:4px;text-transform:uppercase}

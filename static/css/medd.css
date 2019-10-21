@@ -1,7 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat|Open+Sans:300,400&display=swap');
+@import url('/css/base.css');
 
-body{font-family:'Open Sans',sans-serif;
-    background:white;color:#333;margin:0;padding:0}
 a{color:#23A4FF;text-decoration:none}
 a:hover{color:#005089;text-decoration:underline}
 a.badge:hover{color:white;text-decoration:none}
@@ -19,11 +17,9 @@ hr{margin:20px 0;border:0;border-top:1px solid white;border-bottom:1px solid whi
 .breadcrumbs a:first-child{padding-left:0}
 .breadcrumbs .active{color:gray}
 
-.header{font-family:'Montserrat',sans-serif}
 .header,.content,.footer{padding:1em 3em}
 .header .logo{padding:.3em 1em .5em 0;float:left}
 .header .logo span{padding:0 .8em 0 .7em;color:lightgray}
-.header a{text-transform:uppercase;letter-spacing:4px;font-size:14px}
 .header a:hover{text-decoration:none}
 .footer{clear:both}
 .searchbox{width:200px;font-size:14px;background:ivory;padding:4px 10px;
