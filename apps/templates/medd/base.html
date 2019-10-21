@@ -30,8 +30,8 @@
         {% block content %}
         {% endblock %}
     </div>
-    <div class="footer">&copy; {% now "Y" %} {{ site_name }}
-        {% if app_list %} by <a href="https://unilexicon.com/fm/">FM</a>{% endif %}</div>
+    <div class="footer">&copy; {% now "Y" %}
+        {% if app_list %} by <a href="https://unilexicon.com/fm/">FM</a>{% else %}FM{% endif %}</div>
 </body>
 </html>
 {% endspaceless %}
