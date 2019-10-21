@@ -25,7 +25,7 @@ hr{margin:20px 0;border:0;border-top:1px solid white;border-bottom:1px solid whi
 .header .logo span{padding:0 .8em 0 .7em;color:lightgray}
 .header a{text-transform:uppercase;letter-spacing:4px;font-size:14px}
 .header a:hover{text-decoration:none}
-.footer{color:lightgray;clear:both}
+.footer{clear:both}
 .searchbox{width:200px;font-size:14px;background:ivory;padding:4px 10px;
     border:1px solid lightgray;border-radius:4px;opacity:.8}
 .searchbox:focus{opacity:1;outline:0}
