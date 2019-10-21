@@ -58,6 +58,17 @@ table li{margin-left:20px;list-style:disc}
 
 .a-z{font-size:11px;margin-top:0}
 
+/* homepage */
+kbd{display:inline-block;background:#eee;padding:5px 10px;margin-top:5px;border-radius:2px}
+
+.flex-grid{display:flex;margin:0 -1em}
+.flex-grid section{flex:1;padding:0 1em}
+
+.section{padding:1em 0}
+.section ul{padding-top:.8em}
+.section li{padding-bottom:.8em;page-break-inside:avoid}
+
+
 @media(max-width:768px){
     .header,.content,.footer{padding:1em 3em}
     .content{margin-left:0}
