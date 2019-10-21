@@ -18,23 +18,22 @@
     <body{% block body_id %}{% endblock %}>
     <div class="header">
         <ul class="nav">
-            <li><a href="{{ base_url }}" class="logo">Unilexicon</a>
+            <li><a href="{{ base_url }}" class="logo">Unilexicon</a></li>
             <li><a href="{{ base_url }}{% url 'listings' %}"
-                title="Visual Taxonomy Editor for Controlled Vocabularies, Taxonomies and Thesauri">Vocabularies</a>
-            <li><a href="{{ base_url }}{% url 'about' %}" title="Contextual Tagging using Controlled Vocabularies">Tagging</a>
-            <li><a href="{{ base_url }}{% url 'docs' %}">Docs</a>
+                   title="Visual Taxonomy Editor for Controlled Vocabularies, Taxonomies and Thesauri">Vocabularies</a></li>
+            <li><a href="{{ base_url }}{% url 'about' %}" title="Contextual Tagging using Controlled Vocabularies">Tagging</a></li>
+            <li><a href="{{ base_url }}/med/" target="_blank">Med <img src="https://blocl.uk/external_link.svg" alt=""></a></li>
+            <li><a href="{{ base_url }}{% url 'docs' %}">Docs</a></li>
             {% if user.is_staff %}
             <li><a href="{{ base_url }}/admin/" title="Admin">
-                <span class="icon icon-edit"></span></a>{% endif %}
+                <span class="icon icon-edit"></span></a></li>{% endif %}
             {% if user.is_anonymous %}
             <li><a id="loginlink" rel="nofollow"
                 href="{% url 'auth_login' %}{% if request.path != '/accounts/logout/' %}?next={{request.path}}{% endif %}">Login</a>
                 <span class="sep">|</span>
-                <a href="{% url 'registration_register' %}">Register</a>
+                <a href="{% url 'registration_register' %}">Register</a></li>
             {% else %}
-            <li><a href="{% url 'profile' %}">Your profile</a>
-                <span class="sep">|</span>
-                <a href="{% url 'auth_logout' %}">Logout</a>
+            <li><a href="{% url 'profile' %}">Your profile</a></li>
             {% endif %}
         </ul>
         {% block search %}
