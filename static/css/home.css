@@ -45,10 +45,10 @@
     color: white;
 }
 .lead h1{
-    text-shadow: 0 0 5px blue;
+    text-shadow: 0 0 5px #94AAC4;
 }
 .lead ul,.lead p,.lead h2{
-    text-shadow: 0 0 2px blue;
+    text-shadow: 0 0 2px #94AAC4;
 }
 .lead a{
     color: white
