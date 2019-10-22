@@ -9,7 +9,6 @@
     left:-70px;
     border:1px solid #eee;
     border-radius:4px;
-    overflow:hidden;
     background:url(/chrome.png) no-repeat;
 }
 #tab,#url,#tag,#tip{position:absolute}
