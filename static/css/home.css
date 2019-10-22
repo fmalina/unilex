@@ -40,15 +40,15 @@
             transform:rotate(45deg);
 }
 .lead{
-    background:#94AAC4 url(/fm/photos/rydal.jpg) no-repeat;
+    background:#2C2B30 url(/fm/photos/rydal.jpg) no-repeat;
     background-size: cover;
     color: white;
 }
 .lead h1{
-    text-shadow: 0 0 5px #94AAC4;
+    text-shadow: 0 0 5px #2C2B30;
 }
 .lead ul,.lead p,.lead h2{
-    text-shadow: 0 0 2px #94AAC4;
+    text-shadow: 0 0 2px #2C2B30;
 }
 .lead a{
     color: white
