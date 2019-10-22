@@ -17,7 +17,7 @@
     </head>
     <body{% block body_id %}{% endblock %}>
     {% block header %}
-    <div class="header">
+    <div class="header{% block header_class %}{% endblock %}">
         <ul class="nav">
             <li><a href="{{ base_url }}" class="logo">Unilexicon</a></li>
             <li><a href="{{ base_url }}{% url 'listings' %}"
@@ -41,11 +41,12 @@
             {% include 'vocabulary/search-input.html' %}
         {% endblock %}
         <div class="clear"></div>
+        {% block headspace %}{% endblock %}
     </div>
     {% endblock %}
 
     {% include 'messages.html' %}
-    <div class="content{% block container_class %}{% endblock %}">
+    <div class="content">
         {% block headline %}{% endblock %}
         {% block content_wrap %}
             {% block content %}{% endblock %}

@@ -24,9 +24,8 @@ pre{color:green}
 .nav ul{list-style:none}
 .nav a{text-decoration:none}
 
-.header{font-family:'Montserrat',sans-serif}
 .header .logo{color:#EAA000;padding-right:1.5rem;text-decoration:none;font-weight:200}
-.header .nav{display:block;padding:0 1.5em 0 0;float:left}
+.header .nav{display:block;padding:0 1.5em 0 0;float:left;font-family:'Montserrat',sans-serif}
 .header .nav .sep{color:#ddd;font-size:.9em}
 .header .nav .sep,
 .header .nav li,
@@ -74,7 +73,7 @@ div.paginator span{color:gray}
 .search{position:relative;max-width:350px}
 .search button,
 .search input{padding:7px}
-.search input{display:block;background:#fff;border-radius:4px;border:1px solid #bbb;font-size:13px}
+.search input{display:block;background:rgba(255,255,255,.5);border-radius:4px;border:1px solid #bbb;font-size:13px}
 .search input:active,
 .search input:focus{outline:none;box-shadow:0 0 3px #23A4FF}
 .search button{background:none;border:0;margin:0;padding:6px;height:24px;position:absolute;bottom:9px;right:3px;outline:0}
