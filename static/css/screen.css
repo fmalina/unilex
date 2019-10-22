@@ -1,8 +1,6 @@
 @import url('/css/autocomplete.css');
 @import url('/css/base.css');
 
-a{color:#23A4FF}
-a:hover{color:#005089}
 h1{font-size:3em;margin:0;padding:.2em 0 0 0;font-weight:300}
 .content h1,h2{font-weight:300}
 fieldset{border:0;padding:0}
@@ -16,7 +14,6 @@ pre{color:green}
 
 .header,.footer,.content{padding:1em}
 .footer{border-top:1px solid #ddd}
-.footer a{color:#0b66a6}
 #messages{padding:0 1em}
 #messages li{list-style:none}
 #messages .success{color:green}
@@ -34,8 +31,7 @@ pre{color:green}
 .header .nav .sep,
 .header .nav li,
 .header .nav a{display:inline-block;font-size:14px}
-.header .nav a{text-transform:uppercase;color:#3E92CC;padding:.5em 1em .5em 0}
-.header .nav a:hover{color:#005089}
+.header .nav a{text-transform:uppercase;padding:.5em 1em .5em 0}
 .header .nav li:last-child a{padding-right:0}
 
 form ul{margin:0;padding:10px 0}
@@ -48,11 +44,9 @@ form input{padding:5px;}
 form input, button{font-size:20px}
 form input[type="file"]{border:0;font-size:inherit;background:transparent}
 
-button,input[type="submit"],.btn{background:#00aaad;color:#fff;
+button,input[type="submit"],.btn{
     text-decoration:none;display:inline-block;padding:.5em 1em;
     cursor:pointer;border:0;margin-top:1em}
-button:hover,
-input[type="submit"]:hover,.btn:hover{background:#005089;color:#fff;text-shadow:#440 0 0 3px}
 .btn-links{display:block;padding:1em}
 
 .call{padding:1em 1.5em;font-size:1.5em}

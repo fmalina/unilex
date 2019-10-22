@@ -5,3 +5,9 @@ body{font-family:'Open Sans',sans-serif;
 
 .logo{font-family:'Montserrat',sans-serif;text-align:left;
     font-size:14px;letter-spacing:4px;text-transform:uppercase}
+
+a{color:#3E92CC}
+a:hover{color:#005089}
+
+button, input[type="submit"], a.btn{background:#005089;color:#fff}
+button:hover, input[type="submit"]:hover, a.btn:hover{background:#3E92CC;color:#fff;text-shadow:#440 0 0 3px}
