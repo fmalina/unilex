@@ -9,11 +9,11 @@ docutils     # generate documentation
 sentry_sdk   # error reporting
 fabric       # updates
 invoke
-git+git://github.com/macropin/django-registration.git
 git+git://github.com/fmalina/django-pay.git#egg=pay
 git+git://github.com/fmalina/medd.git#egg=medd
 django-reversion
 django-rest-framework
+django-allauth
 
 # Install using:
 # sudo pip3 install -r requirements.txt --upgrade

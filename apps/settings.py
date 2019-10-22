@@ -51,6 +51,10 @@ MIDDLEWARE = [
     'paging.paging_middleware',
     'medd.browse.middleware.SiteMiddleware',
 ]
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
 
 ROOT_URLCONF = 'urls'
 CACHING = True
@@ -65,11 +69,18 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.admin',
     'django.contrib.admindocs',
+
     'vocabulary',
     'tag',
     'pay',
-    'registration',
     'feedback',
+
     'reversion',
     'rest_framework',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    # 'allauth.socialaccount.providers.google',
+    # 'allauth.socialaccount.providers.microsoft',
 ] + MEDD_APPS

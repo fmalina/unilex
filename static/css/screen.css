@@ -47,7 +47,7 @@ input,textarea{
 form input{padding:5px;font-size:20px}
 form input[type="file"]{border:0;font-size:inherit;background:transparent}
 
-button,input[type="submit"],.btn{background:#00aaad;color:#fff;
+button,input[type="submit"],button[type="submit"],.btn{background:#00aaad;color:#fff;
     text-decoration:none;display:inline-block;padding:.5em 1em;
     cursor:pointer;border:0;margin-top:1em}
 button:hover,
