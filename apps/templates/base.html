@@ -16,6 +16,7 @@
         {% block extrascripts %}{% endblock %}
     </head>
     <body{% block body_id %}{% endblock %}>
+    {% block header %}
     <div class="header">
         <ul class="nav">
             <li><a href="{{ base_url }}" class="logo">Unilexicon</a></li>
@@ -41,6 +42,8 @@
         {% endblock %}
         <div class="clear"></div>
     </div>
+    {% endblock %}
+
     {% include 'messages.html' %}
     <div class="content{% block container_class %}{% endblock %}">
         {% block headline %}{% endblock %}
@@ -50,10 +53,12 @@
         <div class="clear"></div>
     </div>
     {% block sidebar %}{% endblock %}
+    {% block footer %}
     <div class="footer">
         <p><small>&copy; {% now "Y" %} Unilexicon by <a href="/fm/">FM</a></small></p>
         {% include 'debug.html' %}
     </div>
+    {% endblock %}
     {% if not debug %}
         {% include 'analytics.html' %}
     {% endif %}

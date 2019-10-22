@@ -9,9 +9,13 @@
     <script src="{{ base_url }}/js/jquery.formset.js?{{ version }}"></script>
     <script src="{{ base_url }}/js/ac_formset.js?{{ version }}"></script>
 {% endblock %}
+
+{% block header %}{% endblock %}
 {% block content %}
     {% if not record %}
-        <h1>Add a record</h1>
+        <h2>Add a record</h2>
     {% endif %}
     {% include 'tag/record-form.html' %}
 {% endblock %}
+
+{% block footer %}{% endblock %}
