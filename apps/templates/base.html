@@ -23,7 +23,7 @@
             <li><a href="{{ base_url }}{% url 'listings' %}"
                    title="Visual Taxonomy Editor for Controlled Vocabularies, Taxonomies and Thesauri">Vocabularies</a></li>
             <li><a href="{{ base_url }}{% url 'about' %}" title="Contextual Tagging using Controlled Vocabularies">Tagging</a></li>
-            <li><a href="{{ base_url }}/med/" target="_blank">Med <img src="https://blocl.uk/external_link.svg" alt=""></a></li>
+            <li><a href="{{ base_url }}/med/" target="_blank">Med <i class="icon icon-external"></i></a></li>
             <li><a href="{{ base_url }}{% url 'docs' %}">Docs</a></li>
             {% if user.is_staff %}
             <li><a href="{{ base_url }}/admin/" title="Admin">
