@@ -19,5 +19,7 @@
             or see the <a href="/docs#tagging">documentation</a> example.</p>
         <!--p>Once installed, you need to fill in your credentials in the extension options.</p-->
         <p>You can also play with a simple integration demo below.</p>
-        <p><a href="{% url 'add-record' %}" class="btn">add a record</a></p>
+        <p><a href="{% url 'add-record' %}" class="btn call"
+              onclick="window.open(this.href,'targetWindow', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=340,height=600');return false;">
+            Try tagging a demo record</a></p>
 {% endblock %}
