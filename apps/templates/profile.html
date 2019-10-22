@@ -16,8 +16,8 @@
             <li><a href="{% url 'account_logout' %}">Logout</a></li>
         </ul>
         {% if user.authority_set.all %}
-            <h3>Your Authorities</h3>
-            <ul>
+            <h3>Your authorities</h3>
+            <ul class="list-unstyled">
                 {% for a in user.authority_set.all %}
                 <li><a href="{% url 'authority' a.code %}">{{ a.name }}</a></li>
                 {% endfor %}

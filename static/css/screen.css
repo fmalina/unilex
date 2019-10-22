@@ -68,7 +68,8 @@ div.paginator a{text-decoration:none}
 div.paginator span{color:gray}
 
 .inline{padding-left:0}
-.inline li{display:inline-block;list-style-type:none;padding:0 1em 1em 0}
+.inline li{display:inline-block;list-style:none;padding:0 1em 1em 0}
+.list-unstyled{list-style:none;padding:0}
 
 .search{position:relative;max-width:350px}
 .search button,
