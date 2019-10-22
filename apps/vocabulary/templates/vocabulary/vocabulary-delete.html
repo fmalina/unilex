@@ -8,12 +8,11 @@
         <div>{% if c %}
         This will also delete the {{ c }} concept{{ c|pluralize }} in the vocabulary
         and {% if c == 1 %}its{% else %}their{% endif %} relations with concepts in other vocabularies.
-        <label>I understand. 
-        {% else %}
-        <label>Yes, let's do it.
-        {% endif %}<input type="checkbox" name="understand" value="understand"> </label></div>
+    {% endif %}
+        <label>I understand.
+        <input type="checkbox" name="understand" value="understand"> </label></div>
     {% endwith %}
-    <p><button type="submit" class="delete"><b>×</b> Delete</button>
+    <p><button type="submit" class="delete">Delete</button>
     {% csrf_token %}
 {% endif %}
     <a href="#cancel" class="cancel">cancel</a></p>
