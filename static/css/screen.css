@@ -13,7 +13,6 @@ pre{color:green}
 .external:after{font-family:"uxfont";content:" a";font-size:11px;color:#555}
 
 .header,.footer,.content{padding:1em}
-.footer{border-top:1px solid #ddd}
 #messages{padding:0 1em}
 #messages li{list-style:none}
 #messages .success{color:green}
@@ -24,7 +23,7 @@ pre{color:green}
 .nav ul{list-style:none}
 .nav a{text-decoration:none}
 
-.header .logo{color:#EAA000;padding-right:1.5rem;text-decoration:none;font-weight:200}
+.header a.logo{color:#EAA000;padding-right:1.5rem;text-decoration:none;font-weight:200}
 .header .nav{display:block;padding:0 1.5em 0 0;float:left;font-family:'Montserrat',sans-serif}
 .header .nav .sep{color:#ddd;font-size:.9em}
 .header .nav .sep,

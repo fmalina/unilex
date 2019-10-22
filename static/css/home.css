@@ -38,6 +38,7 @@
         -ms-transform:rotate(45deg);
             transform:rotate(45deg);
 }
+.nav a{color:#555}
 .lead{
     background:#2C2B30 url(/fm/photos/rydal.jpg) 50% 90% no-repeat;
     background-size: cover;
@@ -46,7 +47,6 @@
 #tagging,.lead{
     max-width:1150px;
 }
-.lead .nav a{color:#555}
 .headspace h1{
     text-shadow:0 0 5px #2C2B30;
 }
