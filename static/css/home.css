@@ -42,15 +42,19 @@
     background:#2C2B30 url(/fm/photos/rydal.jpg) 50% 90% no-repeat;
     background-size: cover;
     color: white;
+}
+#tagging,.lead{
     max-width:1150px;
 }
-.lead h1{
-    text-shadow: 0 0 5px #2C2B30;
+.lead .nav a{color:#555}
+.headspace h1{
+    text-shadow:0 0 5px #2C2B30;
 }
-.lead ul,.lead p,.lead h2{
-    text-shadow: 0 0 2px #2C2B30;
+.headspace ul,
+.headspace p,
+.headspace h2{
+    text-shadow:0 0 2px #2C2B30;
+    font-size:larger
 }
-.lead a{
-    color: white
-}
+.headspace a{color:white}
 .headspace{padding:15em 0}
