@@ -39,3 +39,17 @@
         -ms-transform:rotate(45deg);
             transform:rotate(45deg);
 }
+.lead{
+    background: url(/fm/photos/rydal.jpg) no-repeat;
+    background-size: cover;
+    color: white;
+}
+.lead h1{
+    text-shadow: 0 0 5px blue;
+}
+.lead ul,.lead p,.lead h2{
+    text-shadow: 0 0 2px blue;
+}
+.lead a{
+    color: white
+}

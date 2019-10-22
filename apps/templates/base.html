@@ -42,7 +42,7 @@
         <div class="clear"></div>
     </div>
     {% include 'messages.html' %}
-    <div class="content">
+    <div class="content{% block container_class %}{% endblock %}">
         {% block headline %}{% endblock %}
         {% block content_wrap %}
             {% block content %}{% endblock %}
