@@ -1,7 +1,7 @@
 <p>
     <a href="{% url 'add' %}" class="btn call">Start your vocabulary
         {% if not request.user.is_authenticated %}
-            <small class="nowrap">registration required</small>
+            <small class="nowrap">sign up required</small>
         {% endif %}
     </a>
     <span class="nowrap btn-links">
