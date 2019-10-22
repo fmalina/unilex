@@ -10,7 +10,7 @@
 .vocab-list,
 .vocab-list ul{padding:0;margin:0}
 .vocab-list li{list-style:none;padding:0 0 1em 0;margin:0;}
-.vocab-list a{font-size:1.5em}
+.vocab-list a{font-weight:bold}
 
 .aside{padding:10px;width:320px;box-sizing:border-box}
 .aside .info{color:green;display:block;position:relative;z-index:1}
@@ -88,4 +88,5 @@ button.delete b{color:#fcc;position:relative;top:-1px}
 	#infovis{float:right}
 	.drop-nav{left:370px}
 	.vocab-list{column-count:3;column-gap:2rem}
+	.col2 .vocab-list{column-count:1}
 }
