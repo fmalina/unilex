@@ -13,7 +13,7 @@ mark_done.short_description = "Mark selected as done"
 
 class FeedbackAdmin(admin.ModelAdmin):
     raw_id_fields = ('user',)
-    list_display = ('message', 'email', 'url', 'created_at', 'done')
+    list_display = ('id', 'done', 'message', 'email', 'url', 'created_at')
     list_filter = ('created_at', 'done')
     actions = [mark_done]
 
