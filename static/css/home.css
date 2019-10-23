@@ -1,7 +1,7 @@
 .content p{max-width:1000px}
 #demo{
     width:500px;
-    height:420px;
+    height:510px;
     float:left;
     box-shadow:0 0 48px rgba(0,0,0,.1);
     margin-bottom:20px;
@@ -23,8 +23,8 @@
 }
 #url span{color:gray}
 #tag{
-    top:68px;left:160px;
-    width:300px;
+    top:68px;left:120px;
+    width:340px;
     padding:10px;
     box-shadow:0 0 20px rgba(0,0,0,.3);
     border:1px solid #ccc;
