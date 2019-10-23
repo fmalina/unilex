@@ -22,6 +22,7 @@ admin.site.register(Feedback, FeedbackAdmin)
 
 
 UserAdmin.list_display = ('email', 'first_name', 'last_name', 'is_active', 'date_joined')
+UserAdmin.ordering = ('-date_joined',)
 
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
