@@ -38,8 +38,8 @@ form label{display:block;text-transform:uppercase;font-size:10px;color:#999}
 input,textarea{
 	display:block;width:100%;max-width:350px;box-sizing:border-box;
 	border:1px solid #ddd;border-radius:2px;background:#ffe}
-form input{padding:5px;}
-form input, button{font-size:20px}
+form input{padding:.2rem .5rem}
+form input, button{font-size:1rem}
 form input[type="file"]{border:0;font-size:inherit;background:transparent}
 
 button,input[type="submit"],.btn{
