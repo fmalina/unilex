@@ -111,10 +111,10 @@ If you want to use Unilexicon to develop and run commercial projects and applica
 
 Once purchased, you are granted a commercial BSD style license and all set to use Unilexicon in your business.
 
-`Small Team License (£2500) <https://vizualbod.com/pay.html?amount=2500&msg=Unilexicon_Team_License>`_
+`Small Team License (£2500) <https://unilexicon.com/fm/pay.html?amount=2500&msg=Unilexicon_Team_License>`_
 Small Team License for up to 8 developers
 
-`Organization License (£4500) <https://vizualbod.com/pay.html?amount=4500&msg=Unilexicon_Organization_License>`_
+`Organization License (£4500) <https://unilexicon.com/fm/pay.html?amount=4500&msg=Unilexicon_Organization_License>`_
 Commercial Organization License for Unlimited developers
 
 Open source license

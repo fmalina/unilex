@@ -12,7 +12,7 @@ def create_user():
         return user
     return User.objects.create_user(
         username='admin',
-        email='admin@unilexicon.com',
+        email='hi@unilexicon.com',
         password='admin',
         is_superuser=True
     )
@@ -20,7 +20,7 @@ def create_user():
 
 def setup_site():
     s = Site.objects.get(id=1)
-    s.domain = "unilexicon.co"
+    s.domain = "unilexicon.com"
     s.name = "Unilexicon"
     s.save()
 
