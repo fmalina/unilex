@@ -9,7 +9,5 @@ body{font-family:'Open Sans',sans-serif;
 a{color:#3E92CC}
 a:hover{color:#005089}
 
-button, input[type="submit"], a.btn{color:#fff;border-radius:4px;
-    background-image: linear-gradient(45deg, #005089 0%, #3E92CC 100%)}
-button:hover, input[type="submit"]:hover, a.btn:hover{
-    background-image: linear-gradient(50deg, #005089 0%, #3E92CC 100%)}
+button, input[type="submit"], a.btn{color:#fff;border-radius:4px;background:#005089}
+button:hover, input[type="submit"]:hover, a.btn:hover{background:#3E92CC}
