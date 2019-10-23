@@ -45,6 +45,7 @@ form input[type="file"]{border:0;font-size:inherit;background:transparent}
 button,input[type="submit"],.btn{
     text-decoration:none;display:inline-block;padding:.5em 1em;
     cursor:pointer;border:0;margin-top:1em}
+.btn-block{display:block;width:100%}
 .btn-links{display:block;padding:1em}
 
 .call{padding:1em 1.5em;font-size:1.5em}
@@ -86,7 +87,8 @@ div.paginator span{color:gray}
 #sr p{padding:0;margin:0}
 #sr{width:600px}
 
-#plans button{font-size:20px;}
+#plans{max-width:380px}
+#plans button{font-size:1.2rem}
 .cc-fields input{display:inline-block;width:auto;min-width:auto}
 
 .feedback .placeholder{height:3.2em;overflow:hidden;color:gray}
