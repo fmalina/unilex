@@ -9,9 +9,9 @@
             <p><button type="submit">Save</button></p>
         </form>
         <ul class="list-unstyled">
-            <li><a href="{% url 'subscribe' %}">Subscribe to keep your private vocabularies</a><br>
-                Your private vocabularies will not be deleted nor published.</li>
-            {% include 'pay/nav.html' %}
+            <li><a href="{% url 'subscribe' %}">Subscribe to premium</a><br>
+                Keep private vocabularies.</li>
+            <li><a href="/pay/receipts">Your receipts</a></li>
             <li><a href="{% url 'account_change_password' %}">Change password</a></li>
             <li><a href="{% url 'account_logout' %}">Logout</a></li>
         </ul>
