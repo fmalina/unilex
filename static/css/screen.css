@@ -42,6 +42,11 @@ form input{padding:.2rem .5rem}
 form input, button{font-size:1rem}
 form input[type="file"]{border:0;font-size:inherit;background:transparent}
 
+.login-or{text-align:center;border-top:1px solid #ddd;
+    margin:2em 0 .5em 0;}
+.login-or span{position:relative;top:-.6em;
+    padding:0 .5em;color:#aaa;background:#fff}
+
 button,input[type="submit"],.btn{
     text-decoration:none;display:inline-block;padding:.5em 1em;
     cursor:pointer;border:0;margin-top:1em}
