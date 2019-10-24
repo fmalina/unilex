@@ -36,14 +36,15 @@ form ul{margin:0;padding:10px 0}
 form ul li{list-style:none;padding:5px 0}
 form label{display:block;text-transform:uppercase;font-size:10px;color:#999}
 input,textarea{
-	display:block;width:100%;max-width:350px;box-sizing:border-box;
+	display:block;width:100%;box-sizing:border-box;
 	border:1px solid #ddd;border-radius:2px;background:#ffe}
+input,textarea,.login-or{max-width:350px}
 form input{padding:.2rem .5rem}
 form input, button{font-size:1rem}
 form input[type="file"]{border:0;font-size:inherit;background:transparent}
 
 .login-or{text-align:center;border-top:1px solid #ddd;
-    margin:2em 0 .5em 0;}
+    margin:2em 0 .5em 0}
 .login-or span{position:relative;top:-.6em;
     padding:0 .5em;color:#aaa;background:#fff}
 
