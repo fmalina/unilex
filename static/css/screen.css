@@ -52,6 +52,7 @@ button,input[type="submit"],.btn{
     text-decoration:none;display:inline-block;padding:.5em 1em;
     cursor:pointer;border:0;margin-top:1em}
 .btn-block{display:block;width:100%}
+.btn img {vertical-align:middle}
 .btn-links{display:block;padding:1em}
 
 .call{padding:1em 1.5em;font-size:1.5em}
