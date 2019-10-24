@@ -13,9 +13,7 @@
   {% if redirect_field_value %}
   <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
   {% endif %}
-  <button class="btn btn-success btn-lg btn-block" type="submit">Sign in to your account</button>
-  
-  <hr>
-  Don't have an account? <a class="nowrap btn btn-default" href="{{ signup_url }}">Register</a>
+  <p><button type="submit">Sign in to your account</button>
+  <p>Don't have an account? <a class="nowrap btn btn-default" href="{{ signup_url }}">Register</a>
 </form>
 {% endblock %}
