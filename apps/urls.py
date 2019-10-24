@@ -13,7 +13,7 @@ urlpatterns = [
     path('vocabularies/', include('vocabulary.urls')),
     path('tag/', include('tag.urls')),
 
-    path('accounts/', include('allauth.urls')),
+    path('', include('allauth.urls')),
 
     path('admin/doc/', include('django.contrib.admindocs.urls')),
     path('admin/', admin.site.urls),

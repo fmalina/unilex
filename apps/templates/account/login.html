@@ -1,0 +1,21 @@
+{% extends "account/base.html" %}
+{% load account socialaccount %}
+{% block head_title %}Log in{% endblock %}
+
+{% block content %}
+<h1>Log in</h1>
+{% include "account/social_account.html" %}
+
+<form class="login" method="POST" action="{% url 'account_login' %}">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <p class="password_reset"><a href="{% url 'account_reset_password' %}">Forgot your password?</a></p>
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  <button class="btn btn-success btn-lg btn-block" type="submit">Sign in to your account</button>
+  
+  <hr>
+  Don't have an account? <a class="nowrap btn btn-default" href="{{ signup_url }}">Register</a>
+</form>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "account/base.html" %}
+{% block head_title %}Sign up{% endblock %}
+{% block content %}
+<h1>Create your account</h1>
+{% include "account/social_account.html" %}
+<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+  {% csrf_token %}
+  {{ form.as_p }}
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  <button type="submit" class="btn btn-primary btn-block btn-lg">Create your account</button>
+  <hr>
+  Already have an account? <a href="{{ login_url }}">Log in</a>.
+</form>
+{% endblock %}

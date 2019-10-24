@@ -1,0 +1,7 @@
+{% load account socialaccount %}
+{% get_providers as socialaccount_providers %}
+{% if socialaccount_providers %}
+  {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+  <div class="login-or"><span>or, use your email address</span></div>
+  {% include "socialaccount/snippets/login_extra.html" %}
+{% endif %}

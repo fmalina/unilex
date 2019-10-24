@@ -30,7 +30,7 @@
                 <span class="icon icon-edit"></span></a></li>{% endif %}
             {% if user.is_anonymous %}
             <li><a id="loginlink" rel="nofollow"
-                href="{% url 'account_login' %}{% if request.path != '/accounts/logout/' %}?next={{request.path}}{% endif %}">Login</a>
+                href="{% url 'account_login' %}?next={{ request.path }}">Login</a>
                 <span class="sep">|</span>
                 <a href="{% url 'account_signup' %}">Sign up</a></li>
             {% else %}
