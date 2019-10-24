@@ -17,8 +17,10 @@ USE_L10N = True
 MEDIA_ROOT = PROJECT_ROOT+'media/'
 STATIC_ROOT = PROJECT_ROOT+'static/'
 STATIC_URL = '/static/'
-ACCOUNT_ACTIVATION_DAYS = 2
-REGISTRATION_AUTO_LOGIN = True
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+AUTHENTICATION_BACKENDS = ['allauth.account.auth_backends.AuthenticationBackend']
 LOGIN_REDIRECT_URL = '/'
 
 TEMPLATES = [
@@ -50,10 +52,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'paging.paging_middleware',
     'medd.browse.middleware.SiteMiddleware',
-]
-AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
 ROOT_URLCONF = 'urls'
