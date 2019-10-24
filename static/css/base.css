@@ -1,4 +1,4 @@
-@import url('fonts.css');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:200,400|Open+Sans:300,400,700&display=swap&subset=latin-ext');
 
 body{font-family:'Open Sans',sans-serif;
     background:white;color:#333;margin:0;padding:0}
