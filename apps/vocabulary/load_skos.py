@@ -31,6 +31,7 @@ VOCAB_TAG_MAP = expand_map({
     'dc:language': 'language',
     'dc:date': None,
     'dc:creator': None,
+    'dc:contributor': None,
     'dc:description': 'description',
     'dc:format': None,
     'dc:rights': None,
