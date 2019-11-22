@@ -90,6 +90,8 @@ def load_vocab(request, format='xls', authority_code=''):
                 fw = open(upload_path, 'wb')
                 fw.write(f)
                 fw.close()
+
+            goto = '/vocabularies/'
             # parse and load into the DB
             if format == 'xls':
                 try:
@@ -101,7 +103,7 @@ def load_vocab(request, format='xls', authority_code=''):
                 goto, msgs = loader.load_skos_vocab(f)
                 for level, msg in msgs:
                     messages.add_message(request, level, msg)
-                
+
                 loader.save_relationships()
                 messages.success(request, loader)
             if goto and isinstance(goto, Vocabulary) and authority_code:
