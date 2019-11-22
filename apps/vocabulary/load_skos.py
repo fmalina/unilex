@@ -7,9 +7,6 @@ import os.path
 from tempfile import NamedTemporaryFile
 from xml.etree.ElementTree import ElementTree
 
-from django.contrib import messages
-from django.contrib.auth.models import User
-
 from vocabulary.models import *
 
 logfile = settings.PROJECT_ROOT + 'load_skos.log'
@@ -159,7 +156,7 @@ class SKOSLoader(object):
         if self.log:
             logging.log(level, message)
         else:
-            messages.append((level, message))
+            self.messages.append((level, message))
     
     def add_parent_relationship(self, parent, child):
         self.concepts_relationships.append((parent, 'parent of', child))
