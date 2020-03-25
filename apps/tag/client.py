@@ -30,7 +30,7 @@ class Client:
         Return the server's response.
         """
         data = render_to_string('tag/record.js', {'record': record, 'tags': tags})
-        host = '%s' % self.TAG_SERVER_HOST
+        host = f'{self.TAG_SERVER_HOST}'
         url = '/tag/repository?api_key=' + api_key
         h = http.client.HTTPConnection(host)
         h.putrequest('POST', url)

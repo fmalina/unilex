@@ -69,7 +69,7 @@ def search(request):
     return render(request, 'vocabulary/search.html', {
         'ls': ls, 'count': count, 'paging': paging,
         'q': q,
-        'title': '%s - Search results' % q
+        'title': f'{q} - Search results'
     })
 
 
@@ -202,7 +202,7 @@ def ul(request, vocab_node_id, style='meeting'):
     if vocab.private and not vocab.is_allowed_for(request.user):
         raise Http404(NOT_ALLOWED)
     concepts = vocab.concept_set.filter(parent__isnull=True).order_by('order')
-    return render(request, 'vocabulary/view-%s.html' % style, {
+    return render(request, f'vocabulary/view-{style}.html', {
         'vocabulary': vocab,
         'concepts': concepts
     })
@@ -441,7 +441,7 @@ def vocabulary_delete(request, vocab_node_id):
         if request.method == 'POST':
             if 'understand' in request.POST:
                 vocab.delete()
-                messages.success(request, '"%s" is now deleted.' % vocab.title)
+                messages.success(request, f'"{vocab.title}" is now deleted.')
                 return redirect('/vocabularies/')
             messages.info(request, 'Not deleted. You need to tick the box to confirm.')
             return redirect(vocab.get_absolute_url())

@@ -26,7 +26,7 @@ def concept_to_dict(concept, depth, max_depth):
 def vocab_to_dict(vocab, max_depth=0):
     children = vocab.concept_set.filter(parent__isnull=True)
     # prepending 'v', vocabulary ID cannot match any concept id on the same page
-    vocabulary_id = 'v-%s' % vocab.node_id
+    vocabulary_id = f'v-{vocab.node_id}'
     return {
         'id': vocabulary_id,
         'name': vocab.title,

@@ -21,7 +21,7 @@ class Record(models.Model):
     created_at = models.DateTimeField(default=datetime.now, editable=False)
 
     def get_absolute_url(self):
-        return "/tag/%s" % self.key
+        return f"/tag/{self.key}"
 
     def __str__(self):
         return self.title

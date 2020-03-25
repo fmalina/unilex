@@ -77,10 +77,10 @@ class Vocabulary(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return '/vocabularies/%s/' % self.node_id
+        return f'/vocabularies/{self.node_id}/'
 
     def json_url(self):
-        return '/vocabularies/%s/json' % self.node_id
+        return f'/vocabularies/{self.node_id}/json'
 
     def increment_slug(self, slug):
         suff = re.search("\d+$", slug)  # get the current number suffix if present
@@ -187,10 +187,10 @@ class Concept(models.Model):
         return ' « '.join(p)
 
     def get_absolute_url(self):
-        return '%s#c-%s' % (self.vocabulary.get_absolute_url(), self.node_id)
+        return f'{self.vocabulary.get_absolute_url()}#c-{self.node_id}'
 
     def get_edit_url(self):
-        return '/vocabularies/%s/%s/' % (self.vocabulary.node_id, self.node_id)
+        return f'/vocabularies/{self.vocabulary.node_id}/{self.node_id}/'
 
     def __str__(self):
         return self.name
