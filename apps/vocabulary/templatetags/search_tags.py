@@ -120,7 +120,7 @@ def searchexcerpt_tag(parser, token):
     bits = list(token.split_contents())
     if not 3 <= len(bits) <= 8:
         usage = searchexcerpt_tag.__doc__.strip()
-        raise TemplateSyntaxError("%r expected usage: %s" % (bits[0], usage))
+        raise TemplateSyntaxError(f"{bits[0]!r} expected usage: {usage}")
 
     if len(bits) > 4 and bits[-2] == "as":
         args, name = bits[1:-2], bits[-1]
@@ -182,7 +182,7 @@ def highlight_tag(parser, token):
     bits = list(token.split_contents())
     if not 2 <= len(bits) <= 7:
         usage = highlight_tag.__doc__.strip()
-        raise TemplateSyntaxError("%r expected usage: %s" % (bits[0], usage))
+        raise TemplateSyntaxError(f"{bits[0]!r} expected usage: {usage}")
 
     if len(bits) > 3 and bits[-2] == "as":
         args, name = bits[1:-2], bits[-1]
@@ -219,7 +219,7 @@ class HitsNode(FunctionProxyNode):
         return hits(*args)
 
     def string_value(self, value):
-        return "%d" % value
+        return f"{value:d}"
 
 
 @register.tag(name='hits')
@@ -232,7 +232,7 @@ def hits_tag(parser, token):
     bits = list(token.split_contents())
     if not 2 <= len(bits) <= 6:
         usage = hits_tag.__doc__.strip()
-        raise TemplateSyntaxError("%r expected usage: %s" % (bits[0], usage))
+        raise TemplateSyntaxError(f"{bits[0]!r} expected usage: {usage}")
 
     if len(bits) > 3 and bits[-2] == "as":
         args, name = bits[1:-2], bits[-1]
