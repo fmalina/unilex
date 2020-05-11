@@ -2,7 +2,7 @@
     xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink"
     width="100%" height="100%"
-    viewBox="-100 -100 800 800" >
+    viewBox="0 0 800 800" >
 <defs>
 <g id="J">
     <path d="M0,0 a100,100 0 1,0 200,0"
@@ -17,8 +17,8 @@
 </linearGradient>
 </defs>
 
-<rect width="700" height="700" fill="url(#grad1)" />
-<g id="J" transform="translate(350 350)">
+<rect width="750" height="750" fill="url(#grad1)" />
+<g id="J" transform="translate(375 375)">
 <use xlink:href="#J" transform="rotate(45)  "/>
 <use xlink:href="#J" transform="rotate(135) "/>
 <use xlink:href="#J" transform="rotate(-45) "/>
