@@ -312,7 +312,7 @@ def concept_edit(request, vocab_node_id, node_id):
     c = get_object_or_404(Concept, node_id=node_id, vocabulary=vocab)
     children = c.get_children()
     related = c.related.all()
-    parent  = c.parent.all()
+    parent = c.parent.all()
     if not related:
         related = ['addfirst']
     if not parent:
@@ -338,9 +338,11 @@ def concept_edit(request, vocab_node_id, node_id):
             form = ConceptForm(request.POST, instance=c)
             formset = RelatedFormSet(request.POST, instance=c, prefix='rf')
             parent_formset = ParentFormSet(request.POST, instance=c, prefix='pf')
-            if form.is_valid() and formset.is_valid() and parent_formset.is_valid():
+            if form.is_valid():
                 form.save()
+            if formset.is_valid():
                 formset.save()
+            if parent_formset.is_valid():
                 parent_formset.save()
             return redirect(c.get_absolute_url())
         else:
