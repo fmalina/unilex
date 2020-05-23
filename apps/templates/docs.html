@@ -50,7 +50,8 @@ h2{margin-top:3em;padding-top:1em;border-top:1px solid #ddd}
   user to construct a controlled vocabulary as a visually-attractive hierarchical tree
   structure. It also provides a repository with sophisticated tools for management of the
   vocabularies, including the capability to import existing structures from Excel (.xls)
-  or <dfn title="Simple Knowledge Organisation System">SKOS</dfn> (.xml) files and to export SKOS. A quick search is also provided, allowing
+  or <dfn title="Simple Knowledge Organisation System">SKOS</dfn> (.xml) files and to export SKOS, CSV or JSON.
+    A quick search is also provided, allowing
   quick identification of concepts from vocabularies and allowing the user to locate the
   concepts visually within the vocabulary hierarchy.</p>
 
@@ -58,12 +59,13 @@ h2{margin-top:3em;padding-top:1em;border-top:1px solid #ddd}
 
   <p>The visual editor is accessed by a suitable URL: for example
   <a href="/">unilexicon.com</a><br>
-  This leads to the home page for the editor (see Figure 1).</p>
+    This leads to the home page and from there
+    <a href="/vocabularies/">vocabularies page</a> for the editor (see Figure 1).</p>
 
-  <p class="figure"><img src="/docs/m5449b4b0.png" alt="" /><br />
-  <i>Figure 1. The visual vocabulary editor home page</i></p>
+  <p class="figure"><img src="/docs/vocabs.png" alt="" /><br />
+  <i>Figure 1. The visual vocabulary editor listings page</i></p>
 
-  <p>This shows a list of all of the vocabularies currently loaded
+  <p>From here one can access a list of all of the public vocabularies currently loaded
   into the repository. It also allows the user to create or upload another vocabulary or
   to use the search box to search concepts.</p>
 
@@ -117,6 +119,39 @@ h2{margin-top:3em;padding-top:1em;border-top:1px solid #ddd}
   relationships) with terms elsewhere in this vocabulary and in other
   vocabularies.</p>
 
+  <p><b>Cut out</b> an <b>put in</b> functions allow for moving branches.
+    User identifies the "cut from" node by clicking on a "cut out" icon
+    on the root concept of the tree branch user wants to cut out,
+    then by navigating to a concept or vocabulary root where user wants to paste
+    and clicking the put in icon.
+    Page will reload and vocabulary branch will be pasted to its new location.
+
+  <p>To <b>delete a vocabulary</b> user navigates to <a href="/profile">profile</a>
+  an to the vocabulary of interest, here user clicks on the mark "x" in the middle
+  near the name of the vocabulary to delete.
+  Then in the sidebar, ticks the checkbox to confirm deletion and submits.
+  In narrower windows the sidebar with confirmation dialog is rendered below.
+
+  <p><a href="/pay/subscribe">Premium membership</a> can be purchased as a marker
+  for site staff to not accidentally
+  delete user's private vocabularies and to provide a user with speedy support.
+
+  <p>Features provided remain the same for premium members.
+
+  <p><b>Organisation Authority</b>. Premium members can benefit from having
+  an authority for their organisation with access for their multiple registered
+  users to manage together multiple private vocabularies under authority of their organisation.
+  Authority is setup by <a href="mailto:hi@unilexicon.com">contacting support</a>
+  with email addresses or names and usernames of registered users and a name for your organisation.
+
+  <p><b>Import issues</b>
+  User experiencing trouble importing may be trying to upload a vocabulary using node_id that
+  already exists in his collection. Deleting a vocabulary first before re-uploading is recommended
+  making sure duplicate node_ids aren't present within uploaded file.<br>
+  <p>Also commonly the concept names or IDs may be too long too if over 60 characters.<br>
+  <P>Many users carefully inspect Unilexicon SKOS format and mimick it in
+  their SKOS XML file for upload.
+
   <p>Editor also implements <a href="/docs-nav-queries">assistance with
       navigational queries</a> for navigation specific vocabularies.</p>
 
@@ -127,13 +162,12 @@ h2{margin-top:3em;padding-top:1em;border-top:1px solid #ddd}
   effective mechanism for making use of those vocabularies.</p>
 
   <p>The web-based tagging editor is designed as a small efficient
-  extension to Chrome web browser. The sequence of screenshots below outlines the
-  process <i>(note: this is in active development and the
-  appearance will change substantially, but this is a reasonable guide to the way the
-  tool will work).</i></p>
+  embeddable UI for user's CMS. The sequence of screenshots below outlines the process.
+  <p>Example implementation is available from demo
+  <a href="https://github.com/fmalina/unilex-tag-demo">Git repository</a>
 
   <p class="figure"><img src="/docs/51f0564d.png" alt="" class="auto" /><br />
-  <i>Figure 10. New tagging editor interface (mock-up)</i></p>
+  <i>Figure 10. New tagging editor interface</i></p>
 
   <p class="figure"><img src="/docs/m51583c6f.png" alt="" /><br />
   <i>Figure 11. Finding and adding tags to content</i></p>
@@ -146,9 +180,11 @@ h2{margin-top:3em;padding-top:1em;border-top:1px solid #ddd}
 
   <h3>Installation</h3>
   <p>To instal the dependencies on a fresh Ubuntu server:</p>
-  <p><code>sudo apt-get install gunicorn mysql-server python-django python-mysqldb python-xlrd python-docutils postfix nginx</code></p>
+  <p><code>sudo apt-get install gunicorn mysql-server python3-django python3-mysqldb
+    python3-xlrd python3-docutils postfix nginx</code></p>
   <p>Server configuration files are included.</p>
-  <p>Our server runs on <a class="external" href="https://www.linode.com/?r=fc1241b5f2add0a0050d8a021f831f8bc6faf59a" title="referral link">Linode</a>.</p>
+  <p>Our server runs on <a class="external" href="https://www.linode.com/?r=fc1241b5f2add0a0050d8a021f831f8bc6faf59a"
+                           title="referral link">Linode</a>.</p>
 
   <h3>Technical description</h3>
   <p>Web based SKOS editor.</p>
@@ -157,29 +193,26 @@ h2{margin-top:3em;padding-top:1em;border-top:1px solid #ddd}
   <ul>
   <li><p><a class="external" href="https://www.djangoproject.com/">The Django framework</a></p></li>
   <li><p><a class="external" href="http://lxml.de">LXML</a> for parsing incoming SRU and SKOS RDF import. LXML uses
-  <a class="external" href="http://xmlsoft.org/">libxml</a> and
-  <a class="external" href="http://www.w3.org/TR/xpath/">XPATH</a>, more about
-  <a class="external" href="http://stackoverflow.com/questions/3785629">parsing SRU With LXML &amp; XPATH</a></p></li>
-
-  <li><p><a class="external" href="https://pypi.python.org/pypi/xlrd/">XLRD library</a> by John Machin, used by Excel import.
-      <a class="external" href="http://stackoverflow.com/questions/3290620">More information about the import algorithm</a></p></li>
-
-  <li><p><a class="external" href="http://jquery.com/">jQuery</a> and jQuery based:</p>
-    <ul>
-      <li><a class="external" href="https://github.com/elo80ka/django-dynamic-formset" title="A jQuery plugin that allows you dynamically add new forms to a rendered django formset">Django dynamic formset</a></li>
-      <li><a class="external" href="https://github.com/agarzola/jQueryAutocompletePlugin">Autocomplete</a></li>
-      <li>Icons from <a class="external" href="http://jqueryui.com">jQuery UI project</a></li>
-    </ul>
-  </li>
-  <li><p><a class="external" href="http://philogb.github.io/jit/">JavaScript InfoVis Toolkit</a> to create interactive data visualizations</p></li>
+    <a class="external" href="http://xmlsoft.org/">libxml</a> and
+    <a class="external" href="http://www.w3.org/TR/xpath/">XPATH</a>, more about
+    <a class="external" href="http://stackoverflow.com/questions/3785629">parsing SRU With LXML &amp; XPATH</a></p></li>
+  <li><p><a class="external" href="https://pypi.python.org/pypi/xlrd/">XLRD library</a> used by Excel import.
+      <a class="external" href="http://stackoverflow.com/questions/3290620">
+        More information about the import algorithm</a></p></li>
+  <li><p><a class="external" href="http://jquery.com/">jQuery</a> and jQuery based #
+    <a class="external" href="https://github.com/elo80ka/django-dynamic-formset"
+       title="A jQuery plugin that allows to dynamically add new forms to a rendered django formset">
+      Django dynamic formset</a></li>
+  <li><p><a class="external" href="http://philogb.github.io/jit/">JavaScript InfoVis Toolkit</a>
+    to create interactive data visualizations</p></li>
   <li><p><a class="external" href="http://www.ubuntu.com/server">Ubuntu server</a></p></li>
-  <li><p><a class="external" href="http://wiki.nginx.org/Main">Nginx</a> front-end webserver <a class="external" href="http://stackoverflow.com/questions/869001">our configuration</a></p></li>
-  <li><p>Gunicorn server or
-      <a class="external" href="http://httpd.apache.org/">Apache2</a> with
-      <a class="external" href="http://www.modwsgi.org/">Mod_wsgi</a>, more in
-      <a class="external" href="https://docs.djangoproject.com/en/dev/howto/deployment/">Django deployment docs</a></p></li>
-  <li><p><a class="external" href="http://www.mysql.com/">MySQL database</a>, any
-  <a class="external" href="https://docs.djangoproject.com/en/dev/ref/databases/">database supported by Django <dfn title="object relational mapper">ORM</dfn></a> will work, including PostgreSQL &amp; SQLite</p></li>
+  <li><p><a class="external" href="http://wiki.nginx.org/Main">Nginx</a> front-end webserver
+    <a class="external" href="http://stackoverflow.com/questions/869001">our configuration</a></p></li>
+  <li><p>Gunicorn server, more in
+      <a class="external" href="https://docs.djangoproject.com/en/dev/howto/deployment/">Django deployment docs</a></li>
+  <li><p>Any <a class="external" href="https://docs.djangoproject.com/en/dev/ref/databases/">
+    database supported by Django <dfn title="object relational mapper">ORM</dfn></a> will work,
+    including MySQL, PostgreSQL &amp; SQLite</p></li>
   </ul>
 
   <h2>Technical components of the content tagging plugin</h2>
