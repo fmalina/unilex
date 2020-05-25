@@ -86,7 +86,6 @@ button.delete b{color:#fcc;position:relative;top:-1px}
 @media screen and (min-width:800px){
 	.aside{padding:25px;background:#f3f3f3;float:left}
 	#infovis{float:left}
-	.drop-nav{left:370px}
 	.vocab-list{column-count:3;column-gap:2rem}
 	.col2 .vocab-list{column-count:1}
 }
