@@ -19,6 +19,7 @@ from vocabulary.export_skos import export_skos
 from vocabulary.forms import UploadFileForm, VocabularyForm, \
     ConceptForm, NewChildConceptForm, RelatedForm, ParentForm
 from vocabulary.models import Authority, Vocabulary, Concept
+from sentry_sdk import capture_exception
 
 
 NOT_ALLOWED = 'You are not allowed to edit this vocabulary.'
@@ -96,16 +97,23 @@ def load_vocab(request, format='xls', authority_code=''):
             if format == 'xls':
                 try:
                     goto = load_xls(request.user, f, fn)
-                except XLSLoadException as e:
-                    messages.error(request, e)
+                except Exception as e:
+                    messages.error(request, f"That didn't work: {e}")
+                    capture_exception(e)
+                    return redirect('load', 'xls')
             if format == 'skos':
-                loader = SKOSLoader(request.user)
-                goto, msgs = loader.load_skos_vocab(f)
-                for level, msg in msgs:
-                    messages.add_message(request, level, msg)
+                try:
+                    loader = SKOSLoader(request.user)
+                    goto, msgs = loader.load_skos_vocab(f)
+                    for level, msg in msgs:
+                        messages.add_message(request, level, msg)
+                    loader.save_relationships()
+                    messages.success(request, loader)
+                except Exception as e:
+                    messages.error(request, f"That didn't work: {e}")
+                    capture_exception(e)
+                    return redirect('load', 'skos')
 
-                loader.save_relationships()
-                messages.success(request, loader)
             if goto and isinstance(goto, Vocabulary) and authority_code:
                 vocab = goto
                 vocab.authority = get_object_or_404(Authority, code=authority_code)

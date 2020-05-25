@@ -58,7 +58,7 @@ def load_xls(user, file, title):
         concept.save()
         if len(conceptstack) < blank:
             raise XLSLoadException(
-                f"Wrong indent on line {line + 1} or non unique IDs. Fix it and try again.")
+                f"Wrong indent on line {line + 1} or non unique IDs.")
         if len(conceptstack) > blank:
             for i in range(len(conceptstack) - blank):
                 conceptstack.pop()
