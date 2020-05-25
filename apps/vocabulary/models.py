@@ -1,4 +1,4 @@
-import re
+import uuid
 from datetime import datetime
 
 from django.conf import settings
@@ -46,6 +46,11 @@ class VocabularyManager(models.Manager):
         return self.annotate(concept_count=models.Count('concept'))
 
 
+def uniq_slug(slug):
+    uid = str(uuid.uuid4())[:5]
+    return f"{slug}--{uid}"
+
+
 @reversion.register()
 class Vocabulary(models.Model):
     """Vocabulary is a hierarchy of concepts"""
@@ -82,16 +87,10 @@ class Vocabulary(models.Model):
     def json_url(self):
         return f'/vocabularies/{self.node_id}/json'
 
-    def increment_slug(self, slug):
-        suff = re.search("\d+$", slug)  # get the current number suffix if present
-        suff = suff and suff.group() or 0
-        nxt = str(int(suff) + 1)  # increment it & turn to string for re.sub
-        return re.sub("(\d+)?$", nxt, slug)  # replace with higher suffix, try again
-
     def make_node_id(self, slugbase):
         slug = slugify(slugbase)
-        while (Vocabulary.objects.filter(node_id__iexact=slug).count()):  # if it's not unique
-            slug = self.increment_slug(slug)
+        if Vocabulary.objects.filter(node_id__iexact=slug).exists():
+            return uniq_slug(slug)
         return slug
 
     def is_allowed_for(self, user):
@@ -197,8 +196,9 @@ class Concept(models.Model):
 
     def make_node_id(self):
         slug = slugify(self.name)
-        while (Concept.objects.filter(node_id__iexact=slug, vocabulary=self.vocabulary).count()):  # if it's not unique
-            slug = Vocabulary.increment_slug(self.vocabulary, slug)
+        if Concept.objects.filter(node_id__iexact=slug,
+                                  vocabulary=self.vocabulary).exists():
+            return uniq_slug(slug)
         return slug
 
     def save(self, *args, **kwargs):
