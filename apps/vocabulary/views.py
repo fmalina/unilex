@@ -158,15 +158,19 @@ def authority(request, authority_code, json=False):
     return render(request, 'vocabulary/authority.html', context)
 
 
+def pro_message(action="accessing", why_upgrade="pro features"):
+    return f"""You are {action} a private vocabulary,
+        but your professional subscription is not active,
+        <a href="/pro/subscribe">please subscribe</a>
+        to enable {why_upgrade or action}."""
+
+
 def detail(request, vocab_node_id):
     vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
     if vocab.private and not vocab.is_allowed_for(request.user):
         raise Http404(NOT_ALLOWED)
     if vocab.private and not vocab.user.subscription.is_active:
-        messages.info(request, """You are accessing a private vocabulary,
-                               but your professional subscription is not active, please
-                               <a href="/pro/subscribe">subscribe</a>""")
-        raise Http404(NOT_ALLOWED)
+        messages.info(request, pro_message())
     count = Concept.objects.filter(vocabulary=vocab).count()
     concepts = vocab.concept_set.filter(parent__isnull=True)
     return render(request, 'vocabulary/detail.html', {
@@ -192,6 +196,9 @@ def json(request, vocab_node_id):
 def export(request, vocab, data, extension, mime):
     if vocab.private and not vocab.is_allowed_for(request.user):
         raise Http404(NOT_ALLOWED)
+    if vocab.private and not vocab.user.subscription.is_active:
+        messages.info(request, messages.info(request, pro_message('exporting', 'export'))
+        return redirect(vocab.get_absolute_url())
     timestamp = datetime.today().strftime('%Y-%m-%d')
     response = HttpResponse(data, content_type=mime)
     response['Content-Disposition'] = 'attachment; filename="%s-%s.%s"' % (
