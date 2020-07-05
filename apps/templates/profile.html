@@ -8,13 +8,18 @@
             {% csrf_token %}
             <p><button type="submit">Save</button></p>
         </form>
+
+        <p>
+        <p><a href="{% url 'subscribe' %}"><b>Subscribe to PRO</b></a><br>
+            use private vocabularies, access first class
+            <a href="mailto:hi@unilexicon.com">technical support</a>,
+            request a team authority multiuser setup for your organisation
+
         <ul class="list-unstyled">
-            <li><a href="{% url 'subscribe' %}"><b>Subscribe to PRO</b></a><br>
-                use private vocabularies, access first class
-                <a href="mailto:hi@unilexicon.com">technical support</a>,
-                request a team authority multiuser setup for your organisation
-            </li>
-            <li><a href="/pro/receipts">Your receipts</a></li>
+            {% if user.subscription %}
+                <li>subscription expiry: {{ user.subscription.expires }}
+                <a href="/pro/receipts">Your receipts</a></li>
+            {% endif %}
             <li><a href="{% url 'account_change_password' %}">Change password</a></li>
             <li><a href="{% url 'account_logout' %}">Logout</a></li>
         </ul>
