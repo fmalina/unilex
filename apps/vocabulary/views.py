@@ -158,7 +158,7 @@ def authority(request, authority_code, json=False):
     return render(request, 'vocabulary/authority.html', context)
 
 
-def pro_message(action, why_upgrade):
+def pro_message(action, why_upgrade=None):
     return f"""You are attempting to {action} a private vocabulary,
         but your professional subscription is not active,
         <a href="/pro/subscribe">please subscribe</a>
