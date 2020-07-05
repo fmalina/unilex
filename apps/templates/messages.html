@@ -1,14 +1,11 @@
 {% if messages %}
     <script>
     $(function(){
-        {% if messages|length == 1 %}
-            $('#messages').animate({opacity: 1.0}, 5000).slideUp('slow');
-        {% else %}
-            $('#messages').append('<li class="dismiss"><a href="javascript:void();">dismiss</a></li>');
-            $('.dismiss a').bind('click', function(){
-                $('#messages').slideUp('slow');
-            });
-        {% endif %}
+        $('#messages').append('<li class="dismiss"><a href="javascript:void();">dismiss</a></li>');
+        $('.dismiss a').bind('click', function(){
+            $('#messages').slideUp('slow');
+        });
+        // $('#messages').animate({opacity: 1.0}, 5000).slideUp('slow');
     });
     </script>
     
