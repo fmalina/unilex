@@ -162,6 +162,11 @@ def detail(request, vocab_node_id):
     vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
     if vocab.private and not vocab.is_allowed_for(request.user):
         raise Http404(NOT_ALLOWED)
+    if vocab.private and not vocab.user.subscription.is_active:
+        messages.info(request, """You are accessing a private vocabulary,
+                               but your professional subscription is not active, please
+                               <a href="/pro/subscribe">subscribe</a>""")
+        raise Http404(NOT_ALLOWED)
     count = Concept.objects.filter(vocabulary=vocab).count()
     concepts = vocab.concept_set.filter(parent__isnull=True)
     return render(request, 'vocabulary/detail.html', {

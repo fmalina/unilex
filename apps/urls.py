@@ -20,7 +20,7 @@ urlpatterns = [
     path('profile', profile, name='profile'),
     path('docs', docs, name='docs'),
     path('docs-nav-queries', docs),
-    path('pay/', include('pay.urls')),
+    path('pro/', include('pay.urls')),
     path('logout/', logmeout, name='auth_logout'),
     path('sitemap.xml', sitemap, name='sitemap'),
 
