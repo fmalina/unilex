@@ -198,7 +198,7 @@ def export(request, vocab, data, extension, mime):
         raise Http404(NOT_ALLOWED)
     if vocab.private and not vocab.user.subscription.is_active:
         messages.info(request, messages.info(request, pro_message('export')))
-        return redirect(vocab.get_absolute_url())
+        return redirect('subscribe')
     timestamp = datetime.today().strftime('%Y-%m-%d')
     response = HttpResponse(data, content_type=mime)
     response['Content-Disposition'] = 'attachment; filename="%s-%s.%s"' % (
@@ -223,7 +223,7 @@ def ul(request, vocab_node_id, style='meeting'):
         raise Http404(NOT_ALLOWED)
     if vocab.private and not vocab.user.subscription.is_active:
         messages.info(request, messages.info(request, pro_message(f'access {style} style of')))
-        return redirect(vocab.get_absolute_url())
+        return redirect('subscribe')
     concepts = vocab.concept_set.filter(parent__isnull=True).order_by('order')
     return render(request, f'vocabulary/view-{style}.html', {
         'vocabulary': vocab,
