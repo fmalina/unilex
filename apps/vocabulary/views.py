@@ -158,8 +158,8 @@ def authority(request, authority_code, json=False):
     return render(request, 'vocabulary/authority.html', context)
 
 
-def pro_message(action="accessing", why_upgrade="pro features"):
-    return f"""You are {action} a private vocabulary,
+def pro_message(action, why_upgrade):
+    return f"""You are attempting to {action} a private vocabulary,
         but your professional subscription is not active,
         <a href="/pro/subscribe">please subscribe</a>
         to enable {why_upgrade or action}."""
@@ -170,7 +170,7 @@ def detail(request, vocab_node_id):
     if vocab.private and not vocab.is_allowed_for(request.user):
         raise Http404(NOT_ALLOWED)
     if vocab.private and not vocab.user.subscription.is_active:
-        messages.info(request, pro_message())
+        messages.info(request, pro_message("access", "pro features"))
     count = Concept.objects.filter(vocabulary=vocab).count()
     concepts = vocab.concept_set.filter(parent__isnull=True)
     return render(request, 'vocabulary/detail.html', {
@@ -197,7 +197,7 @@ def export(request, vocab, data, extension, mime):
     if vocab.private and not vocab.is_allowed_for(request.user):
         raise Http404(NOT_ALLOWED)
     if vocab.private and not vocab.user.subscription.is_active:
-        messages.info(request, messages.info(request, pro_message('exporting', 'export'))
+        messages.info(request, messages.info(request, pro_message('export')))
         return redirect(vocab.get_absolute_url())
     timestamp = datetime.today().strftime('%Y-%m-%d')
     response = HttpResponse(data, content_type=mime)
@@ -221,6 +221,9 @@ def ul(request, vocab_node_id, style='meeting'):
     vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
     if vocab.private and not vocab.is_allowed_for(request.user):
         raise Http404(NOT_ALLOWED)
+    if vocab.private and not vocab.user.subscription.is_active:
+        messages.info(request, messages.info(request, pro_message(f'access {style} style of')))
+        return redirect(vocab.get_absolute_url())
     concepts = vocab.concept_set.filter(parent__isnull=True).order_by('order')
     return render(request, f'vocabulary/view-{style}.html', {
         'vocabulary': vocab,
