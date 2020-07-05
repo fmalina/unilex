@@ -1,7 +1,7 @@
 {% if messages %}
     <script>
     $(function(){
-        $('#messages').append('<li class="dismiss"><a href="javascript:void();">dismiss</a></li>');
+        $('#messages').append('<a class="dismiss" href="javascript:void();">dismiss</a>');
         $('.dismiss a').bind('click', function(){
             $('#messages').slideUp('slow');
         });
@@ -11,7 +11,7 @@
     
     <ul id="messages">
         {% for message in messages %}
-            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|safe }}</li>
+            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|safe }}
         {% endfor %}
     </ul>
 {% endif %}

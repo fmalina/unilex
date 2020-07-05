@@ -159,7 +159,7 @@ def authority(request, authority_code, json=False):
 
 
 def pro_message(action, why_upgrade=None):
-    return f"""You are attempting to {action} a private vocabulary,
+    return f"""You are {action}ing a private vocabulary,
         but your professional subscription is not active,
         <a href="/pro/subscribe">please subscribe</a>
         to enable {why_upgrade or action}."""
@@ -222,7 +222,7 @@ def ul(request, vocab_node_id, style='meeting'):
     if vocab.private and not vocab.is_allowed_for(request.user):
         raise Http404(NOT_ALLOWED)
     if vocab.private and not vocab.user.subscription.is_active:
-        messages.info(request, messages.info(request, pro_message(f'access {style} style of')))
+        messages.info(request, messages.info(request, pro_message('access', f'enable {style} style')))
         return redirect('subscribe')
     concepts = vocab.concept_set.filter(parent__isnull=True).order_by('order')
     return render(request, f'vocabulary/view-{style}.html', {
