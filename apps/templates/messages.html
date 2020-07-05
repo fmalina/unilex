@@ -1,8 +1,8 @@
 {% if messages %}
     <script>
     $(function(){
-        $('#messages').append('<a class="dismiss" href="javascript:void();">dismiss</a>');
-        $('.dismiss a').bind('click', function(){
+        $('#messages').append('<a class="dismiss" href="javascript:void()">dismiss</a>');
+        $('.dismiss').bind('click', function(){
             $('#messages').slideUp('slow');
         });
         // $('#messages').animate({opacity: 1.0}, 5000).slideUp('slow');
