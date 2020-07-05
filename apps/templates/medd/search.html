@@ -3,14 +3,15 @@
 {% block title %}{{ q }}{% endblock %}
 {% block content %}
 
-{% if m %}<p>{{ m }}{% endif %}
-<h1><small>Results&nbsp;for:</small><br>{{ q }} <span class="badge">{{ total }}</span></h1>
-<hr>
-
 <p><b>Commercial usage notice</b>:
     If you are a commercial user using this search tool during course of your business,
     please ensure your organisation have purchased and has active
-    <a href="/pro/subscribe">professional membership</a></p>
+    <a href="/pro/subscribe">professional membership</a>.</p>
+
+{% if m %}<p>{{ m }}{% endif %}
+<h1><small>{% if total %}Results for{% else %}No results{% endif %}:</small><br>
+    {{ q }} <span class="badge">{{ total }}</span></h1>
+<hr>
 
 {% if total %}
     <ul class="ls{% if total > 20 %} cols{% endif %}">
@@ -26,8 +27,6 @@
         {% endfor %}
     </ul>
 {% else %}
-    <p>No results.
-
     <p>Site search can <b>look for names</b> of medicinal products or concepts. Try to reword your query if your results don't match.
     <p>It can also <b>search the codes</b>, even partial ones, just type in at least 4 digits.
     <p>There are <b>more types of lookup</b> listed on the <a href="{{ site_url }}">homepage</a>, such as suppliers, flavours or colours.
