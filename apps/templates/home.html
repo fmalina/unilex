@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}Unilexicon: taxonomy editor, controlled vocabularies, SKOS theasurus and tagging suite{% endblock %}
+{% block title %}Unilexicon: taxonomy editor for controlled vocabularies, SKOS theasurus suite{% endblock %}
 {% block extrahead %}
 <meta name="description" content="Create and manage controlled vocabularies, than use your taxonomies to tag content.
 Simple knowledge organization system (SKOS) thesaurus software for your organisation.">
@@ -8,7 +8,7 @@ Simple knowledge organization system (SKOS) thesaurus software for your organisa
 {% block header_class %} lead{% endblock %}
 {% block headspace %}
 <div class="headspace">
-    <h1>Taxonomy editor and tagging suite</h1>
+    <h1>Taxonomy editor suite</h1>
     <p>Unilexicon™ a visual editor and taxonomy manager for authoring controlled vocabularies with a content tagging extension.</p>
     <div id="editor">
         <h2>Visual taxonomy editor and management tools for
@@ -48,7 +48,8 @@ or <a href="/docs">read the documentation</a>.
             </div>
         </div>
         <div class="desc">
-        <h2>Tagging tool for tagging resources using controlled vocabularies</h2>
+        <h2><a href="{{ base_url }}{% url 'about' %}">Tagging tool</a>
+            for contextual tagging of resources using controlled vocabularies</h2>
         <ul>
         <li>use your taxonomies from Unilexicon repository to tag your content, tag resources, documents, items and records
         <li>integrated and yet content management system independent, tag websites or your own records
