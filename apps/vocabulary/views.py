@@ -165,11 +165,18 @@ def pro_message(action, why_upgrade=None):
         to enable {why_upgrade or action}."""
 
 
+def for_pro(vocab):
+    try:
+        return vocab.private and not vocab.user.subscription.is_active
+    except:  # RelatedObjectDoesNotExist
+        return vocab.private
+
+
 def detail(request, vocab_node_id):
     vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
     if vocab.private and not vocab.is_allowed_for(request.user):
         raise Http404(NOT_ALLOWED)
-    if vocab.private and not vocab.user.subscription.is_active:
+    if for_pro(vocab):
         messages.info(request, pro_message("access", "pro features"))
     count = Concept.objects.filter(vocabulary=vocab).count()
     concepts = vocab.concept_set.filter(parent__isnull=True)
@@ -196,7 +203,7 @@ def json(request, vocab_node_id):
 def export(request, vocab, data, extension, mime):
     if vocab.private and not vocab.is_allowed_for(request.user):
         raise Http404(NOT_ALLOWED)
-    if vocab.private and not vocab.user.subscription.is_active:
+    if for_pro(vocab):
         messages.info(request, messages.info(request, pro_message('export')))
         return redirect('subscribe')
     timestamp = datetime.today().strftime('%Y-%m-%d')
@@ -221,7 +228,7 @@ def ul(request, vocab_node_id, style='meeting'):
     vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
     if vocab.private and not vocab.is_allowed_for(request.user):
         raise Http404(NOT_ALLOWED)
-    if vocab.private and not vocab.user.subscription.is_active:
+    if for_pro(vocab):
         messages.info(request, messages.info(request, pro_message('access', f'enable {style} style')))
         return redirect('subscribe')
     concepts = vocab.concept_set.filter(parent__isnull=True).order_by('order')
