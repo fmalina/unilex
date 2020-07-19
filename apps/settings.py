@@ -21,6 +21,7 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
 AUTHENTICATION_BACKENDS = ['allauth.account.auth_backends.AuthenticationBackend']
+LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 TEMPLATE_DIR = f'{PWD}/templates/'
 TEMPLATES = [
