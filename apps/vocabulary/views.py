@@ -161,7 +161,7 @@ def authority(request, authority_code, json=False):
 def pro_message(action, why_upgrade=None):
     return f"""You are {action}ing a private vocabulary,
         but your professional subscription is not active,
-        <a href="/pro/subscribe">please subscribe</a>
+        <a href="/pro/subscribe">subscribe</a>
         to enable {why_upgrade or action}."""
 
 
@@ -177,7 +177,7 @@ def detail(request, vocab_node_id):
     if vocab.private and not vocab.is_allowed_for(request.user):
         raise Http404(NOT_ALLOWED)
     if for_pro(vocab):
-        messages.info(request, pro_message("access", "pro features"))
+        messages.info(request, pro_message("access", "features"))
     count = Concept.objects.filter(vocabulary=vocab).count()
     concepts = vocab.concept_set.filter(parent__isnull=True)
     return render(request, 'vocabulary/detail.html', {
