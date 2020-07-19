@@ -39,10 +39,11 @@
             transform:rotate(45deg);
 }
 .lead{
-    background:#2C2B30;
+    background:linear-gradient(#001049, #005089) #005089;
     background-size: cover;
     color: white;
 }
+.lead ::placeholder{color:rgba(255,255,255,.7)}
 #tagging,.lead{
     max-width:1150px;
 }
