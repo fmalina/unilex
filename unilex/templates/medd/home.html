@@ -1,0 +1,174 @@
+{% extends "medd/base.html" %}
+{% load tags %}
+{% block title %}{{ site_name }}: free fast NHS dm+d browser{% endblock %}
+{% block description %}Search and browse NHS standard Dictionary of Medicines
+and Devices (dm+d), medicine dictonary used throughout the NHS to identify
+medicines and medical devices.{% endblock %}
+
+{% block content %}
+<h1>Browse the dictionary<br>of&nbsp;medicines and devices (dm+d)</h1>
+<div class="flex-grid">
+    <section class="intro">
+        <p><a href="{{ site_url }}">{{ site_name }}</a>
+            lets you comfortably search and browse NHS standard
+            <b>Dictionary of Medicines and Devices (dm+d)</b> -
+            <a href="http://www.dmd.nhs.uk" target="_blank">dmd.nhs.uk</a>
+            a beautiful dataset created over many years by the NHS.
+        <p>The dictionary is used throughout the NHS (UK National Health Service)
+        as a means of uniquely identifying medicines and medical devices used
+        in the health care of patients.
+        <p><b>{{ site_name }}</b> is here for 👩🏻‍⚕️
+            pharmacists and healthcare professionals to search
+            and navigate the terminology or find SNOMED codes,
+            search medicines by GTIN/EAN bar codes,
+            👨🏽‍🔬  researchers and students to explore the dataset,
+            programmers and pharma sector companies to use
+            DM+D medicine information in their products via our API,
+            and the rest of us to learn about available
+            medicines and medical devices.</p>
+    </section>
+    <section>
+        <p>{{ site_name }} allows you to browse medicines by
+            <a href="{{ site_url }}ingredient/ing/">ingredients</a> or their
+            <a href="{{ site_url }}vtm/vtm/">therapeutical moiety</a> (molecular segment),
+            browse <a href="{{ site_url }}ampp/price_info/">NHS medicines sorted by price</a>,
+            lookup devices by <a href="{{ site_url }}lookup/colour/">colour</a>,
+            lookup medicines by <a href="{{ site_url }}lookup/flavour/">flavour</a>, etc.<br>
+        <p>Search medicines by name or part of code.
+        <p>Here are various routes you can take to browse the data with examples
+            for each route.
+        <p>See also
+            <a href="#help">help &amp; advice</a>,
+            <a href="#editorial-policy">editorial policy</a>,
+            <a href="#tech">integration services</a> and contact.
+    </section>
+</div>
+
+<ul class="cols 2col">
+{% for app, new, original, models in app_list %}
+    <li class="section"><b>{{ new }}</b>{% if new != original %}<br>
+        <small>{{ original }} ({{ app }})</small>{% endif %}
+    <ul>
+        {% for model in models %}
+        <li><a href="{{ model.url }}">{{ model.verbose_name_plural|capfirst }}</a>
+            <br><small>{% for object in model.sample_objects %}
+                    <a href="{{ object.url }}">{{ object }}</a>{% if not forloop.last %},
+                    {% else %}&hellip;{% endif %}
+                {% endfor %}</small></li>
+        {% endfor %}
+    </ul>
+    </li>
+{% endfor %}
+</ul>
+<hr>
+
+<div class="flex-grid">
+<section>
+    <h2 id="tech">Technical Services</h2>
+    <p>Below are example services offered by {{ site_name }} for commercial users.
+    <h3>Subscriptions</h3>
+    <p>DM+D REST API and SQL exports are available to our partners at <b>£100</b> a month paid via PayPal.
+    <ul>
+    <li><a href="{{ site_url }}api/search?q=paracetamol">API for medicine product search</a></li>
+    <li><a href="{{ site_url }}api/gtin/5017007016533">API for product lookups using GTIN/EAN codes</a></li>
+    <li>Regular DM+D as SQL export</li>
+    </ul>
+    <h3>System licenses for integration</h3>
+    <p>To learn more about {{ site_name }} server with admin site, open source licensing, integration,
+        and customisation support <a href="https://github.com/fmalina/medd">see source code repository</a>.</p>
+
+    <h2>Contact</h2>
+    <p>To request an API subscription, point out issues,
+        suggest new features, discuss questions, or to enquire about the
+        integration services with other systems
+        please <a href="/fm/">get in touch</a>.
+
+    <div style="font-size:smaller;padding:.5em 1em;background:ivory">
+    <h3>Privacy and cookies</h3>
+    <p>This website does not collect your personal information or use cookies.
+        Every access of each resource is logged in our server logs, which may be reviewed
+        and analysed to see usage patterns and for billing purposes.
+        <!--a href="https://www.google.com/policies/technologies/ads/">Advertising cookies</a>
+        are used to make advertising more effective.--> If you contact the author, and please do,
+        with whatever query you might have, your contact information will be solely
+        used to communicate with you with regards to your query.</p>
+
+    <h3>Disclaimer</h3>
+    <p>This site is not run by a medical professional.
+        Information provided here is meant to complement and not replace any advice
+        or information from a health professional.</p>
+    <!--p>This site displays relevant, on topic advertising, clearly separated
+        from the content and clearly marked as advertisement. Content of the site
+        is not influenced by advertisers. We do not control the ads’ content.</p-->
+    <p><a href="https://www.healthonnet.org/HONcode/Conduct.html?HONConduct836479">
+        <img src="https://www.honcode.ch/HONcode/Seal/HONConduct836479_s.gif"
+             width="49" height="72"
+             class="left-padded"
+             title="This website is certified by Health On the Net Foundation. Verify here."
+             alt="This website is certified by Health On the Net Foundation. Verify here." />
+        </a> This site complies with the<br>
+        <a href="https://www.healthonnet.org/HONcode/Conduct.html">
+            HONcode standard for trustworthy<br>
+            health information</a>:<br>
+        <a href="https://www.healthonnet.org/HONcode/Conduct.html?HONConduct836479">
+            verify here</a></p>
+    </div>
+</section>
+
+<section id="help">
+    <h2>Help</h2>
+    <p>Compared to <a href="https://apps.nhsbsa.nhs.uk/DMDBrowser/DMDBrowser.do">NHSBSA dm+d browser</a>
+        {{ site_name }} elements use different naming where it allows
+        to communicate briefly, without acronyms and without sacrificing compatibility.</p>
+    <p>E.g.
+        "<em>Virtual medical product</em>" or "<em>VMT</em>"
+        is called a "<b>Concept</b>" and
+        "<em>Actual medical product</em>" or "<em>AMT</em>"
+        is just called a "<b>Product</b>".
+        See headlines above.</p>
+    <p>{{ site_name }} is optimised to adjust to mobile devices and tablets,
+        fully linkable, optimised for search engines,
+        accessible and fast.</p>
+
+    <p>🔗 You can share or bookmark any link on the site
+        using its URL or dm+d code.
+        <p>E.g. Products (AMP) have the following URL format:<br>
+            <kbd>{{ site_url }}amp/amp/&#8203;optional-name-SNOMED_CODE</kbd>
+        <p>Your link is guaranteed to point to the right place even
+        if product name or other information changes in the future.
+        It will also show other relevant products if this one gets discontinued.
+    <p>🔍 Beside the on-site search engine,
+        you can also use a public search engine to run queries against
+        {{ site_name }} like so:<br>
+        <kbd>price testosterone injection -capsules site:https://unilexicon.com/med</kbd>
+        <p>This takes advantage of advanced operators including "site:"
+        to search within a site only, excluding documents containing word
+        "capsules" using minus. Other operators allow to search for price ranges,
+        titles only, etc. Learn about "advanced search operators" in your public search engine.
+    <p>♿&nbsp;{{ site_name }} is optimised
+        to work well for blind and other disabled users, it is accessible.
+</section>
+
+<section>
+    <h2 id="editorial-policy">Editorial policy</h2>
+    <p>All data published on this site is consistent with the dm+d as per
+        dm+d editorial policy. Full up to date document (115 pages)
+        can be downloaded from the
+        <a href="https://www.nhsbsa.nhs.uk/pharmacies-gp-practices-and-appliance-contractors/dictionary-medicines-and-devices-dmd">dm+d documentation</a>.
+    <h3>Who decides which information will be published?</h3>
+    <p>dm+d Programme Board and Content Committee chaired by the Head of Medicines,
+        Pharmacy and Industry Group, Department of Health.
+    <h3>Is the information peer-reviewed?</h3>
+    <p>Peer Review Group members are asked to review and comment on papers
+        for submission to the dm+d and provide feedback via email.
+        The group consisting of clinical and other professionals can meet if needed.</p>
+    <h3>Is the content regularly reviewed?</h3>
+    <p>Content of dm+d is continually reviewed and improved. Releases of up-to-date
+        datasets are provided weekly.</p>
+        {{ site_name }} is kept up to date with
+        latest releases on a regular basis unless there are backwards
+        incompatible changes to the dm+d schema or libraries used.
+    Last update <b>{% include 'medd/last-update.txt' %}</b></p>
+</section>
+</div>
+{% endblock %}

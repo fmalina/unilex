@@ -1,0 +1,69 @@
+{% extends "medd/base.html" %}
+{% load tags %}
+{% block title %}{{ object }} ‹ {{ object.model.verbose_name|capfirst }}{% endblock %}
+
+{% block content %}
+<p class="breadcrumbs">
+    <a href="{{ site_url }}">Home</a> /
+    {% if 'lookup' in object.url %}<span class="muted">Lookup:&nbsp;</span>{% endif %}
+        {% if a_z %}
+            <a href="{{ object.model.url }}AZ*{{ a_z }}">{{ object.model.verbose_name_plural|capfirst }}: {{ a_z }}</a>
+        {% else %}
+            <a href="{{ object.model.url }}">{{ object.model.verbose_name_plural|capfirst }}</a>
+        {% endif %} /
+    <span class="active">{{ object }}</span>
+</p>
+
+<h1>{{ object }}</h1>
+
+<table>
+{% for field in object.fields %}
+    {% if field.values.0 != None and field.values.0 != '(None)' and field.field.name != 'id' %}
+    <tr class="{% cycle 'odd' 'even' %}">
+        <th>{{ field.field.verbose_name }}</th>
+        <td>
+        {% with field.urls|length as len %}
+            {% if len %}
+                {% if len > 1 %}
+                    <ul>{% for value, url in field.urls %}
+                    <li>{% if url %}<a href="{{ url }}">{% endif %}{{ value }}{% if url %}</a>{% endif %}</li>{% endfor %}
+                    </ul>
+                {% else %}
+                    {% for value, url in field.urls %}
+                    {% if url %}<a href="{{ url }}">{% endif %}{{ value }}{% if url %}</a>{% endif %}     {% endfor %}
+                {% endif %}
+            {% endif %}
+        {% endwith %}
+        </td>
+    </tr>
+    {% endif %}
+{% endfor %}
+</table>
+
+{% for related_object in object.related_objects %}
+    <div class="related">
+    {% with related=related_object.object_list count=related_object.count %}
+        {% if related %}
+            <h2><small>{{ related_object.related_field }}</small>
+                {{ related_object.model.verbose_name_plural }}
+                {% if count > 1 %}<b class="badge">{{ count }}</b>{% endif %}</h2>
+            <ul class="ls{% if count > 20 and count < 2000 %} cols{% endif %}">
+                {% if count < 2000 %}
+                    {% for object in related %}
+                    {% if count > 20 %}
+                    {% ifchanged object.first_letter %}<li><b>{{ object.first_letter }}</b></li>{% endifchanged %}
+                    {% endif %}
+                    <li><a href="{{ object.url }}">{{ object }}</a></li>
+                    {% endfor %}
+                {% else %}
+                    <li>{{ object }} is a very common {{ object.model.verbose_name|capfirst|lower }}.<br>
+                    {{ count }} related {{ related_object.model.verbose_name_plural|capfirst|lower }}
+                    is too many to show here.</li>
+                {% endif %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    </div>
+{% endfor %}
+
+{% endblock %}
