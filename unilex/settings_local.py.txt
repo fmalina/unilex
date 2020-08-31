@@ -1,10 +1,8 @@
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 
-sentry_sdk.init(
-    dsn="SENTRY_URL_HERE",
-    integrations=[DjangoIntegration()]
-)
+SENTRY_URL = 'https://dummy.ingest.sentry.io/12345'
+sentry_sdk.init(dsn=SENTRY_URL, integrations=[DjangoIntegration()])
 
 DEBUG = False
 
