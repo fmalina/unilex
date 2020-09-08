@@ -67,10 +67,12 @@ medicines and medical devices.{% endblock %}
     <h2 id="tech">Technical Services</h2>
     <p>Below are example services offered by {{ site_name }} for commercial users.
     <h3>Subscriptions</h3>
-    <p>DM+D REST API and SQL exports are available to our partners at <b>£100</b> a month paid via PayPal.
+    <p>DM+D REST API, CSV and SQL exports are available at <b>£100</b> a month per application.
+        Custom exports and API endpoints as per customer requirements are available and charged for separately.
     <ul>
     <li><a href="{{ site_url }}api/search?q=paracetamol">API for medicine product search</a></li>
     <li><a href="{{ site_url }}api/gtin/5017007016533">API for product lookups using GTIN/EAN codes</a></li>
+    <li><a href="{{ site_url }}api/csv">Sample product pack CSV export</a></li>
     <li>Regular DM+D as SQL export</li>
     </ul>
     <h3>System licenses for integration</h3>
@@ -78,7 +80,7 @@ medicines and medical devices.{% endblock %}
         and customisation support <a href="https://github.com/fmalina/medd">see source code repository</a>.</p>
 
     <h2>Contact</h2>
-    <p>To request an API subscription, point out issues,
+    <p>To request an API subscription, full data and CSV exports, point out issues,
         suggest new features, discuss questions, or to enquire about the
         integration services with other systems
         please <a href="/fm/">get in touch</a>.
