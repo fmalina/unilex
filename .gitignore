@@ -3,10 +3,10 @@ __pycache__
 *.pyc
 *.log
 *.zip
-last-update.txt
 .idea
 data/
 settings_local.py
+unilex/templates/medd/last-update.txt
 tag/js.build
 uploads
 static/admin
