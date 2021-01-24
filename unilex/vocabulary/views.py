@@ -262,7 +262,7 @@ def ordering(request, vocab_node_id):
     if request.method == 'POST':
         orderword_modelword_pk, seq = list(dict(request.POST).items())[0]
         orderword, modelword, pk = orderword_modelword_pk.split('_')
-        pk=int(pk.replace('[]',''))
+        pk=int(pk.replace('[]', ''))
         if modelword == 'concept':
             model = Concept
         else:

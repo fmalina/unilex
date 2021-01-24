@@ -11,7 +11,7 @@ def has_unique_ids(col):
 
 def last_full_cell(row_data):
     """Return last cell with text in and its column number"""
-    rear_cells=[] # until full cell is found
+    rear_cells = []  # until full cell is found
     for x in reversed(row_data):
         rear_cells.append(x)
         if x != '':
