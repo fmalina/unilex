@@ -40,6 +40,9 @@
 {% endfor %}
 </table>
 
+    <script src="/ad.js"></script>
+    {% include 'ad.js' %}
+
 {% for related_object in object.related_objects %}
     <div class="related">
     {% with related=related_object.object_list count=related_object.count %}
