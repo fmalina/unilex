@@ -100,7 +100,7 @@ DEFAULT_FROM_EMAIL = 'hi@unilexicon.com'
 ADMINS = MANAGERS = [('Admin', DEFAULT_FROM_EMAIL)]
 
 DEBUG = False
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = os.getenv('SECRET_KEY', '12345')
 
 if DEBUG:
     sentry_sdk.init()
