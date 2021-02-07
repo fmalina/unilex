@@ -1,11 +1,12 @@
-from unilex.settings_local import *
+import sentry_sdk  # NoQA
+from sentry_sdk.integrations.django import DjangoIntegration  # NoQA
 from medd.db_router import MEDD_APPS
-import os.path
+import os, os.path
 
 VERSION = '1.2'
 
-PWD = os.path.dirname(os.path.realpath(__file__))
-PROJECT_ROOT = PWD.replace('unilex/unilex', 'unilex')
+PROJECT_ROOT = os.path.join(
+    os.path.dirname(os.path.realpath(__file__)), '..')
 
 INTERNAL_IPS = ['127.0.0.1']
 TIME_ZONE = 'Europe/London'
@@ -23,7 +24,7 @@ ACCOUNT_USERNAME_REQUIRED = False
 AUTHENTICATION_BACKENDS = ['allauth.account.auth_backends.AuthenticationBackend']
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/profile'
-TEMPLATE_DIR = f'{PWD}/templates/'
+TEMPLATE_DIR = f'{PROJECT_ROOT}/unilex/templates/'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -83,3 +84,27 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     # 'allauth.socialaccount.providers.microsoft',
 ] + MEDD_APPS
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'unilex', 'USER': 'root', 'PASSWORD': os.getenv('DB_PASS')
+    },
+    'medd': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'medd', 'USER': 'root', 'PASSWORD': os.getenv('DB_PASS')
+    }
+}
+ALLOWED_HOSTS = ['unilexicon.com', 'localhost']
+DEFAULT_FROM_EMAIL = 'hi@unilexicon.com'
+ADMINS = MANAGERS = [('Admin', DEFAULT_FROM_EMAIL)]
+
+DEBUG = False
+SECRET_KEY = os.getenv('SECRET_KEY')
+
+if DEBUG:
+    sentry_sdk.init()
+else:
+    SENTRY_URL = "https://2b75f709314a42a4b1e5cb8b3d616353@o315515.ingest.sentry.io/5411895"
+    sentry_sdk.init(dsn=SENTRY_URL, integrations=[DjangoIntegration()])
+
