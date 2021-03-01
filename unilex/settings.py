@@ -1,8 +1,12 @@
 import sentry_sdk  # NoQA
 from sentry_sdk.integrations.django import DjangoIntegration  # NoQA
-from medd.db_router import MEDD_APPS
 import os, os.path
 
+SECRET_KEY = os.getenv('SECRET_KEY', '12345')
+
+from medd.db_router import MEDD_APPS
+
+DEBUG = False
 VERSION = '1.2'
 
 PROJECT_ROOT = os.path.join(
@@ -98,9 +102,6 @@ DATABASES = {
 ALLOWED_HOSTS = ['unilexicon.com', 'localhost']
 DEFAULT_FROM_EMAIL = 'hi@unilexicon.com'
 ADMINS = MANAGERS = [('Admin', DEFAULT_FROM_EMAIL)]
-
-DEBUG = False
-SECRET_KEY = os.getenv('SECRET_KEY', '12345')
 
 if DEBUG:
     sentry_sdk.init()
