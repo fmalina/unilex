@@ -60,3 +60,10 @@ class ParentForm(forms.ModelForm):
     class Meta:
         model = Concept.parent.through
         exclude = ('from',)
+
+
+class AutoBotHoneypotSignupForm(forms.Form):
+    def signup(self, request, user):
+        """Stop bot signups using a honeypot method"""
+        if request.POST.get('bname'):
+            raise Exception('Bot trying to signup')

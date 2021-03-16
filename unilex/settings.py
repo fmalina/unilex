@@ -21,6 +21,7 @@ STATIC_URL = '/static/'
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_SIGNUP_FORM_CLASS = 'unilex.vocabulary.forms.AutoBotHoneypotSignupForm'
 AUTHENTICATION_BACKENDS = ['allauth.account.auth_backends.AuthenticationBackend']
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/profile'
