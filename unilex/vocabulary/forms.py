@@ -66,4 +66,5 @@ class AutoBotHoneypotSignupForm(forms.Form):
     def signup(self, request, user):
         """Stop bot signups using a honeypot method"""
         if request.POST.get('bname'):
+            user.delete()
             raise Exception('Bot trying to signup')
