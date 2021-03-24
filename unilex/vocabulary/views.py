@@ -45,13 +45,17 @@ def filter_private(qs, user):
 
 
 def autocomplete(request):
-    q = request.GET.get('q','').strip()
-    concepts = Concept.objects.filter(
-        Q(name__icontains=q) |
-        Q(node_id__istartswith=q)
-    )
-    concepts = filter_private(concepts, request.user)
-    response = render(request, 'vocabulary/autocomplete.txt', {'concepts': concepts})
+    q = request.GET.get('q', '').strip()
+    concepts = Concept.objects.none()
+    if q:
+        concepts = Concept.objects.filter(
+            Q(name__icontains=q) |
+            Q(node_id__istartswith=q)
+        )
+        concepts = filter_private(concepts, request.user)
+    response = render(request, 'vocabulary/autocomplete.txt', {
+        'concepts': concepts
+    })
     response['Access-Control-Allow-Origin'] = '*'
     return response
 
