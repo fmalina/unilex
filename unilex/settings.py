@@ -4,8 +4,6 @@ import os, os.path
 
 SECRET_KEY = os.getenv('SECRET_KEY', '12345')
 
-from medd.db_router import MEDD_APPS
-
 DEBUG = False
 VERSION = '1.2'
 
@@ -88,7 +86,18 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     # 'allauth.socialaccount.providers.microsoft',
-] + MEDD_APPS
+] + [
+    'medd.lookup',
+    'medd.ingredient',
+    'medd.vtm',
+    'medd.vmp',
+    'medd.amp',
+    'medd.vmpp',
+    'medd.ampp',
+    'medd.gtin',
+    'medd.browse',
+    'medd.prescription'
+]
 
 DATABASES = {
     'default': {
@@ -100,9 +109,10 @@ DATABASES = {
         'NAME': 'medd', 'USER': 'root', 'PASSWORD': os.getenv('DB_PASS')
     }
 }
-ALLOWED_HOSTS = ['unilexicon.com', 'localhost']
+ALLOWED_HOSTS = ['unilexicon.com', 'unilexicon.co', 'localhost']
 DEFAULT_FROM_EMAIL = 'hi@unilexicon.com'
 ADMINS = MANAGERS = [('Admin', DEFAULT_FROM_EMAIL)]
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 if DEBUG:
     sentry_sdk.init()
