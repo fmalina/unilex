@@ -6,8 +6,9 @@ __pycache__
 .idea
 data/
 unilex/templates/medd/last-update.txt
-tag/js.build
-uploads
+upload
+static/clinic/
+static/nom/
 static/admin
 static/pay
 static/med
