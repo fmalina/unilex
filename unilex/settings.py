@@ -27,6 +27,7 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_SIGNUP_FORM_CLASS = 'unilex.vocabulary.forms.AutoBotHoneypotSignupForm'
 AUTHENTICATION_BACKENDS = ['allauth.account.auth_backends.AuthenticationBackend']
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/profile'
 TEMPLATE_DIR = f'{PROJECT_ROOT}/unilex/templates/'
@@ -109,4 +110,3 @@ if DEBUG:
 else:
     SENTRY_URL = "https://2b75f709314a42a4b1e5cb8b3d616353@o315515.ingest.sentry.io/5411895"
     sentry_sdk.init(dsn=SENTRY_URL, integrations=[DjangoIntegration()])
-
