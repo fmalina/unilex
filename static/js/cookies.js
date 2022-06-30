@@ -37,10 +37,10 @@ const cc = document.getElementById("cookie-consent");
 //const acc = document.getElementById("accepted");
 const ccc = `
   <p>This website uses cookies to enhance your browsing experience and
-    provide personalized recommendations.
+    provide personalized advertising.
     By continuing to use our website, you agree to our
     <a href="https://blocl.uk/privacy" target="_blank">Privacy Policy</a></p>
-  <div><button onclick="acceptCookieConsent();">Accept</button></div>
+  <div><button onclick="acceptCookieConsent();">I agree</button></div>
   <style>
   #cookie-consent{right:30px;bottom:30px;max-width:395px;background:white;border:1px solid #f3f3f3;
       box-sizing:border-box;position:fixed;padding:20px;border-radius:10px;
