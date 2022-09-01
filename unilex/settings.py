@@ -25,6 +25,14 @@ STATIC_URL = '/static/'
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_RATE_LIMITS = {
+    "change_password": "5/m",
+    "manage_email": "10/m",
+    "reset_password": "20/m",
+    "reset_password_email": "5/m",
+    "reset_password_from_key": "20/m",
+    "signup": "20/m",
+}
 ACCOUNT_SIGNUP_FORM_CLASS = 'unilex.vocabulary.forms.AutoBotHoneypotSignupForm'
 AUTHENTICATION_BACKENDS = ['allauth.account.auth_backends.AuthenticationBackend']
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
