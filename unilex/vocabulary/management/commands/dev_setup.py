@@ -1,7 +1,8 @@
+import os
+
 from django.contrib.sites.models import Site
 from django.core.management.base import BaseCommand
 from django.contrib.auth.models import User
-from django.conf import settings
 from unilex.vocabulary.load_skos import SKOSLoader
 from unilex.vocabulary.models import Vocabulary
 
@@ -26,7 +27,7 @@ def setup_site():
 
 
 def load_vocab(user, fn):
-    path = f"{settings.PROJECT_ROOT}apps/vocabulary/test_data/vocabs/{fn}.xml"
+    path = os.path.join(os.getcwd(), f"unilex/vocabulary/test_data/vocabs/{fn}.xml")
     with open(path, 'rb') as f:
         loader = SKOSLoader(user)
         loader.load_skos_vocab(f)

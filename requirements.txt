@@ -9,7 +9,7 @@ docutils     # generate documentation
 sentry_sdk   # error reporting
 fabric       # updates
 invoke
-git+git://github.com/fmalina/django-pay.git#egg=pay
+# git+git://github.com/fmalina/django-pay.git#egg=pay
 # git+git://github.com/fmalina/unilex-medd.git#egg=medd
 django-reversion
 django-rest-framework

@@ -1,6 +1,8 @@
 import sentry_sdk  # NoQA
 from sentry_sdk.integrations.django import DjangoIntegration  # NoQA
-import os, os.path
+import os.path
+import pymysql
+pymysql.install_as_MySQLdb()
 
 SECRET_KEY = os.getenv('SECRET_KEY', '12345')
 
