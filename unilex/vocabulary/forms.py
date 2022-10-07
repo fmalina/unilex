@@ -65,7 +65,7 @@ class ParentForm(forms.ModelForm):
 class AutoBotHoneypotSignupForm(forms.Form):
     def signup(self, request, user):
         """Stop bot signups using a honeypot method"""
-        bot_name = request.POST.get('bname')
-        if bot_name:
+        honeypot = request.POST.get('bname')
+        if honeypot:
             user.delete()
-            # raise Exception(f'Bot trying to signup: {bot_name}')
+            raise Exception(f'Bot trying to signup')
