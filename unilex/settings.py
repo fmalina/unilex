@@ -121,6 +121,7 @@ DATABASES = {
     }
 }
 ALLOWED_HOSTS = ['unilexicon.com', 'unilexicon.co', 'localhost']
+CSRF_TRUSTED_ORIGINS = ['https://unilexicon.com', 'https://unilexicon.co']
 DEFAULT_FROM_EMAIL = 'hi@unilexicon.com'
 ADMINS = MANAGERS = [('Admin', DEFAULT_FROM_EMAIL)]
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
