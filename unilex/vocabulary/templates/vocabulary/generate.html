@@ -1,0 +1,11 @@
+{% extends 'vocabulary/base.html' %}
+{% block title %}Visual Taxonomy Editor, Controlled Vocabularies - SKOS Editor{% endblock %}
+{% block content %}
+<h1>Generate a taxonomy</h1>
+<form method="POST" action="#">
+    {% csrf_token %}
+    <p><label>Enter taxonomy topic
+        <input type="text" name="topic" value="" required>
+    </label><button>Generate with OpenAI</button>
+</form>
+{% endblock %}

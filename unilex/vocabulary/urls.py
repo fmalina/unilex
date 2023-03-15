@@ -10,6 +10,8 @@ urlpatterns = [
     path('authority/<slug:authority_code>/add', v.vocabulary_add, name='authority_add'),
     path('authority/<slug:authority_code>/load-<slug:format>', v.load_vocab, name='authority_load'),
     path('autocomplete', v.autocomplete, name='autocomplete'),
+
+    path('generate', v.generate, name='generate'),
     path('search', v.search, name='search'),
 
     path('<slug:vocab_node_id>/', v.detail, name='vocabulary'),

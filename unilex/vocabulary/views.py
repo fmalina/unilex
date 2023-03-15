@@ -78,8 +78,22 @@ def search(request):
     })
 
 
+def generate(request):
+    from unilex.vocabulary.ola import taxonomy_prompt, submit_prompt
+    from unilex.vocabulary.load_md import load_md
+
+    if request.method == 'POST' and request.user.is_authenticated:
+        topic = request.POST.get('topic')
+        text = submit_prompt(taxonomy_prompt(topic))
+        print(text)
+        goto = load_md(request.user, text.encode('utf8'), topic)
+        return redirect(goto)
+
+    return render(request, 'vocabulary/generate.html', {})
+
+
 def load_vocab(request, format='xls', authority_code=''):
-    from unilex.vocabulary.load_xls import load_xls, XLSLoadException
+    from unilex.vocabulary.load_xls import load_xls
     from unilex.vocabulary.load_skos import SKOSLoader
     from unilex.vocabulary.load_md import load_md
 

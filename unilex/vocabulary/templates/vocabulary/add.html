@@ -1,13 +1,13 @@
-<p>
-    <a href="{% url 'add' %}" class="btn call">Start your vocabulary
-        {% if not request.user.is_authenticated %}
-            <small class="nowrap">sign up required</small>
-        {% endif %}
-    </a>
-    <span class="nowrap btn-links">
-        Import:
-        <a href="{% url 'load' 'md' %}">text or markdown</a>,
-        <a href="{% url 'load' 'xls' %}">spreadsheet</a>,
-        <a href="{% url 'load' 'skos' %}">SKOS</a>
-    </span>
-</p>
+<a href="{% url 'add' %}" class="btn">Start your vocabulary
+    {% if not request.user.is_authenticated %}
+        <small class="nowrap">sign up required</small>
+    {% endif %}
+</a>
+<span class="nowrap btn-links">
+    Import:
+    <a href="{% url 'load' 'xls' %}">spreadsheet</a>,
+    <a href="{% url 'load' 'skos' %}">SKOS</a>,
+    <a href="{% url 'load' 'md' %}">text or markdown</a> or
+    <a href="{% url 'generate' %}">generate</a>
+</span>
+

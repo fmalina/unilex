@@ -36,6 +36,7 @@ def taxonomy_prompt(concept):
 
 
 def submit_prompt(prompt):
+    print(f'>>> {prompt}')
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[{"role": "user", "content": prompt}]
@@ -43,6 +44,6 @@ def submit_prompt(prompt):
     return response.choices[0]['message']['content']
 
 
-print(submit_prompt(prompt_tpl))
-print(submit_prompt(taxonomy_prompt('AI')))
-print(submit_prompt(taxonomy_prompt('Animals')))
+# print(submit_prompt(prompt_tpl))
+# print(submit_prompt(taxonomy_prompt('AI')))
+# print(submit_prompt(taxonomy_prompt('Animals')))
