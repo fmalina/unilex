@@ -81,6 +81,7 @@ def search(request):
 def load_vocab(request, format='xls', authority_code=''):
     from unilex.vocabulary.load_xls import load_xls, XLSLoadException
     from unilex.vocabulary.load_skos import SKOSLoader
+    from unilex.vocabulary.load_md import load_md
 
     form = UploadFileForm()
     if request.method == 'POST' and request.user.is_authenticated:
@@ -98,6 +99,13 @@ def load_vocab(request, format='xls', authority_code=''):
 
             goto = '/vocabularies/'
             # parse and load into the DB
+            if format == 'md':
+                try:
+                    goto = load_md(request.user, f, fn)
+                except Exception as e:
+                    messages.error(request, f"That didn't work: {e}")
+                    capture_exception(e)
+                    return redirect('load', 'md')
             if format == 'xls':
                 try:
                     goto = load_xls(request.user, f, fn)
@@ -235,10 +243,9 @@ def ul(request, vocab_node_id, style='meeting'):
     if for_pro(vocab):
         messages.info(request, messages.info(request, pro_message('access', f'enable {style} style')))
         return redirect('subscribe')
-    concepts = vocab.concept_set.filter(parent__isnull=True).order_by('order')
     return render(request, f'vocabulary/view-{style}.html', {
-        'vocabulary': vocab,
-        'concepts': concepts
+        'concept': vocab,  # vocab pretending to be a top level concept,
+        'vocabulary': vocab
     })
 
 
@@ -250,8 +257,8 @@ def ordering(request, vocab_node_id):
     This view allows to set new ordering using concept.order.
     
     Request POST will look like:
-        {'order_concept_478[]': ['2', '1', '3']} or
-        {'order_vocab_15[]': ['1', '2', '5'...
+        {'order-concept-478[]': ['2', '1', '3']} or
+        {'order-vocab-15[]': ['1', '2', '5'...
     Where 478 is parent concept PK and 2, 1, 3 is new ordering
     of the children to rewrite their starting sequence 1, 2, 3.
     Ordering sequence numbers are not the same thing as concept.order
@@ -264,18 +271,22 @@ def ordering(request, vocab_node_id):
 
     x = 'Order concepts'
     if request.method == 'POST':
-        orderword_modelword_pk, seq = list(dict(request.POST).items())[0]
-        orderword, modelword, pk = orderword_modelword_pk.split('_')
-        pk=int(pk.replace('[]', ''))
+        post_data = dict(request.POST)
+        seq = [b[0] for a, b in post_data.items()]
+        orderword_modelword_pk = list(post_data)[0]
+        orderword, modelword, pk = orderword_modelword_pk.split('-')
+        pk = int(pk.replace('[]', ''))
         if modelword == 'concept':
             model = Concept
+            o = get_object_or_404(model, pk=pk)
+            o = o.mother()
         else:
             model = Vocabulary
-        parent = get_object_or_404(model, pk=pk)
-        children = dict(enumerate(parent.get_children(), start=1)) # old order
-        sequence = list(enumerate([int(x) for x in seq], start=1)) # new order mapping
-        # print(children) >>> {1: <Concept: CSS>, 2: <Concept: JS>, 3: <Concept: HTML>}
-        # print(sequence) >>> [(1, 3), (2, 1), (3, 2)] # desired order HTML, CSS, JS
+            o = get_object_or_404(model, pk=pk)
+        children = dict(enumerate(o.get_children(), start=1))  # old order
+        sequence = list(enumerate([int(x) for x in seq], start=1))  # new order mapping
+        # print(children)  # >>> {1: <Concept: CSS>, 2: <Concept: JS>, 3: <Concept: HTML>}
+        # print(sequence)  # >>> [(1, 3), (2, 1), (3, 2)]  # desired order HTML, CSS, JS
         for new_concept_order, forloop_counter in sequence:
             concept = children[forloop_counter]
             concept.order = new_concept_order

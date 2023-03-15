@@ -1,0 +1,17 @@
+- **Personal Safety**
+  - **Physical Safety**: Ensuring physical well-being and protection from harm.
+    - **Home Safety**: Ensuring a safe living environment.
+    - **Travel Safety**: Ensuring safety while traveling.
+    - **Self-Defense**: Learning techniques to protect oneself from harm.
+  - **Cyber Safety**: Ensuring protection from online threats.
+    - **Online Identity Protection**: Safeguarding personal information online.
+    - **Cyberbullying Prevention**: Preventing online harassment and bullying.
+    - **Safe Online Practices**: Maintaining safe and secure online habits.
+  - **Emergency Preparedness**: Preparing for and responding to emergencies.
+    - **Natural Disasters**: Preparing for and responding to natural disasters.
+    - **Medical Emergencies**: Knowing how to respond to medical emergencies.
+    - **Crime and Violence**: Knowing how to respond to crime and violence situations.
+  - **Emotional Safety**: Ensuring mental and emotional well-being.
+    - **Mental Health**: Taking care of mental health.
+    - **Stress Management**: Managing stress and anxiety.
+    - **Healthy Relationships**: Maintaining healthy relationships with others.

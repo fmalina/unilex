@@ -76,7 +76,7 @@ class Vocabulary(models.Model):
         return self.title
 
     def get_children(self):
-        return Concept.objects.filter(vocabulary=self, parent__isnull=True).order_by('order')
+        return self.concept_set.filter(parent__isnull=True).order_by('order')
 
     def __str__(self):
         return self.title
@@ -155,7 +155,7 @@ class Concept(models.Model):
         return ls
 
     def get_children(self):
-        return Concept.objects.filter(parent=self).order_by('order')
+        return self.children.prefetch_related('vocabulary').order_by('order')
 
     def get_descendants(self):
         ls = list(self.get_children())
@@ -209,7 +209,7 @@ class Concept(models.Model):
 
     class Meta:
         db_table = 'concepts'
-        ordering = ['name']
+        ordering = ['order', 'name']
         unique_together = [('node_id', 'vocabulary')]
 
 

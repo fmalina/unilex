@@ -34,9 +34,36 @@
 {% block content %}
 <form action="{{ request.path }}" method="post" enctype="multipart/form-data">
 	<h2>Import your vocabulary from<br>
-        {% if format == 'xls' %}Excel (.xls) or CSV spreadsheet{% else %}SKOS file{% endif %}
+        {% if format == 'xls' %}Excel (.xls) or CSV spreadsheet
+        {% elif format == 'md' %}markdown text file
+        {% else %}SKOS file{% endif %}
         and start editing</h2>
     {% csrf_token %}
+
+    {% if format == 'md' %}
+    <p>For automated creation of taxonomies, you may consider the following ChatGPT prompt:
+    <pre>Write a taxonomy for WATCHES in markdown nested unordered list with
+concept names and descriptions separated by ::</pre>
+    <p>Answer can look like this, save it to a .txt file and load here
+    <pre>
+- Watches
+  * Analog Watches: Watches that display time using traditional clock hands
+    that point to hour and minute markers.
+  * Digital Watches: Watches that display time in numerical format, often with
+    additional features like alarms and timers.
+  * Smart Watches: Watches that connect to smartphones and offer a range of
+    features like fitness tracking, messaging, and app integration.
+    - Fitness Watches: Smart watches designed for fitness enthusiasts with
+      features like heart rate monitoring, GPS tracking, and workout tracking.
+    - Hybrid Watches: Smart watches that combine traditional watch design with
+      smart features like notifications and activity tracking.
+  * Luxury Watches: Watches that are often expensive and made with high-quality
+    materials and precision craftsmanship.
+    - Dress Watches: Luxury watches designed to be worn with formal attire.
+    - Dive Watches: Luxury watches designed for underwater activities like
+      scuba diving.
+</pre>
+    {% endif %}
     {% if format == 'xls' %}
     <p>Upload your taxonomy in any of the following formats:</p>
     <h3>Plain tree,

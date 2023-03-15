@@ -1,0 +1,18 @@
+- Artificial Intelligence
+    - Machine Learning :: Field of study that gives computers the ability to learn without being explicitly programmed
+        - Supervised Learning :: Learning from labeled data with specified input and output
+        - Unsupervised Learning :: Learning from unlabeled data with no specified input and output
+        - Reinforcement Learning :: Learning through trial-and-error interactions with an environment to maximize reward
+    - Deep Learning :: Subset of Machine Learning that utilizes artificial neural networks to model and solve complex problems
+        - Convolutional Neural Networks :: Neural networks specifically designed for image and video analysis
+        - Recurrent Neural Networks :: Neural networks designed for sequential data analysis, such as speech recognition or text translation
+        - Generative Adversarial Networks :: Neural networks that generate new data samples similar to the input data
+    - Natural Language Processing :: Branch of AI that allows computers to understand and interpret human language
+        - Sentiment Analysis :: Analyzing text to determine the emotion behind it
+        - Named Entity Recognition :: Identifying and categorizing named entities in text, such as people, places, and organizations
+        - Language Translation :: Translating text from one language to another
+    - Robotics :: Using AI to program and control robots for various tasks
+        - Industrial Robotics :: Utilizing robots in manufacturing and production environments 
+        - Medical Robotics :: Robots designed to assist in medical procedures, such as surgeries
+        - Autonomous Vehicles :: Using robotics and AI to create self-driving cars and other autonomous vehicles
+    

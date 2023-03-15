@@ -1,24 +1,24 @@
 .content{padding-top:1em}
 .sort a:hover{color:#fff}
 
-.level1,
-.level2{border-radius:5px;border-left-width:1px;border-top-width:1px;color:#fff;text-shadow:#000 1px 1px;display:block}
-.level1{background:#005089;padding:.5em 1em;margin:0 1em 1em 0;font-size:1.5em}
-.level2{background:#007DD5;padding:.3em 1em;margin:0 0   1em 0;font-size:1.25em}
-.level3{border-bottom:1px solid #666;color:#333 !important;display:block;padding:.2em .1em;margin:0;font-size:.9em}
-.level1.haschildren,
-.level2.haschildren{border-radius:5px 5px 0 0;margin-bottom:0}
+.L1,
+.L2{border-radius:5px;border-left-width:1px;border-top-width:1px;color:#fff;text-shadow:#000 1px 1px;display:block}
+.L1{background:#005089;padding:.5em 1em;margin:0 1em 1em 0;font-size:1.5em}
+.L2{background:#007DD5;padding:.3em 1em;margin:0 0   1em 0;font-size:1.25em}
+.L3{border-bottom:1px solid #666;color:#333 !important;display:block;padding:.2em .1em;margin:0;font-size:.9em}
+.L1.parent,
+.L2.parent{border-radius:5px 5px 0 0;margin-bottom:0}
 
 .placeholder{border:1px dashed #ccc;background:#eee;opacity:.3;margin-bottom:1em}
-.level3-wrap .placeholder{margin:0}
+.L3-wrap .placeholder{margin:0}
 
-.level1-inner-wrap{float:left;width:100%}
-.level2-wrap,
-.level3-wrap{border-radius:0 0 5px 5px;border:2px solid #666;border-left-width:1px;border-top:0}
-.level2-wrap{background:#EFF8FF;padding:1.25em;margin:0 1.5em 1.5em 0}
-.level3-wrap{background:#fff;padding:1em 1.25em;margin:0 0 1em 0}
-.level2-wrap .level2-inner-wrap:last-child *{margin-bottom:0}
-.level3-wrap li:last-child a{border:0}
+.L1in{float:left;width:100%}
+.L2-wrap,
+.L3-wrap{border-radius:0 0 5px 5px;border:2px solid #666;border-left-width:1px;border-top:0}
+.L2-wrap{background:#EFF8FF;padding:1.25em;margin:0 1.5em 1.5em 0}
+.L3-wrap{background:#fff;padding:1em 1.25em;margin:0 0 1em 0}
+.L2-wrap .L2in:last-child *{margin-bottom:0}
+.L3-wrap li:last-child a{border:0}
 
 .ui-sortable a{
 	cursor:grab;
@@ -30,11 +30,11 @@
 	cursor:-webkit-grabbing;
 	cursor:-moz-grabbing;
 }
-.ui-sortable a.level1{cursor:not-allowed} /* TODO */
+.ui-sortable a.L1{cursor:not-allowed} /* TODO */
 
 @media screen and (min-width:460px){
-	.level1-inner-wrap{width:50%}
+	.L1in{width:50%}
 }
 @media screen and (min-width:640px){
-	.level1-inner-wrap{width:18em}
+	.L1in{width:18em}
 }

@@ -1,9 +1,16 @@
 {% extends 'vocabulary/base.html' %}
-
+{% load concept_hierarchy %}
 {% block title %}{{ vocabulary.title }}{% endblock %}
 
 {% block extrastyles %}
     <link rel="stylesheet" href="{{ base_url }}/css/meeting.css?{{ version }}" />
+	<style>
+	.L0,.desc{display:none}
+	.L0in > ul{padding:0}
+	.L3in a,
+	.L3in a:hover{color:inherit;font-size:smaller}
+	.L3in ul{padding-left:2em}
+	</style>
 {% endblock %}
 
 {% block extrascripts %}
@@ -28,7 +35,7 @@
 				});
 			}
 		});
-		$(".isotope").isotope({itemSelector: '.level1-inner-wrap'});
+		$(".isotope").isotope({itemSelector: '.L1in'});
 	});
 	</script>
 {% endblock %}
@@ -38,6 +45,6 @@
         drag and drop concepts, order will be saved automatically</div>
 	<h2>{{ vocabulary.title }}</h2>
 	<ul class="nav sort isotope">
-	{% include "vocabulary/ul-3levels.html" %}
+	{% render_concept_hierarchy concept 0 %}
 	</ul>
 {% endblock %}

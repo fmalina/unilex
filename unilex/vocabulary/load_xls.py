@@ -1,6 +1,5 @@
 from unilex.vocabulary.models import Concept, Vocabulary
 from django.template.defaultfilters import slugify
-from django.contrib import messages
 import xlrd
 import csv
 
@@ -35,7 +34,8 @@ def load_xls(user, file, title):
         book = xlrd.open_workbook(file_contents=file)
         sheet1 = book.sheet_by_index(0)
         col1 = [x.value for x in sheet1.col(0)]
-        reader = [[x.value for x in sheet1.row(row_no)] for row_no in range(sheet1.nrows)]
+        reader = [[x.value for x in sheet1.row(row_no)]
+                  for row_no in range(sheet1.nrows)]
     except xlrd.XLRDError:
         try:
             f = file.decode().splitlines()
@@ -46,25 +46,25 @@ def load_xls(user, file, title):
             col1 = [x[0] for x in reader]
         except IndexError:
             raise XLSLoadException("Remove blank lines!")
-        
+
     id_col = has_unique_ids(col1)
-    conceptstack = []
+    parents = []
     for line, row in enumerate(reader):
         name, blank = last_full_cell(row)
         concept = Concept(vocabulary=vocab, order=line, name=name)
         if id_col:
             concept.node_id = row[0]
-            blank -= 1 # to account for ID column
+            blank -= 1  # to account for ID column
         concept.save()
-        if len(conceptstack) < blank:
+        if len(parents) < blank:
             raise XLSLoadException(
                 f"Wrong indent on line {line + 1} or non unique IDs.")
-        if len(conceptstack) > blank:
-            for i in range(len(conceptstack) - blank):
-                conceptstack.pop()
-        if conceptstack:
-            concept.parent.add(conceptstack[-1])
+        if len(parents) > blank:
+            for i in range(len(parents) - blank):
+                parents.pop()
+        if parents:
+            concept.parent.add(parents[-1])
             concept.save()
-        conceptstack.append(concept)
+        parents.append(concept)
 
     return vocab

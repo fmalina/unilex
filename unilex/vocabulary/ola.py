@@ -1,10 +1,6 @@
 """
-Object location algo
-~~~~~~~~~~~~~~~~~~~~
-
-   pip3 install tensorflow
-   pip3 install ola
-
+OpenAI language assistant
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Ola finds concepts from controlled vocabularies in documents and tags these documents
 with semantic concepts. Ola helps you to process your data and turn it into knowledge.
@@ -26,6 +22,27 @@ Ola lives a life of her own and cares for health of her models.
 Don't use output from other "intelligent" systems to feed Ola's input, ever.
 Don't give her bullshit either or you'll get cut off.
 """
-# WIP
 
-from unilex.vocabulary.models import Vocabulary
+import openai
+
+openai.api_key = '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'
+
+prompt_tpl = """Write a taxonomy for WATCHES in markdown nested unordered list with
+concept names and descriptions separated by ::"""
+
+
+def taxonomy_prompt(concept):
+    return prompt_tpl.replace('WATCHES', concept.capitalize())
+
+
+def submit_prompt(prompt):
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[{"role": "user", "content": prompt}]
+    )
+    return response.choices[0]['message']['content']
+
+
+print(submit_prompt(prompt_tpl))
+print(submit_prompt(taxonomy_prompt('AI')))
+print(submit_prompt(taxonomy_prompt('Animals')))

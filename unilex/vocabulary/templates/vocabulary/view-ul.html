@@ -1,17 +1,21 @@
 {% extends 'vocabulary/base.html' %}
+{% load concept_hierarchy %}
 {% block title %}{{ vocabulary.title }}{% endblock %}
 
 {% block content %}
 <style>
-.nested-menu{padding:0}
-.nested-menu li{list-style-type:none}
-.nested-menu li a.level1{font-weight:bold}
-.nested-menu li a:hover{font-weight:bold}
+.desc:before{content:'- '}
+.nest,.nest .L0in > ul{padding:0}
+.nest .L1in{padding-top:1em}
+.nest li{list-style:none}
+.nest li a.L1{font-weight:bold}
+.nest li a{text-decoration:none}
+.nest li a:hover{text-decoration:underline}
 </style>
 	<div id="views"><a href="./">&laquo; back to editing</a>
-		&middot; preview the top 3 levels as nested list</div>
+		&middot; preview nested list</div>
 	<h2>{{ vocabulary.title }}</h2>
-	<ul class="nested-menu">
-	{% include "vocabulary/ul-3levels.html" %}
+	<ul class="nest">
+	{% render_concept_hierarchy concept 0 %}
 	</ul>
 {% endblock %}
