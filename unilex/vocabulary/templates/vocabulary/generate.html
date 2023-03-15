@@ -4,8 +4,14 @@
 <h1>Generate a taxonomy</h1>
 <form method="POST" action="#">
     {% csrf_token %}
-    <p><label>Enter taxonomy topic
-        <input type="text" name="topic" value="" required>
-    </label><button>Generate with OpenAI</button>
+    <p>
+        <label>Enter taxonomy topic
+            <input type="text" name="topic" value="" required>
+        </label>
+        {% if request.user.is_authenticated %}
+            <p><button type="submit">Generate with OpenAI</button></p>
+        {% else %}
+            <p><a href="{% url 'account_signup' %}" class="btn"><i class="icon-edit"></i> Registration required&hellip;</a></p>
+        {% endif %}
 </form>
 {% endblock %}
