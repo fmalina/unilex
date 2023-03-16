@@ -22,10 +22,10 @@ Ola lives a life of her own and cares for health of her models.
 Don't use output from other "intelligent" systems to feed Ola's input, ever.
 Don't give her bullshit either or you'll get cut off.
 """
-
+import os
 import openai
 
-openai.api_key = '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'
+openai.api_key = os.getenv('OPENAI_API_KEY')
 
 prompt_tpl = """Write a taxonomy for WATCHES in markdown nested unordered list with
 concept names and descriptions separated by ::"""
