@@ -10,6 +10,7 @@ from django.forms.models import inlineformset_factory
 from django.http import HttpResponse, Http404
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.csrf import csrf_exempt
+from django.utils.text import get_valid_filename
 
 from unilex.paging import simple_paging
 from unilex.utils import ajax_login_required
@@ -104,9 +105,13 @@ def load_vocab(request, format='xls', authority_code=''):
             file = request.FILES['file']
             fn = file.name.split('.')[0].split('/')[-1]
             f = file.read()
-            # save the raw file into an S3 bucket
+            # save the raw file on disk
             if form.cleaned_data.get('permit', False):
-                upload_path = os.path.join(settings.PROJECT_ROOT, 'uploads', file.name)
+                upload_path = os.path.join(
+                    settings.PROJECT_ROOT, 'uploads',
+                    # sanitise filename preventing directory traversal
+                    get_valid_filename(os.path.basename(file.name))
+                )
                 fw = open(upload_path, 'wb')
                 fw.write(f)
                 fw.close()
