@@ -217,37 +217,11 @@ h2{margin-top:3em;padding-top:1em;border-top:1px solid #ddd}
   <a class="external" href="https://developer.chrome.com/extensions/options">DOM localStorage</a> ), CSS and HTML5. Tagging interfaces are loaded for each content node using AJAX. Tagging interface iteself uses jQuery.
   Frontend uses AJAX to talk to backend WSGI application, which communicates to underlying CMS. SRU is used to retrieve data from the CMS. SWORD is used to post amended data back.</p>
 
-  <h3>System requirements</h3>
-  <p><a class="external" href="http://www.google.com/chrome/">Chrome</a> or
-  <a class="external" href="https://www.chromium.org/Home">Chromium</a> web browser.</p>
-
   
   <h3>Technical description</h3>
   <p>Tagging plug-in is implemented as a browser extension for Google Chrome and Chromium browsers.</p>
   <p>It is CMS independent interface that uses integration with the content management system to be tagged.</p>
   <p>This can be achieved by hooking into existing APIs of the client as in the following example.</p>
-  
-  <h3>Tagging integration dependencies for Drupal CMS, legacy of The National Strategies</h3>
-  <ul>
-      <li><p><b>SRU</b> (Search/Retrieval via URL),
-          a standard XML-focused search protocol for Internet search queries,
-          utilizing CQL (Contextual Query Language),
-          a standard syntax for representing queries.</p></li>
-      <li><p><b>SWORD</b> (Simple Web service Offering Repository Deposit), XML protocol for depositing content from one location to another.
-          It is a profile of the Atom Publishing Protocol (known as APP or ATOMPUB).</p></li>
-      <li><p><b>CQL</b> (Contextual Query Language),
-          a formal language for representing queries to information retrieval systems such as search engines,
-          bibliographic catalogs and museum collection information. It's design objective is 
-          that queries be human readable and writable, and that the language
-          be intuitive while maintaining the expressiveness of more complex query languages.
-          It is being developed and maintained by the Z39.50 Maintenance Agency,
-          part of the Library of Congress.</p></li>
-  </ul>
-  <p>Modules:
-      <a class="external" href="https://www.drupal.org/project/sru">SRU</a>,
-      <a class="external" href="https://www.drupal.org/project/sword">SWORD</a>,
-      <a class="external" href="https://www.drupal.org/project/cql">CQL</a>,
-      W3C standard <a class="external" href="https://www.drupal.org/node/560326">SKOS export/import for Drupal</a>.</p>
   {% endblock %}
 </div>
 {% endblock %}
