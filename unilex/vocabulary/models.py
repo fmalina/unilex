@@ -216,11 +216,11 @@ class Concept(models.Model):
 class Relation(models.Model):
     """Simple related concepts, custom relation triples, synonyms, attribute values etc."""
     VALUE_TYPES = [
-        ('char', 'vocabulary.validation_utils.validation_simple', 'One or more characters'),
-        ('bool', 'vocabulary.validation_utils.validation_yesno', 'Yes or No'),
-        ('json', 'vocabulary.validation_utils.validation_json', 'Valid JSON'),
-        ('int', 'vocabulary.validation_utils.validation_integer', 'Integer number'),
-        ('dec', 'vocabulary.validation_utils.validation_decimal', 'Decimal number'),
+        ('char', 'validation_simple', 'One or more characters'),
+        ('bool', 'validation_yesno', 'Yes or No'),
+        ('json', 'validation_json', 'Valid JSON'),
+        ('int', 'validation_integer', 'Integer number'),
+        ('dec', 'validation_decimal', 'Decimal number'),
     ]
     VALUE_TYPE_CHOICES = [(x, z) for x, y, z in VALUE_TYPES]
     VALIDATIONS = [(y, z) for x, y, z in VALUE_TYPES]
