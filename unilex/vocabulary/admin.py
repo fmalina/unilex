@@ -3,7 +3,6 @@ from django.forms import models, ValidationError
 from unilex.vocabulary import models as vocabs
 from unilex.vocabulary.validation_utils import validate_attribute_value
 from reversion.admin import VersionAdmin
-import re
 
 
 def clean_relation_value(cleaned_data, obj):
@@ -15,19 +14,7 @@ def clean_relation_value(cleaned_data, obj):
     return valid_value
 
 
-class RelationForm(models.ModelForm):
-    def clean_validation(self):
-        validation = self.cleaned_data['validation']
-        try:
-            re.compile(validation)
-        except:
-            raise ValidationError("Invalid regular expression")
-        return validation
-
-
 class RelationInlineForm(models.ModelForm):
-    form = RelationForm
-
     def clean_value(self):
         return clean_relation_value(
             self.cleaned_data,
