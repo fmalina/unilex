@@ -9,7 +9,7 @@ from xml.etree.ElementTree import ElementTree
 
 from unilex.vocabulary.models import *
 
-logfile = os.path.join(settings.PROJECT_ROOT, 'load_skos.log')
+logfile = os.path.join(settings.BASE_DIR, 'load_skos.log')
 logging.basicConfig(filename=logfile, level=logging.DEBUG)
 
 xmlns = {

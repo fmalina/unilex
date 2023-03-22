@@ -108,7 +108,7 @@ def load_vocab(request, format='xls', authority_code=''):
             # save the raw file on disk
             if form.cleaned_data.get('permit', False):
                 upload_path = os.path.join(
-                    settings.PROJECT_ROOT, 'uploads',
+                    settings.BASE_DIR, 'uploads',
                     # sanitise filename preventing directory traversal
                     get_valid_filename(os.path.basename(file.name))
                 )

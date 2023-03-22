@@ -2,6 +2,7 @@ import os
 
 from django.contrib.sites.models import Site
 from django.core.management.base import BaseCommand
+from django.conf import settings
 from django.contrib.auth.models import User
 from unilex.vocabulary.load_skos import SKOSLoader
 from unilex.vocabulary.models import Vocabulary
@@ -26,8 +27,7 @@ def setup_site():
     s.save()
 
 
-def load_vocab(user, fn):
-    path = os.path.join(os.getcwd(), f"unilex/vocabulary/test_data/vocabs/{fn}.xml")
+def load_vocab(user, path):
     with open(path, 'rb') as f:
         loader = SKOSLoader(user)
         loader.load_skos_vocab(f)
@@ -39,5 +39,9 @@ class Command(BaseCommand):
         user = create_user()
         setup_site()
         for fn in ['World', 'Unilexicon', 'Software', 'Museum']:
+            path = os.path.join(
+                settings.BASE_DIR,
+                f"unilex/vocabulary/test_data/vocabs/{fn}.xml"
+            )
             Vocabulary.objects.filter(title=fn).delete()
-            load_vocab(user, fn)
+            load_vocab(user, path)
