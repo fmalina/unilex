@@ -9,7 +9,7 @@
     left:-70px;
     border:1px solid #eee;
     border-radius:4px;
-    background:url(/chrome.png) no-repeat;
+    background:url(/assets/img/chrome.png) no-repeat;
 }
 #tab,#url,#tag,#tip{position:absolute}
 #tag,#tip{background:#fff}

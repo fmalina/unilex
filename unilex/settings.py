@@ -6,11 +6,11 @@ pymysql.install_as_MySQLdb()
 
 SECRET_KEY = os.getenv('SECRET_KEY', '12345')
 
-DEBUG = False
+DEBUG = True
 VERSION = '1.2'
 
-PROJECT_ROOT = os.path.join(
-    os.path.dirname(os.path.realpath(__file__)), '..')
+BASE_DIR = os.path.dirname(
+    os.path.dirname(os.path.abspath(__file__)))
 
 INTERNAL_IPS = ['127.0.0.1']
 TIME_ZONE = 'Europe/London'
@@ -19,9 +19,9 @@ SITE_NAME = 'Unilexicon'
 SITE_ID = 1
 USE_I18N = False
 USE_L10N = True
-MEDIA_ROOT = PROJECT_ROOT+'media/'
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static/')
-STATIC_URL = '/static/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static', 'assets')]
+STATIC_URL = '/assets/'
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
@@ -39,7 +39,7 @@ AUTHENTICATION_BACKENDS = ['allauth.account.auth_backends.AuthenticationBackend'
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/profile'
-TEMPLATE_DIR = f'{PROJECT_ROOT}/unilex/templates/'
+TEMPLATE_DIR = os.path.join(BASE_DIR, 'unilex', 'templates')
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -121,8 +121,12 @@ DATABASES = {
         'NAME': 'medd', 'USER': 'root', 'PASSWORD': os.getenv('DB_PASS')
     }
 }
-ALLOWED_HOSTS = ['unilexicon.com', 'unilexicon.co', 'localhost']
-CSRF_TRUSTED_ORIGINS = ['https://unilexicon.com', 'https://unilexicon.co']
+ALLOWED_HOSTS = ['unilexicon.com']
+CSRF_TRUSTED_ORIGINS = ['https://unilexicon.com']
+if DEBUG:
+    ALLOWED_HOSTS += ['localhost', '127.0.0.1', 'unilexicon.co']
+    CSRF_TRUSTED_ORIGINS += ['https://unilexicon.co']
+    MY_SITE_PROTOCOL = 'http'
 DEFAULT_FROM_EMAIL = 'hi@unilexicon.com'
 ADMINS = MANAGERS = [('Admin', DEFAULT_FROM_EMAIL)]
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

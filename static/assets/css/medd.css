@@ -1,4 +1,4 @@
-@import url('/css/base.css');
+@import url('/assets/css/base.css');
 
 a.badge:hover{color:white;text-decoration:none}
 ul,li{margin:0;padding:0;list-style:none}
