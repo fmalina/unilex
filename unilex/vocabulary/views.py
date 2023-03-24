@@ -87,8 +87,10 @@ def generate(request):
         topic = request.POST.get('topic')
         text = submit_prompt(taxonomy_prompt(topic))
         print(text)
-        goto = load_md(request.user, text.encode('utf8'), topic)
-        return redirect(goto)
+        v = load_md(request.user, text.encode('utf8'), topic)
+        v.source = 'https://platform.openai.com/docs/models/gpt-3-5'
+        v.save()
+        return redirect(v)
 
     return render(request, 'vocabulary/generate.html', {})
 
