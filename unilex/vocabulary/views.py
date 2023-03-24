@@ -259,9 +259,6 @@ def ul(request, vocab_node_id, style='meeting'):
     vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
     if vocab.private and not vocab.is_allowed_for(request.user):
         raise Http404(NOT_ALLOWED)
-    if for_pro(vocab):
-        messages.info(request, messages.info(request, pro_message('access', f'enable {style} style')))
-        return redirect('subscribe')
     return render(request, f'vocabulary/view-{style}.html', {
         'concept': vocab,  # vocab pretending to be a top level concept,
         'vocabulary': vocab
