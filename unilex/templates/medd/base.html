@@ -7,7 +7,7 @@
     {% if description %}<meta name="description" content="{% block description %}{% endblock %}">{% endif %}
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
     <link rel="canonical" href="https://unilexicon.com{{ request.path_info }}">
-    <link rel="stylesheet" href="/css/medd.css">
+    <link rel="stylesheet" href="/assets/css/medd.css">
     <link rel="icon" href="/medd-favicon.ico">
     <link rel="apple-touch-icon" href="/medd-apple-touch-icon.png">
     {% block head %}{% endblock %}
@@ -35,7 +35,7 @@
     <div class="footer"><small>&copy; {% now "Y" %} {{ site_name }} by
         {% if app_list %}<a href="/fm/">FM</a>{% else %}FM{% endif %}</small></div>
     <div id="cookie-consent" style="display:none"></div>
-    <script src="/js/cookies.js"></script>
+    <script src="/assets/js/cookies.js"></script>
 </body>
 </html>
 {% endspaceless %}
