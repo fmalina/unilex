@@ -15,13 +15,13 @@
 .aside{padding:10px;width:320px;box-sizing:border-box}
 .aside .info{color:green;display:block;position:relative;z-index:1}
 
-#editing ul{margin:0;padding:0}
-#editing li{list-style:none;margin:0;padding:0}
-#editing form input{padding:3px;font-size:13px}
-#editing form .title{margin-bottom:0}
-#editing form .node_id{margin-top:0}
-#editing form .node_id label{display:inline}
-#editing form .node_id input{display:inline-block;width:128px;border:0;border-bottom:1px dashed #ddd;color:#999;font-size:.8em;background:none;border-radius:0}
+.aside ul{margin:0;padding:0}
+.aside li{list-style:none;margin:0;padding:0}
+.aside form input{padding:3px;font-size:13px}
+.aside form .title{margin-bottom:0}
+.aside form .node_id{margin-top:0}
+.aside form .node_id label{display:inline}
+.aside form .node_id input{display:inline-block;width:128px;border:0;border-bottom:1px dashed #ddd;color:#999;font-size:.8em;background:none;border-radius:0}
 
 #tagging #editing{position:static;height:auto;margin:0 auto}
 #indicator{float:right}
@@ -53,9 +53,9 @@ form li{list-style:none;text-shadow:none}
 .drop-nav a{text-decoration:none}
 .drop-nav a:hover{text-decoration:underline}
 
-#editing input[type="checkbox"]{width:auto}
-#editing .set{padding:10px 20px 10px 30px;position:relative;left:-30px}
-#editing .set,
+.aside input[type="checkbox"]{width:auto}
+.aside .set{padding:10px 20px 10px 30px;position:relative;left:-30px}
+.aside .set,
 .dynamic-form{width:100%}
 .dynamic-form{border-top:2px solid #000}
 

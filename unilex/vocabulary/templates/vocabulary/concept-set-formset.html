@@ -1,9 +1,3 @@
-<script>
-$(function(){
-    acFormset('{{ base_url }}/vocabularies/autocomplete', '{{ formset.prefix }}');
-});
-</script>
-
 <ul class="set" id="{{ formset.prefix }}">
     {% for form, set in forms_and_set %}
     <li id="{{ form.prefix }}-row">
