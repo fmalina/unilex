@@ -173,7 +173,9 @@ var VB = {
     paste: function (nodeId) {
         $.post('/vocabularies/adopt', {
             child: localStorage.getItem("cut"),
-            parent: VB.id(VB.toproot) + ':' + nodeId
+            parent: VB.id(VB.toproot) + ':' + nodeId,
+            csrfmiddlewaretoken:
+                document.getElementsByName('csrfmiddlewaretoken')[0].value
         }).done(function() {
             location.reload();
         });

@@ -5,7 +5,6 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
 from django.utils.decorators import method_decorator
 from django.views import View
-from django.views.decorators.csrf import csrf_exempt
 
 from unilex.tag.client import Client
 from unilex.tag.forms import TagForm, RecordForm
@@ -24,7 +23,6 @@ class TaggingView(View):
     form = RecordForm
     remote = False
 
-    @method_decorator(csrf_exempt)
     def post(self, request, key=None):
         record = None
         if key:

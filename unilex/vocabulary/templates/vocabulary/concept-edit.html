@@ -14,6 +14,7 @@
     </div>
 
     <p>
+        {% csrf_token %}
         {{ formset.management_form }}
         {{ parent_formset.management_form }}
         <button type="submit">Save</button>

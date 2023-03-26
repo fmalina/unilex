@@ -9,7 +9,6 @@ from django.db.models import Q
 from django.forms.models import inlineformset_factory
 from django.http import HttpResponse, Http404
 from django.shortcuts import get_object_or_404, redirect, render
-from django.views.decorators.csrf import csrf_exempt
 from django.utils.text import get_valid_filename
 
 from unilex.paging import simple_paging
@@ -268,7 +267,6 @@ def ul(request, vocab_node_id, style='meeting'):
 
 
 @ajax_login_required
-@csrf_exempt
 def ordering(request, vocab_node_id):
     """Child concepts are ordered by ID if no order is specified.
     
@@ -290,6 +288,7 @@ def ordering(request, vocab_node_id):
     x = 'Order concepts'
     if request.method == 'POST':
         post_data = dict(request.POST)
+        del post_data['csrfmiddlewaretoken']
         seq = [b[0] for a, b in post_data.items()]
         orderword_modelword_pk = list(post_data)[0]
         orderword, modelword, pk = orderword_modelword_pk.split('-')
@@ -313,7 +312,6 @@ def ordering(request, vocab_node_id):
     return HttpResponse(x)
 
 
-@csrf_exempt
 def vocabulary_edit(request, vocab_node_id):
     vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
     if not vocab.is_allowed_for(request.user):
@@ -366,7 +364,6 @@ def concept_new(request, vocab_node_id, node_id=0):
     })
 
 
-@csrf_exempt
 def concept_edit(request, vocab_node_id, node_id):
     vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
     if not vocab.is_allowed_for(request.user):
@@ -425,7 +422,6 @@ def concept_edit(request, vocab_node_id, node_id):
     })
 
 
-@csrf_exempt
 @ajax_login_required
 def concept_adopt(request):
     if request.method != 'POST':

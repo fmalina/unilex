@@ -4,6 +4,8 @@ $(function(){
         forcePlaceholderSize: true,
         update: function(){
             var data = $(this).sortable('serialize');
+            var csrf = 'csrfmiddlewaretoken';
+            data += `&${csrf}=${document.getElementsByName(csrf)[0].value}`;
             $.ajax({
                 type: 'POST',
                 data: data,

@@ -20,4 +20,5 @@
 		data-submit="{% url 'ordering' vocabulary.node_id %}">
 	{% render_concept_hierarchy concept 0 %}
 	</ul>
+	<form>{% csrf_token %}</form>
 {% endblock %}

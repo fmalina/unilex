@@ -14,7 +14,7 @@
             <a href="{% url 'authority' vocabulary.authority.code %}">
                 {{ vocabulary.authority.name }}</a></small></p>
     {% endif %}
-
+    {% csrf_token %}
     <p><button type="submit">Save</button></p>
 </form>
 {% endif %}
