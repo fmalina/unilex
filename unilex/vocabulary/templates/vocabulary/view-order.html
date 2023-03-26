@@ -4,47 +4,20 @@
 
 {% block extrastyles %}
     <link rel="stylesheet" href="{{ base_url }}/assets/css/meeting.css?{{ version }}" />
-	<style>
-	.L0,.desc{display:none}
-	.L0in > ul{padding:0}
-	.L3in a,
-	.L3in a:hover{color:inherit;font-size:smaller}
-	.L3in ul{padding-left:2em}
-	</style>
 {% endblock %}
 
 {% block extrascripts %}
-	<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.0/isotope.pkgd.min.js"></script>
-	<script>
-	$(function(){
-		$(".sort").sortable({
-			placeholder: 'placeholder',
-			forcePlaceholderSize: true,
-			update: function(){
-				var data = $(this).sortable('serialize');
-				$.ajax({
-					type: 'POST',
-					data: data,
-					url: '{% url 'ordering' vocabulary.node_id %}',
-					success: function(){
-						$(this).addClass("done");
-                        // TODO re-key the li IDs instead of reload
-						window.location.reload(); 
-					}
-				});
-			}
-		});
-		$(".isotope").isotope({itemSelector: '.L1in'});
-	});
-	</script>
+	<script src="{{ base_url }}/assets/js/jquery-ui.min.js"></script>
+	<script src="{{ base_url }}/assets/js/isotope.pkgd.min.js"></script>
+	<script src="{{ base_url }}/assets/js/vocab_meeting.js"></script>
 {% endblock %}
 
 {% block content %}
 	<div id="views"><a href="./">&laquo; back to editing</a> &middot;
         drag and drop concepts, order will be saved automatically</div>
 	<h2>{{ vocabulary.title }}</h2>
-	<ul class="nav sort isotope">
+	<ul class="nav sort isotope"
+		data-submit="{% url 'ordering' vocabulary.node_id %}">
 	{% render_concept_hierarchy concept 0 %}
 	</ul>
 {% endblock %}

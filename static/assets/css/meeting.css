@@ -1,6 +1,10 @@
 .content{padding-top:1em}
 .sort a:hover{color:#fff}
 
+.L0,
+.desc{display:none}
+.L0in > ul{padding:0}
+
 .L1,
 .L2{border-radius:5px;border-left-width:1px;border-top-width:1px;color:#fff;text-shadow:#000 1px 1px;display:block}
 .L1{background:#005089;padding:.5em 1em;margin:0 1em 1em 0;font-size:1.5em}
@@ -19,6 +23,10 @@
 .L3-wrap{background:#fff;padding:1em 1.25em;margin:0 0 1em 0}
 .L2-wrap .L2in:last-child *{margin-bottom:0}
 .L3-wrap li:last-child a{border:0}
+
+.L3in a,
+.L3in a:hover{color:inherit;font-size:smaller}
+.L3in ul{padding-left:2em}
 
 .ui-sortable a{
 	cursor:grab;

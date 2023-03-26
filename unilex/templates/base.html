@@ -7,9 +7,12 @@
         <link rel="stylesheet" href="{{ base_url }}/assets/css/vocabulary.css">
         <link rel="stylesheet" href="{{ base_url }}/assets/css/print.css" media="print">
         <link rel="stylesheet" href="{{ base_url }}/assets/css/uxfont.css">
-        <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="{{ base_url }}/assets/js/jquery.min.js"></script>
         <script src="{{ base_url }}/assets/js/jquery.autocomplete.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--meta http-equiv="Content-Security-Policy"
+            content="default-src 'self';font-src 'self' fonts.gstatic.com;style-src 'self' fonts.googleapis.com"
+        -->
         {% block head %}{% endblock %}
         {% block extrahead %}{% endblock %}
         {% block extrastyles %}{% endblock %}

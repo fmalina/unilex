@@ -112,6 +112,22 @@ div.paginator span{color:gray}
 .footer #feedback_submit{float:none;margin-top:0;width:auto}
 .footer #queries{color:#ccc;margin-top:300px}
 
+.docs img{border:1px solid #ddd;background:#eee;padding:2px;width:100%}
+.docs img.auto{width:auto;max-width:100%}
+.docs .figure{margin:20px auto;text-align:center}
+.docs h1{text-align:center}
+.docs h1 small{font-size:.45em;color:silver;display:block}
+.docs h2{margin-top:3em;padding-top:1em;border-top:1px solid #ddd}
+.docs{max-width:600px;margin:0 auto}
+
+ul.nest .desc:before{content:'- '}
+.nest,.nest .L0in > ul{padding:0}
+.nest .L1in{padding-top:1em}
+.nest li{list-style:none}
+.nest li a.L1{font-weight:bold}
+.nest li a{text-decoration:none}
+.nest li a:hover{text-decoration:underline}
+
 @media screen and (min-width:640px){
 	.header,.footer,#messages{padding:1em 3em}
 	.content{padding:3em}
