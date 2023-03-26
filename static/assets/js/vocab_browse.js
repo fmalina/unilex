@@ -106,7 +106,7 @@ var VocabBrowser = {
     check_fragment: function () {
         var fragment = location.hash;
         if (fragment != VocabBrowser.last_fragment) {
-            var mo = /c-([a-z0-9]+)/.exec(fragment);
+            var mo = /c-([a-z0-9-]+)/.exec(fragment);
             if (mo)
                 VocabBrowser.go(mo[1]);
             VocabBrowser.last_fragment = fragment;
