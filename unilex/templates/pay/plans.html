@@ -1,7 +1,16 @@
 {% extends 'pay/base.html' %}
 
 {% block content %}
-<h1>{{ title }}</h1>
+<h1>Thank you for considering<br>
+    professional membership</h1>
+<p>Pro membership also allows you to
+    <ul>
+    <li>use and export private vocabularies,
+    <li>access first class technical support or
+    <li>request a team authority multiuser setup for your organisation.
+    </ul>
+<p>It is also the only means I use to raise funds for development work on Unilexicon.
+
 <form method="post" action="#" id="plans">
     {% csrf_token %}
     {% for plan_value, plan_name in plans %}
@@ -13,5 +22,9 @@
     {% endfor %}
     <p>Plans are not recurring and no renewal reminders are sent.
     Payments are processed via Paypal and eligible for Paypal purchase protection.
+    <p>If you have any questions or suggestions,
+        please reach out to me via<br> <u>hi@unilexicon.com</u>
+        or call +44 7308 122 511
+    <p>&mdash; Francis Malina
 </form>
 {% endblock %}

@@ -13,3 +13,5 @@ $(document).ready(function(){
         }
     });
 });
+
+function leaving_callback () {}
