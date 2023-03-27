@@ -1,5 +1,14 @@
+function sanitized(data) {
+    // Noop marker that data was server side escaped
+    return data;
+}
+
 function Id(cssid){
     return document.getElementById(cssid);
+}
+
+function fill(cssid, data){
+    Id(cssid).innerHTML = sanitized(data);
 }
 
 var VB = {
@@ -35,7 +44,7 @@ var VB = {
             // Attach event handlers and add text to the
             // labels. This method is only triggered on label creation
             onCreateLabel: function (el, node){ // Change node styles when labels are placed or moved.
-                el.innerHTML = node.name;
+                el.textContent = node.name;
                 if(node.data.type == 'vocab'){
                     el.classList.add('vocabnode');
                 }
@@ -74,14 +83,14 @@ var VB = {
                 var node = VB.rootNode();
                 if (node && node.id.indexOf("v-") == -1){
                     $.get(VB.conceptUri(node.id,'edit'), function (data) {
-                        Id('editing').innerHTML = data;
+                        fill('editing', data);
                         document.title = document.title.split(':')[0] + ': ' + node.name;
                         acFormset('/vocabularies/autocomplete',
                                   document.querySelector('.set').id);
                     });
                 } else {
                     $.get('/vocabularies/' + VB.id(VB.root) + '/edit', function (data) {
-                        Id('editing').innerHTML = data;
+                        fill('editing', data);
                     });
                 }
             }
@@ -119,7 +128,7 @@ var VB = {
         }
     },
     addBox: function (data) {
-        Id('action').innerHTML = data;
+        fill('action', data);
         document.querySelector("#action #id_name").focus();
     },
     showIcons: function (el, node) {
@@ -141,7 +150,7 @@ var VB = {
             });
             $('#icon-delete').bind('click', function () {
                 $.get('/vocabularies/' + nid + '/delete', function (data) {
-                    Id('action').innerHTML = data;
+                    fill('action', data);
                 });
             });
             $('#icon-paste').bind('click', function (e) {
@@ -155,7 +164,7 @@ var VB = {
             });
             $('#icon-delete').bind('click', function () {
                 $.get(VB.conceptUri(node.id, 'delete'), function (data) {
-                    Id('action').innerHTML = data;
+                    fill('action', data);
                 });
             });
             $('#icon-cut').bind('click', function () {

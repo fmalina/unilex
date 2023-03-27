@@ -1,14 +1,16 @@
+from django.utils.html import escape
+
 def concept_to_dict(concept, depth, max_depth):
     d = {
         'id': concept.node_id,
-        'name': concept.name,
+        'name': escape(concept.name),
         'children': [],
         'data': {'type': 'concept'}
     }
     if concept.description:
-        d['description'] = concept.description
+        d['description'] = escape(concept.description)
     if concept.query:
-        d['data']['query'] = concept.query
+        d['data']['query'] = escape(concept.query)
     if not concept.active:
         d['data']['active'] = concept.active
     if depth < max_depth or max_depth == 0:
@@ -29,9 +31,9 @@ def vocab_to_dict(vocab, max_depth=0):
     vocabulary_id = f'v-{vocab.node_id}'
     return {
         'id': vocabulary_id,
-        'name': vocab.title,
+        'name': escape(vocab.title),
         'queries': vocab.queries,
-        'description': vocab.description,
+        'description': escape(vocab.description),
         'children': [concept_to_dict(child, depth=1, max_depth=max_depth)
                      for child in children],
         'data': {'type': 'vocab'}
