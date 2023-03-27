@@ -87,7 +87,6 @@ INSTALLED_APPS = [
 
     'unilex.vocabulary',
     'unilex.tag',
-    'unilex.feedback',
     'pay',
 
     'reversion',
