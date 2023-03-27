@@ -1,14 +1,4 @@
 {% if messages %}
-    <script>
-    $(function(){
-        $('#messages').append('<a class="dismiss" href="javascript:void()">dismiss</a>');
-        $('.dismiss').bind('click', function(){
-            $('#messages').slideUp('slow');
-        });
-        // $('#messages').animate({opacity: 1.0}, 5000).slideUp('slow');
-    });
-    </script>
-    
     <ul id="messages">
         {% for message in messages %}
             <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|safe }}

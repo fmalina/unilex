@@ -1,4 +1,5 @@
-$(document).ready(function(){
+$(function(){
+    // search
     $("#q").autocomplete("/vocabularies/autocomplete", {
         width: 380,
         scrollHeight: 'auto',
@@ -12,6 +13,14 @@ $(document).ready(function(){
             $(this).val('');
         }
     });
+
+    // messages
+    $('#messages').append('<a class="dismiss" href="javascript:void()">dismiss</a>');
+    $('.dismiss').bind('click', function(){
+        $('#messages').slideUp('slow');
+    });
+    $('#messages').animate({opacity: 1.0}, 7000).slideUp('slow');
 });
 
+// pay
 function leaving_callback () {}
