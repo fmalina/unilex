@@ -1,38 +1,11 @@
 {% extends 'vocabulary/base.html' %}
 {% block title %}Upload your taxonomy {% if format == 'xls' %}as Excel (.xls) or CSV spreadsheet{% else %}SKOS file{% endif %} and start editing{% endblock %}
 {% block extrahead %}
-    <script>
-    $(function(){
-    	$("input[name='file']").change(function (){
-    	    button = $(this).parents('form:first').find('button');
-    		if($(this).val()!=''){
-    			button.removeAttr('disabled');
-    		} else {
-    		    button.attr('disabled', 'disabled');
-    		}
-    	});
-        
-        // Excel table animation intro
-        $('.p2' ).delay(4000).fadeIn({
-            start: function(){
-                $('thead .p1, caption .p1').hide();
-            }
-        });
-        $('.p3').delay(8000).fadeIn();
-    });
-    </script>
-    
-    <style>
-    .p2,.p3{display:none}
-    .p3{color:gray}
-    .p2{color:green}
-    thead .p2{color:inherit}
-    h3{margin-bottom:.3em;font-weight:300}
-    h3 i{font-style:normal}
-    </style>
+    <script src="{{ base_url }}/assets/js/vocab_upload.js"></script>
 {% endblock %}
 {% block content %}
-<form action="{{ request.path }}" method="post" enctype="multipart/form-data">
+<form class="upload" action="{{ request.path }}" method="post"
+    enctype="multipart/form-data">
 	<h2>Import your vocabulary from<br>
         {% if format == 'xls' %}Excel (.xls) or CSV spreadsheet
         {% elif format == 'md' %}markdown text file

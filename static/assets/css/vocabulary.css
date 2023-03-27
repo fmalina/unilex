@@ -53,7 +53,6 @@ form li{list-style:none;text-shadow:none}
 .drop-nav a{text-decoration:none}
 .drop-nav a:hover{text-decoration:underline}
 
-.aside input[type="checkbox"]{width:auto}
 .aside .set{padding:10px 20px 10px 30px;position:relative;left:-30px}
 .aside .set,
 .dynamic-form{width:100%}
