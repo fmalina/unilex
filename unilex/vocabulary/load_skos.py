@@ -189,7 +189,7 @@ class SKOSLoader(object):
     def load_skos_vocab(self, fname):
         """Import a vocabulary into the DB from xml file fname in SKOS format"""
         doc = ElementTree()
-        goto = '/'
+        vocab = None
         try:
             doc.parse(fname)
         except IOError:
@@ -201,20 +201,17 @@ class SKOSLoader(object):
             os.unlink(f.name)
         except TypeError:
             self.message(40, "That wasn't a SKOS RDF file.")
-            goto = '/vocabularies/load-skos'
             
         if doc.getroot().tag != TAG('rdf:RDF'):
             self.message(40, "We need a SKOS RDF file. Try again.")
-            goto = '/vocabularies/load-skos'
         
         for vocab in doc.findall('.//'+TAG('skos:ConceptScheme')):
             vocab = self.load_vocab_instance(vocab)
-            goto = vocab
 
         for concept in doc.findall('.//'+TAG('skos:Concept')):
             self.load_concept_instance(concept)
         
-        return goto, self.messages
+        return vocab, self.messages
 
     def get_node_id(self, element):
         identifiers = []

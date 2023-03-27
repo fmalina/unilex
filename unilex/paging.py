@@ -25,17 +25,16 @@ Include paging in your listings template:
 """
 from django.template.loader import render_to_string
 from django.core.paginator import Paginator, EmptyPage
-from django.http import HttpResponseRedirect
+from django.http import Http404
 
 
 def paging_middleware(get_response):
     def middleware(request):
         try:
             request.page = int(request.GET.get('page', 1))
-        except ValueError:  # redirect invalid page numbers to root page
-            return HttpResponseRedirect(request.path)
-        response = get_response(request)
-        return response
+        except ValueError:
+            raise Http404('Page does not exist')
+        return get_response(request)
 
     return middleware
 

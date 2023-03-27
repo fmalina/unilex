@@ -89,7 +89,7 @@ def generate(request):
         v = load_md(request.user, text.encode('utf8'), topic)
         v.source = 'https://platform.openai.com/docs/models/gpt-3-5'
         v.save()
-        return redirect(v)
+        return redirect(v.get_absolute_url())
 
     return render(request, 'vocabulary/generate.html', {})
 
@@ -117,18 +117,17 @@ def load_vocab(request, format='xls', authority_code=''):
                 fw.write(f)
                 fw.close()
 
-            goto = '/vocabularies/'
             # parse and load into the DB
             if format == 'md':
                 try:
-                    goto = load_md(request.user, f, fn)
+                    vocab = load_md(request.user, f, fn)
                 except Exception as e:
                     messages.error(request, f"That didn't work: {e}")
                     capture_exception(e)
                     return redirect('load', 'md')
             if format == 'xls':
                 try:
-                    goto = load_xls(request.user, f, fn)
+                    vocab = load_xls(request.user, f, fn)
                 except Exception as e:
                     messages.error(request, f"That didn't work: {e}")
                     capture_exception(e)
@@ -136,22 +135,24 @@ def load_vocab(request, format='xls', authority_code=''):
             if format == 'skos':
                 try:
                     loader = SKOSLoader(request.user)
-                    goto, msgs = loader.load_skos_vocab(f)
+                    vocab, msgs = loader.load_skos_vocab(f)
                     for level, msg in msgs:
                         messages.add_message(request, level, msg)
-                    loader.save_relationships()
-                    messages.success(request, loader)
+                    if vocab:
+                        loader.save_relationships()
+                        messages.success(request, loader)
+                    else:
+                        return redirect('load', 'skos')
                 except Exception as e:
                     messages.error(request, f"That didn't work: {e}")
                     capture_exception(e)
                     return redirect('load', 'skos')
 
-            if goto and isinstance(goto, Vocabulary) and authority_code:
-                vocab = goto
+            if vocab and authority_code:
                 vocab.authority = get_object_or_404(Authority, code=authority_code)
                 vocab.save()
-
-            return redirect(goto)
+            if vocab:
+                return redirect(vocab.get_absolute_url())
 
     return render(request, 'vocabulary/upload.html', {'form': form, 'format': format})
 
