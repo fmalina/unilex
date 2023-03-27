@@ -1,15 +1,15 @@
 <script src="{{ base_url }}/assets/js/feedback.js?{{ version }}"></script>
-<form id="feedback" method="post" action="{{ base_url }}#">
+<form id="feedback" method="post" action="{{ base_url }}/feedback">
 	<fieldset>
-	<h3>How can we make this website better? <span id="feedback_status"></span></h3>
-	<textarea name="feedback_message" id="feedback_message" class="placeholder" rows="10" cols="50"
-		placeholder="Contact us. Send us your suggestions, encouragement. Tell us about issues..."></textarea>
+	<p><b>How can we make this website better?</b> <span id="feedback_status"></span></p>
+	<textarea name="feedback_message" id="feedback_message" rows="3" cols="80"
+		placeholder="Send us your suggestions, love letters. Tell us about issues&hellip;"></textarea>
 	<div id="feedback_submit">
 		{% if user.is_anonymous %}<div id="feedback_optional">
 			<label for="feedback_email">Your email (optional)</label>
 			<input type="text" name="feedback_email" id="feedback_email" />
 		</div>{% endif %}
-		<button type="submit">Send feedback...</button>
+		<button type="submit">Send feedback</button>
 	</div>
 	</fieldset>
 	{% csrf_token %}

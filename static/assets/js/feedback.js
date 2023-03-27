@@ -1,33 +1,41 @@
-function feedback(){
-	var a = $("#feedback_message").val();
-	if(a){
-		$("#feedback_status").show();
-		$("#feedback_status").html("Sending...");
-		$("#feedback_submit button").attr("disabled", "disabled").addClass("disabled").removeClass("default").blur();
-		$.ajax({
-			type: "POST", url: "/feedback", data: {
-				feedback_message: a,
-				feedback_email: $("#feedback_email").val()
-			}
-			, error: function(b, d, c) {
-			   $("#feedback_status").html("Whoops! There were some technical hiccups. If you're not too frustrated by this, please e-mail fmalina@gmail.com instead.")}
-			, success: function(b, c) {
-			   $("#feedback_status").html("Success! Thanks for taking the time to write.")}
+function Id(Id){ return document.getElementById(Id);}
+
+function feedback() {
+	var a = Id('feedback_message').value;
+    const status = Id('feedback_status');
+	if (a) {
+		status.style.display = 'block';
+		status.textContent = 'Sending...';
+		var data = new URLSearchParams();
+		data.append('feedback_message', a);
+		if(Id("feedback_email")){
+			data.append('feedback_email', Id("feedback_email").value);
+		}
+		data.append('csrfmiddlewaretoken', document.getElementsByName('csrfmiddlewaretoken')[0].value);
+		fetch('/feedback', {
+			method: 'POST',
+			headers: {"Content-Type": "application/x-www-form-urlencoded"},
+			body: data
 		})
+		.then(function(response) {
+			var msg = response.ok ? 'Success! Thanks for taking the time to write.' :
+			"Whoops! There were some technical hiccups. If you're not too frustrated by this, please e-mail hi@unilexicon.com";
+			status.textContent = msg;
+		});
 	}
 }
+  
+function initFeedbackForm() {
+	const b = Id('feedback_message');
 
-$(function(){
-	var b = $("#feedback_message");
-	var a = b.val();
-	b.click(function() {
-		if($(this).val() == a){
-			$(this).removeClass("placeholder").val('');
-			$("#feedback_submit").show();
-		}
+	b.addEventListener('click', function() {
+		Id('feedback_submit').style.display = 'block';
 	});
 
-	$("form#feedback").submit(function(){
-		feedback(); return false;
+	Id('feedback_submit').addEventListener('click', function(event){
+		feedback();
+		event.preventDefault();
 	});
-});
+}
+
+document.addEventListener('DOMContentLoaded', initFeedbackForm);

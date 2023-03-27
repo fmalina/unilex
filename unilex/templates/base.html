@@ -57,6 +57,7 @@
     {% block sidebar %}{% endblock %}
     {% block footer %}
     <div class="footer">
+        {% include 'feedback/form.html' %}
         <p><small>&copy; {% now "Y" %} Unilexicon by <a href="/fm/">FM</a></small></p>
         {% include 'debug.html' %}
     </div>

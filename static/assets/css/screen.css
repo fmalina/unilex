@@ -99,18 +99,16 @@ div.paginator span{color:gray}
 #plans button{font-size:1.2rem}
 .cc-fields input{display:inline-block;width:auto;min-width:auto}
 
-.feedback .placeholder{height:3.2em;overflow:hidden;color:gray}
-#feedback_status{padding:0 10px;font-weight:bold;color:green}
-#feedback_status,#feedback_submit{display:none}
-.feedback{clear:both;text-align:left}
-.feedback h3{margin:0;padding:0}
+#feedback_status{color:green}
+#feedback_submit{display:none}
+.feedback{clear:both}
 .feedback label{font-weight:normal;display:block;padding:5px 0}
 .feedback textarea{margin:5px 0}
 .footer .feedback textarea,
 .footer .feedback input{padding:3px;background:#fff}
 .footer .feedback button{margin:.5em 0 0 0}
 .footer #feedback_optional label{display:inline-block;padding-right:5px;text-transform:none}
-.footer #feedback_submit{float:none;margin-top:0;width:auto}
+.footer #feedback_submit{margin-top:0;width:auto}
 .footer #queries{color:#ccc;margin-top:300px}
 
 .docs img{border:1px solid #ddd;background:#eee;padding:2px;width:100%}
@@ -146,7 +144,6 @@ div.paginator span{color:gray}
 	.feedback,.feedback textarea{width:560px;max-width:none}
 	.feedback .placeholder{height:1.8em}
 	.feedback input{width:200px;display:inline}
-	#feedback_optional{float:right;margin-top:.5em}
 }
 @media screen and (max-width:640px){
 	h1{font-size:2em}
