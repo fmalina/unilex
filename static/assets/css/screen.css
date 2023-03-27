@@ -101,14 +101,14 @@ div.paginator span{color:gray}
 
 #feedback_status{color:green}
 #feedback_submit{display:none}
-.feedback{clear:both}
-.feedback label{font-weight:normal;display:block;padding:5px 0}
-.feedback textarea{margin:5px 0}
-.footer .feedback textarea,
-.footer .feedback input{padding:3px;background:#fff}
-.footer .feedback button{margin:.5em 0 0 0}
-.footer #feedback_optional label{display:inline-block;padding-right:5px;text-transform:none}
-.footer #feedback_submit{margin-top:0;width:auto}
+#feedback{clear:both}
+#feedback label{display:block;padding:5px 0}
+#feedback textarea{margin:0 0 5px 0}
+#feedback textarea,
+#feedback input{padding:3px;background:#f8f8f8}
+#feedback button{margin:.5em 0 0 0;font-size:small;background:#555}
+#feedback_optional label{display:inline-block;padding-right:5px;text-transform:none}
+#feedback_submit{margin-top:0;width:auto}
 .footer #queries{color:#ccc;margin-top:300px}
 
 .docs img{border:1px solid #ddd;background:#eee;padding:2px;width:100%}
@@ -141,9 +141,8 @@ div.paginator span{color:gray}
 	.btn-links{display:inline-block}
 	.search{width:350px;float:left}
 	.search input{max-width:none}
-	.feedback,.feedback textarea{width:560px;max-width:none}
-	.feedback .placeholder{height:1.8em}
-	.feedback input{width:200px;display:inline}
+	#feedback,#feedback textarea{width:560px;max-width:none}
+	#feedback input{width:200px;display:inline}
 }
 @media screen and (max-width:640px){
 	h1{font-size:2em}
