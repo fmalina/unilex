@@ -2,17 +2,17 @@ var CHOOSER = {
     autocompleteServer : '',
     addNewTerm : function() {
         var id = CHOOSER.newId();
-
-        var newTerm = '<div class="andTerm">'
-                + '<a href="#" class="convertToNot">NOT</a>'
-                + '<div class="termWrapper">'
-                + '<div class="singleTerm">'
-                + '<input type="text" class="autocompleteTerm" value="" id="' + id + '" name="' + id + '">'
-                + '&nbsp;<a href="#" class="deleteSingleTerm">X</a>'
-                + '</div>'
-                + '</div>'
-                + '&nbsp;<a href="#" class="orTerm">or...</a>'
-                + '</div>';
+        const newTerm = `<div class="andTerm">
+                <a href="#" class="convertToNot">NOT</a>
+                <div class="termWrapper">
+                    <div class="singleTerm">
+                        <input type="text" class="autocompleteTerm" value="" id="${id}" name="${id}">
+                        &nbsp;<a href="#" class="deleteSingleTerm">X</a>
+                    </div>
+                </div>
+                &nbsp;<a href="#" class="orTerm">or...</a>
+            </div>`;
+            
 
         $('#placeholder').before(newTerm);
         CHOOSER.setupAutocomplete(id);
@@ -38,10 +38,10 @@ var CHOOSER = {
     orTerm : function(termWrapperDiv) {
         var id = CHOOSER.newId();
         var childTermCount = termWrapperDiv.children('div.singleTerm').length;
-        var newSingleTerm = '<div class="singleTerm">'
-                + '<input type="text" class="autocompleteTerm" value="" id="' + id + '" name="' + id + '">'
-                + '&nbsp;<a href="#" class="deleteSingleTerm">X</a>'
-                + '</div>';
+        const newSingleTerm = `<div class="singleTerm">
+                <input type="text" class="autocompleteTerm" value="" id="${id}" name="${id}">
+                &nbsp;<a href="#" class="deleteSingleTerm">X</a>
+            </div>`;  
         termWrapperDiv.append(newSingleTerm);
         CHOOSER.setupAutocomplete(id);
     },
