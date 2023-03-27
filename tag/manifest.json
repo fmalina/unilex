@@ -3,7 +3,7 @@
   "name": "Unilexicon Tagging",
   "description": "Classify resources using taxonomies from Unilexicon",
   "version": "0.2",
-  "homepage_url": "https://unilexicon.com/",
+  "homepage_url": "https://unilexicon.com",
   "background": {"page": "background.html"},
   "options_page": "options.html",
   "browser_action": {
@@ -18,5 +18,5 @@
   "permissions": [
     "tabs", "notifications"
   ],
-  "content_security_policy": "script-src 'self' 'unsafe-eval' https://code.jquery.com https://unilexicon.com; style-src 'self' https://unilexicon.co; font-src 'self' https://unilexicon.co; object-src 'self'"
+  "content_security_policy": "script-src 'self' 'unsafe-eval' https://unilexicon.com; style-src 'self' https://unilexicon.com;font-src 'self' https://unilexicon.com"
 }

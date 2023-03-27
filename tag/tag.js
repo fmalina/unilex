@@ -1,6 +1,6 @@
 var tag = {
     // configure this
-    repository: 'https://unilexicon.co',//m', // vocabulary repository url, has to be https
+    repository: 'https://unilexicon.com', // vocabulary repository url, has to be https
 
     isAllowed: function(tabId, changeInfo, tab) {
         // Called when the url of a tab changes.
