@@ -1,14 +1,10 @@
-function sanitized(data) {
-    // Noop marker that data was server side escaped
-    return data;
-}
-
 function Id(cssid){
     return document.getElementById(cssid);
 }
 
 function fill(cssid, data){
-    Id(cssid).innerHTML = sanitized(data);
+    // data has to be server side escaped
+    Id(cssid).innerHTML = data;
 }
 
 var VB = {
