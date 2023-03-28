@@ -18,7 +18,7 @@
 </defs>
 
 <rect width="750" height="750" fill="url(#grad1)" />
-<g id="J" transform="translate(375 375)">
+<g id="logo" transform="translate(375 375)">
 <use xlink:href="#J" transform="rotate(45)  "/>
 <use xlink:href="#J" transform="rotate(135) "/>
 <use xlink:href="#J" transform="rotate(-45) "/>
