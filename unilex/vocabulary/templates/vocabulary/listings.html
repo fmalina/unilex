@@ -1,21 +1,21 @@
 {% extends 'vocabulary/base.html' %}
 {% block title %}Visual Taxonomy Editor, Controlled Vocabularies - SKOS Editor{% endblock %}
 {% block content %}
-        <h1>Visual Taxonomy&nbsp;Editor</h1>
-        <p>This is a visual tool for managing <def title="classifications, thesauri or taxonomies">controlled vocabularies</def>.</p>
-        <ul>
+    <h1>Visual Taxonomy&nbsp;Editor</h1>
+    <p>This is a visual tool for managing <def title="classifications, thesauri or taxonomies">controlled vocabularies</def>.</p>
+    <ul>
         <li>explore and edit vocabularies through an attractive user interface</li>
         <li>quickly comprehend relations between concepts in large complex classification systems</li>
         <li>make authoring of simple knowledge organisation systems (<dfn title="simple knowledge organisation system">SKOS</dfn>) fast and productive</li>
         <li>import and export vocabularies using a variety of sources and formats including JSON, <dfn title="simple knowledge organisation system">SKOS</dfn>, <dfn title="nested unordered list">HTML</dfn> and <dfn title="indented cells">Excel</dfn></li>
-        <li>simplify writing of contextual queries for navigation vocabularies</li>
-        </ul>
-        <p>{% include 'vocabulary/add.html' %}
-        <br>
+        <!--li>simplify writing of contextual queries for navigation vocabularies</li-->
+    </ul>
+    <p>{% include 'vocabulary/add.html' %}
+    <br>
     
     <h2>Explore vocabularies
         <small class="clear text-muted">
-            (<a class="text-muted" href="https://creativecommons.org/licenses/by/3.0/">CC-BY</a> licensed unless otherwise stated)
+            (<a class="text-muted" href="https://creativecommons.org/licenses/by/3.0/">CC-BY</a> licensed)
         </small>
     </h2>
     {% include 'vocabulary/ls.html' %}

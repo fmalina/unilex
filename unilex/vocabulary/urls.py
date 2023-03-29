@@ -13,6 +13,7 @@ urlpatterns = [
 
     path('generate', v.generate, name='generate'),
     path('search', v.search, name='search'),
+    path('pro', v.pro_message, name='pro'),
 
     path('<slug:vocab_node_id>/', v.detail, name='vocabulary'),
     path('<slug:vocab_node_id>/edit', v.vocabulary_edit),

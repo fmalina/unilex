@@ -26,22 +26,40 @@ Simple knowledge organization system (SKOS) thesaurus software for your organisa
         </ul>
         <p><a class="btn" href="/vocabularies/">Explore vocabularies</a>
         {% include 'vocabulary/add.html' %}
-        <p><small>Unilexicon is free tool for public taxonomies
-            with some paid features<br>such as
-            management of private vocabularies,
-            authority setup for teams and data exports.</small>
+        <p><small>Unilexicon is a free tool for creating and managing public taxonomies.
+            However, we also offer paid features that include private
+            vocabularies, collaboration tools, and fast technical support.
+            <a href="/vocabularies/pro">Upgrade</a> to unlock the full potential of Unilexicon.</small>
         </p>
     </div>
 </div>
 {% endblock %}
 
 {% block content %}
-<p>Unilexicon is a visual online thesaurus server, classification and taxonomy management software coupled with a web-site tagging tool and record tagging system.
-A taxonomy manager to extend your search tools for database powered websites, document and knowledge classification.
-SAS and enterprise semantic metadata management and integration system.
-<p>An information management software offering metadata repository and semantic search tools, data integration and records management tools. Simple knowledge organization system (SKOS) for your organisation.
-<p>Unilexicon is open source, see the <a href="https://github.com/fmalina/unilex" target="_blank">source code</a>
-    or <a href="/docs">read the documentation</a>. </p>
+<p><img src="/assets/img/face.png">
+Hi there, I'm the creator of Unilexicon, a free and open platform that helps
+you manage taxonomies and classifications. I know from experience that taxonomy
+work can be complex and time-consuming, and that's why I've designed Unilexicon
+with a focus on user experience. When you use Unilexicon, you can spend less time
+worrying about technical complexities and more time focusing on the important human
+aspects of taxonomy work, like finding the right concepts and defining their
+relationships.
+
+<p>I believe that good design is about decreasing cognitive load and making
+complex tasks feel intuitive and easy. That's why Unilexicon handles the heavy
+technical aspects for you, like handling XML serialization, storing RDF triples, and
+generating unique concept IDs. By default, Unilexicon generates human-readable,
+hyphenated concept slugs instead of using GUIDs or numerical IDs, so your SKOS XML is
+legible and easy to work with. Plus, our drag-and-drop visual sorting and relationship
+representation helps ensure correctness and reduces the chance of mistakes.
+
+<p>I'm always looking for ways to make Unilexicon even better, and I'd love to hear your feedback.
+Whether you have suggestions for new features, ideas for improving the platform, or
+just want to say hello, feel free to reach out to me at <u>hi@unilexicon.com</u>. By using
+Unilexicon, you're not just getting access to a powerful taxonomy management tool, you're
+also joining a community of taxonomists and knowledge workers who are committed to
+building a better, more connected world.
+<p>&mdash; Francis
 </div>
 
 <div class="content clear center">
@@ -60,7 +78,7 @@ SAS and enterprise semantic metadata management and integration system.
 </div>
 
 <div class="content clear">
-    <!--div id="tagging">
+    <div id="tagging">
         <div id="demo">
             <div id="tab">Example site</div>
             <div id="url"><span>http://</span>example.org</div>
@@ -72,14 +90,18 @@ SAS and enterprise semantic metadata management and integration system.
             </div>
         </div>
         <div class="desc">
-        <h2><a href="{{ base_url }}{% url 'about' %}">Tagging tool</a>
-            for contextual tagging of resources using controlled vocabularies</h2>
-        <ul>
-        <li>use your taxonomies from Unilexicon repository to tag your content, tag resources, documents, items and records
-        <li>integrated and yet content management system independent, tag websites or your own records
-        <li>can be integrated for your organisation as a Chrome browser extension or directly into your CRM or CMS
+        <h2><a href="{{ base_url }}{% url 'about' %}">Tagging tool</a></h2>
+        <p>Allows you to tag your resources using controlled vocabularies.
+        <ul><li>Seamlessly integrated with the Unilexicon repository,
+        enabling you to efficiently tag your content, documents, items, and records.
+        <li>It is content management system independent, so you can easily tag websites
+        or your own records. You can use it as a Chrome browser extension or integrate
+        it directly into your CRM or CMS.
+        <li>Unfortunately, tagging extension is <b>currently
+        unavailable</b>. However, if you require annotation functionality,
+        please reach out to <u>hi@unilexicon.com</u> to discuss sponsorship opportunities.
         </ul>
         <p><a href="/tag/about">Learn more</a></p>
         </div>
-    </div-->
+    </div>
 {% endblock %}
