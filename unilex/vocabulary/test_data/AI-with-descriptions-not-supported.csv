@@ -1,0 +1,17 @@
+,,Description
+Machine Learning,,Field of study that gives computers the ability to learn without being explicitly programmed
+Machine Learning,Supervised Learning,Learning from labeled data with specified input and output
+Machine Learning,Unsupervised Learning,Learning from unlabeled data with no specified input and output
+Machine Learning,Reinforcement Learning,Learning through trial-and-error interactions with an environment to maximize reward
+Deep Learning,,Subset of Machine Learning that utilizes artificial neural networks to model and solve complex problems
+Deep Learning,Convolutional Neural Networks,Neural networks specifically designed for image and video analysis
+Deep Learning,Recurrent Neural Networks,"Neural networks designed for sequential data analysis, such as speech recognition or text translation"
+Deep Learning,Generative Adversarial Networks,Neural networks that generate new data samples similar to the input data
+Natural Language Processing,,Branch of AI that allows computers to understand and interpret human language
+Natural Language Processing,Sentiment Analysis,Analyzing text to determine the emotion behind it
+Natural Language Processing,Named Entity Recognition,"Identifying and categorizing named entities in text, such as people, places, and organizations       "
+Natural Language Processing,Language Translation,Translating text from one language to another
+Robotics,,Using AI to program and control robots for various tasks
+Robotics,Industrial Robotics,Utilizing robots in manufacturing and production environments
+Robotics,Medical Robotics,"Robots designed to assist in medical procedures, such as surgeries                                   "
+Robotics,Autonomous Vehicles,Using robotics and AI to create self-driving cars and other autonomous vehicles

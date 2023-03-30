@@ -15,4 +15,5 @@ $(function(){
         }
     });
     $('.p3').delay(8000).fadeIn();
+    $('.p4').delay(12000).fadeIn();
 });

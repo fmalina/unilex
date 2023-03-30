@@ -42,6 +42,7 @@ concept names and descriptions separated by ::</pre>
     <h3>Plain tree,
         <i class="p2">1st column can contain IDs.</i>
         <i class="p3">Parentage trails are ignored.</i>
+        <i class="p4">"Description" column before the tree is supported.</i>
         <span class="p1">&hellip;</span></h3>
     <table>
         <thead>
@@ -51,23 +52,52 @@ concept names and descriptions separated by ::</pre>
                 <th><b class="p1">A</b><b class="p2">B</b></th>
                 <th><b class="p1">B</b><b class="p2">C</b></th>
                 <th><b class="p1">C</b><b class="p2">D</b></th>
-                <th><b class="p1">D</b><b class="p2">E</b></th>
+                <th class="p4"><b>E</b></th>
             </tr>
         </thead>
         <tbody>
-            <tr><th>  1</th><td class="p2">001</td><td><b class="p1">Mammalia</b></td><td></td><td></td><td></td></tr>
-            <tr><th>  2</th><td class="p2">002</td><td><b class="p3">Mammalia</b></td><td><b class="p1">Boreoeutheria</b></td><td></td><td></td></tr>
-            <tr><th>  3</th><td class="p2">003</td><td><b class="p3">Mammalia</b></td><td><b class="p3">Boreoeutheria</b></td><td>Laurasiatheria</td><td></td></tr>
-            <tr><th>  4</th><td class="p2">004</td><td><b class="p3">Mammalia</b></td><td><b class="p3">Boreoeutheria</b></td><td>Euarchontoglires</td><td></td></tr>
-            <tr><th>  5</th><td class="p2">005</td><td><b class="p3">Mammalia</b></td><td><b class="p3">Boreoeutheria</b></td><td>Meridiungulata</td><td></td></tr>
-            <tr><th>  6</th><td class="p2">006</td><td><b class="p3">Mammalia</b></td><td>Xenarthra</td><td></td><td></td></tr>
-            <tr><th>  7</th><td class="p2">007</td><td><b class="p3">Mammalia</b></td><td>Afrotheria</td><td></td><td></td></tr>
-            <tr><th>  8</th><td class="p2">008</td><td><b class="p1">Reptilia</b></td><td></td><td></td><td></td></tr>
-            <tr><th>  9</th><td class="p2">009</td><td><b class="p3">Reptilia</b></td><td><b class="p1">Testudinata</b></td><td></td><td></td></tr>
-            <tr><th> 10</th><td class="p2">010</td><td><b class="p3">Reptilia</b></td><td><b class="p3">Testudinata</b></td><td><b class="p1">Cryptodira</b></td><td></td></tr>
-            <tr><th> 11</th><td class="p2">011</td><td><b class="p3">Reptilia</b></td><td><b class="p3">Testudinata</b></td><td><b class="p3">Cryptodira</b></td><td>Eucryptodira</td></tr>
-            <tr><th> 12</th><td class="p2">012</td><td><b class="p3">Reptilia</b></td><td><b class="p3">Testudinata</b></td><td><b class="p3">Cryptodira</b></td><td>Paracryptodira</td></tr>
-            <tr><th>  …</th><td class="p2">  …</td><td>…</td><td></td><td></td><td></td></tr>
+            <tr class="p4"><th>0</th><td class="p2">ID</td><td>Description</td><td class="p3">Tree</td><td></td><td></td></tr>
+            <tr><th>  1</th><td class="p2">001</td>
+              <td class="p4">Animals with hair and boobies</td>
+              <td><b class="p1">Mammalia</b></td><td></td><td></td>
+            </tr>
+            <tr><th>  2</th><td class="p2">002</td>
+              <td class="p4">Animals with hair and boobies that are kind of like cats and dogs</td>
+              <td><b class="p3">Mammalia</b></td><td><b class="p1">Boreoeutheria</b></td><td></td>
+            </tr>
+            <tr><th>  3</th><td class="p2">003</td>
+              <td class="p4">Animals with hair and boobies that are kind of like cats and dogs, but not the same</td>
+              <td><b class="p3">Mammalia</b></td><td><b class="p3">Boreoeutheria</b></td><td>Laurasiatheria</td>
+            </tr>
+            <tr><th>  4</th><td class="p2">004</td>
+              <td class="p4">Animals with hair and boobies that are kind of like cats and dogs, but different again</td>
+              <td><b class="p3">Mammalia</b></td><td><b class="p3">Boreoeutheria</b></td><td>Euarchontoglires</td>
+            </tr>
+            <tr><th>  5</th><td class="p2">005</td>
+              <td class="p4">Animals with hair and boobies that are kind of like cats and dogs, but not really</td>
+              <td><b class="p3">Mammalia</b></td><td><b class="p3">Boreoeutheria</b></td><td>Meridiungulata</td>
+            </tr>
+            <tr><th>  6</th><td class="p2">006</td>
+              <td class="p4">Animals with hair and no boobies that roll up like balls</td>
+              <td><b class="p3">Mammalia</b></td><td>Xenarthra</td><td></td>
+            </tr>
+            <tr><th>  7</th><td class="p2">007</td>
+              <td class="p4">Animals with hair and long noses that like to dig</td>
+              <td><b class="p3">Mammalia</b></td><td>Afrotheria</td><td></td>
+            </tr>
+            <tr><th>  8</th><td class="p2">008</td>
+              <td class="p4">Animals that lay eggs and have scales</td>
+              <td><b class="p1">Reptilia</b></td><td></td><td></td>
+            </tr>
+            <tr><th>  9</th><td class="p2">009</td>
+              <td class="p4">Animals that lay eggs and have shells, like a helmet</td>
+              <td><b class="p3">Reptilia</b></td><td><b class="p1">Testudinata</b></td><td></td>
+            </tr>
+            <tr><th> 10</th><td class="p2">010</td>
+              <td class="p4">Animals that lay eggs and have shells, like a helmet, but different</td>
+              <td><b class="p3">Reptilia</b></td><td><b class="p3">Testudinata</b></td><td><b class="p1">Cryptodira</b></td>
+            </tr>
+            <tr><th>  …</th><td class="p2">  …</td><td>…</td><td></td><td></td><td class="p4"></td></tr>
         </tbody>
     </table>
     {% endif %}

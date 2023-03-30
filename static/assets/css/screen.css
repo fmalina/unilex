@@ -127,7 +127,8 @@ div.paginator span{color:gray}
 .nest li a{text-decoration:none}
 .nest li a:hover{text-decoration:underline}
 
-.upload .p2,.upload .p3{display:none}
+.upload .p2,.upload .p3,.upload .p4{display:none}
+.upload .p4{color:navy}
 .upload .p3{color:gray}
 .upload .p2{color:green}
 .upload thead .p2{color:inherit}
