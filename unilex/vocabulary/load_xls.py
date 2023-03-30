@@ -5,6 +5,11 @@ import csv
 
 
 def has_unique_ids(col):
+    """Gets cells of first column as a list,
+    Checks if any contains a space meaning they are not IDs.
+    checks for uniqueness of those IDs"""
+    if any(' ' in str(i).strip() for i in col):
+        return False  # Found a space in an ID cell
     return len(col) == len(set(col))
 
 
@@ -41,27 +46,44 @@ def load_xls(user, file, title):
             f = file.decode().splitlines()
         except UnicodeDecodeError:
             raise XLSLoadException("Not a CSV.")
-        reader = [x for x in csv.reader(f)]
+        reader = [[cell.strip() for cell in row]
+                  for row in csv.reader(f)]
         try:
             col1 = [x[0] for x in reader]
         except IndexError:
             raise XLSLoadException("Remove blank lines!")
 
     id_col = has_unique_ids(col1)
+    description_column_index = None
     parents = []
     for line, row in enumerate(reader):
+        # Check if a description column is present on line 1
+        if line == 0:
+            san_row = [str(cell).strip().lower() for cell in row]
+            if 'description' in san_row:
+                description_column_index = san_row.index('description')
+                continue
+        # create a concept
         name, blank = last_full_cell(row)
         concept = Concept(vocabulary=vocab, order=line, name=name)
+        # set ID if present
         if id_col:
             concept.node_id = row[0]
             blank -= 1  # to account for ID column
+        # set description if present
+        if description_column_index is not None:
+            concept.description = row[description_column_index]
+            blank -= 1  # to account for description column
+        
         concept.save()
         if len(parents) < blank:
             raise XLSLoadException(
                 f"Wrong indent on line {line + 1} or non unique IDs.")
+        
         if len(parents) > blank:
             for i in range(len(parents) - blank):
                 parents.pop()
+
         if parents:
             concept.parent.add(parents[-1])
             concept.save()

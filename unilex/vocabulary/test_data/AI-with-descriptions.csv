@@ -1,0 +1,17 @@
+Description                                                                                            ,                           ,                               
+Field of study that gives computers the ability to learn without being explicitly programmed           ,Machine Learning           ,                               
+Learning from labeled data with specified input and output                                             ,Machine Learning           ,Supervised Learning            
+Learning from unlabeled data with no specified input and output                                        ,Machine Learning           ,Unsupervised Learning          
+Learning through trial-and-error interactions with an environment to maximize reward                   ,Machine Learning           ,Reinforcement Learning         
+Subset of Machine Learning that utilizes artificial neural networks to model and solve complex problems,Deep Learning              ,                               
+Neural networks specifically designed for image and video analysis                                     ,Deep Learning              ,Convolutional Neural Networks  
+"Neural networks designed for sequential data analysis, such as speech recognition or text translation",Deep Learning              ,Recurrent Neural Networks      
+Neural networks that generate new data samples similar to the input data                               ,Deep Learning              ,Generative Adversarial Networks
+Branch of AI that allows computers to understand and interpret human language                          ,Natural Language Processing,                               
+Analyzing text to determine the emotion behind it                                                      ,Natural Language Processing,Sentiment Analysis             
+"Identifying and categorizing named entities in text, such as people, places, and organizations       ",Natural Language Processing,Named Entity Recognition       
+Translating text from one language to another                                                          ,Natural Language Processing,Language Translation           
+Using AI to program and control robots for various tasks                                               ,Robotics                   ,                               
+Utilizing robots in manufacturing and production environments                                          ,Robotics                   ,Industrial Robotics            
+"Robots designed to assist in medical procedures, such as surgeries                                   ",Robotics                   ,Medical Robotics               
+Using robotics and AI to create self-driving cars and other autonomous vehicles                        ,Robotics                   ,Autonomous Vehicles            
