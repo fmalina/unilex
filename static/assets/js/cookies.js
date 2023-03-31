@@ -48,7 +48,7 @@ if(cookie_consent != ""){
 	  By continuing to use our website, you agree to our
 	  <a href="https://blocl.uk/privacy" target="_blank">Privacy Policy</a></p>
 	<div><button onclick="acceptCookieConsent();">I agree</button></div>
-	<link href="/assets/css/cookies.css">
+	<link rel="stylesheet" href="/assets/css/cookies.css">
   `;
 	//acc.style.display = "none";
 }
