@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% block title %}Add a record{% endblock %}
 {% block head %}{% endblock %}
 {% block extrastyles %}
     <link rel="stylesheet" href="{{ base_url }}/assets/css/vocabulary.css?{{ version }}" />
@@ -12,10 +13,8 @@
 
 {% block header %}{% endblock %}
 {% block content %}
-    {% if not record %}
-        <h2 style="margin-top:0">Add a record</h2>
-    {% endif %}
     {% include 'tag/record-form.html' %}
 {% endblock %}
 
 {% block footer %}{% endblock %}
+{% block cookies %}{% endblock %}

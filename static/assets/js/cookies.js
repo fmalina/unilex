@@ -33,22 +33,30 @@ function acceptCookieConsent(){
 	setCookie('cookie_consent', 1, 30);
 	document.getElementById("cookie-consent").style.display = "none";
 }
-const cc = document.getElementById("cookie-consent");
-//const acc = document.getElementById("accepted");
 
-// Set visibility of the cookie consent popup
-let cookie_consent = getCookie("cookie_consent");
-if(cookie_consent != ""){
-	cc.style.display = "none";
-}else{
-	cc.style.display = "block";
-    cc.innerHTML += `
-	<p>This website uses cookies to enhance your browsing experience and
-	  provide personalized advertising.
-	  By continuing to use our website, you agree to our
-	  <a href="https://blocl.uk/privacy" target="_blank">Privacy Policy</a></p>
-	<div><button onclick="acceptCookieConsent();">I agree</button></div>
-	<link rel="stylesheet" href="/assets/css/cookies.css">
-  `;
-	//acc.style.display = "none";
+function initCookieConsent() {
+	const cc = document.getElementById("cookie-consent");
+
+	// Set visibility of the cookie consent popup
+	let cookie_consent = getCookie("cookie_consent");
+	if(cookie_consent != ""){
+		cc.style.display = "none";
+	}else{
+		cc.style.display = "block";
+		cc.innerHTML += `
+		<p>This website uses cookies to enhance your browsing experience and
+		provide personalized advertising.
+		By continuing to use our website, you agree to our
+		<a href="https://blocl.uk/privacy" target="_blank">Privacy Policy</a></p>
+		<div><button id="consent_button">I agree</button></div>
+		<link rel="stylesheet" href="/assets/css/cookies.css">
+	`;
+		//acc.style.display = "none";
+	}
+
+	Id('consent_button').addEventListener('click', function() {
+		acceptCookieConsent();
+	});
 }
+
+document.addEventListener('DOMContentLoaded', initCookieConsent);
