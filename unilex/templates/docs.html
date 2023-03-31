@@ -88,7 +88,7 @@
   <p>It is worth noting that each vocabulary and each node has its
   own permalink. So it is possible for a user to bookmark, say, Educational topic &gt;
   Teaching and learning &gt; Teaching as
-  https://unilexicon.com/vocabularies/teaching/#node10584</p>
+  https://unilexicon.com/vocabularies/teaching/#tnl</p>
 
   <p>The user can also log in to make changes to the
   vocabulary.</p>
@@ -178,22 +178,22 @@
   <h3>List of code modules</h3>
   <ul>
   <li><p><a class="external" href="https://www.djangoproject.com/">The Django framework</a></p></li>
-  <li><p><a class="external" href="http://lxml.de">LXML</a> for parsing incoming SRU and SKOS RDF import. LXML uses
-    <a class="external" href="http://xmlsoft.org/">libxml</a> and
-    <a class="external" href="http://www.w3.org/TR/xpath/">XPATH</a>, more about
-    <a class="external" href="http://stackoverflow.com/questions/3785629">parsing SRU With LXML &amp; XPATH</a></p></li>
-  <li><p><a class="external" href="https://pypi.python.org/pypi/xlrd/">XLRD library</a> used by Excel import.
-      <a class="external" href="http://stackoverflow.com/questions/3290620">
+  <li><p><a class="external" href="https://lxml.de">LXML</a> for parsing incoming SRU and SKOS RDF import. LXML uses
+    <a class="external" href="https://gitlab.gnome.org/GNOME/libxml2/-/wikis/home">libxml</a> and
+    <a class="external" href="https://www.w3.org/TR/xpath/">XPATH</a>, more about
+    <a class="external" href="https://stackoverflow.com/questions/3785629">parsing SRU With LXML &amp; XPATH</a></p></li>
+  <li><p><a class="external" href="https://pypi.org/project/xlrd/">XLRD library</a> used by Excel import.
+      <a class="external" href="https://stackoverflow.com/questions/3290620">
         More information about the import algorithm</a></p></li>
-  <li><p><a class="external" href="http://jquery.com/">jQuery</a> and jQuery based #
+  <li><p><a class="external" href="https://jquery.com/">jQuery</a> and jQuery based #
     <a class="external" href="https://github.com/elo80ka/django-dynamic-formset"
        title="A jQuery plugin that allows to dynamically add new forms to a rendered django formset">
       Django dynamic formset</a></li>
-  <li><p><a class="external" href="http://philogb.github.io/jit/">JavaScript InfoVis Toolkit</a>
+  <li><p><a class="external" href="https://philogb.github.io/jit/">JavaScript InfoVis Toolkit</a>
     to create interactive data visualizations</p></li>
-  <li><p><a class="external" href="http://www.ubuntu.com/server">Ubuntu server</a></p></li>
-  <li><p><a class="external" href="http://wiki.nginx.org/Main">Nginx</a> front-end webserver
-    <a class="external" href="http://stackoverflow.com/questions/869001">our configuration</a></p></li>
+  <li><p><a class="external" href="https://www.ubuntu.com/server">Ubuntu server</a></p></li>
+  <li><p><a class="external" href="https://docs.nginx.com/">Nginx</a> front-end webserver
+    <a class="external" href="https://stackoverflow.com/questions/869001">our configuration</a></p></li>
   <li><p>Gunicorn server, more in
       <a class="external" href="https://docs.djangoproject.com/en/dev/howto/deployment/">Django deployment docs</a></li>
   <li><p>Any <a class="external" href="https://docs.djangoproject.com/en/dev/ref/databases/">
@@ -202,12 +202,14 @@
   </ul>
 
   <h2>Technical components of the content tagging plugin</h2>
-  <p><a class="external" href="https://developer.chrome.com/extensions">Chrome extension</a> is written in JavaScript ( plain native code,
-  <a class="external" href="https://developer.chrome.com/extensions/options">DOM localStorage</a> ), CSS and HTML5. Tagging interfaces are loaded for each content node using AJAX. Tagging interface iteself uses jQuery.
-  Frontend uses AJAX to talk to backend WSGI application, which communicates to underlying CMS. SRU is used to retrieve data from the CMS. SWORD is used to post amended data back.</p>
+  <p><a class="external" href="https://developer.chrome.com/docs/extensions/">Chrome extension</a> is written in JavaScript (plain native code,
+  <a class="external" href="https://developer.chrome.com/docs/extensions/mv3/options/">DOM localStorage</a>), CSS and HTML5.
+  Tagging interfaces are loaded for each content node using AJAX. Tagging interface iteself uses jQuery.
+  Frontend uses AJAX to talk to backend WSGI application, which communicates to underlying CMS.
+  SRU is used to retrieve data from the CMS. SWORD is used to post amended data back.</p>
 
   <h3>System requirements</h3>
-  <p><a class="external" href="http://www.google.com/chrome/">Chrome</a> or
+  <p><a class="external" href="https://www.google.com/chrome/">Chrome</a> or
   <a class="external" href="https://www.chromium.org/Home">Chromium</a> web browser.</p>
 
   
