@@ -60,8 +60,8 @@ def load_xls(user, file, title):
         # Check if a description column is present on line 1
         if line == 0:
             san_row = [str(cell).strip().lower() for cell in row]
-            if 'description' in san_row:
-                description_column_index = san_row.index('description')
+            if 'definition' in san_row:
+                description_column_index = san_row.index('definition')
                 continue
         # create a concept
         name, blank = last_full_cell(row)
