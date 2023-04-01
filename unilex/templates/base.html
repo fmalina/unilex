@@ -22,10 +22,7 @@
     <div class="header{% block header_class %}{% endblock %}">
         <ul class="nav">
             <li><a href="{{ base_url }}" class="logo">Unilexicon</a></li>
-            <li><a href="{{ base_url }}{% url 'listings' %}"
-                   title="Visual Taxonomy Editor for Controlled Vocabularies, Taxonomies and Thesauri">Vocabularies</a></li>
-            <li><a href="{{ base_url }}/med/" target="_blank">Med <i class="icon icon-external"></i></a></li>
-            <li><a href="{{ base_url }}{% url 'docs' %}">Docs</a></li>
+            <li><a href="{{ base_url }}{% url 'listings' %}">Taxonomies</a></li>
             {% if user.is_staff %}
             <li><a href="{{ base_url }}/admin/" title="Admin">
                 <span class="icon icon-edit"></span></a></li>{% endif %}
@@ -59,13 +56,16 @@
     {% block footer %}
     <div class="footer">
         {% include 'feedback/form.html' %}
-        <p><small>&copy; {% now "Y" %} Unilexicon by <a href="/fm/">FM</a></small></p>
+        <p>&copy; {% now "Y" %} Unilexicon by <a href="/fm/">F. Malina</a>
+        <a href="{{ base_url }}/med/" target="_blank">Med <i class="icon icon-external"></i></a>
+        <a href="{{ base_url }}{% url 'docs' %}">Docs</a>
+        </p>
         {% include 'debug.html' %}
     </div>
     {% endblock %}
     {% block cookies %}
         <div id="cookie-consent" style="display:none"></div>
-        <script src="{{ base_url }}/assets/js/cookies.js?{{ version }}"></script>
+        <script src="{{ base_url }}/assets/js/cookies.js"></script>
     {% endblock %}
     </body>
 </html>

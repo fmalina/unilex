@@ -48,6 +48,7 @@ form input[type="checkbox"]{width:auto}
     margin:2em 0 .5em 0}
 .login-or span{position:relative;top:-.6em;
     padding:0 .5em;color:#aaa;background:#fff}
+#loginlink{padding-right:0}
 
 button,input[type="submit"],.btn{
     text-decoration:none;display:inline-block;padding:.5em 1em;
@@ -110,6 +111,7 @@ div.paginator span{color:gray}
 #feedback_optional label{display:inline-block;padding-right:5px;text-transform:none}
 #feedback_submit{margin-top:0;width:auto}
 .footer #queries{color:#ccc;margin-top:300px}
+.footer a{margin-right:1em}
 
 .docs img{border:1px solid #ddd;background:#eee;padding:2px;width:100%}
 .docs img.auto{width:auto;max-width:100%}
