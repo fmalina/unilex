@@ -323,7 +323,7 @@ def vocabulary_edit(request, vocab_node_id):
         else:
             return redirect('/')
     else:
-        form = VocabularyForm(instance=vocab)
+        form = VocabularyForm(instance=vocab, label_suffix='')
     return render(request, 'vocabulary/vocabulary-edit.html', {
         'vocabulary': vocab,
         'children': vocab.get_children(),
@@ -345,7 +345,7 @@ def concept_new(request, vocab_node_id, node_id=0):
         parent = get_object_or_404(Concept, node_id=node_id, vocabulary=vocab)
         add_parent = True
     if request.method == 'POST':
-        form = NewChildConceptForm(request.POST, instance=c)
+        form = NewChildConceptForm(request.POST, instance=c, label_suffix='')
         if form.is_valid():
             c = form.save()
             if add_parent:
@@ -405,7 +405,7 @@ def concept_edit(request, vocab_node_id, node_id):
         else:
             return redirect('/')
     else:
-        form = ConceptForm(instance=c)
+        form = ConceptForm(instance=c, label_suffix='')
         formset = RelatedFormSet(instance=c, prefix='rf')
         parent_formset = ParentFormSet(instance=c, prefix='pf')
     return render(request, 'vocabulary/concept-edit.html', {

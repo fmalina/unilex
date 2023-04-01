@@ -99,7 +99,7 @@ class TaggingView(View):
         if not tag_concepts:
             tag_concepts = ['addfirst']
         tag_formset = formset_factory(form=TagForm, extra=len(tag_concepts), can_delete=True)
-        form = self.form(instance=record)
+        form = self.form(instance=record, label_suffix='')
         formset = tag_formset(initial=tag_forms)
         forms_and_tags = zip(formset.forms, tag_concepts)
         response = render(request, self.template_name, {

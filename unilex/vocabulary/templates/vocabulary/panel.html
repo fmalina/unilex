@@ -2,10 +2,12 @@
     <li>{% if concept %}
         {% for crumb in concept.breadcrumb %}
             {% if not forloop.last %}
-                <a href="{{ crumb.get_absolute_url }}">{{ crumb }}</a> &rarr; 
+                <a href="{{ crumb.get_absolute_url }}">{{ crumb }}</a> ›
             {% else %}
                 {% for parent in concept.parent.all %}
-                    {% if parent != concept.mother %}<a href="{{ parent.get_absolute_url }}">&larr; {{ parent.name }}</a><br>{% endif %}
+                    {% if parent != concept.mother %}
+                    <a href="{{ parent.get_absolute_url }}">
+                        ‹ {{ parent.name }}</a><br>{% endif %}
                 {% endfor %}
                 <b>{{ crumb }}</b>
             {% endif %}
@@ -24,6 +26,6 @@
             {{ c.name }}</a><span class="text-muted">{% if c.description and not user.is_authenticated %}:
             {{ c.description }}
         {% endif %}
-        {% if not forloop.last %} | {% endif %}</span>
+        {% if not forloop.last %} · {% endif %}</span>
     {% endfor %}
 </ul>

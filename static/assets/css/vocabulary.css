@@ -20,7 +20,7 @@
 
 .aside ul{margin:0;padding:0}
 .aside li{list-style:none;margin:0;padding:0}
-.aside form input{padding:3px;font-size:13px}
+.aside form p{margin-top:0.5em}
 .aside form .title{margin-bottom:0}
 .aside form .node_id{margin-top:0}
 .aside form .node_id label{display:inline}
@@ -30,7 +30,7 @@
 #indicator{float:right}
 
 form .buttons{text-align:right}
-form label{display:block;text-align:left;font-size:10px;padding:2px}
+form label{text-align:left;font-size:10px;padding:2px}
 form ul{padding:0}
 form li{list-style:none;text-shadow:none}
 #editicons{margin:.0;text-align:center;font-size:14px}
@@ -63,6 +63,7 @@ form li{list-style:none;text-shadow:none}
 
 #add_operator,
 .test{font-weight:bold;font-size:14px;text-decoration:none}
+#panel{font-size:.85rem}
 #panel a{text-decoration:none}
 #panel a:hover{text-decoration:underline}
 #panel .indent{padding-left:22px;margin-top:0}
@@ -70,10 +71,9 @@ form li{list-style:none;text-shadow:none}
 .set li{border-top:1px solid #eee}
 .set .delete-row{color:#ddd;font-size:17px}
 
-#id_description{font-family:Arial, sans-serif;padding:2px 1px;height:60px;font-size:12px}
+#id_description{height:100px}
 
 .has_query:before{content:'✓ '}
-.try{font-size:12px}
 
 #add_operator:hover,
 .test:hover,
