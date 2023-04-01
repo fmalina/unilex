@@ -1,9 +1,5 @@
 #hypertree .content{padding:0}
-#infovis{
-    background:radial-gradient(circle at 50vh 50vh, #ffc 0%, #fff 70%);
-    height:calc(100vh - 70px);
-    width :calc(100vh - 70px)
-}
+#infovis{background:radial-gradient(circle at 50vh 50vh, #ffc 0%, #fff 70%)}
 #main h1{font-size:2em;line-height:.8em}
 #main h1 small{font-size:.5em}
 
@@ -12,7 +8,14 @@
 .vocab-list li{list-style:none;padding:0 0 1em 0;margin:0;}
 .vocab-list a{font-weight:bold}
 
-.aside{padding:10px;width:320px;box-sizing:border-box}
+.editor{display:flex}
+.workspace{order:1;
+    min-height:calc(100vh - 70px);
+    width :calc(100vw - 320px);
+    min-width:600px;}
+.aside{order:2;min-width:320px;width:320px;
+    box-sizing:border-box;padding:10px;
+    background:#f3f3f3;border-radius:3px 0 0 3px}
 .aside .info{color:green;display:block;position:relative;z-index:1}
 
 .aside ul{margin:0;padding:0}
@@ -83,8 +86,7 @@ button.delete b{color:#fcc;position:relative;top:-1px}
 .add-row{text-decoration:none}
 
 @media screen and (min-width:800px){
-	.aside{padding:25px;background:#f3f3f3;float:left}
-	#infovis{float:left}
+	.aside{padding:20px}
 	.vocab-list{column-count:3;column-gap:2rem}
 	.col2 .vocab-list{column-count:1}
 }

@@ -24,11 +24,11 @@
             <a href="{% url 'skos'  vocabulary.node_id %}">SKOS</a> /
             <a href="{% url 'csv'   vocabulary.node_id %}">CSV</a>
     </ul>
-</div><!-- /switch view -->
+</div><!-- /drop-nav -->
 {% endif %}
 
 <div class="editor">
-    <div id="infovis"></div><!-- /infovis -->
+    <div class="workspace" id="infovis"></div>
     <div class="aside">
         <h1>{{ vocabulary.title }} <small>
         {% if count == 0 %}
@@ -38,7 +38,7 @@
         {% endif %}
         </small></h1>
         <div id="action"></div>
-        <div id="editing"></div><!-- /editing -->
+        <div id="editing"></div>
         {% if count > 2000 %}
             <p class="info">
                 Only first 3 levels of taxonomies over 2k concepts large are shown.<br>
