@@ -36,8 +36,7 @@ Simple knowledge organization system (SKOS) thesaurus software for your organisa
 {% endblock %}
 
 {% block content %}
-<p><img src="/assets/img/face.png">
-Hi there, I'm the creator of Unilexicon, a free and open platform that helps
+<p>Hi there, I'm the creator of Unilexicon, a free and open platform that helps
 you manage taxonomies and classifications. I know from experience that taxonomy
 work can be complex and time-consuming, and that's why I've designed Unilexicon
 with a focus on user experience. When you use Unilexicon, you can spend less time
@@ -53,7 +52,7 @@ hyphenated concept slugs instead of using GUIDs or numerical IDs, so your SKOS X
 legible and easy to work with. Plus, our drag-and-drop visual sorting and relationship
 representation helps ensure correctness and reduces the chance of mistakes.
 
-<p>I'm always looking for ways to make Unilexicon even better, and I'd love to hear your feedback.
+<p><img src="/assets/img/face.png"> I'm always looking for ways to make Unilexicon even better, and I'd love to hear your feedback.
 Whether you have suggestions for new features, ideas for improving the platform, or
 just want to say hello, feel free to reach out to me at <u>hi@unilexicon.com</u>. By using
 Unilexicon, you're not just getting access to a powerful taxonomy management tool, you're
@@ -78,19 +77,19 @@ building a better, more connected world.
 </div>
 
 <div class="content clear">
-    <div id="tagging">
+    <div class="tagging">
         <div id="demo">
             <div id="tab">Unilexicon: taxonomy editor</div>
             <div id="url"><span>https://</span>unilexicon.com</div>
             <div id="tag">
                 <div id="tip"></div>
                 <div id="in1">
-                    <iframe src="/tag/" frameborder="0" width="340" height="420"></iframe>
+                    <iframe src="/tag/" frameborder="0" width="340" height="460"></iframe>
                 </div>
             </div>
         </div>
         <div class="desc">
-        <h2><a href="{{ base_url }}{% url 'about' %}">Tagging tool</a></h2>
+        <h2>Tagging tool</h2>
         <p>Allows you to tag your resources using controlled vocabularies.
         <ul><li>Seamlessly integrated with the Unilexicon repository,
         enabling you to efficiently tag your content, documents, items, and records.
@@ -101,7 +100,7 @@ building a better, more connected world.
         unavailable</b>. However, if you require annotation functionality,
         please reach out to <u>hi@unilexicon.com</u> to discuss sponsorship opportunities.
         </ul>
-        <p><a href="/tag/about">Learn more</a></p>
+        <p><a href="/tag/about">More about tagging</a></p>
         </div>
     </div>
 {% endblock %}

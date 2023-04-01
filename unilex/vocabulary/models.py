@@ -178,12 +178,12 @@ class Concept(models.Model):
         return (self.level() - 2) * ','
 
     def forward_path(self):
-        return strip_tags(' » '.join(self.get_path()))
+        return strip_tags(' › '.join(self.get_path()))
 
     def backwards_path(self):
         p = self.get_path()
         p.reverse()
-        return ' « '.join(p)
+        return ' ‹ '.join(p)
 
     def get_absolute_url(self):
         return f'{self.vocabulary.get_absolute_url()}#c-{self.node_id}'

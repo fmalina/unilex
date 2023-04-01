@@ -37,10 +37,10 @@ form ul li{list-style:none;padding:5px 0}
 form label{display:block;text-transform:uppercase;font-size:10px;color:#999}
 input,textarea{
 	display:block;width:100%;box-sizing:border-box;
-	border:1px solid #ddd;border-radius:2px;background:#ffe}
+	border:1px solid #bbb;border-radius:2px;background:#f9f9f9;
+	padding:.2em .5em;font-family:inherit}
 input,textarea,.login-or{max-width:350px}
-form input{padding:.2rem .5rem}
-form input, button{font-size:1rem}
+button{font-size:1rem}
 form input[type="file"]{border:0;font-size:inherit;background:transparent}
 form input[type="checkbox"]{width:auto}
 
@@ -114,10 +114,10 @@ div.paginator span{color:gray}
 .docs img{border:1px solid #ddd;background:#eee;padding:2px;width:100%}
 .docs img.auto{width:auto;max-width:100%}
 .docs .figure{margin:20px auto;text-align:center}
-.docs h1{text-align:center}
 .docs h1 small{font-size:.45em;color:silver;display:block}
 .docs h2{margin-top:3em;padding-top:1em;border-top:1px solid #ddd}
-.docs{max-width:600px;margin:0 auto}
+.docs .content{max-width:600px}
+.pro .content{max-width:980px}
 
 .nest .desc:before{content:'- '}
 .nest,.nest .L0in > ul{padding:0}

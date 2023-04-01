@@ -45,8 +45,8 @@
     color: white;
 }
 .lead ::placeholder{color:rgba(255,255,255,.7)}
-#tagging,.lead{
-    max-width:1150px;
+.tagging,.headspace{
+    max-width:980px;
 }
 .headspace h1{
     text-shadow:0 0 5px #2C2B30;
@@ -60,4 +60,4 @@
 .headspace a{color:white}
 .headspace{padding:5em 0}
 
-img{float:left;padding:0 1em 0.5em 0;width:60px}
+img{float:left;padding:1em 1em 1em 0;width:60px}
