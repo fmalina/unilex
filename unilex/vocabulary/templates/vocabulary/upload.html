@@ -1,7 +1,7 @@
 {% extends 'vocabulary/base.html' %}
 {% block title %}Upload your taxonomy {% if format == 'xls' %}as Excel (.xls) or CSV spreadsheet{% else %}SKOS file{% endif %} and start editing{% endblock %}
 {% block extrahead %}
-    <script src="{{ base_url }}/assets/js/vocab_upload.js"></script>
+    <script src="{{ base_url }}/assets/js/vocab_upload.js?{{ version }}"></script>
 {% endblock %}
 {% block content %}
 <form class="upload" action="{{ request.path }}" method="post"

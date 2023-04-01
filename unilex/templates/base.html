@@ -3,10 +3,10 @@
     <head>
         <meta charset="utf-8" /> 
         <title>{% block title %}{{ title }}{% endblock %}{% block head_title %}{% endblock %}</title>
-        <link rel="stylesheet" href="{{ base_url }}/assets/css/screen.css">
-        <link rel="stylesheet" href="{{ base_url }}/assets/css/vocabulary.css">
-        <link rel="stylesheet" href="{{ base_url }}/assets/css/print.css" media="print">
-        <link rel="stylesheet" href="{{ base_url }}/assets/css/uxfont.css">
+        <link rel="stylesheet" href="{{ base_url }}/assets/css/screen.css?{{ version }}">
+        <link rel="stylesheet" href="{{ base_url }}/assets/css/vocabulary.css?{{ version }}">
+        <link rel="stylesheet" href="{{ base_url }}/assets/css/print.css?{{ version }}" media="print">
+        <link rel="stylesheet" href="{{ base_url }}/assets/css/uxfont.css?{{ version }}">
         <script src="{{ base_url }}/assets/js/jquery.min.js"></script>
         <script src="{{ base_url }}/assets/js/jquery.autocomplete.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -65,7 +65,7 @@
     {% endblock %}
     {% block cookies %}
         <div id="cookie-consent" style="display:none"></div>
-        <script src="{{ base_url }}/assets/js/cookies.js"></script>
+        <script src="{{ base_url }}/assets/js/cookies.js?{{ version }}"></script>
     {% endblock %}
     </body>
 </html>
