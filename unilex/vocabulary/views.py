@@ -81,15 +81,22 @@ def search(request):
 def generate(request):
     from unilex.vocabulary.ola import taxonomy_prompt, submit_prompt
     from unilex.vocabulary.load_md import load_md
+    from openai.error import RateLimitError
 
     if request.method == 'POST' and request.user.is_authenticated:
         topic = request.POST.get('topic')
-        text = submit_prompt(taxonomy_prompt(topic))
-        print(text)
-        v = load_md(request.user, text.encode('utf8'), topic)
-        v.source = 'https://platform.openai.com/docs/models/gpt-3-5'
-        v.save()
-        return redirect(v.get_absolute_url())
+        try:
+            text = submit_prompt(taxonomy_prompt(topic))
+            print(text)
+            v = load_md(request.user, text.encode('utf8'), topic)
+            v.source = 'https://platform.openai.com/docs/models/gpt-3-5'
+            v.save()
+            return redirect(v.get_absolute_url())
+        except RateLimitError:
+            messages.error(request,
+                """We don't have enough ChatGPT API tokens to serve your request.
+                If you are not too frustrated by this you can still use ChatGPT
+                directly combined with Unilexicon text import feature.""")
 
     return render(request, 'vocabulary/generate.html', {})
 
