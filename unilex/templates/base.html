@@ -19,52 +19,53 @@
     </head>
     <body{% block body_id %}{% endblock %}>
     {% block header %}
-    <div class="header{% block header_class %}{% endblock %}">
-        <ul class="nav">
-            <li><a href="{{ base_url }}" class="logo">Unilexicon</a></li>
-            <li><a href="{{ base_url }}{% url 'listings' %}">Taxonomies</a></li>
+    <header class="{% block header_class %}{% endblock %} clearfix">
+        <nav>
+            <a href="{{ base_url }}" class="logo">Unilexicon</a>
+            <a href="{{ base_url }}{% url 'listings' %}">Taxonomies</a>
             {% if user.is_staff %}
-            <li><a href="{{ base_url }}/admin/" title="Admin">
-                <span class="icon icon-edit"></span></a></li>{% endif %}
+            <a href="{{ base_url }}/admin/" title="Admin">
+                <span class="icon icon-edit"></span></a>{% endif %}
             {% if user.is_anonymous %}
-            <li><a id="loginlink" rel="nofollow"
+            <a id="loginlink" rel="nofollow"
                 href="{% url 'account_login' %}?next={{ request.path }}">Login</a>
                 <span class="sep">|</span>
-                <a href="{% url 'account_signup' %}">Sign up</a></li>
+                <a href="{% url 'account_signup' %}">Sign up</a>
             {% else %}
-            <li><a href="{% url 'profile' %}">Your profile</a></li>
+            <a href="{% url 'profile' %}">Your profile</a>
             {% endif %}
-            <li><a href="/vocabularies/pro">PRO</a></li>
-        </ul>
+            <a href="/vocabularies/pro">PRO</a>
+        </nav>
         {% block search %}
             {% include 'vocabulary/search-input.html' %}
         {% endblock %}
-        <div class="clear"></div>
         {% block headspace %}{% endblock %}
-    </div>
+    </header>
     {% endblock %}
 
     {% include 'messages.html' %}
-    <div class="content">
+    <main class="content">
         {% block headline %}{% endblock %}
         {% block content_wrap %}
             {% block content %}{% endblock %}
         {% endblock %}
-        <div class="clear"></div>
-    </div>
+    </main>
     {% block sidebar %}{% endblock %}
     {% block footer %}
-    <div class="footer">
+    <footer>
         {% include 'feedback/form.html' %}
-        <p>&copy; {% now "Y" %} Unilexicon by <a href="/fm/">F. Malina</a>
-        <a href="{{ base_url }}/med/" target="_blank">Med <i class="icon icon-external"></i></a>
-        <a href="{{ base_url }}{% url 'docs' %}">Docs</a>
-        </p>
+        <nav>
+            &copy; {% now "Y" %} Unilexicon by <a href="/fm/">F. Malina</a>
+            <a href="#feedback" id="open_feedback">Contact</a>
+            <a href="{{ base_url }}{% url 'docs' %}">Docs</a>
+            for <a href="{{ base_url }}/med/" target="_blank">Medicines
+                <i class="icon icon-external"></i></a>
+        </nav>
         {% include 'debug.html' %}
-    </div>
+    </footer>
     {% endblock %}
     {% block cookies %}
-        <div id="cookie-consent" style="display:none"></div>
+        <div id="cookie-consent"></div>
         <script src="{{ base_url }}/assets/js/cookies.js"></script>
     {% endblock %}
     </body>

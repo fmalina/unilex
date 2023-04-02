@@ -16,7 +16,7 @@
 	<div id="views"><a href="./">&laquo; back to editing</a> &middot;
         drag and drop concepts, order will be saved automatically</div>
 	<h2>{{ vocabulary.title }}</h2>
-	<ul class="nav sort isotope"
+	<ul class="meeting sort isotope"
 		data-submit="{% url 'ordering' vocabulary.node_id %}">
 	{% render_concept_hierarchy concept 0 %}
 	</ul>

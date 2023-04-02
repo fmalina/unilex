@@ -7,7 +7,7 @@ Simple knowledge organization system (SKOS) thesaurus software for your organisa
 {% endblock %}
 {% block header_class %} lead{% endblock %}
 {% block headspace %}
-<div class="headspace">
+<section class="headspace">
     <h1>Taxonomy editor suite</h1>
     <p>Unilexicon™ a visual editor and taxonomy manager for authoring controlled vocabularies with a content tagging extension.</p>
     <div id="editor">
@@ -29,15 +29,16 @@ Simple knowledge organization system (SKOS) thesaurus software for your organisa
         <li><a href="/vocabularies/generate">generate</a> taxonomies
             using OpenAI's pretrained transformer
         </ul>
-        <p><a class="btn" href="/vocabularies/">Explore taxonomies</a>
-        {% include 'vocabulary/add.html' %}
+        <p class="btn-links clearfix">
+            <a class="btn" href="/vocabularies/">Explore taxonomies</a>
+            {% include 'vocabulary/add.html' %}
         <p><small>Unilexicon is a free tool for creating and managing public taxonomies.
             However, we also offer paid features that include private
             vocabularies, collaboration tools, and fast technical support.
             <a href="/vocabularies/pro">Upgrade</a> to unlock the full potential of Unilexicon.</small>
         </p>
     </div>
-</div>
+</section>
 {% endblock %}
 
 {% block content %}
@@ -66,7 +67,7 @@ building a better, more connected world.
 <p>&mdash; Francis
 </div>
 
-<div class="content clear center">
+<section class="content clear center">
     <p><b>Case study</b></p>
     <blockquote>
     <p>We publish the worlds most comprehensive port guide in book form and online.
@@ -79,10 +80,10 @@ building a better, more connected world.
             One Ocean: Guide to Port Entry</a></cite>
     </blockquote>
     <p><a class="btn" href="/signup/">Register today</a>
-</div>
+</section>
 
 <div class="content clear">
-    <div class="tagging">
+    <section class="tagging">
         <div id="demo">
             <div id="tab">Unilexicon: taxonomy editor</div>
             <div id="url"><span>https://</span>unilexicon.com</div>
@@ -107,5 +108,5 @@ building a better, more connected world.
         </ul>
         <p><a href="/tag/about">More about tagging</a></p>
         </div>
-    </div>
+    </section>
 {% endblock %}

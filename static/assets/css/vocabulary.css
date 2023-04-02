@@ -5,8 +5,7 @@
 
 .vocab-list,
 .vocab-list ul{padding:0;margin:0}
-.vocab-list li{list-style:none;padding:0 0 1em 0;margin:0;}
-.vocab-list a{font-weight:bold}
+.vocab-list li{list-style:none;padding:0 0 1em 0;margin:0}
 
 .editor{display:flex}
 .workspace{order:1;

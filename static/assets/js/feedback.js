@@ -24,12 +24,23 @@ function feedback() {
 		});
 	}
 }
-  
-function initFeedbackForm() {
-	const b = Id('feedback_message');
 
-	b.addEventListener('click', function() {
-		Id('feedback_submit').style.display = 'block';
+var feedback_text = `<p>How can we make this website better?
+<span id="feedback_status"></span></p>
+<p><small>You can also discuss
+<a href="https://github.com/fmalina/unilex/issues">known issues on Github</a>
+or email <u>hi@unilexicon.com</u></small></p>
+<textarea name="feedback_message" id="feedback_message" rows="3" cols="80"
+placeholder="Send us your suggestions, love letters. Tell us about issues&hellip;">
+</textarea>`;
+
+function initFeedbackForm() {
+	const b = Id('open_feedback');
+	Id('feedback_text').innerHTML = feedback_text;
+	b.addEventListener('click', function(event) {
+		event.preventDefault();
+		Id('feedback').style.display = 'block';
+		Id('feedback_message').focus();
 	});
 
 	Id('feedback_submit').addEventListener('click', function(event){

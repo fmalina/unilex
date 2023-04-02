@@ -5,32 +5,29 @@ h1{font-size:3em;margin:0;padding:.2em 0 0 0;font-weight:300}
 .content h1,h2{font-weight:300}
 fieldset{border:0;padding:0}
 dfn{border-bottom:1px dotted #ddd;cursor:help;font-style:normal}
-.clear{clear:both}
+.clearfix:after{visibility:hidden;display:block;font-size:0;
+    content:" ";clear:both;height:0}
 .text-muted{color:silver}
 pre{color:green}
 .hide{display:none}
 .nowrap{white-space:nowrap}
 .external:after{font-family:"uxfont";content:" a";font-size:11px;color:#555}
 
-.header,.footer,.content{padding:1em}
+header,footer,.content{padding:1em}
 #messages{padding:0 1em}
 #messages li{list-style:none}
 #messages .success{color:green}
 
 .content{color:#333;position:relative}
-.nav{font-size:1.1em;padding:0}
-.nav{list-style:none;margin:0}
-.nav ul{list-style:none}
-.nav a{text-decoration:none}
+nav a,footer a{text-decoration:none}
 
-.header a.logo{color:#EAA000;padding-right:1.5rem;text-decoration:none;font-weight:200}
-.header .nav{display:block;padding:0 1.5em 0 0;float:left;font-family:'Montserrat',sans-serif}
-.header .nav .sep{color:#ddd;font-size:.9em}
-.header .nav .sep,
-.header .nav li,
-.header .nav a{display:inline-block;font-size:14px}
-.header .nav a{text-transform:uppercase;padding:.5em 1em .5em 0}
-.header .nav li:last-child a{padding-right:0}
+header a.logo{color:#EAA000;padding-right:1.5rem;text-decoration:none}
+header nav{display:block;padding:0 1.5em 0 0;float:left}
+header nav a{display:inline-block}
+header nav .sep{color:#ddd}
+header form{text-align:center}
+nav{font-size:.9rem}
+nav a{text-transform:uppercase;padding:.5em 1em .5em 0}
 
 form ul{margin:0;padding:10px 0}
 form ul li{list-style:none;padding:5px 0}
@@ -55,7 +52,9 @@ button,input[type="submit"],.btn{
     cursor:pointer;border:0;margin-top:1em}
 .btn-block{display:block;width:100%}
 .btn img {vertical-align:middle}
-.btn-links{display:block;padding:1em}
+.btn-links{display:block}
+.btn-links .btn{float:left;margin-right:.6rem}
+.btn-links span{float:left;width:15em;padding:.8rem .2rem}
 
 .call{padding:1em 1.5em;font-size:1.5em}
 .call small{font-size:.7em}
@@ -79,13 +78,13 @@ div.paginator span{color:gray}
 .inline li{display:inline-block;list-style:none;padding:0 1em 1em 0}
 .list-unstyled{list-style:none;padding:0}
 
-.search{position:relative;max-width:350px}
+.search{position:relative}
 .search button,
 .search input{padding:7px}
-.search input{display:block;background:rgba(255,255,255,.5);border-radius:4px;border:1px solid #bbb;font-size:13px}
+.search input{display:inline-block;background:rgba(255,255,255,.5);border-radius:4px;border:1px solid #bbb;font-size:13px}
 .search input:active,
 .search input:focus{outline:none;box-shadow:0 0 3px #23A4FF}
-.search button{background:none;border:0;margin:0;padding:6px;height:24px;position:absolute;bottom:6px;right:3px;outline:0}
+.search button{background:none;border:0;margin:0;padding:6px;height:24px;position:absolute;bottom:6px;right:15px;outline:0}
 .search button i{color:#333;text-shadow:none;font-size:14px}
 .search button::-moz-focus-inner{border:0;padding:0}
 
@@ -101,8 +100,7 @@ div.paginator span{color:gray}
 .cc-fields input{display:inline-block;width:auto;min-width:auto}
 
 #feedback_status{color:green}
-#feedback_submit{display:none}
-#feedback{clear:both}
+#feedback{clear:both;display:none;padding-bottom:2em}
 #feedback label{display:block;padding:5px 0}
 #feedback textarea{margin:0 0 5px 0}
 #feedback textarea,
@@ -110,8 +108,8 @@ div.paginator span{color:gray}
 #feedback button{margin:.5em 0 0 0;font-size:small;background:#555}
 #feedback_optional label{display:inline-block;padding-right:5px;text-transform:none}
 #feedback_submit{margin-top:0;width:auto}
-.footer #queries{color:#ccc;margin-top:300px}
-.footer a{margin-right:1em}
+footer{clear:both}
+footer #queries{color:#ccc;margin-top:300px}
 
 .docs img{border:1px solid #ddd;background:#eee;padding:2px;width:100%}
 .docs img.auto{width:auto;max-width:100%}
@@ -138,7 +136,7 @@ div.paginator span{color:gray}
 .upload h3 i{font-style:normal}
 
 @media screen and (min-width:640px){
-	.header,.footer,#messages{padding:1em 3em}
+	header,footer,#messages{padding:1em 3em}
 	.content{padding:3em}
 	.col1,.col2{width:45%;max-width:500px;float:left;padding-right:3%}
 	.btn-links{display:inline-block}
@@ -148,9 +146,10 @@ div.paginator span{color:gray}
 	#feedback input{width:200px;display:inline}
 }
 @media screen and (max-width:640px){
+	.logo{display:block}
 	h1{font-size:2em}
-	.header .nav{float:none}
-	.header .nav li{padding-top:0}
-	#tagging #demo{float:none;display:none}
+	header nav{text-align:center;float:none;padding:0}
 	table,pre{overflow-x:auto;display:block}
+	main .tagging #demo{left:-170px}
+	header .headspace{padding:2em 0}
 }

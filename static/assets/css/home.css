@@ -1,11 +1,11 @@
 .content p{max-width:1000px}
 .center{text-align:center}
-#demo{
+.tagging #demo{
     width:500px;
-    height:510px;
+    height:580px;
     float:left;
     box-shadow:0 0 48px rgba(0,0,0,.1);
-    margin-bottom:20px;
+    margin-bottom:3em;
     position:relative;
     left:-70px;
     border:1px solid #eee;
@@ -45,19 +45,12 @@
     color: white;
 }
 .lead ::placeholder{color:rgba(255,255,255,.7)}
-.tagging,.headspace{
-    max-width:980px;
-}
-.headspace h1{
-    text-shadow:0 0 5px #2C2B30;
-}
+.headspace,.tagging{max-width:980px}
+.headspace h1{text-shadow:0 0 5px #2C2B30}
 .headspace ul,
 .headspace p,
-.headspace h2{
-    text-shadow:0 0 2px #2C2B30;
-    font-size:larger
-}
+.headspace h2{text-shadow:0 0 2px #2C2B30;font-size:larger}
 .headspace a{color:white}
 .headspace{padding:5em 0}
-
+.tagging .desc{padding-top:3em}
 img{float:left;padding:1em 1em 1em 0;width:60px}

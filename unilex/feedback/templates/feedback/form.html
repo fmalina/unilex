@@ -1,9 +1,7 @@
 <script src="{{ base_url }}/assets/js/feedback.js?{{ version }}"></script>
 <form id="feedback" method="post" action="{{ base_url }}/feedback">
 	<fieldset>
-	<p>How can we make this website better? <span id="feedback_status"></span></p>
-	<textarea name="feedback_message" id="feedback_message" rows="3" cols="80"
-		placeholder="Send us your suggestions, love letters. Tell us about issues&hellip;"></textarea>
+	<div id="feedback_text"></div>
 	<div id="feedback_submit">
 		{% if user.is_anonymous %}<div id="feedback_optional">
 			<label for="feedback_email">Your email (optional)</label>

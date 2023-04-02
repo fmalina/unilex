@@ -9,9 +9,9 @@
         {% endif %}
     </p>
     {% if private_access %}
-        <p>
+        <p class="btn-links clearfix">
             <a href="{% url 'authority_add' authority.code %}" class="btn">Add vocabulary</a>
-            <span class="nowrap btn-links">
+            <span>
                 Import:
                 <a href="{% url 'authority_load' authority_code=authority.code format='xls' %}">spreadsheet</a>,
                 <a href="{% url 'authority_load' authority_code=authority.code format='skos' %}">SKOS</a>

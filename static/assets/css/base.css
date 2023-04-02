@@ -3,8 +3,8 @@
 body{font-family:'Open Sans',sans-serif;
     background:white;color:#333;margin:0;padding:0}
 
-.logo{font-family:'Montserrat',sans-serif;
-    font-size:14px;letter-spacing:4px;text-transform:uppercase}
+.logo{font-size:14px;letter-spacing:4px;text-transform:uppercase}
+nav{font-family:'Montserrat',sans-serif}
 
 a{color:#3E92CC}
 a:hover{color:#005089}

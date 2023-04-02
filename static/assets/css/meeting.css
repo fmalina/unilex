@@ -1,6 +1,8 @@
 .content{padding-top:1em}
 .sort a:hover{color:#fff}
-
+.meeting{list-style:none;margin:0;padding:0}
+.meeting ul{list-style:none}
+.meeting a{text-decoration:none}
 .L0,
 .desc{display:none}
 .L0in > ul{padding:0}
