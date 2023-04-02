@@ -7,15 +7,19 @@ from unilex.feedback.models import Feedback
 def mark_done(modeladmin, request, queryset):
     queryset.update(done=True)
 
+def delete_spam(modeladmin, request, queryset):
+    queryset.delete()
+
 
 mark_done.short_description = "Mark selected as done"
+delete_spam.short_description = "Delete selected"
 
 
 class FeedbackAdmin(admin.ModelAdmin):
     raw_id_fields = ('user',)
     list_display = ('id', 'done', 'message', 'email', 'url', 'created_at')
     list_filter = ('created_at', 'done')
-    actions = [mark_done]
+    actions = [mark_done, delete_spam]
 
 
 admin.site.register(Feedback, FeedbackAdmin)
