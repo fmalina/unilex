@@ -29,8 +29,10 @@ NOT_ALLOWED = 'You are not allowed to view or edit this taxonomy'
 
 
 def listings(request, *args, **kwargs):
-    ls = Vocabulary.objects.with_counts().exclude(private=True).order_by(
-        'language', 'user_id', 'title')
+    ls = Vocabulary.objects.with_counts()\
+                           .exclude(private=True)\
+                           .exclude(concept_count__lte=10)\
+                           .order_by('language', 'title')
     return render(request, 'vocabulary/listings.html', {'ls': ls})
 
 
