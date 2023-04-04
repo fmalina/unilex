@@ -58,7 +58,7 @@ class Vocabulary(models.Model):
     node_id = models.SlugField(unique=True, max_length=60, verbose_name='Permalink: /vocabularies/')
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
     title = models.CharField(max_length=75)
-    description = models.TextField(max_length=200, blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
     language = models.ForeignKey(Language, blank=True, null=True, on_delete=models.PROTECT)
     authority = models.ForeignKey(Authority, blank=True, null=True, on_delete=models.PROTECT)
     queries = models.BooleanField(verbose_name="Enable queries?", default=False)

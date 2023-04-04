@@ -81,12 +81,14 @@ var VB = {
                     $.get(VB.conceptUri(node.id,'edit'), function (data) {
                         fill('editing', data);
                         document.title = document.title.split(':')[0] + ': ' + node.name;
+                        flexi();
                         acFormset('/vocabularies/autocomplete',
                                   document.querySelector('.set').id);
                     });
                 } else {
                     $.get('/vocabularies/' + VB.id(VB.root) + '/edit', function (data) {
                         fill('editing', data);
+                        flexi();
                     });
                 }
             }
@@ -192,7 +194,19 @@ var VB = {
         return '/vocabularies/' + VB.id(VB.toproot) + '/' + nodeId + '/' + action;
     },
 }
-    
+
+function flexi(){
+    // flexible height textareas
+    var textarea = Id("id_description");
+    textarea.style.height = (textarea.scrollHeight + 5) + "px";
+
+    textarea.oninput = function() {
+        textarea.style.height = ""; /* Reset the height*/
+        textarea.style.height = (textarea.scrollHeight + 5) + "px";
+    };
+}
+
+
 $(function(){
     VB.init();
     $(document).on('click', '.cancel', function(){
