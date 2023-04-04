@@ -16,13 +16,16 @@ from unilex.utils import ajax_login_required
 from unilex.vocabulary.export_csv import export_csv
 from unilex.vocabulary.export_json import vocab_to_dict
 from unilex.vocabulary.export_skos import export_skos
-from unilex.vocabulary.forms import UploadFileForm, VocabularyForm, \
-    ConceptForm, NewChildConceptForm, RelatedForm, ParentForm
+from unilex.vocabulary.forms import (
+    UploadFileForm, VocabularyForm, 
+    ConceptForm, NewChildConceptForm,
+    RelatedForm, ParentForm
+)
 from unilex.vocabulary.models import Authority, Vocabulary, Concept
 from sentry_sdk import capture_exception
 
 
-NOT_ALLOWED = 'You are not allowed to edit this vocabulary.'
+NOT_ALLOWED = 'You are not allowed to view or edit this taxonomy'
 
 
 def listings(request, *args, **kwargs):
@@ -102,8 +105,8 @@ def generate(request):
 
 
 def load_vocab(request, format='xls', authority_code=''):
-    from unilex.vocabulary.load_xls import load_xls
     from unilex.vocabulary.load_skos import SKOSLoader
+    from unilex.vocabulary.load_xls import load_xls
     from unilex.vocabulary.load_md import load_md
 
     form = UploadFileForm()
@@ -209,10 +212,15 @@ def for_pro(vocab):
         return vocab.private
 
 
-def detail(request, vocab_node_id):
+def get_vocab(user, vocab_node_id):
     vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
-    if vocab.private and not vocab.is_allowed_for(request.user):
+    if vocab.private and not vocab.is_allowed_for(user):
         raise Http404(NOT_ALLOWED)
+    return vocab
+
+
+def detail(request, vocab_node_id):
+    vocab = get_vocab(request.user, vocab_node_id)
     if for_pro(vocab):
         return redirect('pro')
     count = Concept.objects.filter(vocabulary=vocab).count()
@@ -225,10 +233,7 @@ def detail(request, vocab_node_id):
 
 
 def json(request, vocab_node_id):
-    vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
-    # TODO: ACL API
-    # if vocab.private and not vocab.is_allowed_for(request.user):
-    #    raise Http404(NOT_ALLOWED)
+    vocab = get_vocab(request.user, vocab_node_id)
     count = Concept.objects.filter(vocabulary=vocab).count()
     max_depth = 0
     if not count < 2000:
@@ -237,9 +242,7 @@ def json(request, vocab_node_id):
     return HttpResponse(jsondata, content_type='application/json')
 
 
-def export(request, vocab, data, extension, mime):
-    if vocab.private and not vocab.is_allowed_for(request.user):
-        raise Http404(NOT_ALLOWED)
+def export(vocab, data, extension, mime):
     if for_pro(vocab):
         return redirect('pro')
     timestamp = datetime.today().strftime('%Y-%m-%d')
@@ -250,20 +253,19 @@ def export(request, vocab, data, extension, mime):
 
 
 def skos(request, vocab_node_id):
-    vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
-    return export(request, vocab, export_skos(vocab), 'xml', 'application/rdf+xml')
+    vocab = get_vocab(request.user, vocab_node_id)
+    return export(vocab, export_skos(vocab),
+                  'xml', 'application/rdf+xml')
 
 
 def csv(request, vocab_node_id):
-    vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
-    s = export_csv(vocab)
-    return export(request, vocab, s, 'csv', 'text/comma-separated-values')
+    vocab = get_vocab(request.user, vocab_node_id)
+    return export(vocab, export_csv(vocab),
+                  'csv', 'text/comma-separated-values')
 
 
 def ul(request, vocab_node_id, style='meeting'):
-    vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
-    if vocab.private and not vocab.is_allowed_for(request.user):
-        raise Http404(NOT_ALLOWED)
+    vocab = get_vocab(request.user, vocab_node_id)
     return render(request, f'vocabulary/view-{style}.html', {
         'concept': vocab,  # vocab pretending to be a top level concept,
         'vocabulary': vocab
@@ -285,9 +287,7 @@ def ordering(request, vocab_node_id):
     
     Ordering the 1st level differs as instead of parent concept PK we get a vocab PK.
     """
-    vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
-    if not vocab.is_allowed_for(request.user):
-        raise Http404(NOT_ALLOWED)
+    vocab = get_vocab(request.user, vocab_node_id)
 
     x = 'Order concepts'
     if request.method == 'POST':
@@ -317,10 +317,8 @@ def ordering(request, vocab_node_id):
 
 
 def vocabulary_edit(request, vocab_node_id):
-    vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
-    if not vocab.is_allowed_for(request.user):
-        raise Http404(NOT_ALLOWED)
-
+    vocab = get_vocab(request.user, vocab_node_id)
+    form = VocabularyForm(instance=vocab, label_suffix='')
     if request.method == 'POST':
         if request.user.is_authenticated:
             form = VocabularyForm(request.POST, instance=vocab)
@@ -329,8 +327,6 @@ def vocabulary_edit(request, vocab_node_id):
             return redirect(vocab.get_absolute_url())
         else:
             return redirect('/')
-    else:
-        form = VocabularyForm(instance=vocab, label_suffix='')
     return render(request, 'vocabulary/vocabulary-edit.html', {
         'vocabulary': vocab,
         'children': vocab.get_children(),
@@ -340,9 +336,7 @@ def vocabulary_edit(request, vocab_node_id):
 
 @ajax_login_required
 def concept_new(request, vocab_node_id, node_id=0):
-    vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
-    if not vocab.is_allowed_for(request.user):
-        raise Http404(NOT_ALLOWED)
+    vocab = get_vocab(request.user, vocab_node_id)
 
     c = Concept(vocabulary=vocab)
     if vocab_node_id:
@@ -351,6 +345,8 @@ def concept_new(request, vocab_node_id, node_id=0):
     if node_id:
         parent = get_object_or_404(Concept, node_id=node_id, vocabulary=vocab)
         add_parent = True
+
+    form = NewChildConceptForm(instance=c)
     if request.method == 'POST':
         form = NewChildConceptForm(request.POST, instance=c, label_suffix='')
         if form.is_valid():
@@ -359,8 +355,6 @@ def concept_new(request, vocab_node_id, node_id=0):
                 c.parent.add(parent)
             c.save()
             return redirect(parent.get_absolute_url())
-    else:
-        form = NewChildConceptForm(instance=c)
     return render(request, 'vocabulary/new-concept.html', {
         'concept': c,
         'parent': parent,
@@ -369,9 +363,7 @@ def concept_new(request, vocab_node_id, node_id=0):
 
 
 def concept_edit(request, vocab_node_id, node_id):
-    vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
-    if not vocab.is_allowed_for(request.user):
-        raise Http404(NOT_ALLOWED)
+    vocab = get_vocab(request.user, vocab_node_id)
 
     c = get_object_or_404(Concept, node_id=node_id, vocabulary=vocab)
     children = c.get_children()
@@ -398,7 +390,9 @@ def concept_edit(request, vocab_node_id, node_id):
         can_delete=True
     )
     if request.method == 'POST':
-        if request.user.is_authenticated:
+        if not request.user.is_authenticated:
+            return redirect('/')
+        else:
             form = ConceptForm(request.POST, instance=c)
             formset = RelatedFormSet(request.POST, instance=c, prefix='rf')
             parent_formset = ParentFormSet(request.POST, instance=c, prefix='pf')
@@ -409,8 +403,6 @@ def concept_edit(request, vocab_node_id, node_id):
             if parent_formset.is_valid():
                 parent_formset.save()
             return redirect(c.get_absolute_url())
-        else:
-            return redirect('/')
     else:
         form = ConceptForm(instance=c, label_suffix='')
         formset = RelatedFormSet(instance=c, prefix='rf')
@@ -435,9 +427,7 @@ def concept_adopt(request):
         if not node_ids:
             raise Http404('no data')
         vocab_node_id, node_id = node_ids.split(':')
-        vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
-        if not vocab.is_allowed_for(request.user):
-            raise Http404(NOT_ALLOWED)
+        vocab = get_vocab(request.user, vocab_node_id)
 
         concept = None
         if node_id != 'direct_to_parent_vocab':
@@ -470,9 +460,7 @@ def concept_adopt(request):
 
 @ajax_login_required
 def concept_delete(request, vocab_node_id, node_id):
-    vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
-    if not vocab.is_allowed_for(request.user):
-        raise Http404(NOT_ALLOWED)
+    vocab = get_vocab(request.user, vocab_node_id)
 
     c = get_object_or_404(Concept, node_id=node_id, vocabulary=vocab)
     if request.method == 'POST':
@@ -496,9 +484,7 @@ def concept_delete(request, vocab_node_id, node_id):
 
 @ajax_login_required
 def vocabulary_delete(request, vocab_node_id):
-    vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
-    if not vocab.is_allowed_for(request.user):
-        raise Http404(NOT_ALLOWED)
+    vocab = get_vocab(request.user, vocab_node_id)
 
     allowed = False
     if request.user == vocab.user or request.user.is_staff:
