@@ -28,20 +28,22 @@ function getCookie(cname) {
 	return "";
 }
 
+function Id(Id){ return document.getElementById(Id); }
+
 function acceptCookieConsent(){
 	deleteCookie('cookie_consent');
 	setCookie('cookie_consent', 1, 30);
-	document.getElementById("cookie-consent").style.display = "none";
+	Id("cookie-consent").style.display = "none";
 }
 
 function initCookieConsent() {
-	const cc = document.getElementById("cookie-consent");
+	const cc = Id("cookie-consent");
 
 	// Set visibility of the cookie consent popup
 	let cookie_consent = getCookie("cookie_consent");
 	if(cookie_consent != ""){
 		cc.style.display = "none";
-	}else{
+	} else {
 		cc.style.display = "block";
 		cc.innerHTML += `
 		<p>This website uses cookies to enhance your browsing experience and
@@ -51,7 +53,6 @@ function initCookieConsent() {
 		<div><button id="consent_button">I agree</button></div>
 		<link rel="stylesheet" href="/assets/css/cookies.css">
 	`;
-		//acc.style.display = "none";
 	}
 
 	Id('consent_button').addEventListener('click', function() {
