@@ -33,7 +33,9 @@ def listings(request, *args, **kwargs):
     ls = qs.exclude(private=True)\
            .exclude(concept_count__lte=10)\
            .order_by('language', 'title')
-    own = qs.filter(user=request.user)
+    own = []
+    if request.user.is_authenticated:
+        own = qs.filter(user=request.user)
     return render(request, 'vocabulary/listings.html', {'ls': ls, 'own': own})
 
 
