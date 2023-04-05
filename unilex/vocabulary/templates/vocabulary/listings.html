@@ -1,8 +1,15 @@
 {% extends 'vocabulary/base.html' %}
+{% block body_id %} class="listings"{% endblock %}
 {% block title %}Visual Taxonomy Editor, Controlled Vocabularies - SKOS Editor{% endblock %}
 {% block content %}
-    <h1>Explore taxonomies</h1>
+{% if own %}
+    <h2>Your taxonomies</h2>
+    {% with own as ls %}
+        {% include 'vocabulary/ls.html' %}
+    {% endwith %}
+{% endif %}
     <p class="btn-links clearfix">{% include 'vocabulary/add.html' %}
+    <h1>Public taxonomies</h1>
     {% include 'vocabulary/ls.html' %}
     <p>For licensing information of user contributed taxonomies, see source.<br>
         Default license of public taxonomies created on Unilexicon is

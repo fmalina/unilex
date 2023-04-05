@@ -9,7 +9,9 @@
             <p><button type="submit">Save</button></p>
         </form>
 
-        <br><br>
+    </div>
+    
+    <div class="col2">
         <p><a href="{% url 'subscribe' %}"><b>Subscribe to PRO</b></a><br>
             use private vocabularies, access first class
             <a href="mailto:hi@unilexicon.com">technical support</a>,
@@ -31,12 +33,5 @@
                 {% endfor %}
             </ul>
         {% endif %}
-    </div>
-    
-    <div class="col2">
-        <h2>Your vocabularies</h2>
-        {% include 'vocabulary/ls.html' %}
-        <p class="btn-links">
-        {% include 'vocabulary/add.html' %}
     </div>
 {% endblock %}

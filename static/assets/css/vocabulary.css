@@ -87,5 +87,5 @@ button.delete b{color:#fcc;position:relative;top:-1px}
 @media screen and (min-width:800px){
 	.aside{padding:20px}
 	.vocab-list{column-count:3;column-gap:2rem}
-	.col2 .vocab-list{column-count:1}
+	.vocab-list li{break-inside:avoid-column}
 }

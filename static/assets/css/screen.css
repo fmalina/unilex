@@ -117,6 +117,7 @@ footer #queries{color:#ccc;margin-top:300px}
 .docs h1 small{font-size:.45em;color:silver;display:block}
 .docs h2{margin-top:3em;padding-top:1em;border-top:1px solid #ddd}
 .docs .content{max-width:600px}
+.listings .content,
 .pro .content{max-width:980px}
 
 .nest .desc:before{content:'- '}

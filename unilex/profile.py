@@ -28,8 +28,4 @@ def profile(request):
     else:
         form = UpdateProfile(instance=request.user)
 
-    ls = Vocabulary.objects.with_counts().filter(user=request.user)
-    return render(request, 'profile.html', {
-        'ls': ls,
-        'form': form
-    })
+    return render(request, 'profile.html', {'form': form})
