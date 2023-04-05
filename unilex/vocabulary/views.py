@@ -221,13 +221,13 @@ def get_vocab(user, vocab_node_id):
     vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
     if vocab.private and not vocab.is_allowed_for(user):
         raise Http404(NOT_ALLOWED)
+    if for_pro(vocab) and not user.is_staff:
+        raise redirect('pro')
     return vocab
 
 
 def detail(request, vocab_node_id):
     vocab = get_vocab(request.user, vocab_node_id)
-    if for_pro(vocab):
-        return redirect('pro')
     count = Concept.objects.filter(vocabulary=vocab).count()
     concepts = vocab.concept_set.filter(parent__isnull=True)
     return render(request, 'vocabulary/detail.html', {
@@ -248,8 +248,6 @@ def json(request, vocab_node_id):
 
 
 def export(vocab, data, extension, mime):
-    if for_pro(vocab):
-        return redirect('pro')
     timestamp = datetime.today().strftime('%Y-%m-%d')
     response = HttpResponse(data, content_type=mime)
     response['Content-Disposition'] = 'attachment; filename="%s-%s.%s"' % (
