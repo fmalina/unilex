@@ -120,14 +120,6 @@ footer #queries{color:#ccc;margin-top:300px}
 .listings .content,
 .pro .content{max-width:980px}
 
-.nest .desc:before{content:'- '}
-.nest,.nest .L0in > ul{padding:0}
-.nest .L1in{padding-top:1em}
-.nest li{list-style:none}
-.nest li a.L1{font-weight:bold}
-.nest li a{text-decoration:none}
-.nest li a:hover{text-decoration:underline}
-
 .upload .p2,.upload .p3,.upload .p4{display:none}
 .upload .p4{color:navy}
 .upload .p3{color:gray}

@@ -1,5 +1,5 @@
 #hypertree .content{padding:0}
-#infovis{background:radial-gradient(circle at 50vh 50vh, #ffc 0%, #fff 70%)}
+#infovis-canvaswidget{background:radial-gradient(circle at 50vh 50vh, #ffc 0%, #fff 70%)}
 #main h1{font-size:2em;line-height:.8em}
 #main h1 small{font-size:.5em}
 
@@ -10,7 +10,7 @@
 .editor{display:flex}
 .workspace{order:1;
     min-height:calc(100vh - 70px);
-    width :calc(100vw - 320px);
+    width:calc(100vw - 320px);
     min-width:600px;}
 .aside{order:2;min-width:320px;width:320px;
     box-sizing:border-box;padding:10px;
@@ -23,7 +23,8 @@
 .aside form .title{margin-bottom:0}
 .aside form .node_id{margin-top:0}
 .aside form .node_id label{display:inline}
-.aside form .node_id input{display:inline-block;width:128px;border:0;border-bottom:1px dashed #ddd;color:#999;font-size:.8em;background:none;border-radius:0}
+.aside form .node_id input{display:inline-block;width:128px;border:0;
+	border-bottom:1px dashed #ddd;color:#999;font-size:.8em;background:none;border-radius:0}
 
 #tagging #editing{position:static;height:auto;margin:0 auto}
 #indicator{float:right}
@@ -46,8 +47,8 @@ form li{list-style:none;text-shadow:none}
 #infovis .node,
 #infovis .node-depth-0{background-color:rgba(255,255,255,.5);}
 
-.drop-nav{position:absolute;z-index:999;top:0;padding:1em;color:gray;border-radius:10px}
-.drop-nav__head{cursor:pointer;font-size:smaller;padding-left:1em}
+.drop-nav{position:absolute;z-index:999;top:0;left:3em;color:gray;border-radius:10px}
+.drop-nav__head{cursor:pointer;font-size:smaller}
 .drop-nav__head .icon-caret{position:relative;top:2px}
 .drop-nav ul{list-style:none;display:none;padding:1em;border-radius:4px;
     background:#fff;box-shadow:0 0 20px rgba(0,0,0,.3)}
@@ -70,7 +71,7 @@ form li{list-style:none;text-shadow:none}
 .set li{border-top:1px solid #eee}
 .set .delete-row{color:#ddd;font-size:17px}
 
-#id_description{height:100px}
+#id_description{min-height:100px}
 
 .has_query:before{content:'✓ '}
 
@@ -89,3 +90,89 @@ button.delete b{color:#fcc;position:relative;top:-1px}
 	.vocab-list{column-count:3;column-gap:2rem}
 	.vocab-list li{break-inside:avoid-column}
 }
+
+#list{padding:2em 1em 0 3em}
+#list.tree{display:none}
+#list.card,
+#list.list,
+#list.tabs{display:block}
+
+#infovis-canvaswidget{display:none}
+.aside{display:none}
+.workspace{width:100vw}
+
+.treeview #infovis-canvaswidget{display:block}
+.treeview .aside{display:block}
+.treeview .workspace{width:calc(100vw - 320px)}
+
+.L0.parent{display:block;color:inherit;font-size:1.5em;padding-bottom:.5em;text-decoration:underline}
+.L0.parent:hover{color:inherit}
+
+/* nested ul */
+.list ul .desc:before{content:'- '}
+.list,.list .L0in > ul{padding:0}
+.list .L1in{padding-top:1em}
+.list li{list-style:none}
+.list li a.L1{font-weight:bold}
+.list li a{text-decoration:none}
+.list li a:hover{text-decoration:underline}
+
+/* tabs and dropdowns */
+.tabs .desc{display:none}
+.tabs .L0in{list-style:none}
+.tabs .L0in ul{margin:0;padding:0}
+.tabs a.L1,
+.tabs .L2-wrap{border:1px solid #aaa}
+.tabs{border-bottom:1px solid #aaa}
+.tabs{background:#eee;font-size:.8rem;clear:both;position:relative;
+    margin:2em 0 20em 0;border-radius:2px}
+.tabs a{text-decoration:none}
+.tabs a:hover{text-decoration:underline}
+.tabs a.L1{padding:.5em 1em;border-radius:2px 2px 0 0;background:#fff}
+.tabs li:hover .L1{border-bottom-color:#fff}
+.tabs .L2{padding:.5em 0;font-weight:bold;display:block}
+.tabs .L3{display:block;padding:.2em 0;margin:0}
+.tabs .L3 *{position:static !important}
+.tabs a.L1{display:block;padding:8px 12px;border-bottom:0}
+.tabs .L1in{list-style:none;display:inline-block;position:relative}
+.tabs .L1in:hover{z-index:3}
+.tabs .L1in:hover a.L1{position:relative;z-index:4;border-bottom-color:#fff}
+.tabs ul.L2-wrap{position:absolute;top:1.9rem;border-radius:2px;z-index:3;display:none;
+	background:#fff;padding:1rem;margin:0}
+.tabs .L2-wrap .parent a{margin-bottom:0}
+.tabs .L2in{display:inline-block}
+.tabs .L3-wrap{list-style:none;padding:0 0 1em 0;font-weight:normal}
+.tabs .L1in:hover .L2-wrap{display:block !important}
+.tabs .L2in{width:14em;vertical-align:top;margin-right:1em}
+.tabs .L3in li{list-style:none}
+.tabs .L3in ul{padding-left:2em}
+
+/* masonry drag and drop ordering */
+.card a:hover{color:#fff}
+.card{list-style:none;margin:0;padding:0;position:relative}
+.card ul{list-style:none}
+.card a{text-decoration:none}
+.card .desc{display:none}
+.card .L0in > ul{padding:0}
+.card .L1,
+.card .L2{border-radius:5px;border-left-width:1px;border-top-width:1px;color:#fff;text-shadow:#000 1px 1px;display:block}
+.card .L1{background:#005089;padding:.5em 1em;margin:0 1em 1em 0;font-size:1.5em}
+.card .L2{background:#007DD5;padding:.3em 1em;margin:0 0   1em 0;font-size:1.25em}
+.card .L3{border-bottom:1px solid #666;color:#333 !important;display:block;padding:.2em .1em;margin:0;font-size:.9em}
+.card .L1.parent,
+.card .L2.parent{border-radius:5px 5px 0 0;margin-bottom:0}
+.card .placeholder{border:1px dashed #ccc;background:#eee;opacity:.3;margin-bottom:1em}
+.card .L3-wrap .placeholder{margin:0}
+.card .L1in{position:absolute}
+.card .L2-wrap,
+.card .L3-wrap{border-radius:0 0 5px 5px;border:2px solid #666;border-left-width:1px;border-top:0}
+.card .L2-wrap{background:#EFF8FF;padding:1.25em;margin:0 1.5em 1.5em 0}
+.card .L3-wrap{background:#fff;padding:1em 1.25em;margin:0 0 1em 0}
+.card .L2-wrap .L2in:last-child *{margin-bottom:0}
+.card .L3-wrap li:last-child a{border:0}
+.card .L3in a,
+.card .L3in a:hover{color:inherit;font-size:smaller}
+.card .L3in ul{padding-left:2em}
+.card ul ul a{cursor:grab}
+.card ul ul a:active{cursor:grabbing}
+.card a.L1{cursor:not-allowed}

@@ -83,7 +83,7 @@ var VB = {
                         document.title = document.title.split(':')[0] + ': ' + node.name;
                         flexi();
                         acFormset('/vocabularies/autocomplete',
-                                  document.querySelector('.set').id);
+                            document.querySelector('.set').id);
                     });
                 } else {
                     $.get('/vocabularies/' + VB.id(VB.root) + '/edit', function (data) {
@@ -140,7 +140,7 @@ var VB = {
         if (node.data.type == 'vocab') {
             $(el).append('<p id="editicons">' + save + add + del + paste + '</p>');
             $('#icon-save').bind('click', function () {
-                location.href = location.pathname + 'skos'; 
+                location.href = location.pathname + 'skos';
             });
             nid = VB.id(node.id);
             $('#icon-add').bind('click', function () {
@@ -206,6 +206,17 @@ function flexi(){
     };
 }
 
+function setView(view) {
+    Id('list').className = view;
+    Id('main').className = view + 'view';
+    // init cards
+    var masonry = new MiniMasonry({ container: '.L1-wrap' });
+    if (view == 'card') {
+        masonry.layout();
+    } else {
+        masonry.destroy();
+    }
+}
 
 $(function(){
     VB.init();
@@ -221,6 +232,35 @@ $(function(){
     $('.content').on('click', function() {
         if (ul.is(':visible')) {
             ul.hide();
+        }
+    });
+
+    var initView = window.location.hash.replace('#view-', '');
+    var views = ['tree', 'card', 'list', 'tabs'];
+    if (views.includes(initView)) { setView(initView) };
+    $(".view_on").click(function (e) {
+        $(".view_on").removeClass('text-muted');
+        $(this).addClass('text-muted');
+        setView(e.target.dataset.view);
+    });
+
+    $('.sort').sortable({
+        placeholder: 'placeholder',
+        forcePlaceholderSize: true,
+        update: function(){
+            var data = $(this).sortable('serialize');
+            var csrf = 'csrfmiddlewaretoken';
+            data += `&${csrf}=${document.getElementsByName(csrf)[0].value}`;
+            $.ajax({
+                type: 'POST',
+                data: data,
+                url: Id('list').dataset.submit,
+                success: function(){
+                    $(this).addClass('done');
+                    // TODO re-key the li IDs instead of reload
+                    // window.location.reload(); 
+                }
+            });
         }
     });
 });

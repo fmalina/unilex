@@ -1,34 +1,41 @@
 {% extends 'vocabulary/base.html' %}
+{% load concept_hierarchy %}
 {% block title %}{{vocabulary.title}}{% endblock %}
 {% block extrahead %}
     {% if vocabulary.description %}<meta name="description" content="{{ vocabulary.description }}">{% endif %}
 {% endblock %}
 {% block extrascripts2 %}
     <script src="{{ base_url }}/assets/js/ac_formset.js?{{ version }}"></script>
+	<script src="{{ base_url }}/assets/js/jquery-ui.min.js"></script>
+	<script src="{{ base_url }}/assets/js/minimasonry.min.js"></script>
     <script src="{{ base_url }}/assets/js/vocab_browse.js?{{ version }}"></script>
 {% endblock %}
 {% block body_id %} id="hypertree"{% endblock %}
 {% block content %}
-<div id="main">
+<div id="main" class="treeview">
 {% if count %}
 <div class="drop-nav">
     <span class="drop-nav__head">Switch view <i class="icon-caret"></i></span>
     <ul>
-        <li>Editing vocabulary
-        <li><a href="{% url 'order' vocabulary.node_id %}">Cards, order priorities</a>
-        <li><a href="{% url 'ul'    vocabulary.node_id %}">Tree, nested list</a>
-        <li><a href="{% url 'nav'   vocabulary.node_id %}">Tabs and dropdowns</a>
+        <li><a href="#view-tree" class="view_on" data-view="tree">Editor (Hypertree)</a>
+        <li><a href="#view-card" class="view_on" data-view="card">Cards, drag to order priorities</a>
+        <li><a href="#view-list" class="view_on" data-view="list">List, nested list preview</a>
+        <li><a href="#view-tabs" class="view_on" data-view="tabs">Tabs and dropdowns navigation</a>
             <br><br>
         <li>Export:
-            <a href="{% url 'json'  vocabulary.node_id %}" target="_blank">JSON</a> /
-            <a href="{% url 'skos'  vocabulary.node_id %}">SKOS</a> /
-            <a href="{% url 'csv'   vocabulary.node_id %}">CSV</a>
+            <a href="{% url 'json' vocabulary.node_id %}" target="_blank">JSON</a> /
+            <a href="{% url 'skos' vocabulary.node_id %}">SKOS</a> /
+            <a href="{% url 'csv'  vocabulary.node_id %}">CSV</a>
     </ul>
 </div><!-- /drop-nav -->
 {% endif %}
 
 <div class="editor">
-    <div class="workspace" id="infovis"></div>
+    <div class="workspace" id="infovis">
+        <ul id="list" class="tree" data-submit="{% url 'ordering' vocabulary.node_id %}">
+            {% render_concept_hierarchy concept 0 %}
+        </ul>
+    </div>
     <div class="aside">
         <h1>{{ vocabulary.title }} <small>
         {% if count == 0 %}
@@ -48,5 +55,7 @@
 </div><!-- /editor -->
 
 </div><!-- /main -->
+
+<form>{% csrf_token %}</form>
 <div id="log"></div>
 {% endblock %}

@@ -232,8 +232,9 @@ def detail(request, vocab_node_id):
     concepts = vocab.concept_set.filter(parent__isnull=True)
     return render(request, 'vocabulary/detail.html', {
         'vocabulary': vocab,
+        'concept': vocab,  # vocab pretending to be a top level concept,
+        'concepts': concepts,
         'count': count,
-        'concepts': concepts
     })
 
 
@@ -265,14 +266,6 @@ def csv(request, vocab_node_id):
     vocab = get_vocab(request.user, vocab_node_id)
     return export(vocab, export_csv(vocab),
                   'csv', 'text/comma-separated-values')
-
-
-def ul(request, vocab_node_id, style='meeting'):
-    vocab = get_vocab(request.user, vocab_node_id)
-    return render(request, f'vocabulary/view-{style}.html', {
-        'concept': vocab,  # vocab pretending to be a top level concept,
-        'vocabulary': vocab
-    })
 
 
 @ajax_login_required
