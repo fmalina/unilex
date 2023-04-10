@@ -24,6 +24,7 @@ urlpatterns = [
     path('<slug:vocab_node_id>/ordering', v.ordering, name='ordering'),
     path('<slug:vocab_node_id>/new', v.concept_new),
 
+    re_path(r'^(?P<vocab_node_id>[a-z0-9-_]+)/(?P<style>nav|order|ul)', v.detail),  # legacy 301
     re_path(r'^(?P<vocab_node_id>[a-z0-9-_]+)/(?P<node_id>[A-Za-z0-9-: ]+)/new', v.concept_new),
     re_path(r'^(?P<vocab_node_id>[a-z0-9-_]+)/(?P<node_id>[A-Za-z0-9-: ]+)/edit', v.concept_edit),
     re_path(r'^(?P<vocab_node_id>[a-z0-9-_]+)/(?P<node_id>[A-Za-z0-9-: ]+)/delete', v.concept_delete),
