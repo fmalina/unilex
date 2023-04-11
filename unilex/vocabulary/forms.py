@@ -35,7 +35,7 @@ class UploadFileForm(forms.Form):
     file = forms.FileField()
     permit = forms.BooleanField(
         required=False,
-        label='Permit storage of your raw file for inspection and troubleshooting'
+        label='Store raw file for inspection'
     )
 
 

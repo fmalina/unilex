@@ -18,6 +18,8 @@
             request a team authority multiuser setup for your organisation
 
         <ul class="list-unstyled">
+            <li><a href="{% url 'account_email' %}">Manage email addresses</a>
+                set your work email address</li>
             {% if user.subscription.expires %}
                 <li><a href="/pro/receipts">Your receipts</a>
                     subscription expiry: {{ user.subscription.expires }}</li>
