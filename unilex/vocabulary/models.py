@@ -129,11 +129,13 @@ class Concept(models.Model):
     description = models.TextField(blank=True)
     order = models.IntegerField(blank=True, null=True)
     parent = models.ManyToManyField('self', blank=True, symmetrical=False,
+                                    # through='vocabulary.Relation',
+                                    # through_fields=('subject', 'predicate'),
                                     related_name='children')
     related = models.ManyToManyField('self', blank=True, symmetrical=False,
-                                     related_name='relations',
-                                     through='vocabulary.Relation',
-                                     through_fields=('subject', 'predicate'))
+                                    through='vocabulary.Relation',
+                                    through_fields=('subject', 'predicate'),
+                                    related_name='relations')
     query = models.TextField(blank=True)
     count = models.IntegerField(blank=True, null=True)
     active = models.BooleanField(default=True)
