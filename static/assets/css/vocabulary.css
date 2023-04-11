@@ -8,10 +8,7 @@
 .vocab-list li{list-style:none;padding:0 0 1em 0;margin:0}
 
 .editor{display:flex}
-.workspace{order:1;
-    min-height:calc(100vh - 70px);
-    width:calc(100vw - 320px);
-    min-width:600px;}
+.workspace{order:1}
 .aside{order:2;min-width:320px;width:320px;
     box-sizing:border-box;padding:10px;
     background:#f3f3f3;border-radius:3px 0 0 3px}
@@ -47,7 +44,7 @@ form li{list-style:none;text-shadow:none}
 #infovis .node,
 #infovis .node-depth-0{background-color:rgba(255,255,255,.5);}
 
-.drop-nav{position:absolute;z-index:999;top:0;left:3em;color:gray;border-radius:10px}
+.drop-nav{position:absolute;z-index:999;top:0;color:gray;border-radius:10px}
 .drop-nav__head{cursor:pointer;font-size:smaller}
 .drop-nav__head .icon-caret{position:relative;top:2px}
 .drop-nav ul{list-style:none;display:none;padding:1em;border-radius:4px;
@@ -91,19 +88,24 @@ button.delete b{color:#fcc;position:relative;top:-1px}
 	.vocab-list li{break-inside:avoid-column}
 }
 
-#list{padding:2em 1em 0 3em}
+/* hide unordered list in hypertree and show in simple views */
 #list.tree{display:none}
 #list.card,
 #list.list,
 #list.tabs{display:block}
 
+/* hide aside and infovis in simple views */
 #infovis-canvaswidget{display:none}
 .aside{display:none}
 .workspace{width:100vw}
 
+/* show in hypertree view */
 .treeview #infovis-canvaswidget{display:block}
 .treeview .aside{display:block}
-.treeview .workspace{width:calc(100vw - 320px)}
+.treeview .workspace{
+    min-height:calc(100vh - 70px);
+    width:calc(100vw - 320px);
+    min-width:600px}
 
 .L0.parent{display:block;color:inherit;font-size:1.5em;padding-bottom:.5em;text-decoration:underline}
 .L0.parent:hover{color:inherit}
@@ -176,3 +178,12 @@ button.delete b{color:#fcc;position:relative;top:-1px}
 .card ul ul a{cursor:grab}
 .card ul ul a:active{cursor:grabbing}
 .card a.L1{cursor:not-allowed}
+
+@media screen and (min-width:640px){
+    #list{padding:2em 1em 0 3em}
+    .drop-nav{left:3em}
+}
+@media screen and (max-width:640px){
+    #list{padding:1em}
+    .drop-nav{left:1em}
+}
