@@ -8,6 +8,7 @@ User=f
 Group=f
 Environment=DB_PASS=...
 Environment=SECRET_KEY=...
+Environment=UNILEX_DEBUG=0
 WorkingDirectory=/home/f/SITES/unilex
 ExecStart=/usr/local/bin/gunicorn wsgi:application -p /tmp/unilex.pid -b 127.0.0.1:8001 -w 3 -n unilex_gunicorn
 ExecReload=/bin/kill -s HUP $MAINPID
