@@ -1,7 +1,7 @@
 $(function(){
     // search
     $("#q").autocomplete("/vocabularies/autocomplete", {
-        width: 380,
+        width: 330,
         scrollHeight: 'auto',
         selectFirst: false,
         autoFill: false,
