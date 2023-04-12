@@ -226,8 +226,10 @@ def get_vocab(user, vocab_node_id):
     return vocab
 
 
-def detail(request, vocab_node_id):
+def detail(request, vocab_node_id, style=None):
     vocab = get_vocab(request.user, vocab_node_id)
+    if style:
+        return redirect(vocab.get_absolute_url(), permanent=True)
     count = Concept.objects.filter(vocabulary=vocab).count()
     concepts = vocab.concept_set.filter(parent__isnull=True)
     return render(request, 'vocabulary/detail.html', {
