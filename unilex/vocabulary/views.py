@@ -491,7 +491,7 @@ def vocabulary_delete(request, vocab_node_id):
             if 'understand' in request.POST:
                 vocab.delete()
                 messages.success(request, f'"{vocab.title}" is now deleted.')
-                return redirect('/vocabularies/')
+                return redirect('/tree/')
             messages.info(request, 'Not deleted. You need to tick the box to confirm.')
             return redirect(vocab.get_absolute_url())
     return render(request, 'vocabulary/vocabulary-delete.html', {

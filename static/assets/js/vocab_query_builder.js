@@ -54,7 +54,7 @@ var CHOOSER = {
     setupAutocomplete : function(id) {
         // The autocomplete code assigns the selected item's HTML as the value of the input
         // and then triggers a 'result' event on it, passing some useful data.
-        $('#' + id).autocomplete(CHOOSER.autocompleteServer + "/vocabularies/autocomplete", {
+        $('#' + id).autocomplete(CHOOSER.autocompleteServer + "/tree/autocomplete", {
             width: 430,
             scrollHeight: 'auto',
             selectFirst: false,

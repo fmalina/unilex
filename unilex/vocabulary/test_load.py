@@ -33,5 +33,5 @@ class LoadTestCase(TestCase):
                 slug, ext = fn.split('.')
                 v = load_ext[ext](request.user, f.read(), slug)
                 self.assertEqual(v.get_absolute_url(),
-                                 f'/vocabularies/{slug}/')
+                                 f'/tree/{slug}/')
                 self.assertEqual(no, v.concept_set.all().count())

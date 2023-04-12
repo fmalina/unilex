@@ -1,6 +1,6 @@
 $(function(){
     // search
-    $("#q").autocomplete("/vocabularies/autocomplete", {
+    $("#q").autocomplete("/tree/autocomplete", {
         width: 330,
         scrollHeight: 'auto',
         selectFirst: false,

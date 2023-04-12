@@ -114,7 +114,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', primary_key=True,
                                         serialize=False, auto_created=True)),
-                ('node_id', models.SlugField(verbose_name='Permalink: /vocabularies/',
+                ('node_id', models.SlugField(verbose_name='Permalink: /tree/',
                                              max_length=60)),
                 ('title', models.CharField(max_length=75)),
                 ('description', models.TextField(max_length=200, blank=True)),

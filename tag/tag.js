@@ -26,7 +26,7 @@ var tag = {
                 // refresh the formset
                 $('.delete-row').remove();
                 $('.add-row').parent().remove();
-                acFormset(tag.repository+'/vocabularies/autocomplete', 'form');
+                acFormset(tag.repository+'/tree/autocomplete', 'form');
             });
         }
     },

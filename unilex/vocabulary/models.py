@@ -55,7 +55,7 @@ def uniq_slug(slug):
 class Vocabulary(models.Model):
     """Vocabulary is a hierarchy of concepts"""
 
-    node_id = models.SlugField(unique=True, max_length=60, verbose_name='Permalink: /vocabularies/')
+    node_id = models.SlugField(unique=True, max_length=60, verbose_name='Permalink: /tree/')
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
     title = models.CharField(max_length=75)
     description = models.TextField(blank=True, null=True)
@@ -82,10 +82,10 @@ class Vocabulary(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return f'/vocabularies/{self.node_id}/'
+        return f'/tree/{self.node_id}/'
 
     def json_url(self):
-        return f'/vocabularies/{self.node_id}/json'
+        return f'/tree/{self.node_id}/json'
 
     def make_node_id(self, slugbase):
         slug = slugify(slugbase)
@@ -191,7 +191,7 @@ class Concept(models.Model):
         return f'{self.vocabulary.get_absolute_url()}#c-{self.node_id}'
 
     def get_edit_url(self):
-        return f'/vocabularies/{self.vocabulary.node_id}/{self.node_id}/'
+        return f'/tree/{self.vocabulary.node_id}/{self.node_id}/'
 
     def __str__(self):
         return self.name

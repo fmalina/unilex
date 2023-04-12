@@ -82,11 +82,11 @@ var VB = {
                         fill('editing', data);
                         document.title = document.title.split(':')[0] + ': ' + node.name;
                         flexi();
-                        acFormset('/vocabularies/autocomplete',
+                        acFormset('/tree/autocomplete',
                             document.querySelector('.set').id);
                     });
                 } else {
-                    $.get('/vocabularies/' + VB.id(VB.root) + '/edit', function (data) {
+                    $.get('/tree/' + VB.id(VB.root) + '/edit', function (data) {
                         fill('editing', data);
                         flexi();
                     });
@@ -144,10 +144,10 @@ var VB = {
             });
             nid = VB.id(node.id);
             $('#icon-add').bind('click', function () {
-                $.get('/vocabularies/' + nid + '/new', VB.addBox);
+                $.get('/tree/' + nid + '/new', VB.addBox);
             });
             $('#icon-delete').bind('click', function () {
-                $.get('/vocabularies/' + nid + '/delete', function (data) {
+                $.get('/tree/' + nid + '/delete', function (data) {
                     fill('action', data);
                 });
             });
@@ -178,7 +178,7 @@ var VB = {
         $('#editicons').show();
     },
     paste: function (nodeId) {
-        $.post('/vocabularies/adopt', {
+        $.post('/tree/adopt', {
             child: localStorage.getItem("cut"),
             parent: VB.id(VB.toproot) + ':' + nodeId,
             csrfmiddlewaretoken:
@@ -191,7 +191,7 @@ var VB = {
         $(el).html(node.name);
     },
     conceptUri: function(nodeId, action) {
-        return '/vocabularies/' + VB.id(VB.toproot) + '/' + nodeId + '/' + action;
+        return '/tree/' + VB.id(VB.toproot) + '/' + nodeId + '/' + action;
     },
 }
 

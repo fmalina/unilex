@@ -21,6 +21,6 @@ class Migration(migrations.Migration):
             model_name='vocabulary',
             name='node_id',
             field=models.SlugField(max_length=60, unique=True,
-                                   verbose_name='Permalink: /vocabularies/'),
+                                   verbose_name='Permalink: /tree/'),
         ),
     ]

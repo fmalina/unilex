@@ -12,7 +12,7 @@ function initTagging() {
     Id("id_key").value = doc.URL;
     Id("id_desc").value = desc;
 
-	acFormset('/vocabularies/autocomplete',
+	acFormset('/tree/autocomplete',
     document.querySelector('.set').id);
 }
 

@@ -10,7 +10,7 @@ from unilex.profile import profile
 urlpatterns = [
     path('', home),
     path('feedback', feedback),
-    path('vocabularies/', include('unilex.vocabulary.urls')),
+    path('tree/', include('unilex.vocabulary.urls')),
     path('tag/', include('unilex.tag.urls')),
 
     path('', include('allauth.urls')),
