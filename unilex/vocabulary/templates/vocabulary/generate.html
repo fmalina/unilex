@@ -5,9 +5,12 @@
 <p>This feature is a convenience wrapper around
     <a href="/tree/load-md">text/markdown import</a>,<br>
     where you can find the template prompt used and expected output parsed in.
-<p>ChatGPT API tokens are limited and output format can be unexpected.
-    It's also just a dumb text generator.
+<p>ChatGPT is just a text generator, API tokens are limited and output format can be unexpected.
+    Generator UI is pending redesign to work around these limitations
+    and allow you to use your own tokens
+    as well as to watch over GPT output prior to committing it here.
 
+{% comment %}
 <form method="POST" action="#">
     {% csrf_token %}
     <p>
@@ -17,7 +20,9 @@
         {% if request.user.is_authenticated %}
             <p><button type="submit">Generate with OpenAI</button></p>
         {% else %}
-            <p><a href="{% url 'account_signup' %}" class="btn"><i class="icon-edit"></i> Registration required&hellip;</a></p>
+            <p><a href="{% url 'account_signup' %}" class="btn">
+                <i class="icon-edit"></i> Registration required&hellip;</a></p>
         {% endif %}
 </form>
+{% endcomment %}
 {% endblock %}
