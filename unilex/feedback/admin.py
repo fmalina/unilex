@@ -7,6 +7,7 @@ from unilex.feedback.models import Feedback
 def mark_done(modeladmin, request, queryset):
     queryset.update(done=True)
 
+
 def delete_spam(modeladmin, request, queryset):
     queryset.delete()
 

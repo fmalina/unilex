@@ -47,8 +47,16 @@ class AuthorityAdmin(admin.ModelAdmin):
     exclude = ['users']
 
 
+def bulk_delete(modeladmin, request, queryset):
+    queryset.delete()
+
+
+bulk_delete.short_description = "Delete selected"
+
+
 @admin.register(vocabs.Vocabulary)
 class VocabularyAdmin(VersionAdmin):
+    actions = [bulk_delete]
     search_fields = ['node_id', 'title', 'description']
     prepopulated_fields = {"node_id": ("title",)}
     list_filter = ('private',)
