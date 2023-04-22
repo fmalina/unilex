@@ -46,6 +46,9 @@
         </small></h1>
         <div id="action"></div>
         <div id="editing"></div>
+        {% if not vocabulary.private and request.user != vocabulary.user %}
+            <p class="info">By @{{ vocabulary.user.username }}
+        {% endif %}
     </div><!-- /aside -->
 </div><!-- /editor -->
 
