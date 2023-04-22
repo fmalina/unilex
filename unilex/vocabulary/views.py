@@ -242,11 +242,7 @@ def detail(request, vocab_node_id, style=None):
 
 def json(request, vocab_node_id):
     vocab = get_vocab(request.user, vocab_node_id)
-    count = Concept.objects.filter(vocabulary=vocab).count()
-    max_depth = 0
-    if not count < 2000:
-        max_depth = 3
-    jsondata = dumps(vocab_to_dict(vocab, max_depth), indent=4)
+    jsondata = dumps(vocab_to_dict(vocab, 0), indent=4)
     return HttpResponse(jsondata, content_type='application/json')
 
 
