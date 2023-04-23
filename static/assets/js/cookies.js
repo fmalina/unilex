@@ -1,3 +1,5 @@
+var tc_str = 'gdpr_consent';
+
 function setCookie(cname, cvalue, exdays) {
 	const d = new Date();
 	d.setTime(d.getTime() + (exdays*24*60*60*1000));
@@ -32,7 +34,8 @@ function Id(Id){ return document.getElementById(Id); }
 
 function acceptCookieConsent(){
 	deleteCookie('cookie_consent');
-	setCookie('cookie_consent', 1, 30);
+	deleteCookie(tc_str);
+	setCookie(tc_str, 1, 30);
 	Id("cookie-consent").style.display = "none";
 }
 
@@ -40,7 +43,7 @@ function initCookieConsent() {
 	const cc = Id("cookie-consent");
 
 	// Set visibility of the cookie consent popup
-	let cookie_consent = getCookie("cookie_consent");
+	let cookie_consent = getCookie(tc_str);
 	if(cookie_consent != ""){
 		cc.style.display = "none";
 	} else {
@@ -55,9 +58,12 @@ function initCookieConsent() {
 	`;
 	}
 
-	Id('consent_button').addEventListener('click', function() {
-		acceptCookieConsent();
-	});
+	const cc_btn = Id('consent_button');
+	if(cc_btn){
+        cc_btn.addEventListener('click', function() {
+            acceptCookieConsent();
+        });
+	}
 }
 
 document.addEventListener('DOMContentLoaded', initCookieConsent);
