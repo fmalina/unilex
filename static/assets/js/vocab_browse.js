@@ -11,7 +11,7 @@ var VB = {
     root: null,
     toproot: null,
     init: function () {
-        $.get(location.pathname + 'json', VB.initTree, 'json');
+        $.get(location.pathname + '/json', VB.initTree, 'json');
     },
     id: function(id) {
         return id.replace('v-', '');
@@ -140,7 +140,7 @@ var VB = {
         if (node.data.type == 'vocab') {
             $(el).append('<p id="editicons">' + save + add + del + paste + '</p>');
             $('#icon-save').bind('click', function () {
-                location.href = location.pathname + 'skos';
+                location.href = location.pathname + '/skos';
             });
             nid = VB.id(node.id);
             $('#icon-add').bind('click', function () {

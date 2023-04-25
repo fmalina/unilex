@@ -82,7 +82,7 @@ class Vocabulary(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return f'/tree/{self.node_id}/'
+        return f'/tree/{self.node_id}'
 
     def json_url(self):
         return f'/tree/{self.node_id}/json'
