@@ -196,14 +196,15 @@ var VB = {
 }
 
 function flexi(){
-    // flexible height textareas
+    // flexible height description
     var textarea = Id("id_description");
-    textarea.style.height = (textarea.scrollHeight + 5) + "px";
-
-    textarea.oninput = function() {
-        textarea.style.height = ""; /* Reset the height*/
+    if (textarea){
         textarea.style.height = (textarea.scrollHeight + 5) + "px";
-    };
+        textarea.oninput = function() {
+            textarea.style.height = ""; /* Reset the height*/
+            textarea.style.height = (textarea.scrollHeight + 5) + "px";
+        };
+    }
 }
 
 function setView(view) {
