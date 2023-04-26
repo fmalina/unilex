@@ -2,7 +2,7 @@
 {% load tags %}
 {% block title %}{{ site_name }}: free fast NHS dm+d browser{% endblock %}
 {% block description %}Search and browse NHS standard Dictionary of Medicines
-and Devices (dm+d), medicine dictonary used throughout the NHS to identify
+and Devices (dm+d), medicine dictionary used throughout the NHS to identify
 medicines and medical devices.{% endblock %}
 
 {% block content %}
@@ -11,8 +11,8 @@ medicines and medical devices.{% endblock %}
     <section class="intro">
         <p><a href="{{ site_url }}">{{ site_name }}</a>
             lets you comfortably search and browse NHS standard
-            <b>Dictionary of Medicines and Devices (dm+d)
-            </b> a beautiful dataset created over many years by the NHS.
+            <b>Dictionary of Medicines and Devices (dm+d)</b>
+            a beautiful dataset created over many years by the NHS.
         <p>The dictionary is used throughout the NHS (UK National Health Service)
             as a means of uniquely identifying medicines and medical devices used
             in the health care of patients.
@@ -29,7 +29,7 @@ medicines and medical devices.{% endblock %}
     <section>
         <p>{{ site_name }} allows you to browse medicines by
             <a href="{{ site_url }}ingredient/ing/">ingredients</a> or their
-            <a href="{{ site_url }}vtm/vtm/">therapeutical moiety</a> (molecular segment),
+            <a href="{{ site_url }}vtm/vtm/">therapeutic moiety</a> (molecular segment),
             browse <a href="{{ site_url }}ampp/price_info/">NHS medicines sorted by price</a>,
             lookup devices by <a href="{{ site_url }}lookup/colour/">colour</a>,
             lookup medicines by <a href="{{ site_url }}lookup/flavour/">flavour</a>, etc.<br>
@@ -89,30 +89,18 @@ medicines and medical devices.{% endblock %}
     <p>This website does not collect your personal information or use cookies.
         Every access of each resource is logged in our server logs, which may be reviewed
         and analysed to see usage patterns and for billing purposes.
-        <!--a href="https://www.google.com/policies/technologies/ads/">Advertising cookies</a>
-        are used to make advertising more effective.--> If you contact the author, and please do,
+        <a href="https://www.google.com/policies/technologies/ads/">Advertising cookies</a>
+        are used to make advertising more effective. If you contact the author, and please do,
         with whatever query you might have, your contact information will be solely
-        used to communicate with you with regards to your query.</p>
+        used to communicate with you regarding your query.</p>
 
-    <h3>Disclaimer</h3>
+    <h3>Disclaimers</h3>
     <p>This site is not run by a medical professional.
         Information provided here is meant to complement and not replace any advice
         or information from a health professional.</p>
-    <!--p>This site displays relevant, on topic advertising, clearly separated
+    <p>This site displays relevant, on topic advertising, clearly separated
         from the content and clearly marked as advertisement. Content of the site
-        is not influenced by advertisers. We do not control the ads’ content.</p-->
-    <p><a href="https://www.healthonnet.org/HONcode/Conduct.html?HONConduct836479">
-        <img src="https://www.honcode.ch/HONcode/Seal/HONConduct836479_s.gif"
-             width="49" height="72"
-             class="left-padded"
-             title="This website is certified by Health On the Net Foundation. Verify here."
-             alt="This website is certified by Health On the Net Foundation. Verify here." />
-        </a> This site complies with the<br>
-        <a href="https://www.healthonnet.org/HONcode/Conduct.html">
-            HONcode standard for trustworthy<br>
-            health information</a>:<br>
-        <a href="https://www.healthonnet.org/HONcode/Conduct.html?HONConduct836479">
-            verify here</a></p>
+        is not influenced by advertisers. We do not control the ads’ content.</p>
     </div>
 </section>
 
@@ -120,7 +108,7 @@ medicines and medical devices.{% endblock %}
     <h2>Help</h2>
     <p>Compared to <a href="https://services.nhsbsa.nhs.uk/dmd-browser/">NHSBSA dm+d browser</a>
         {{ site_name }} elements use different naming where it allows
-        to communicate briefly, without acronyms and without sacrificing compatibility.</p>
+        communicating briefly, without acronyms and without sacrificing compatibility.</p>
     <p>E.g.
         "<em>Virtual medical product</em>" or "<em>VMT</em>"
         is called a "<b>Concept</b>" and
@@ -144,7 +132,7 @@ medicines and medical devices.{% endblock %}
         <kbd>testosterone injection -capsules site:unilexicon.com/med</kbd>
         <p>This takes advantage of advanced operators including "site:"
         to search within a site only, excluding documents containing word
-        "capsules" using minus. Other operators allow to search for price ranges,
+        "capsules" using minus. Other operators allow searching for price ranges,
         titles only, etc. Learn about "advanced search operators" in your public search engine.
     <p>♿&nbsp;{{ site_name }} is optimised
         to work well for blind and other disabled users, it is accessible.
@@ -166,7 +154,7 @@ medicines and medical devices.{% endblock %}
     <p>Content of dm+d is continually reviewed and improved. Releases of up-to-date
         datasets are provided weekly.</p>
         {{ site_name }} is kept up to date with
-        latest releases on a regular basis unless there are backwards
+        the latest releases on a regular basis unless there are backwards
         incompatible changes to the dm+d schema or libraries used.
     Last update <b>{% include 'medd/last-update.txt' %}</b></p>
 </section>
