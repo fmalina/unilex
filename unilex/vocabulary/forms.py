@@ -32,10 +32,15 @@ class VocabularyForm(forms.ModelForm):
 
 
 class UploadFileForm(forms.Form):
-    file = forms.FileField()
+    file = forms.FileField(required=False)
     permit = forms.BooleanField(
         required=False,
         label='Store raw file for inspection'
+    )
+    content = forms.CharField(
+        required=False,
+        widget=forms.Textarea(attrs={'rows': 3, 'cols': 60}),
+        label='Or paste content here'
     )
 
 

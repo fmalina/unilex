@@ -1,5 +1,5 @@
 $(function(){
-    $("input[name='file']").change(function (){
+    $("input[name='file'],textarea").change(function (){
         button = $(this).parents('form:first').find('button');
         if($(this).val()!=''){
             button.removeAttr('disabled');

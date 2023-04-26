@@ -57,6 +57,7 @@ form input[type="checkbox"]{display:inline-block;width:auto}
 button,input[type="submit"],.btn{
     text-decoration:none;display:inline-block;padding:.5em 1em;
     cursor:pointer;border:0;margin-top:1em}
+button[disabled="disabled"]{background:gray}
 .btn-block{display:block;width:100%}
 .btn img {vertical-align:middle}
 .btn-links{display:block}

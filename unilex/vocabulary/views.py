@@ -1,5 +1,6 @@
 import os
 from datetime import datetime
+import hashlib
 from json import dumps
 
 from django.conf import settings
@@ -115,34 +116,41 @@ def load_vocab(request, format='xls', authority_code=''):
     from unilex.vocabulary.load_md import load_md
 
     form = UploadFileForm()
+    uploads_folder = os.path.join(settings.BASE_DIR, 'uploads')
     if request.method == 'POST' and request.user.is_authenticated:
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
-            file = request.FILES['file']
-            fn = file.name.split('.')[0].split('/')[-1]
-            f = file.read()
+            file = request.FILES.get('file')
+            content = form.cleaned_data.get('content')
+            if file:
+                fn = file.name.split('.')[0].split('/')[-1]
+                # sanitise filename preventing directory traversal
+                upload_fn = get_valid_filename(os.path.basename(file.name))
+                content = file.read()
+            else:
+                fn = 'pasted'
+                sha = hashlib.sha256(content.encode()).hexdigest()[:8]
+                ext = 'csv' if format == 'xls' else format
+                upload_fn = f'{fn}-{sha}.{ext}'
+                content = content.encode()
             # save the raw file on disk
             if form.cleaned_data.get('permit', False):
-                upload_path = os.path.join(
-                    settings.BASE_DIR, 'uploads',
-                    # sanitise filename preventing directory traversal
-                    get_valid_filename(os.path.basename(file.name))
-                )
+                upload_path = os.path.join(uploads_folder, upload_fn)
                 fw = open(upload_path, 'wb')
-                fw.write(f)
+                fw.write(content)
                 fw.close()
 
             # parse and load into the DB
             if format == 'md':
                 try:
-                    vocab = load_md(request.user, f, fn)
+                    vocab = load_md(request.user, content, fn)
                 except Exception as e:
                     messages.error(request, f"That didn't work: {e}")
                     capture_exception(e)
                     return redirect('load', 'md')
             if format == 'xls':
                 try:
-                    vocab = load_xls(request.user, f, fn)
+                    vocab = load_xls(request.user, content, fn)
                 except Exception as e:
                     messages.error(request, f"That didn't work: {e}")
                     capture_exception(e)
@@ -150,7 +158,7 @@ def load_vocab(request, format='xls', authority_code=''):
             if format == 'skos':
                 try:
                     loader = SKOSLoader(request.user)
-                    vocab, msgs = loader.load_skos_vocab(f)
+                    vocab, msgs = loader.load_skos_vocab(content)
                     for level, msg in msgs:
                         messages.add_message(request, level, msg)
                     if vocab:
