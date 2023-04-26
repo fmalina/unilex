@@ -25,6 +25,7 @@ medicines and medical devices.{% endblock %}
             DM+D medicine information in their products via our API,
             and the rest of us to learn about available
             medicines and medical devices.</p>
+        <p>Last update: <b>{% include 'medd/last-update.txt' %}</b></p>
     </section>
     <section>
         <p>{{ site_name }} allows you to browse medicines by
@@ -156,7 +157,7 @@ medicines and medical devices.{% endblock %}
         {{ site_name }} is kept up to date with
         the latest releases on a regular basis unless there are backwards
         incompatible changes to the dm+d schema or libraries used.
-    Last update <b>{% include 'medd/last-update.txt' %}</b></p>
+    <p>Last update: {% include 'medd/last-update.txt' %}</p>
 </section>
 </div>
 {% endblock %}
