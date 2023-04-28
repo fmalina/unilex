@@ -239,11 +239,10 @@ def detail(request, vocab_node_id, style=None):
     if style or request.path_info.endswith('/'):
         return redirect(vocab.get_absolute_url(), permanent=True)
     count = Concept.objects.filter(vocabulary=vocab).count()
-    concepts = vocab.concept_set.filter(parent__isnull=True)
+    d = vocab_to_dict(vocab, 0)
     return render(request, 'vocabulary/detail.html', {
         'vocabulary': vocab,
-        'concept': vocab,  # vocab pretending to be a top level concept,
-        'concepts': concepts,
+        'concept_dict': d,
         'count': count,
     })
 
