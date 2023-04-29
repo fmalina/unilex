@@ -34,7 +34,7 @@
             {% else %}
             <a href="{% url 'profile' %}">Your profile</a>
             {% endif %}
-            <a href="/pro">PRO</a>
+            <a href="{% url 'pro' %}">PRO</a>
         </nav>
         {% block search %}
             {% include 'vocabulary/search-input.html' %}

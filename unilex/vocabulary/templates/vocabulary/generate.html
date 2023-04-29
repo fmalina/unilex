@@ -3,7 +3,7 @@
 {% block content %}
 <h1>Generate a taxonomy</h1>
 <p>This feature is a convenience wrapper around
-    <a href="/tree/load-md">text/markdown import</a>,<br>
+    <a href="{% url 'load' 'md' %}">text/markdown import</a>,<br>
     where you can find the template prompt used and expected output parsed in.
 <p>ChatGPT is just a text generator, API tokens are limited and output format can be unexpected.
     Generator UI is pending redesign to work around these limitations
