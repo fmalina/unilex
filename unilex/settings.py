@@ -69,10 +69,11 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'unilex.paging.paging_middleware',
     'medd.browse.middleware.SiteMiddleware',
+    'medd.browse.middleware_static.StaticCacheMiddleware',
 ]
 
 ROOT_URLCONF = 'unilex.urls'
-CACHING = True
+STATIC_CACHING = True
 DATABASE_ROUTERS = ['medd.db_router.MeddDbRouter']
 
 INSTALLED_APPS = [
@@ -91,7 +92,7 @@ INSTALLED_APPS = [
     'pay',
 
     'reversion',
-    'rest_framework',
+    # 'rest_framework',
 
     'allauth',
     'allauth.account',
