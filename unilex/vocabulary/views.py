@@ -236,17 +236,20 @@ def detail(request, vocab_node_id, style=None):
         return redirect(vocab.get_absolute_url(), permanent=True)
     count = Concept.objects.filter(vocabulary=vocab).count()
     d = vocab_to_dict(vocab, 0)
+    json_data = dumps(d, indent=4).encode()
     return render(request, 'vocabulary/detail.html', {
         'vocabulary': vocab,
         'concept_dict': d,
+        'json_data': json_data.decode(),
         'count': count,
     })
 
 
+@login_required
 def json(request, vocab_node_id):
     vocab = get_vocab(request.user, vocab_node_id)
-    jsondata = dumps(vocab_to_dict(vocab, 0), indent=4)
-    return HttpResponse(jsondata, content_type='application/json')
+    json_data = dumps(vocab_to_dict(vocab, 0), indent=4)
+    return HttpResponse(json_data, content_type='application/json')
 
 
 def export(vocab, data, extension, mime):

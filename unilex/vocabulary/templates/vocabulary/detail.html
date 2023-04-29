@@ -33,7 +33,9 @@
 <div class="editor">
     <div class="workspace" id="infovis">
         <ul id="list" class="tree" data-submit="{% url 'ordering' vocabulary.node_id %}">
+        {% spaceless %}
             {% render_concept_hierarchy concept_dict 0 %}
+        {% endspaceless %}
         </ul>
     </div>
     <div class="aside">
@@ -56,4 +58,5 @@
 
 <form>{% csrf_token %}</form>
 <div id="log"></div>
+<div id="vocab_data" data-vocab='{{ json_data }}'></div>
 {% endblock %}

@@ -1,12 +1,14 @@
 {% load concept_hierarchy %}
-{{ depth|multi:'    '}}<li id="order-{% if depth == 0 %}vocabulary{%else %}concept{% endif %}-{{ concept.id }}-{{ order }}" class="L{{ depth }}in {{ concept.name|slugify }}">
-{{ depth|multi:'    '}}  <a href="{% if dummy %}#{% else %}{{ concept.url }}{% endif %}"
-{{ depth|multi:'    '}}     class="L{{ depth }}{% if render_children %} parent{% endif %}">
-{{ depth|multi:'    '}}    <span class="name">{{ concept.name }}</span></a>
-{{ depth|multi:'    '}}  {% if concept.description %}<span class="desc">{{ concept.description }}</span>{% endif %}
-{{ depth|multi:'    '}}  {% if render_children %}
-{{ depth|multi:'    '}}    <ul class="L{{ depth|add:1 }}-wrap sort">
-{{ depth|multi:'    '}}      {% for child in children %}
-{{ depth|multi:'    '}}        {% render_concept_hierarchy child depth=depth|add:1 order=forloop.counter %}
-{{ depth|multi:'    '}}      {% endfor %}
-{{ depth|multi:'    '}}    </ul>{% endif %}</li>
+<li
+  id="order-{% if depth == 0 %}vocabulary{%else %}concept{% endif %}-{{ concept.id }}-{{ order }}" class="L{{ depth }}in {{ concept.name|slugify }}">
+<a
+    href="{% if dummy %}#{% else %}{{ concept.url }}{% endif %}" class="L{{ depth }}{% if render_children %} parent{% endif %}">
+  <span class="name">{{ concept.name }}</span></a>
+  {% if concept.description %}<span
+      class="desc">{{ concept.description }}</span>{% endif %}
+  {% if render_children %}
+    <ul class="L{{ depth|add:1 }}-wrap sort">
+      {% for child in children %}
+        {% render_concept_hierarchy child depth=depth|add:1 order=forloop.counter %}
+      {% endfor %}
+    </ul>{% endif %}</li>

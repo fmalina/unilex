@@ -11,7 +11,8 @@ var VB = {
     root: null,
     toproot: null,
     init: function () {
-        $.get(location.pathname + '.json', VB.initTree, 'json');
+        var data = JSON.parse(Id('vocab_data').dataset.vocab);
+        VB.initTree(data);
     },
     id: function(id) {
         return id.replace('v-', '');
