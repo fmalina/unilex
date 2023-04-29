@@ -1,7 +1,10 @@
 {% extends "account/base.html" %}
 {% load account socialaccount %}
 {% block head_title %}Log in{% endblock %}
-
+{% block head %}
+        <meta name="robots" content="noindex" />
+        <link rel="canonical" href="{{ base_url }}{% url 'account_login' %}" />
+{% endblock %}
 {% block content %}
 <h1>Sign in</h1>
 {% include "account/social_account.html" %}
