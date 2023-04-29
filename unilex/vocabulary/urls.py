@@ -19,9 +19,9 @@ urlpatterns = [
     path('<slug:vocab_node_id>/', v.detail, name='vocabulary'),
     path('<slug:vocab_node_id>/edit', v.vocabulary_edit),
     path('<slug:vocab_node_id>/delete', v.vocabulary_delete),
-    path('<slug:vocab_node_id>/json', v.json, name='json'),
-    path('<slug:vocab_node_id>/csv', v.csv, name='csv'),
-    path('<slug:vocab_node_id>/skos', v.skos, name='skos'),
+    path('<slug:vocab_node_id>.json', v.json, name='json'),
+    path('<slug:vocab_node_id>.csv', v.csv, name='csv'),
+    path('<slug:vocab_node_id>.xml', v.skos, name='skos'),
     path('<slug:vocab_node_id>/ordering', v.ordering, name='ordering'),
     path('<slug:vocab_node_id>/new', v.concept_new),
 

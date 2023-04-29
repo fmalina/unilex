@@ -6,7 +6,7 @@ pymysql.install_as_MySQLdb()
 
 SECRET_KEY = os.getenv('SECRET_KEY', '12345')
 DEBUG = bool(int(os.getenv('UNILEX_DEBUG', '0')))
-VERSION = '1.71'
+VERSION = '1.72'
 
 BASE_DIR = os.path.dirname(
     os.path.dirname(os.path.abspath(__file__)))
