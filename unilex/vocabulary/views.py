@@ -214,10 +214,6 @@ def authority(request, authority_code, json=False):
     return render(request, 'vocabulary/authority.html', context)
 
 
-def pro_message(request):
-    return render(request, 'vocabulary/pro-msg.html', {})
-
-
 def for_pro(vocab):
     try:
         return vocab.private and not vocab.user.subscription.is_active

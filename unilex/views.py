@@ -27,6 +27,10 @@ def docs(request, tpl=''):
     return render(request, f'docs{tpl}.html', {})
 
 
+def pro(request):
+    return render(request, 'pro.html', {})
+
+
 def logmeout(request):
     messages.success(request, '<b>Logged out.</b> Thanks for spending some'
                               'quality time with the Web site today.')
