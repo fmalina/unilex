@@ -35,6 +35,7 @@ def vocab_to_dict(vocab, max_depth=0):
     children_lookup = {}
     for rel in parent_rels:
         child = vocab_concepts[rel.from_concept_id]
+        # create a list of children for each parent ID (to_concept_id)
         children_lookup.setdefault(rel.to_concept_id, []).append(child)
 
     children = vocab.concept_set.filter(parent__isnull=True)
