@@ -261,12 +261,14 @@ def export(vocab, data, extension, mime):
     return response
 
 
+@login_required
 def skos(request, vocab_node_id):
     vocab = get_vocab(request.user, vocab_node_id)
     return export(vocab, export_skos(vocab),
                   'xml', 'application/rdf+xml')
 
 
+@login_required
 def csv(request, vocab_node_id):
     vocab = get_vocab(request.user, vocab_node_id)
     return export(vocab, export_csv(vocab),
