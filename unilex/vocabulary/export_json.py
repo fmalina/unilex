@@ -31,7 +31,7 @@ def concept_to_dict(concept, children_lookup, depth, max_depth):
 def vocab_to_dict(vocab, max_depth=0):
     vocab_concepts = {c.id: c for c in vocab.concept_set.all()}
     parent_rels = Concept.parent.through.objects.filter(
-        from_concept_id__in=vocab_concepts.keys())
+        from_concept__vocabulary=vocab)
     children_lookup = {}
     for rel in parent_rels:
         child = vocab_concepts[rel.from_concept_id]
