@@ -4,8 +4,8 @@ from unilex.vocabulary.models import Concept
 
 def get_children(concept, vocab_concepts, parent_rels):
     child_pks = [x.from_concept_id for x in parent_rels
-                 if x.to_concept_id == concept.pk]
-    children = [x for x in vocab_concepts if x.pk in child_pks]
+                 if x.to_concept_id == concept.id]
+    children = [x for x in vocab_concepts if x.id in child_pks]
     return children
 
 
@@ -38,7 +38,7 @@ def concept_to_dict(concept, vocab_concepts, parent_rels, depth, max_depth):
 def vocab_to_dict(vocab, max_depth=0):
     vocab_concepts = list(vocab.concept_set.all())
     pks = [c.pk for c in vocab_concepts]
-    parent_rels = list(Concept.parent.through.objects.filter(pk__in=pks))
+    parent_rels = list(Concept.parent.through.objects.filter(from_concept_id__in=pks))
 
     children = vocab.concept_set.filter(parent__isnull=True)
     # prepending 'v', vocabulary ID cannot match any concept id on the same page
