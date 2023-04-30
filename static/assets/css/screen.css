@@ -109,6 +109,7 @@ div.paginator span{color:gray}
 
 #feedback_status{color:green}
 #feedback{clear:both;display:none;padding-bottom:2em}
+#feedback.open{display:block;animation:switch-view .2s ease-out}
 #feedback label{display:block;padding:5px 0}
 #feedback textarea{margin:0 0 5px 0}
 #feedback textarea,

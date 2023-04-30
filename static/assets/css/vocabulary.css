@@ -130,7 +130,7 @@ button.delete b{color:#fcc;position:relative;top:-1px}
     margin:2em 0 20em 0;border-radius:2px}
 .tabs a{text-decoration:none}
 .tabs a:hover{text-decoration:underline}
-.tabs a.L1{padding:.5em 1em;border-radius:2px 2px 0 0;background:#fff}
+.tabs a.L1{padding:.5em 1em;border-radius:2px 2px 0 0;margin:0 2px 0 0;background:#fff}
 .tabs li:hover .L1{border-bottom-color:#fff}
 .tabs .L2{padding:.5em 0;font-weight:bold;display:block}
 .tabs .L3{display:block;padding:.2em 0;margin:0}
@@ -139,7 +139,7 @@ button.delete b{color:#fcc;position:relative;top:-1px}
 .tabs .L1in{list-style:none;display:inline-block;position:relative}
 .tabs .L1in:hover{z-index:3}
 .tabs .L1in:hover a.L1{position:relative;z-index:4;border-bottom-color:#fff}
-.tabs ul.L2-wrap{position:absolute;top:1.9rem;border-radius:2px;z-index:3;display:none;
+.tabs ul.L2-wrap{position:absolute;top:2.1rem;border-radius:2px;z-index:3;display:none;
 	background:#fff;padding:1rem;margin:0}
 .tabs .L2-wrap .parent a{margin-bottom:0}
 .tabs .L2in{display:inline-block}
@@ -178,6 +178,12 @@ button.delete b{color:#fcc;position:relative;top:-1px}
 .card ul ul a{cursor:grab}
 .card ul ul a:active{cursor:grabbing}
 .card a.L1{cursor:not-allowed}
+
+@keyframes switch-view {
+  from{transform:scale(0.99)}
+  to{transform:scale(1)}
+}
+.view-switch{animation:switch-view 0.2s ease-out}
 
 @media screen and (min-width:640px){
     #list{padding:2em 1em 0 3em}

@@ -244,6 +244,7 @@ $(function(){
         $(".view_on").removeClass('text-muted');
         $(this).addClass('text-muted');
         setView(e.target.dataset.view);
+        Id('list').classList.toggle('view-switch');
     });
 
     $('.sort').sortable({

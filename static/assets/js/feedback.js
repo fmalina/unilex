@@ -39,7 +39,7 @@ function initFeedbackForm() {
 	Id('feedback_text').innerHTML = feedback_text;
 	b.addEventListener('click', function(event) {
 		event.preventDefault();
-		Id('feedback').style.display = 'block';
+		Id('feedback').classList.toggle('open');
 		Id('feedback_message').focus();
 	});
 
