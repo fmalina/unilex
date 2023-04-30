@@ -14,7 +14,8 @@ class Record(models.Model):
     title = models.CharField(max_length=150)
     desc = models.TextField(blank=True, verbose_name="Description")
     key = models.CharField(max_length=150, unique=True, verbose_name="Key / URI / Unique Resource ID")
-    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
         blank=True, null=True,
         on_delete=models.SET_NULL)
     updated_at = models.DateTimeField(default=datetime.now, editable=False)
@@ -35,11 +36,12 @@ class Tag(models.Model):
     """Tags linking concepts to records"""
     record = models.ForeignKey('tag.Record', on_delete=models.CASCADE)
     concept = models.ForeignKey('vocabulary.Concept', on_delete=models.CASCADE)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
         blank=True, null=True,
         on_delete=models.SET_NULL)
-    
-    weight = models.IntegerField('Relevance weight of concept'
+    weight = models.IntegerField(
+        'Relevance weight of concept'
         'for the record that determines order and importance of tags',
         blank=True, null=True)
     updated_at = models.DateTimeField(default=datetime.now, editable=False)
