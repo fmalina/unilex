@@ -66,7 +66,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'db_table': 'concepts',
-                'ordering': ['name'],
+                'ordering': ['order', 'name'],
             },
         ),
         migrations.CreateModel(
