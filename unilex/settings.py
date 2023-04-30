@@ -36,7 +36,6 @@ ACCOUNT_RATE_LIMITS = {
 }
 ACCOUNT_SIGNUP_FORM_CLASS = 'unilex.vocabulary.forms.AutoBotHoneypotSignupForm'
 AUTHENTICATION_BACKENDS = ['allauth.account.auth_backends.AuthenticationBackend']
-DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/profile'
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'unilex', 'templates')
@@ -130,7 +129,7 @@ if DEBUG:
     MY_SITE_PROTOCOL = 'http'
 DEFAULT_FROM_EMAIL = 'hi@unilexicon.com'
 ADMINS = MANAGERS = [('Admin', DEFAULT_FROM_EMAIL)]
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 if DEBUG:
     sentry_sdk.init()
