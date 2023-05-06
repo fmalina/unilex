@@ -6,10 +6,10 @@ __pycache__
 .idea
 data/
 unilex/templates/medd/last-update.txt
-upload
+uploads/
 static/clinic/
 static/nom/
-static/admin
+static/assets/admin
 static/pay
 static/med
 static/fm
