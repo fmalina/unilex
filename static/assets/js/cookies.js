@@ -48,14 +48,30 @@ function initCookieConsent() {
 		cc.style.display = "none";
 	} else {
 		cc.style.display = "block";
-		cc.innerHTML += `
-		<p>This website uses cookies to enhance your browsing experience and
-		provide personalized advertising.
-		By continuing to use our website, you agree to our
-		<a href="https://blocl.uk/privacy" target="_blank">Privacy Policy</a></p>
-		<div><button id="consent_button">I agree</button></div>
-		<link rel="stylesheet" href="/assets/css/cookies.css">
-	`;
+	    const p = document.createElement("p");
+        p.textContent = `This website uses cookies to enhance your browsing
+        experience and provide personalized advertising.
+        By continuing to use our website, you agree to our `;
+
+        const privacy = document.createElement("a");
+        privacy.href = "https://blocl.uk/privacy";
+        privacy.target = "_blank";
+        privacy.textContent = "privacy policy";
+        p.appendChild(privacy);
+
+        const consentButton = document.createElement("button");
+        consentButton.id = "consent_button";
+        consentButton.textContent = "I agree";
+        const div = document.createElement("div");
+        div.appendChild(consentButton);
+        cc.appendChild(p);
+        cc.appendChild(div);
+
+        const head = document.querySelector("head");
+        const link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.href = "/assets/css/cookies.css";
+        head.appendChild(link);
 	}
 
 	const cc_btn = Id('consent_button');
