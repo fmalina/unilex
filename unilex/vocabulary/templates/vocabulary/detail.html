@@ -30,7 +30,7 @@
 </div><!-- /drop-nav -->
 {% endif %}
 
-<div class="editor">
+<div class="editor"{% if vocabulary.language %} lang="{{ vocabulary.language.iso }}"{% endif %}>
     <div class="workspace" id="infovis">
         <ul id="list" class="tree" data-submit="{% url 'ordering' vocabulary.node_id %}">
         {% spaceless %}
