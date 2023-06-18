@@ -3,7 +3,7 @@
 a.badge:hover{color:white;text-decoration:none}
 ul,li{margin:0;padding:0;list-style:none}
 h1,h2{font-weight:normal}
-h1{font-size:2.5em;margin:.5em 0;max-width:22em;font-weight:300}
+h1{font-size:2rem;margin:.5em 0;max-width:22em;font-weight:300}
 h1 small, h2 small{color:gray;font-weight:normal}
 h1 small a{font-size:1.2em;font-weight:bold}
 h3{font-size:1rem}
@@ -17,7 +17,7 @@ hr{margin:20px 0;border:0;border-top:1px solid white;border-bottom:1px solid whi
 
 .header,.content,.footer{padding:1em 3em}
 .header .logo{padding:.3em 1em .5em 0;float:left}
-.header .logo span{padding:0 .8em 0 .7em;color:lightgray;letter-spacing:0}
+.header .logo span{padding:0 .4em;color:#555;letter-spacing:0}
 .header a{text-decoration:none}
 .footer{clear:both}
 .searchbox{width:200px;font-size:14px;background:ivory;padding:4px 10px;

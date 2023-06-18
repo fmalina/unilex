@@ -121,7 +121,7 @@ DATABASES = {
         'NAME': 'medd', 'USER': 'root', 'PASSWORD': os.getenv('DB_PASS')
     }
 }
-ALLOWED_HOSTS = ['unilexicon.com']
+ALLOWED_HOSTS = ['unilexicon.com', 'unilexicon.co']
 CSRF_TRUSTED_ORIGINS = ['https://unilexicon.com']
 if DEBUG:
     ALLOWED_HOSTS += ['localhost', '127.0.0.1', 'unilexicon.co']
