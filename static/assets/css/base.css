@@ -7,5 +7,5 @@ nav{font-family:Helvetica,sans-serif}
 a{color:RoyalBlue}
 a:hover{color:DodgerBlue}
 
-button, input[type="submit"], a.btn{color:#fff;border-radius:4px;background:DodgerBlue}
-button:hover, input[type="submit"]:hover, a.btn:hover{background:RoyalBlue}
+button, input[type="submit"], a.btn{color:#fff;border-radius:4px;background:RoyalBlue}
+button:hover, input[type="submit"]:hover, a.btn:hover{background:DodgerBlue}
