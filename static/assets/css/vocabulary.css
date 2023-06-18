@@ -4,7 +4,7 @@
 #main h1 small{font-size:.5em}
 
 .vocab-list,
-.vocab-list ul{padding:0;margin:0}
+.vocab-list ul{padding:0}
 .vocab-list li{list-style:none;padding:0 0 1em 0;margin:0}
 
 .editor{display:flex}
@@ -139,7 +139,7 @@ button.delete b{color:#fcc;position:relative;top:-1px}
 .tabs .L1in{list-style:none;display:inline-block;position:relative}
 .tabs .L1in:hover{z-index:3}
 .tabs .L1in:hover a.L1{position:relative;z-index:4;border-bottom-color:#fff}
-.tabs ul.L2-wrap{position:absolute;top:2.1rem;border-radius:2px;z-index:3;display:none;
+.tabs ul.L2-wrap{position:absolute;top:1.9rem;border-radius:2px;z-index:3;display:none;
 	background:#fff;padding:1rem;margin:0}
 .tabs .L2-wrap .parent a{margin-bottom:0}
 .tabs .L2in{display:inline-block}

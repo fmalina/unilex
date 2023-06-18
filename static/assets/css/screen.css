@@ -1,7 +1,7 @@
 @import url('/assets/css/autocomplete.css');
 @import url('/assets/css/base.css');
 
-h1{font-size:3em;margin:0;padding:.2em 0 0 0;font-weight:300}
+h1{font-size:2rem;margin:0;padding:.2em 0 0 0;font-weight:300}
 .content h1,h2{font-weight:300}
 fieldset{border:0;padding:0}
 dfn{border-bottom:1px dotted #ddd;cursor:help;font-style:normal}
