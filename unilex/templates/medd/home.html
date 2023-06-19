@@ -14,37 +14,26 @@ medicines and medical devices.{% endblock %}
             used throughout the NHS (UK National Health Service)
             to uniquely identify medicines and medical devices used
             in the health care of patients.
-        <p>Site is here for
-            pharmacists and healthcare professionals to search
+        <p>Site is here to learn about available medicines and medical devices
+            for pharmacists and healthcare professionals to search
             and navigate the terminology or find SNOMED codes,
             search medicines by GTIN/EAN bar codes,
-             researchers and students to explore the dataset,
-            programmers and pharma sector companies to use
-            DM+D medicine information in their products via our API,
-            and the rest of us to learn about available
-            medicines and medical devices.</p>
+            researchers and students to explore the dataset,
+            programmers and companies to use DM+D data via our API.</p>
     </section>
     <section>
-        <p>Browse medicines by
-            <a href="{{ site_url }}ingredient/ing/">ingredients</a> or their
-            <a href="{{ site_url }}vtm/vtm/">therapeutic moiety</a> (molecular segment),
-            browse <a href="{{ site_url }}ampp/price_info/">by price</a>,
-            lookup devices by <a href="{{ site_url }}lookup/colour/">colour</a>,
-            lookup medicines by <a href="{{ site_url }}lookup/flavour/">flavour</a>, etc.<br>
+        <p>Browse medicines by ingredients or their therapeutic moiety (molecular segment),
+            browse by price, lookup devices by colour, lookup medicines by flavour, etc.<br>
             Search medicines by name or part of code.
         <p>Below are various routes you can take to browse the data with examples for each,
-            followed by
-            <a href="#help">help &amp; advice</a>,
-            <a href="#editorial-policy">editorial policy</a> and
-            <a href="#tech">technical services with contact</a>.
+            followed by editorial policy and technical services with contact.
         <p>Last data update: <b>{% include 'medd/last-update.txt' %}</b></p>
     </section>
 </div>
 
 <ul class="cols 2col">
 {% for app, new, original, models in app_list %}
-    <li class="section"><b>{{ new }}</b>{% if new != original %}<br>
-        <small>{{ original }} ({{ app }})</small>{% endif %}
+    <li class="section">{{ new }}
     <ul>
         {% for model in models %}
         <li><a href="{{ model.url }}">{{ model.verbose_name_plural|capfirst }}</a>
@@ -62,37 +51,26 @@ medicines and medical devices.{% endblock %}
 <div class="flex-grid">
 <section>
     <h2 id="tech">Technical Services</h2>
-    <p>Below are example services offered by {{ site_name }} for commercial users.
-    <h3>Subscriptions</h3>
-    <p>DM+D REST API, CSV and SQL exports are available at <b>£100</b> a month per application.
-        Custom exports and API endpoints as per customer requirements are available and charged for separately.
+    <p>REST API, CSV and SQL exports, custom exports and API endpoints as per customer requirements are available.
     <ul>
-    <li>API for medicine product search
+    <li><u>API for medicine product search</u>
         {#<a href="{{ site_url }}api/search?q=paracetamol"></a>#}</li>
-    <li>API for product lookups using GTIN/EAN codes
+    <li><u>API for product lookups using GTIN/EAN codes</u>
         {#<a href="{{ site_url }}api/gtin/5017007016533"></a>#}</li>
-    <li>Sample product pack CSV export
+    <li><u>Sample product pack CSV export</u>
         {#<a href="{{ site_url }}api/csv"></a>#}</li>
-    <li>Regular DM+D as SQL export</li>
+    <li><u>Regular DM+D as SQL export</u></li>
     </ul>
-    <h3>System licenses for integration</h3>
-    <p>To learn more about {{ site_name }} server with admin site, open source licensing, integration,
-        and customisation support <a href="https://github.com/fmalina/medd">see source code repository</a>.</p>
-
-    <h2>Contact</h2>
-    <p>To request an API subscription, full data and CSV exports, point out issues,
-        suggest new features, discuss questions, or to enquire about the
-        integration services with other systems
-        please <a href="/fm/">get in touch</a>.
+    <p>Medicine server with admin site, licensing and customisation.
+    <p>Request API access, full data or CSV exports, enquire about the
+        integration with your systems. <a href="/fm/">Contact us.</a>
 
     <div style="font-size:smaller;padding:.5em 1em;background:ivory">
     <h3>Privacy and cookies</h3>
-    <p>This website does not collect your personal information or use cookies.
-        Every access of each resource is logged in our server logs, which may be reviewed
-        and analysed to see usage patterns and for billing purposes.
+    <p>This website does not collect your personal information.
+        Access of each resource is logged in our server logs, which aren't normally reviewed.
         <a href="https://www.google.com/policies/technologies/ads/">Advertising cookies</a>
-        are used to make advertising more effective. If you contact the author, and please do,
-        with whatever query you might have, your contact information will be solely
+        are used to make advertising more effective. If you contact us, your contact information will be solely
         used to communicate with you regarding your query.</p>
 
     <h3>Disclaimers</h3>
@@ -100,47 +78,17 @@ medicines and medical devices.{% endblock %}
         Information provided here is meant to complement and not replace any advice
         or information from a health professional.</p>
     <p>This site displays relevant, on topic advertising, clearly separated
-        from the content and clearly marked as advertisement. Content of the site
+        from the content and marked as advertisement. Content of the site
         is not influenced by advertisers. We do not control the ads’ content.</p>
     </div>
 </section>
-
-<section id="help">
-    <h2>Help</h2>
-    <p>Compared to <a href="https://services.nhsbsa.nhs.uk/dmd-browser/">NHSBSA dm+d browser</a>
-        {{ site_name }} elements use different naming where it allows
-        communicating briefly, without acronyms and without sacrificing compatibility.</p>
-    <p>E.g.
-        "<em>Virtual medical product</em>" or "<em>VMT</em>"
-        is called a "<b>Concept</b>" and
-        "<em>Actual medical product</em>" or "<em>AMT</em>"
-        is just called a "<b>Product</b>".
-        See headlines above.</p>
-    <p>{{ site_name }} is optimised to adjust to mobile devices and tablets,
-        fully linkable, optimised for search engines,
-        accessible and fast.</p>
-
-    <p>🔗 You can share or bookmark any link on the site
-        using its URL or dm+d code.
-        <p>E.g. Products (AMP) have the following URL format:<br>
-            <kbd>{{ site_url }}amp/amp/&#8203;optional-name-SNOMED_CODE</kbd>
-        <p>Your link is guaranteed to point to the right place even
-        if product name or other information changes in the future.
-        It will also show other relevant products if this one gets discontinued.
-    <p>🔍 Beside the on-site search engine,
-        you can also use a public search engine to run queries against
-        {{ site_name }} like so:<br>
-        <kbd>testosterone injection -capsules site:unilexicon.com/med</kbd>
-        <p>This takes advantage of advanced operators including "site:"
-        to search within a site only, excluding documents containing word
-        "capsules" using minus. Other operators allow searching for price ranges,
-        titles only, etc. Learn about "advanced search operators" in your public search engine.
-    <p>♿&nbsp;{{ site_name }} is optimised
-        to work well for blind and other disabled users, it is accessible.
-</section>
-
 <section>
-    <h2 id="editorial-policy">Editorial policy</h2>
+    <h2 id="editorial">Editorial policy</h2>
+    <p>🔗 You can share or bookmark any link on the site
+        using its URL copied from your address bar,
+        we guaranteed it will point to the right place even
+        if product name or other information changes in the future.
+
     <p>All data published on this site is consistent with the dm+d as per
         dm+d editorial policy. Full up to date document can be downloaded from the
         <a href="https://www.nhsbsa.nhs.uk/pharmacies-gp-practices-and-appliance-contractors/dictionary-medicines-and-devices-dmd">dm+d documentation</a>.
