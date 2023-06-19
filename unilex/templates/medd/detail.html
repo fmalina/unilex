@@ -16,50 +16,32 @@
 
 <h1>{{ object }}</h1>
 
-<dl>
-{% for field in object.fields %}
-    {% if field.values.0 != None and field.values.0 != '(None)' and field.field.name != 'id' %}
-        <dt>{{ field.field.verbose_name }}</dt>
-        <dd>
-        {% with field.urls|length as len %}
-            {% if len %}
-                {% if len > 1 %}
-                    <ul>{% for value, url in field.urls %}
-                    <li>{% if url %}<a href="{{ url }}">{% endif %}{{ value }}{% if url %}</a>{% endif %}</li>{% endfor %}
-                    </ul>
-                {% else %}
-                    {% for value, url in field.urls %}
-                    {% if url %}<a href="{{ url }}">{% endif %}{{ value }}{% if url %}</a>{% endif %}     {% endfor %}
-                {% endif %}
-            {% endif %}
-        {% endwith %}
-        </dd>
-    {% endif %}
-{% endfor %}
-</dl>
+{% include 'medd/data_dl.html' %}
 
-    <script src="/ad.js"></script>
-    {% include 'ad.html' %}
+<script src="/ad.js"></script>
+{% include 'ad.html' %}
 
 {% for related_object in object.related_objects %}
     <div class="related">
     {% with related=related_object.object_list count=related_object.count %}
         {% if related %}
-            <h2><small>{{ related_object.related_field }}</small>
-                {{ related_object.model.verbose_name_plural }}
-                {% if count > 1 %}<b class="badge">{{ count }}</b>{% endif %}</h2>
+            <p>{{ related_object.model.verbose_name_plural }}
+                {% if count > 1 %}<b class="badge">{{ count }}</b>{% endif %}</p>
             <ul class="ls{% if count > 20 and count < 2000 %} cols{% endif %}">
                 {% if count < 2000 %}
-                    {% for object in related %}
+                    {% for o in related %}
                     {% if count > 20 %}
-                    {% ifchanged object.first_letter %}<li><b>{{ object.first_letter }}</b></li>{% endifchanged %}
+                    {% ifchanged o.first_letter %}<li><b>{{ o.first_letter }}</b></li>{% endifchanged %}
                     {% endif %}
-                    <li><a href="{{ object.url }}">{{ object }}</a></li>
+                    <li>
+                        {% if related_object.model.forward and not 'lookup' in object.url %}
+                            {% with object=o %}{% include 'medd/data_dl.html' %}{% endwith %}
+                        {% else %}
+                            <a href="{{ o.url }}">{{ o }}</a>
+                        {% endif %}</li>
                     {% endfor %}
                 {% else %}
-                    <li>{{ object }} is a very common {{ object.model.verbose_name|capfirst|lower }}.<br>
-                    {{ count }} related {{ related_object.model.verbose_name_plural|capfirst|lower }}
-                    is too many to show here.</li>
+                    <li>Too many to show</li>
                 {% endif %}
             </ul>
         {% endif %}
