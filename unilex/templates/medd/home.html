@@ -1,45 +1,42 @@
 {% extends "medd/base.html" %}
 {% load tags %}
-{% block title %}{{ site_name }}: free fast NHS dm+d browser{% endblock %}
+{% block title %}{{ site_name }} NHS dm+d data browser{% endblock %}
 {% block description %}Search and browse NHS standard Dictionary of Medicines
 and Devices (dm+d), medicine dictionary used throughout the NHS to identify
 medicines and medical devices.{% endblock %}
 
 {% block content %}
-<h1>Browse the dictionary<br>of&nbsp;medicines and devices (dm+d)</h1>
+<h1>Browse the dictionary<br>of&nbsp;medicines and devices  👩🏻‍⚕👨🏽‍🔬 </h1>
 <div class="flex-grid">
     <section class="intro">
-        <p><a href="{{ site_url }}">{{ site_name }}</a>
-            lets you comfortably search and browse NHS standard
-            <b>Dictionary of Medicines and Devices (dm+d)</b>
-            a beautiful dataset created over many years by the NHS.
-        <p>The dictionary is used throughout the NHS (UK National Health Service)
-            as a means of uniquely identifying medicines and medical devices used
+        <p>Search and browse NHS standard
+            <b>Dictionary of Medicines and Devices (dm+d)</b> dataset
+            used throughout the NHS (UK National Health Service)
+            to uniquely identify medicines and medical devices used
             in the health care of patients.
-        <p><b>{{ site_name }}</b> is here for 👩🏻‍⚕️
+        <p>Site is here for
             pharmacists and healthcare professionals to search
             and navigate the terminology or find SNOMED codes,
             search medicines by GTIN/EAN bar codes,
-            👨🏽‍🔬  researchers and students to explore the dataset,
+             researchers and students to explore the dataset,
             programmers and pharma sector companies to use
             DM+D medicine information in their products via our API,
             and the rest of us to learn about available
             medicines and medical devices.</p>
     </section>
     <section>
-        <p>{{ site_name }} allows you to browse medicines by
+        <p>Browse medicines by
             <a href="{{ site_url }}ingredient/ing/">ingredients</a> or their
             <a href="{{ site_url }}vtm/vtm/">therapeutic moiety</a> (molecular segment),
-            browse <a href="{{ site_url }}ampp/price_info/">NHS medicines sorted by price</a>,
+            browse <a href="{{ site_url }}ampp/price_info/">by price</a>,
             lookup devices by <a href="{{ site_url }}lookup/colour/">colour</a>,
             lookup medicines by <a href="{{ site_url }}lookup/flavour/">flavour</a>, etc.<br>
-        <p>Search medicines by name or part of code.
-        <p>Here are various routes you can take to browse the data with examples
-            for each route.
-        <p>See also
+            Search medicines by name or part of code.
+        <p>Below are various routes you can take to browse the data with examples for each,
+            followed by
             <a href="#help">help &amp; advice</a>,
-            <a href="#editorial-policy">editorial policy</a>,
-            <a href="#tech">integration services</a> and contact.
+            <a href="#editorial-policy">editorial policy</a> and
+            <a href="#tech">technical services with contact</a>.
         <p>Last data update: <b>{% include 'medd/last-update.txt' %}</b></p>
     </section>
 </div>
