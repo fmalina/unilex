@@ -18,14 +18,16 @@ hr{margin:20px 0;border:0;border-top:1px solid white;border-bottom:1px solid whi
 .header,.content,.footer{padding:1em 3em}
 .header .logo{padding:.3em 1em .5em 0;float:left}
 .header .logo span{padding:0 .4em;color:#555;letter-spacing:0}
-.header a{text-decoration:none}
+a{text-decoration:none}
+
 .footer{clear:both}
 .searchbox{width:200px;font-size:14px;background:ivory;padding:4px 10px;
     border:1px solid lightgray;border-radius:4px;opacity:.8}
 .searchbox:focus{opacity:1;outline:0}
 
-.badge{border-radius:7px;background:#3a87ad;color:white;
-    font-size:small;padding:2px 7px;vertical-align:super}
+.badge{border-radius:.5rem;background:#555;color:white;
+    font-size:.85rem;padding:.2rem .4rem;vertical-align:middle;
+    position:relative;top:-2px;font-weight:normal}
 .ls li{padding-bottom:.5em}
 .ls a:visited{color:purple}
 .cols{padding:20px 0 0 0;margin:0;list-style-type:none;
@@ -33,12 +35,15 @@ hr{margin:20px 0;border:0;border-top:1px solid white;border-bottom:1px solid whi
 .clear{clear:both}
 .left-padded{float:left;margin-right:1em}
 
-table{padding-top:20px}
-table th,table td{padding:3px 10px}
-table th{vertical-align:top;text-align:left;float:left;width:150px;padding-right:10px}
-table td{vertical-align:bottom}
-table li{margin-left:20px;list-style:disc}
-.odd{background:#f5f5f5}
+dt,dd{display:block;float:left;font-size:.9rem}
+dt{display:block;width:12.2em;color:#555;
+    clear:left;text-align:right}
+dt:after{content:':'}
+dt,dd{padding:.4em 0;border-top:1px solid #eee}
+dt:first-child,dt:first-child + dd{border:0}
+dd{display:block;max-width:calc(100% - 13em);margin-left:0;padding-left:1ex}
+dd li{margin-left:2em;list-style:disc}
+dl::after{content:'';clear:both;display:table}
 
 .pagination{display:inline-block;color:#999;margin:25px 0;border:1px solid #ddd;
     border-radius:5px;box-shadow:0 1px 2px #eee}

@@ -16,12 +16,11 @@
 
 <h1>{{ object }}</h1>
 
-<table>
+<dl>
 {% for field in object.fields %}
     {% if field.values.0 != None and field.values.0 != '(None)' and field.field.name != 'id' %}
-    <tr class="{% cycle 'odd' 'even' %}">
-        <th>{{ field.field.verbose_name }}</th>
-        <td>
+        <dt>{{ field.field.verbose_name }}</dt>
+        <dd>
         {% with field.urls|length as len %}
             {% if len %}
                 {% if len > 1 %}
@@ -34,11 +33,10 @@
                 {% endif %}
             {% endif %}
         {% endwith %}
-        </td>
-    </tr>
+        </dd>
     {% endif %}
 {% endfor %}
-</table>
+</dl>
 
     <script src="/ad.js"></script>
     {% include 'ad.html' %}

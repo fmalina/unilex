@@ -72,7 +72,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'unilex.urls'
-STATIC_CACHING = True
+STATIC_CACHING = not DEBUG
 DATABASE_ROUTERS = ['medd.db_router.MeddDbRouter']
 
 INSTALLED_APPS = [
