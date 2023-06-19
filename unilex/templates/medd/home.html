@@ -33,7 +33,7 @@ medicines and medical devices.{% endblock %}
 
 <ul class="cols 2col">
 {% for app, new, original, models in app_list %}
-    <li class="section">{{ new }}
+    <li class="section">{{ original }}
     <ul>
         {% for model in models %}
         <li><a href="{{ model.url }}">{{ model.verbose_name_plural|capfirst }}</a>
