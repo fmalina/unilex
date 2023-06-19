@@ -1,0 +1,18 @@
+<dl>
+{% for field in object.fields %}
+    {% if field.field.verbose_name != related_object.related_field and field.show %}
+        <dt>{{ field.field.verbose_name }}</dt>
+        <dd>
+        {% with field.urls|length as len %}
+            {% if len %}
+                {% if len > 1 %}<ul>{% endif %}
+                {% for value, url in field.urls %}
+                {% if len > 1 %}<li>{% endif %}{% if url %}<a href="{{ url }}">{{ value }}</a>{% else %}{{ value }}{% endif %}
+                {% endfor %}
+                {% if len > 1 %}</ul>{% endif %}
+            {% endif %}
+        {% endwith %}
+        </dd>
+    {% endif %}
+{% endfor %}
+</dl>
