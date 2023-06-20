@@ -38,7 +38,7 @@ medicines and medical devices.{% endblock %}
         {% for model in models %}
         <li><a href="{{ model.url }}">{{ model.verbose_name_plural|capfirst }}</a>
             <br><small>{% for object in model.sample_objects %}
-                    <a href="{{ object.url }}">{{ object }}</a>{% if not forloop.last %},
+                {{ object }}{% if not forloop.last %},
                     {% else %}&hellip;{% endif %}
                 {% endfor %}</small></li>
         {% endfor %}

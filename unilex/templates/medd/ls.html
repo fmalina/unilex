@@ -12,6 +12,13 @@
 
 {% with model.objects as objects %}
 <h1>{{ model.verbose_name_plural|capfirst }} <b class="badge">{{ count }}</b></h1>
+{% if a_z and count > 500 %}
+<div class="pagination a-z">
+{% for letter in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' %}
+    <a href="AZ*{{ letter }}"{% if forloop.last %} class="last"{% endif %}>{{ letter }}</a>
+{% endfor %}
+</div>
+{% endif %}
 
 {% autopaginate objects 100 %}
 <ul class="ls{% if count > 20 %} cols{% endif %}">
@@ -28,14 +35,7 @@
 <div class="clear"></div>
 
 {% paginate %}
-{% if a_z and count > 500 %}
-<div class="clear"></div>
-<div class="pagination a-z">
-{% for letter in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' %}
-    <a href="AZ*{{ letter }}"{% if forloop.last %} class="last"{% endif %}>{{ letter }}</a>
-{% endfor %}
-</div>
-{% endif %}
+
 
 {% endwith %}
 {% endblock %}
