@@ -21,7 +21,7 @@
 {% endif %}
 
 {% autopaginate objects 100 %}
-<ul class="ls{% if count > 20 %} cols{% endif %}">
+<ul class="ls">
 {% for object in objects %}
     {% ifchanged object.first_letter %}
         {% if not forloop.first and not object.first_letter.isdigit and count > 20 %}
