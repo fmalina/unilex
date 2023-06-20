@@ -6,34 +6,14 @@ and Devices (dm+d), medicine dictionary used throughout the NHS to identify
 medicines and medical devices.{% endblock %}
 
 {% block content %}
-<h1>Browse the dictionary<br>of&nbsp;medicines and devices  👩🏻‍⚕👨🏽‍🔬 </h1>
-<div class="flex-grid">
-    <section class="intro">
-        <p>Search and browse NHS standard
-            <b>Dictionary of Medicines and Devices (dm+d)</b> dataset
-            used throughout the NHS (UK National Health Service)
-            to uniquely identify medicines and medical devices used
-            in the health care of patients.
-        <p>Site is here to learn about available medicines and medical devices
-            for pharmacists and healthcare professionals to search
-            and navigate the terminology or find SNOMED codes,
-            search medicines by GTIN/EAN bar codes,
-            researchers and students to explore the dataset,
-            programmers and companies to use DM+D data via our API.</p>
-    </section>
-    <section>
-        <p>Browse medicines by ingredients or their therapeutic moiety (molecular segment),
-            browse by price, lookup devices by colour, lookup medicines by flavour, etc.<br>
-            Search medicines by name or part of code.
-        <p>Below are various routes you can take to browse the data with examples for each,
-            followed by editorial policy and technical services with contact.
-        <p>Last data update: <b>{% include 'medd/last-update.txt' %}</b></p>
-    </section>
-</div>
+<h1>Explore the NHS Dictionary of<br>Medicines and Devices</h1>
+<p>Last data update: <b>{% include 'medd/last-update.txt' %}</b></p>
+
+<hr>
 
 <ul class="cols 2col">
 {% for app, new, original, models in app_list %}
-    <li class="section">{{ original }}
+    <li class="section">{% if original == 'Lookup' %}Lookup by{% endif %}
     <ul>
         {% for model in models %}
         <li><a href="{{ model.url }}">{{ model.verbose_name_plural|capfirst }}</a>
@@ -50,22 +30,7 @@ medicines and medical devices.{% endblock %}
 
 <div class="flex-grid">
 <section>
-    <h2 id="tech">Technical Services</h2>
-    <p>REST API, CSV and SQL exports, custom exports and API endpoints as per customer requirements are available.
-    <ul>
-    <li><u>API for medicine product search</u>
-        {#<a href="{{ site_url }}api/search?q=paracetamol"></a>#}</li>
-    <li><u>API for product lookups using GTIN/EAN codes</u>
-        {#<a href="{{ site_url }}api/gtin/5017007016533"></a>#}</li>
-    <li><u>Sample product pack CSV export</u>
-        {#<a href="{{ site_url }}api/csv"></a>#}</li>
-    <li><u>Regular DM+D as SQL export</u></li>
-    </ul>
-    <p>Medicine server with admin site, licensing and customisation.
-    <p>Request API access, full data or CSV exports, enquire about the
-        integration with your systems. <a href="/fm/">Contact us.</a>
-
-    <div style="font-size:smaller;padding:.5em 1em;background:ivory">
+    <div class="notices">
     <h3>Privacy and cookies</h3>
     <p>This website does not collect your personal information.
         Access of each resource is logged in our server logs, which aren't normally reviewed.
@@ -80,15 +45,30 @@ medicines and medical devices.{% endblock %}
     <p>This site displays relevant, on topic advertising, clearly separated
         from the content and marked as advertisement. Content of the site
         is not influenced by advertisers. We do not control the ads’ content.</p>
+    <hr>
+    <h3>Commercial Services</h3>
+    <p>REST API, CSV and SQL exports, custom exports and API endpoints as per customer requirements are available.
+    <ul>
+    <li><u>API for medicine product search</u>
+        {#<a href="{{ site_url }}api/search?q=paracetamol"></a>#}</li>
+    <li><u>API for product lookups using GTIN/EAN codes</u>
+        {#<a href="{{ site_url }}api/gtin/5017007016533"></a>#}</li>
+    <li><u>Sample product pack CSV export</u>
+        {#<a href="{{ site_url }}api/csv"></a>#}</li>
+    <li><u>Regular DM+D as SQL export</u></li>
+    </ul>
+    <p>Medicine server with admin site, licensing and customisation.
+    <p>Request API access, full data or CSV exports, enquire about the
+        integration with your systems.    <br><br>
+    <p><a class="btn" href="/fm/">Contact us</a>
     </div>
 </section>
 <section>
-    <h2 id="editorial">Editorial policy</h2>
-    <p>🔗 You can share or bookmark any link on the site
-        using its URL copied from your address bar,
-        we guaranteed it will point to the right place even
+    <h2>Editorial policy</h2>
+    <p>Share any link on the site using its URL copied from your address bar,
+        we guarantee it will point to the right place even
         if product name or other information changes in the future.
-
+    <hr>
     <p>All data published on this site is consistent with the dm+d as per
         dm+d editorial policy. Full up to date document can be downloaded from the
         <a href="https://www.nhsbsa.nhs.uk/pharmacies-gp-practices-and-appliance-contractors/dictionary-medicines-and-devices-dmd">dm+d documentation</a>.
@@ -102,10 +82,9 @@ medicines and medical devices.{% endblock %}
     <h3>Is the content regularly reviewed?</h3>
     <p>Content of dm+d is continually reviewed and improved. Releases of up-to-date
         datasets are provided weekly.</p>
-        {{ site_name }} is kept up to date with
+        This site is kept up to date with
         the latest releases on a regular basis unless there are backwards
         incompatible changes to the dm+d schema or libraries used.
-    <p>Last data update: {% include 'medd/last-update.txt' %}</p>
 </section>
 </div>
 {% endblock %}
