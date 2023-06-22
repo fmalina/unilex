@@ -4,18 +4,11 @@
 
 {% block content %}
 <p class="breadcrumbs">
-    <a href="{{ site_url }}">Home</a> /
-    {% if 'lookup' in object.url %}<span class="muted">Lookup:&nbsp;</span>{% endif %}
-        {% if a_z %}
-            <a href="{{ object.model.url }}AZ*{{ a_z }}">{{ object.model.verbose_name_plural|capfirst }}: {{ a_z }}</a>
-        {% else %}
-            <a href="{{ object.model.url }}">{{ object.model.verbose_name_plural|capfirst }}</a>
-        {% endif %} /
-    <span class="active">{{ object }}</span>
+<a href="{{ site_url }}">Home</a> / {% if 'lookup' in object.url %}<span class="muted">Lookup:&nbsp;</span>
+    {% endif %}{% if a_z %}<a href="{{ object.model.url }}AZ*{{ a_z }}">{{ object.model.verbose_name_plural|capfirst }}: {{ a_z }}</a>{% else %}
+    <a href="{{ object.model.url }}">{{ object.model.verbose_name_plural|capfirst }}</a>{% endif %} / <span class="active">{{ object }}</span>
 </p>
-
 <h1>{{ object }}</h1>
-
 {% include 'medd/data_dl.html' %}
 
 <script src="/ad.js"></script>
@@ -25,8 +18,7 @@
     <div class="related">
     {% with related=related_object.object_list count=related_object.count %}
         {% if related %}
-            <p>{{ related_object.model.verbose_name_plural }}
-                {% if count > 1 %}<b class="badge">{{ count }}</b>{% endif %}</p>
+            <p>{{ related_object.model.verbose_name_plural }}{% if count > 1 %} <b class="badge">{{ count }}</b>{% endif %}</p>
             <ul class="ls{% if count > 20 and count < 2000 %} cols{% endif %}">
                 {% if count < 2000 %}
                     {% for o in related %}

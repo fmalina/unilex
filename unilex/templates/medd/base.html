@@ -15,13 +15,9 @@
     <header>
     <div class="header">
         <div>
-            <div class="logo">
-                Unilexicon
-                <a href="{{ site_url }}">Medicines</a>
-            </div>
+            <div class="logo">Unilexicon <a href="{{ site_url }}">Medicines</a></div>
             <form method="GET" action="{{ site_url }}s" target="_top">
-            <input type="text" name="q" class="searchbox"{% if q %} value="{{q}}"{% endif %}
-                   placeholder="Search medicine name or code">
+            <input type="text" name="q" class="searchbox"{% if q %} value="{{q}}"{% endif %} placeholder="Search medicine name or code">
             {% csrf_token %}
             </form>
         </div>
@@ -31,8 +27,7 @@
         {% block content %}
         {% endblock %}
     </div>
-    <div class="footer"><small>&copy; {% now "Y" %} {{ site_name }}
-        {% if app_list %} by <a href="/fm/">F. Malina</a></small>{% endif %}</div>
+    <div class="footer"><small>&copy; {% now "Y" %} {{ site_name }}{% if app_list %} by <a href="/fm/">F. Malina</a></small>{% endif %}</div>
     <div id="cookie-consent"></div>
 </body>
 </html>
