@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    {% for segment, page in sitemaps %}
+    {% for app_model, page in sitemaps %}
     <sitemap>
-        <loc>{{ site_root }}{{ site_url }}{{ segment }}/{{ segment }}/sitemap{{ page }}.xml</loc>
+        <loc>{{ site_root }}{{ site_url }}{{ app_model }}/sitemap{{ page }}.xml</loc>
     </sitemap>
     {% endfor %}
 </sitemapindex>
