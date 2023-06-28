@@ -20,3 +20,5 @@ django-allauth
 # Install using:
 # sudo pip3 install -r requirements.txt --upgrade
 
+# translit
+transliterate

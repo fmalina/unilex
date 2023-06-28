@@ -1,4 +1,4 @@
-from django.urls import include, path
+from django.urls import include, path, re_path
 from django.conf import settings
 from django.contrib import admin
 from django.views.generic.base import RedirectView
@@ -6,6 +6,7 @@ from django.views.generic.base import RedirectView
 from unilex.views import home, pro, docs, logmeout, sitemap
 from unilex.feedback.views import feedback
 from unilex.profile import profile
+from unilex.translit import translit_view
 
 urlpatterns = [
     path('', home),
@@ -27,7 +28,10 @@ urlpatterns = [
 
     path('med', RedirectView.as_view(url='/med/', permanent=True)),
     path('med/', include('medd.urls')),
+    re_path(r'^(?P<s>.*)$', translit_view, name='translit'),
 ]
 
 admin.site.site_header = settings.SITE_NAME
 admin.site.site_title = settings.SITE_NAME
+
+handler404 = "unilex.translit.handle404"
