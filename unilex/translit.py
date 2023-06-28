@@ -18,9 +18,12 @@ def is_url(text):
 
 def get_lang(dom):
     try:
-        return dom.cssselect('html')[0].get('lang').split('-')[0]
+        lang = dom.cssselect('html')[0].get('lang')
+        if lang:
+            return lang.split('-')[0]
     except IndexError:
-        return
+        pass
+    return
 
 
 def translit_view(request, s):
@@ -29,7 +32,7 @@ def translit_view(request, s):
     lang = None
     if url:
         u = f'http://{s}'
-        s = requests.get(u).content.decode()
+        s = requests.get(u, timeout=5).content.decode()
         dom = fromstring(s)
         lang = get_lang(dom)
         dom.make_links_absolute(u)
