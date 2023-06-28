@@ -1,5 +1,5 @@
 import requests
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.shortcuts import render
 from lxml.html import fromstring, tostring
 from transliterate import translit, utils as err
@@ -30,7 +30,7 @@ def translit_view(request, s):
     s = s.replace('http://', '').replace('https://', '')
     url = is_url(s)
     lang = None
-    if url:
+    if url and 0:  # disable
         u = f'http://{s}'
         s = requests.get(u, timeout=5).content.decode()
         dom = fromstring(s)
@@ -40,7 +40,7 @@ def translit_view(request, s):
     try:
         result = translit(s, language_code=lang, reversed=True)
     except (err.LanguageDetectionError, err.LanguagePackNotFound):
-        result = s
+        raise Http404
     if url:
         return HttpResponse(result, status=404)
     return render(request, 'translit.html', {'content': result}, status=404)
