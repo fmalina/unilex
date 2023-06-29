@@ -1,14 +1,13 @@
 {% extends 'pay/base.html' %}
 
 {% block content %}
-<h1>Thank you for considering<br>
-    professional membership</h1>
+<h1>Purchase professional membership</h1>
 <ul>
+    <li>Support continued development of Unilexicon
     <li>Use and export private vocabularies
-    <li>Access first-class technical support
     <li>Request a team authority multi-user setup for your organization
+    <li>Access first-class technical support
 </ul>
-<p>Support development work on Unilexicon by becoming a Pro member
 
 <form method="post" action="#" id="plans">
     {% csrf_token %}

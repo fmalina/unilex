@@ -3,7 +3,7 @@ from django.conf import settings
 from django.contrib import admin
 from django.views.generic.base import RedirectView
 
-from unilex.views import home, pro, docs, logmeout, sitemap
+from unilex.views import home, docs, logmeout, sitemap
 from unilex.feedback.views import feedback
 from unilex.profile import profile
 from unilex.translit import translit_view
@@ -21,7 +21,6 @@ urlpatterns = [
     path('profile', profile, name='profile'),
     path('docs', docs, name='docs'),
     path('docs-nav-queries', docs),
-    path('pro', pro, name='pro'),
     path('pro/', include('pay.urls')),
     path('logout/', logmeout, name='auth_logout'),
     path('sitemap.xml', sitemap, name='sitemap'),
