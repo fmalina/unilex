@@ -26,9 +26,9 @@ urlpatterns = [
     path('logout/', logmeout, name='auth_logout'),
     path('sitemap.xml', sitemap, name='sitemap'),
 
+    re_path(r'^tl/(?P<s>.*)$', translit_view, name='translit'),
     path('med', RedirectView.as_view(url='/med/', permanent=True)),
     path('med/', include('medd.urls')),
-    re_path(r'^(?P<s>.*)$', translit_view, name='translit'),
 ]
 
 admin.site.site_header = settings.SITE_NAME
