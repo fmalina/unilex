@@ -14,24 +14,19 @@ Simple knowledge organization system (SKOS) thesaurus software for your organisa
     <div id="editor">
         <h2>Visual taxonomy editor and management tools for
             controlled vocabularies and thesauri</h2>
+        <p class="btn-links clearfix">
+            <a class="btn" href="{% url 'listings' %}">Explore taxonomies</a>
+            {% include 'vocabulary/add.html' %}
         <ul>
         <li>use <a href="/tree/unilexicon">beautiful graphs</a>
             and predictive taxonomy search to explore and edit vocabularies
         <li>drag and drop concept ordering with attractive
             <a href="/tree/unilexicon#view-card">intuitive interface</a>
-        <li>comprehend and manage relations in large complex taxonomies, even
-            <a href="/tree/chinese" title="Chinese (Read: Yǔwén)">语文</a>
-        <li>author simple knowledge organisation systems (SKOS) fast and well</li>
+        <li>comprehend and manage relations in large complex taxonomies
+        <li>author simple knowledge organisation systems (SKOS) fast and well
         <li>import and export formats including JSON, SKOS,
-            HTML lists,
-            markdown/text, CSV and Excel</li>
-        <!--li>simplify writing of contextual queries for navigation vocabularies</li-->
-        <li><a href="{% url 'load' 'md' %}">generate</a> taxonomies
-            using OpenAI's pretrained transformer
+            HTML lists, markdown/text, CSV and Excel
         </ul>
-        <p class="btn-links clearfix">
-            <a class="btn" href="{% url 'listings' %}">Explore taxonomies</a>
-            {% include 'vocabulary/add.html' %}
         <p><small>Unilexicon is a free tool for creating and managing public taxonomies with paid
             <a href="{% url 'pro' %}">professional membership</a> features that include private
             vocabularies, collaboration tools, and fast technical support
@@ -52,11 +47,9 @@ relationships.
 
 <p>I believe that good design is about decreasing cognitive load and making
 complex tasks feel intuitive and easy. That's why Unilexicon handles the heavy
-technical aspects for you, like handling XML serialization, storing RDF triples, and
-generating unique concept IDs. For example by default, Unilexicon generates human-readable,
-hyphenated concept slugs instead of using GUIDs or numerical IDs, so your SKOS XML is
-legible and easy to work with while drag-and-drop visual sorting and relationship
-representation helps ensure correctness and reduces the chance of mistakes.
+technical aspects for you, like handling XML serialization, storing RDF, and
+generating great unique human-readable concept IDs. Drag-and-drop visual sorting
+and relationship representation helps ensure correctness and reduces mistakes.
 
 <p>I'm always looking for ways to make Unilexicon better,
 and I do rely on your feedback to prioritise tasks.
