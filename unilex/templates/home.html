@@ -10,13 +10,13 @@ Simple knowledge organization system (SKOS) thesaurus software for your organisa
 {% block headspace %}
 <section class="headspace">
     <h1>Taxonomy editor suite</h1>
+    <p class="btn-links clearfix">
+        <a class="btn" href="{% url 'listings' %}">Explore taxonomies</a>
+        {% include 'vocabulary/add.html' %}
     <p>Unilexicon™ a visual editor and taxonomy manager for authoring controlled vocabularies with a content tagging extension.</p>
     <div id="editor">
         <h2>Visual taxonomy editor and management tools for
             controlled vocabularies and thesauri</h2>
-        <p class="btn-links clearfix">
-            <a class="btn" href="{% url 'listings' %}">Explore taxonomies</a>
-            {% include 'vocabulary/add.html' %}
         <ul>
         <li>use <a href="/tree/unilexicon">beautiful graphs</a>
             and predictive taxonomy search to explore and edit vocabularies
