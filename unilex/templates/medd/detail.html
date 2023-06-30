@@ -11,9 +11,6 @@
 <h1>{{ object }}</h1>
 {% include 'medd/data_dl.html' %}
 
-<script src="/ad.js"></script>
-{% include 'ad.html' %}
-
 {% for related_object in object.related_objects %}
     {% with related=related_object.object_list count=related_object.count %}
     {% if count %}<div class="related">
@@ -33,5 +30,8 @@
     </div>{% endif %}
     {% endwith %}
 {% endfor %}
+
+<script src="/ad.js"></script>
+{% include 'ad.html' %}
 
 {% endblock %}
