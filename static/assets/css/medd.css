@@ -18,7 +18,10 @@ hr{margin:20px 0;border:0;border-bottom:1px solid gainsboro}
 .header,.content,.footer{padding:1em 3em}
 .header .logo{padding:.3em 1em .5em 0;float:left}
 .header .logo span{padding:0 .4em;color:#555;letter-spacing:0}
-a{text-decoration:none}
+.header a{text-decoration:none}
+
+dd a:visited,
+li a:visited{color:purple}
 
 .footer{clear:both}
 .searchbox{width:200px;font-size:14px;background:ivory;padding:4px 10px;
@@ -29,18 +32,21 @@ a{text-decoration:none}
     font-size:.85rem;padding:.2rem .4rem;vertical-align:middle;
     position:relative;top:-2px;font-weight:normal}
 .ls li{padding-bottom:.5em}
-.ls a:visited{color:purple}
+.data_ls li{padding-bottom:.3em}
 .cols{margin:0;list-style-type:none;
       column-count:2;column-rule:1px solid #ddd;column-gap:4em}
 .clear{clear:both}
 .left-padded{float:left;margin-right:1em}
 
+.related p{margin-bottom:.5em;padding-top:1em;text-transform:uppercase}
+dl{margin-top:0}
 dt,dd{display:block;float:left;font-size:.9rem}
 dt{display:block;width:12.2em;color:#555;
     clear:left;text-align:right}
 dt:after{content:':'}
-dt,dd{padding:.4em 0;border-top:1px solid #eee}
-dt:first-child,dt:first-child + dd{border:0}
+dt,dd{padding:.4em 0;border-top:1px solid #f3f3f3}
+dt{border-left:1px solid #ddd}
+dt:first-child,dt:first-child + dd{border-top:0}
 dd{display:block;max-width:calc(100% - 13em);margin-left:0;padding-left:1ex}
 dd li{margin-left:2em;list-style:disc}
 dl::after{content:'';clear:both;display:table}

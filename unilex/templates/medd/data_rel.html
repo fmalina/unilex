@@ -3,7 +3,7 @@
         <p>{% if rto.count > 1 %}<b class="badge">{{ rto.count }}</b>{% endif %}
             {{ rto.model.verbose_name_plural }}
         {% if not rto.object_list %} (too many to show)
-        {% else %}<ul class="ls">
+        {% else %}<ul class="data_ls">
         {% for o in rto.object_list %}
             {% if rto.count > 30 %}
             {% ifchanged o.first_letter %}<li><b>{{ o.first_letter }}</b></li>{% endifchanged %}
