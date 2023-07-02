@@ -1,0 +1,18 @@
+{% for rto in object.related_objects %}
+    {% if rto.count %}<div class="related">
+        <p>{{ rto.model.verbose_name_plural }}{% if rto.count > 1 %}
+            <b class="badge">{{ rto.count }}</b>{% endif %}
+        {% if not rto.object_list %} (too many to show)
+        {% else %}<ul class="ls">
+        {% for o in rto.object_list %}
+            {% if rto.count > 30 %}
+            {% ifchanged o.first_letter %}<li><b>{{ o.first_letter }}</b></li>{% endifchanged %}
+            {% endif %}
+            <li>{% if rto.model.belongs_to and not 'lookup' in object.url %}
+                    {% with object=o %}{% include 'medd/data_dl.html' %}{% endwith %}
+                {% else %}<a href="{{ o.url }}">{{ o }}</a>
+                {% endif %}</li>
+        {% endfor %}
+        </ul>{% endif %}
+    </div>{% endif %}
+{% endfor %}
