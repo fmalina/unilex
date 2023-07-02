@@ -1,7 +1,7 @@
 {% for rto in object.related_objects %}
     {% if rto.count %}<div class="related">
-        <p>{{ rto.model.verbose_name_plural }}{% if rto.count > 1 %}
-            <b class="badge">{{ rto.count }}</b>{% endif %}
+        <p>{% if rto.count > 1 %}<b class="badge">{{ rto.count }}</b>{% endif %}
+            {{ rto.model.verbose_name_plural }}
         {% if not rto.object_list %} (too many to show)
         {% else %}<ul class="ls">
         {% for o in rto.object_list %}
