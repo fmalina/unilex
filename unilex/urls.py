@@ -6,7 +6,7 @@ from django.views.generic.base import RedirectView
 from unilex.views import home, docs, logmeout, sitemap
 from unilex.feedback.views import feedback
 from unilex.profile import profile
-from unilex.translit import translit_view
+from unilex.translit import translit_view, translit_custom
 
 urlpatterns = [
     path('', home),
@@ -25,6 +25,7 @@ urlpatterns = [
     path('logout/', logmeout, name='auth_logout'),
     path('sitemap.xml', sitemap, name='sitemap'),
 
+    re_path(r'^translit$', translit_custom, name='translit'),
     re_path(r'^tl/(?P<s>.*)$', translit_view, name='translit'),
     path('med', RedirectView.as_view(url='/med/', permanent=True)),
     path('med/', include('medd.urls')),
