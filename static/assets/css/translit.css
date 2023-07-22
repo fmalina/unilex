@@ -1,6 +1,0 @@
-h1,.list-inline{display:inline-block}
-.list-inline{margin:0}
-.list-inline li{display:inline-block;list-style:none;padding-right:2em}
-.list-inline a{text-decoration:none}
-.translit textarea{font-family:monospace;max-width:calc(100% - 23px)}
-.translit i{float:left;padding:3px 3px 0 0;width:20px;font-style:normal;font-weight:bold}

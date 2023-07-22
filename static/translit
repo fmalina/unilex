@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Transliterate Russian, Greek and Georgian online</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy"
+      content="default-src 'unsafe-inline';style-src 'unsafe-inline'">
+<style>
+body{font-family:helvetica,sans-serif;color:#333;padding:.5rem}
+header{text-align:center;padding:.5rem}
+header a{text-transform:uppercase;letter-spacing:.2rem;font-size:.9rem;padding-top:1rem}
+h1{font-weight:normal;font-size:.8rem;text-transform:uppercase}
+a{color:royalblue;text-decoration:none}
+button{padding:.5rem 1rem;background:darkgoldenrod;color:white;border:0;font-size:.8rem;text-transform:uppercase}
+button,textarea{border-radius:3px}
+textarea{font-family:monospace;border:1px solid gainsboro;min-width:calc(100% - 2.4rem);padding:.2rem}
+textarea,form span{display:inline-block}
+form span{padding:3px 3px 0 0;width:1.4rem;font-size:.9rem;position:relative;top:-1rem}
+
+#langs{padding:0}
+#langs li{display:inline-block;list-style:none;padding-right:2em}
+#langs a{font-size:.8rem}
+#langs,.submit{text-align:center}
+#io{position:relative}
+#swap{position:absolute;top:1.8rem;left:0;font-size:.8rem}
+</style>
+</head>
+<body>
+<header>
+    <nav><a href="https://unilexicon.com" class="logo">Unilexicon</a></nav>
+    <h1>Transliterator</h1>
+</header>
+<main>
+    <form name="translit">
+        <p><span>↓</span><textarea id="txt" name="txt" rows="10"
+            placeholder="Enter text to transliterate"></textarea>
+        <p class="submit"><button id="submit">Transliterate</button>
+
+        <ul id="langs">
+            <!--li><a id="sk_en" href="#">č,š / ch,sh</a-->
+        </ul>
+        <p id="io">
+          <a id="swap" href="#">↑↓</a>
+          <span>·→</span><textarea name="inp"
+             placeholder="Transliterate from: a b v g d... sh ch oo the *ed... st* sp*"></textarea>
+             <br>
+          <span>→·</span><textarea name="out"
+             placeholder="Transliterate to:   а б в г д...  š  č  ú   d   d... št šp"></textarea>
+        <blockquote><p id="result"></p></blockquote>
+    </form>
+</main>
+
+<!--div id="cookie-consent"></div>
+<script src="https://unilexicon.com/assets/js/cookies.js?1.72"></script-->
+<script>
+const maps = {
+  ru_xx: "а б в г д е ё ж з и й к л м н о п ку р с т у ф  х ц ч ш  щ ъ ы ь э  ю  я",
+  ru_sk: "a b v g d e é ž z i j k l m n o p q  r s t u f ch c č š šč ъ y ' é ju ja",
+  gr_xx: "α β γ δ ε ζ η  θ ι κ λ μ ν ξ ο π ρ σ τ υ φ  χ  ψ ω",
+  gr_sk: "a b g d e z i th i k l m n x o p r s t u f ch ps o",
+  ka_xx: "ა ბ ვ გ დ ე ვ ზ თ ი კ ლ მ ნ ო პ რ ს ტ უ ფ ქ  ღ ყ შ ჩ ც  ძ  წ  ჭ  ხ ჯ ჰ",
+  ka_sk: "a b v g d e v z t i k l m n o p r s t u f k gh q š č c ts dz ts kh j h",
+};
+const lookup = {
+  'kalat': { inp: 'ka_xx', out: 'ka_sk', label: '🇬🇪 აბვ → abc'},
+  'grlat': { inp: 'gr_xx', out: 'gr_sk', label: '🇬🇷 αβγ → abc'},
+  'cylat': { inp: 'ru_xx', out: 'ru_sk', label: '🇷🇺 абв → abc'},
+};
+const form = document.forms['translit'];
+function Id(s){return document.getElementById(s);}
+function updateURL(f) {
+  const data = new FormData(f);
+  const qs = new URLSearchParams(data).toString();
+  const curr = new URL(window.location.href);
+  const newURL = `${curr.pathname}?${qs}`;
+  history.replaceState(null, null, newURL);
+}
+function initTranslitForm() {
+  const params = new URLSearchParams(window.location.search);
+  ['inp', 'out', 'txt'].forEach(p => form[p].value = form[p].value || params.get(p));
+  for (const code in lookup) {
+    const { inp, out, label } = lookup[code];
+    const li = document.createElement('li');
+    const a = document.createElement('a');
+    a.id = code;
+    a.href = '#';
+    a.textContent = label;
+    a.addEventListener('click', function(e) {
+      e.preventDefault();
+      form.inp.value = maps[inp];
+      form.out.value = maps[out];
+      translit(form.txt.value);
+    });
+    li.appendChild(a);
+    Id('langs').prepend(li);
+  }
+  Id('swap').addEventListener('click', function(e) {
+    e.preventDefault();
+    var a = form.inp.value;
+    var b = form.out.value;
+    form.inp.value = b;
+    form.out.value = a;
+    translit(form.txt.value);
+  });
+  Id('submit').addEventListener('click', function(e){
+    e.preventDefault();
+    translit(form.txt.value);
+  });
+  Id('txt').addEventListener('keyup', function(e){
+    translit(form.txt.value);
+  });
+  translit(form.txt.value);
+}
+document.addEventListener('DOMContentLoaded', initTranslitForm);
+function translit(txt) {
+  const inpMap = form.inp.value.split(/\s+/);
+  const outMap = form.out.value.split(/\s+/);
+  const ioMap = inpMap.map((a, i) => [a, outMap[i]]);
+  const result = txt.split(' ').map(word => {
+    for (const [a, b] of ioMap) {
+      const ar = new RegExp(a, 'g');
+      if (word === word.toUpperCase()) {
+        word = word.toLowerCase().replace(ar, b).toUpperCase();
+      } else if (word === word.charAt(0).toUpperCase() + word.slice(1)) {
+        word = word.toLowerCase().replace(ar, b).replace(/^\w/, c => c.toUpperCase());
+      } else {
+        word = word.replace(ar, b);
+      }
+      // word beginnings and endings
+      if (a.startsWith('*') || a.endsWith('*')) {
+        a = a.replace(/\*/g, '');
+        if (word.startsWith(a) || word.endsWith(a)) {
+          word = word.replace(new RegExp(a, 'g'), b);
+        }
+      }
+    }
+    return word;
+  });
+
+  //const [newA, newB] = ioMap.reduce(([aAcc, bAcc], [a, b]) => {
+  //  const newA = b.length > a.length ? a.padStart(b.length) : a;
+  //  const newB = a.length > b.length ? b.padStart(a.length) : b;
+  //  return [aAcc.concat(newA), bAcc.concat(newB)];
+  //  }, [[], []]);
+
+  updateURL(form);
+  Id('result').innerText = result.join(' ');
+  //form.inp.value = newA.join(' ');
+  //form.out.value = newB.join(' ');
+}
+</script>
+</body>
+</html>
