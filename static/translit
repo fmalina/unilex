@@ -62,8 +62,8 @@ const maps = {
 };
 const lookup = {
   'cylat': { inp: 'ru_xx', out: 'ru_sk', label: '🇷🇺 абв / abc'},
-  'kalat': { inp: 'ka_xx', out: 'ka_sk', label: '🇬🇪 აბვ / abc'},
-  'grlat': { inp: 'gr_xx', out: 'gr_sk', label: '🇬🇷 αβγ / abc'},
+  'kalat': { inp: 'ka_xx', out: 'ka_sk', label: '🇬🇪 აბვ'},
+  'grlat': { inp: 'gr_xx', out: 'gr_sk', label: '🇬🇷 αβγ'},
 };
 const form = document.forms['translit'];
 function Id(s){return document.getElementById(s);}
