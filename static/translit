@@ -2,28 +2,29 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<title>Transliterate Russian, Greek and Georgian online</title>
+<title>Transliterate Cyrillic, Greek and Georgian online</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy"
       content="default-src 'unsafe-inline';style-src 'unsafe-inline'">
 <style>
 body{font-family:helvetica,sans-serif;color:#333;padding:.5rem}
 header{text-align:center;padding:.5rem}
+header a, h1, button{text-transform:uppercase;font-size:.8rem}
 header a{text-transform:uppercase;letter-spacing:.2rem;font-size:.9rem;padding-top:1rem}
-h1{font-weight:normal;font-size:.8rem;text-transform:uppercase}
+h1{font-weight:normal}
 a{color:royalblue;text-decoration:none}
-button{padding:.5rem 1rem;background:darkgoldenrod;color:white;border:0;font-size:.8rem;text-transform:uppercase}
-button,textarea{border-radius:3px}
-textarea{font-family:monospace;border:1px solid gainsboro;min-width:calc(100% - 2.4rem);padding:.2rem}
+button,textarea{border-radius:3px;border:1px solid gainsboro}
+textarea{padding:.2rem}
 textarea,form span{display:inline-block}
 form span{padding:3px 3px 0 0;width:1.4rem;font-size:.9rem;position:relative;top:-1rem}
-
+button{background:none}
+#txt,blockquote{margin:0;padding:1rem;font-size:1rem}
+#txt{width:100%;box-sizing:border-box}
+#inp,#out{font-family:monospace;min-width:calc(100% - 2.4rem)}
 #langs{padding:0}
-#langs li{display:inline-block;list-style:none;padding-right:2em}
+#langs li{display:inline-block;list-style:none;padding-right:1.5em}
 #langs a{font-size:.8rem}
 #langs,.submit{text-align:center}
-#io{position:relative}
-#swap{position:absolute;top:1.8rem;left:0;font-size:.8rem}
 </style>
 </head>
 <body>
@@ -33,21 +34,18 @@ form span{padding:3px 3px 0 0;width:1.4rem;font-size:.9rem;position:relative;top
 </header>
 <main>
     <form name="translit">
-        <p><span>↓</span><textarea id="txt" name="txt" rows="10"
-            placeholder="Enter text to transliterate"></textarea>
-        <p class="submit"><button id="submit">Transliterate</button>
-
+        <p><textarea id="txt" name="txt" rows="5"
+            placeholder="Enter text"></textarea>
         <ul id="langs">
-            <!--li><a id="sk_en" href="#">č,š / ch,sh</a-->
+            <li><button id="swap">↑↓</button>
         </ul>
         <p id="io">
-          <a id="swap" href="#">↑↓</a>
-          <span>·→</span><textarea name="inp"
-             placeholder="Transliterate from: a b v g d... sh ch oo the *ed... st* sp*"></textarea>
+          <span>·→</span><textarea id="inp" name="inp"
+             placeholder="from: а б в г д…   š  č  ú…  the *ed  st* sp*"></textarea>
              <br>
-          <span>→·</span><textarea name="out"
-             placeholder="Transliterate to:   а б в г д...  š  č  ú   d   d... št šp"></textarea>
-        <blockquote><p id="result"></p></blockquote>
+          <span>→·</span><textarea id="out" name="out"
+             placeholder="to:   a b v g d…  sh ch oo…    d   d  št  šp"></textarea>
+        <blockquote id="result"></blockquote>
     </form>
 </main>
 
@@ -63,9 +61,9 @@ const maps = {
   ka_sk: "a b v g d e v z t i k l m n o p r s t u f k gh q š č c ts dz ts kh j h",
 };
 const lookup = {
-  'kalat': { inp: 'ka_xx', out: 'ka_sk', label: '🇬🇪 აბვ → abc'},
-  'grlat': { inp: 'gr_xx', out: 'gr_sk', label: '🇬🇷 αβγ → abc'},
-  'cylat': { inp: 'ru_xx', out: 'ru_sk', label: '🇷🇺 абв → abc'},
+  'cylat': { inp: 'ru_xx', out: 'ru_sk', label: '🇷🇺 абв / abc'},
+  'kalat': { inp: 'ka_xx', out: 'ka_sk', label: '🇬🇪 აბვ / abc'},
+  'grlat': { inp: 'gr_xx', out: 'gr_sk', label: '🇬🇷 αβγ / abc'},
 };
 const form = document.forms['translit'];
 function Id(s){return document.getElementById(s);}
@@ -76,9 +74,23 @@ function updateURL(f) {
   const newURL = `${curr.pathname}?${qs}`;
   history.replaceState(null, null, newURL);
 }
+function flexi(textarea, pad){
+    // flexible height textarea
+    if (textarea){
+        textarea.style.height = (textarea.scrollHeight + pad) + "px";
+        textarea.oninput = function() {
+            textarea.style.height = ""; /* Reset the height*/
+            textarea.style.height = (textarea.scrollHeight + pad) + "px";
+        };
+    }
+}
 function initTranslitForm() {
   const params = new URLSearchParams(window.location.search);
   ['inp', 'out', 'txt'].forEach(p => form[p].value = form[p].value || params.get(p));
+  flexi(Id('txt'), 5);
+  flexi(Id('inp'), 0);
+  flexi(Id('out'), 0);
+  Id('txt').focus();
   for (const code in lookup) {
     const { inp, out, label } = lookup[code];
     const li = document.createElement('li');
@@ -93,7 +105,7 @@ function initTranslitForm() {
       translit(form.txt.value);
     });
     li.appendChild(a);
-    Id('langs').prepend(li);
+    Id('langs').appendChild(li);
   }
   Id('swap').addEventListener('click', function(e) {
     e.preventDefault();
@@ -101,10 +113,6 @@ function initTranslitForm() {
     var b = form.out.value;
     form.inp.value = b;
     form.out.value = a;
-    translit(form.txt.value);
-  });
-  Id('submit').addEventListener('click', function(e){
-    e.preventDefault();
     translit(form.txt.value);
   });
   Id('txt').addEventListener('keyup', function(e){
@@ -137,17 +145,16 @@ function translit(txt) {
     }
     return word;
   });
-
   //const [newA, newB] = ioMap.reduce(([aAcc, bAcc], [a, b]) => {
   //  const newA = b.length > a.length ? a.padStart(b.length) : a;
   //  const newB = a.length > b.length ? b.padStart(a.length) : b;
   //  return [aAcc.concat(newA), bAcc.concat(newB)];
   //  }, [[], []]);
-
-  updateURL(form);
-  Id('result').innerText = result.join(' ');
   //form.inp.value = newA.join(' ');
   //form.out.value = newB.join(' ');
+
+  Id('result').innerText = result.join(' ');
+  updateURL(form);
 }
 </script>
 </body>
