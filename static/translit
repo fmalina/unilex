@@ -7,34 +7,37 @@
 <meta http-equiv="Content-Security-Policy"
       content="default-src 'unsafe-inline';style-src 'unsafe-inline'">
 <style>
-body{font-family:helvetica,sans-serif;color:#333;padding:.5rem}
+body{font-family:helvetica,sans-serif;color:DarkSlateGray;padding:.5rem}
 header{text-align:center;padding:.5rem}
-header a, h1, button{text-transform:uppercase;font-size:.8rem}
-header a{text-transform:uppercase;letter-spacing:.2rem;font-size:.9rem;padding-top:1rem}
-h1{font-weight:normal}
+header{text-transform:uppercase;font-size:.9rem;padding-top:.5rem}
+header a{letter-spacing:.2rem;color:DarkGoldenRod}
+header b{font-weight:normal}
 a{color:royalblue;text-decoration:none}
 button,textarea{border-radius:3px;border:1px solid gainsboro}
 textarea{padding:.2rem}
 textarea,form span{display:inline-block}
 form span{padding:3px 3px 0 0;width:1.4rem;font-size:.9rem;position:relative;top:-1rem}
 button{background:none}
-#txt,blockquote{margin:0;padding:1rem;font-size:1rem}
+blockquote{margin:0;padding:0 1rem}
+#txt{padding:0.5rem;font-size:1rem}
 #txt{width:100%;box-sizing:border-box}
 #inp,#out{font-family:monospace;min-width:calc(100% - 2.4rem)}
 #langs{padding:0}
 #langs li{display:inline-block;list-style:none;padding-right:1.5em}
 #langs a{font-size:.8rem}
 #langs,.submit{text-align:center}
+#copy{text-align:center;display:block;font-size:smaller;display:none;color:deeppink}
+#reset{display:none;position:absolute;top:1rem;right:1rem;font-size:.9rem;font-weight:bold;color:silver}
 </style>
 </head>
 <body>
 <header>
-    <nav><a href="https://unilexicon.com" class="logo">Unilexicon</a></nav>
-    <h1>Transliterator</h1>
+    <a href="/" class="logo">Unilexicon</a>
+    <b>Transliterator</b>
 </header>
 <main>
     <form name="translit">
-        <p><textarea id="txt" name="txt" rows="5"
+        <p><textarea id="txt" name="txt" rows="4"
             placeholder="Enter text"></textarea>
         <ul id="langs">
             <li><button id="swap">↑↓</button>
@@ -46,6 +49,8 @@ button{background:none}
           <span>→·</span><textarea id="out" name="out"
              placeholder="to:   a b v g d…  sh ch oo…    d   d  št  šp"></textarea>
         <blockquote id="result"></blockquote>
+        <a id="copy" href="#">copy</a>
+        <a href="translit" id="reset" title="reset">×</a>
     </form>
 </main>
 
@@ -53,20 +58,21 @@ button{background:none}
 <script src="https://unilexicon.com/assets/js/cookies.js?1.72"></script-->
 <script>
 const maps = {
-  ru_xx: "а б в г д е ё ж з и й к л м н о п ку р с т у ф  х ц ч ш  щ ъ ы ь э  ю  я",
-  ru_sk: "a b v g d e é ž z i j k l m n o p q  r s t u f ch c č š šč ъ y ' é ju ja",
+  cy_xx: "а б в г д е ё ж з и й к л м н о п ку р с т у ф  х ц ч ш  щ ъ ы ь э  ю  я",
+  cy_sk: "a b v g d e é ž z i j k l m n o p q  r s t u f ch c č š šč ъ y ' é ju ja",
   gr_xx: "α β γ δ ε ζ η  θ ι κ λ μ ν ξ ο π ρ σ τ υ φ  χ  ψ ω",
   gr_sk: "a b g d e z i th i k l m n x o p r s t u f ch ps o",
   ka_xx: "ა ბ ვ გ დ ე ვ ზ თ ი კ ლ მ ნ ო პ რ ს ტ უ ფ ქ  ღ ყ შ ჩ ც  ძ  წ  ჭ  ხ ჯ ჰ",
   ka_sk: "a b v g d e v z t i k l m n o p r s t u f k gh q š č c ts dz ts kh j h",
 };
 const lookup = {
-  'cylat': { inp: 'ru_xx', out: 'ru_sk', label: '🇷🇺 абв / abc'},
+  'cylat': { inp: 'cy_xx', out: 'cy_sk', label: 'а́збука'},
   'kalat': { inp: 'ka_xx', out: 'ka_sk', label: '🇬🇪 აბვ'},
   'grlat': { inp: 'gr_xx', out: 'gr_sk', label: '🇬🇷 αβγ'},
 };
 const form = document.forms['translit'];
 function Id(s){return document.getElementById(s);}
+
 function updateURL(f) {
   const data = new FormData(f);
   const qs = new URLSearchParams(data).toString();
@@ -74,6 +80,7 @@ function updateURL(f) {
   const newURL = `${curr.pathname}?${qs}`;
   history.replaceState(null, null, newURL);
 }
+
 function flexi(textarea, pad){
     // flexible height textarea
     if (textarea){
@@ -84,6 +91,55 @@ function flexi(textarea, pad){
         };
     }
 }
+
+function detectlanguage(text) {
+  const lc = {};
+  for (const l in maps) {
+    lc[l] = 0;
+    for (const c of text) {
+      if (maps[l].includes(c)) lc[l]++;
+    }
+  }
+  return Object.keys(lc).reduce((a, b) => lc[a] > lc[b] ? a : b);
+}
+
+
+function inputwatch(e){
+  if(!form.inp.value || form.txt.value.length < 10){
+    var lang = detectlanguage(form.txt.value);
+    if (lang.endsWith('xx')){  // prefill detected langugage
+      var code = `${lang[0]}${lang[1]}lat`;
+      console.log(code);
+      form.inp.value = maps[lookup[code].inp];
+      form.out.value = maps[lookup[code].out];
+    } else { // default latin to cyrillic
+      form.inp.value = maps.cy_sk;
+      form.out.value = maps.cy_xx;
+    }
+  }
+  translit(form.txt.value);
+}
+
+function swap(e){
+  e.preventDefault();
+  var a = form.inp.value;
+  var b = form.out.value;
+  form.inp.value = b;
+  form.out.value = a;
+  translit(form.txt.value);
+}
+
+function copy(e){
+  e.preventDefault();
+  navigator.clipboard.writeText(Id('result').textContent);
+  this.textContent = 'copied';
+  this.style.color = 'silver';
+  setTimeout(() => {
+    this.textContent = "copy";
+    this.style.color = 'DeepPink';
+  }, 1400);
+}
+
 function initTranslitForm() {
   const params = new URLSearchParams(window.location.search);
   ['inp', 'out', 'txt'].forEach(p => form[p].value = form[p].value || params.get(p));
@@ -91,6 +147,7 @@ function initTranslitForm() {
   flexi(Id('inp'), 0);
   flexi(Id('out'), 0);
   Id('txt').focus();
+  // create alphabet links and make them set inp/out fields
   for (const code in lookup) {
     const { inp, out, label } = lookup[code];
     const li = document.createElement('li');
@@ -107,21 +164,15 @@ function initTranslitForm() {
     li.appendChild(a);
     Id('langs').appendChild(li);
   }
-  Id('swap').addEventListener('click', function(e) {
-    e.preventDefault();
-    var a = form.inp.value;
-    var b = form.out.value;
-    form.inp.value = b;
-    form.out.value = a;
-    translit(form.txt.value);
-  });
-  Id('txt').addEventListener('keyup', function(e){
-    translit(form.txt.value);
-  });
+  Id('swap').addEventListener('click', swap);
+  Id('txt').addEventListener('input', inputwatch);
+  Id('copy').addEventListener('click', copy);
   translit(form.txt.value);
 }
 document.addEventListener('DOMContentLoaded', initTranslitForm);
+
 function translit(txt) {
+  if(!txt) return;
   const inpMap = form.inp.value.split(/\s+/);
   const outMap = form.out.value.split(/\s+/);
   const ioMap = inpMap.map((a, i) => [a, outMap[i]]);
@@ -154,6 +205,8 @@ function translit(txt) {
   //form.out.value = newB.join(' ');
 
   Id('result').innerText = result.join(' ');
+  Id('reset').style.display = 'inline';
+  Id('copy').style.display = 'block';
   updateURL(form);
 }
 </script>
