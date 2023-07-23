@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<title>Transliterate Cyrillic, Greek and Georgian online</title>
+<title>Transliterate Latin, Cyrillic, Greek, Georgian, Viking runes and more</title>
+<meta name="description" content="Convert text easily with this versatile transliterator.
+Transliterate between Latin, Cyrillic, Greek, Georgian, Viking Fuþark and your own alphabets online.">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy"
       content="default-src 'unsafe-inline';style-src 'unsafe-inline'">
@@ -23,7 +25,7 @@ blockquote{margin:0;padding:0 1rem}
 #txt{width:100%;box-sizing:border-box}
 #inp,#out{font-family:monospace;min-width:calc(100% - 2.4rem)}
 #langs{padding:0}
-#langs li{display:inline-block;list-style:none;padding-right:1.5em}
+#langs li{display:inline-block;list-style:none;padding-right:1em}
 #langs a{font-size:.8rem}
 #langs,.submit{text-align:center}
 #copy{text-align:center;display:block;font-size:smaller;display:none;color:deeppink}
@@ -33,24 +35,24 @@ blockquote{margin:0;padding:0 1rem}
 <body>
 <header>
     <a href="/" class="logo">Unilexicon</a>
-    <b>Transliterator</b>
+    <b>Translitera</b>
 </header>
 <main>
     <form name="translit">
         <p><textarea id="txt" name="txt" rows="4"
-            placeholder="Enter text"></textarea>
+            placeholder="Enter text / введите текст / εισαγάγετε κείμενο / შეიყვანეთ ტექსტი / ᛋᛚᚨᚦᚢ ᛁᚾᚾ ᛏᛖᚲᛏᛅ…"></textarea>
         <ul id="langs">
             <li><button id="swap">↑↓</button>
         </ul>
         <p id="io">
           <span>·→</span><textarea id="inp" name="inp"
-             placeholder="from: а б в г д…   š  č  ú…  the *ed  st* sp*"></textarea>
+             placeholder="а б в г д…   š  č  ú…  the *ed  st* sp*"></textarea>
              <br>
           <span>→·</span><textarea id="out" name="out"
-             placeholder="to:   a b v g d…  sh ch oo…    d   d  št  šp"></textarea>
+             placeholder="a b v g d…  sh ch oo…    d   d  št  šp"></textarea>
         <blockquote id="result"></blockquote>
-        <a id="copy" href="#">copy</a>
-        <a href="translit" id="reset" title="reset">×</a>
+        <a id="copy"  href="#">copy</a>
+        <a id="reset" href="#" title="reset">×</a>
     </form>
 </main>
 
@@ -61,14 +63,20 @@ const maps = {
   cy_xx: "а б в г д е ё ж з и й к л м н о п ку р с т у ф  х ц ч ш  щ ъ ы ь э  ю  я",
   cy_sk: "a b v g d e é ž z i j k l m n o p q  r s t u f ch c č š šč ъ y ' é ju ja",
   gr_xx: "α β γ δ ε ζ η  θ ι κ λ μ ν ξ ο π ρ σ τ υ φ  χ  ψ ω",
-  gr_sk: "a b g d e z i th i k l m n x o p r s t u f ch ps o",
+  gr_la: "a b g d e z i th i k l m n x o p r s t u f ch ps o",
   ka_xx: "ა ბ ვ გ დ ე ვ ზ თ ი კ ლ მ ნ ო პ რ ს ტ უ ფ ქ  ღ ყ შ ჩ ც  ძ  წ  ჭ  ხ ჯ ჰ",
   ka_sk: "a b v g d e v z t i k l m n o p r s t u f k gh q š č c ts dz ts kh j h",
+  fu_la: "a á b c d e f g h i ï j k l m n ŋ o p q r s t þ ð u v w x y z",
+  fu_xx: "ᚨ ᚨ ᛒ  ᚲ ᛞ ᛖ ᚠ ᚷ ᚺ  ᛁ ᛇ ᛃ ᚲ ᛚ ᛗ ᚾ ᛜ ᛟ ᛈ ᛩ ᚱ  ᛋ ᛏ ᚦ ᚦ ᚢ  ᚢ ᚹ ᛪ ᛦ ᛉ",
+  gl_xx: "ⰰ ⰱ ⰲ ⰳ ⰴ ⰵ ⰶ ⰸ ⰹ ⰺ ⰻ ⰼ ⰽ ⰾ ⰿ ⱀ ⱁ ⱂ ⱃ ⱄ ⱅ ⱆ ⱇ ⱈ  ⱉ ⱊ ⱋ ⱌ ⱍ ⱎ ⱏ ⱐ ⱑ  ⱒ  ⱓ  ⱔ  ⱕ ⱖ  ⱗ ⱘ ⱙ ⱚ ⱛ ⱜ ⱝ ⱞ",
+  gl_sk: "a b  v g d  e ž z  i j i ď k l m n o p r s t  u f ch ó p št c č š ú í ja ch ju ah á io ie ô iô θ y ľ ň ľ",
 };
 const lookup = {
-  'cylat': { inp: 'cy_xx', out: 'cy_sk', label: 'а́збука'},
-  'kalat': { inp: 'ka_xx', out: 'ka_sk', label: '🇬🇪 აბვ'},
-  'grlat': { inp: 'gr_xx', out: 'gr_sk', label: '🇬🇷 αβγ'},
+  'cylat': { inp: 'cy_xx', out: 'cy_sk', label: 'а́збука', title: 'Cyrillic'},
+  'grlat': { inp: 'gr_xx', out: 'gr_la', label: '🇬🇷 αβγ', title: 'Greek'},
+  'kalat': { inp: 'ka_xx', out: 'ka_sk', label: '🇬🇪 აბვ', title: 'Georgian'},
+  'fulat': { inp: 'fu_xx', out: 'fu_la', label: 'ᚠᚢᚦᚨᚱᚲ', title: 'Viking Futhark'},
+  'gllat': { inp: 'gl_xx', out: 'gl_sk', label: 'ⰃⰎⰀ', title: 'Slavic Glagolitsa'},
 };
 const form = document.forms['translit'];
 function Id(s){return document.getElementById(s);}
@@ -105,7 +113,7 @@ function detectlanguage(text) {
 
 
 function inputwatch(e){
-  if(!form.inp.value || form.txt.value.length < 10){
+  if(!form.inp.value){
     var lang = detectlanguage(form.txt.value);
     if (lang.endsWith('xx')){  // prefill detected langugage
       var code = `${lang[0]}${lang[1]}lat`;
@@ -129,6 +137,14 @@ function swap(e){
   translit(form.txt.value);
 }
 
+function reset(e){
+  e.preventDefault();
+  ['inp', 'out', 'txt'].forEach(p => form[p].value = '');
+  Id('result').textContent = '';
+  Id('copy').style.display = 'none';
+  updateURL(form);
+}
+
 function copy(e){
   e.preventDefault();
   navigator.clipboard.writeText(Id('result').textContent);
@@ -149,11 +165,12 @@ function initTranslitForm() {
   Id('txt').focus();
   // create alphabet links and make them set inp/out fields
   for (const code in lookup) {
-    const { inp, out, label } = lookup[code];
+    const { inp, out, label, title } = lookup[code];
     const li = document.createElement('li');
     const a = document.createElement('a');
     a.id = code;
     a.href = '#';
+    a.title = title;
     a.textContent = label;
     a.addEventListener('click', function(e) {
       e.preventDefault();
@@ -164,9 +181,10 @@ function initTranslitForm() {
     li.appendChild(a);
     Id('langs').appendChild(li);
   }
-  Id('swap').addEventListener('click', swap);
   Id('txt').addEventListener('input', inputwatch);
+  Id('swap').addEventListener('click', swap);
   Id('copy').addEventListener('click', copy);
+  Id('reset').addEventListener('click', reset);
   translit(form.txt.value);
 }
 document.addEventListener('DOMContentLoaded', initTranslitForm);
