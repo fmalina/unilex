@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from lxml import html
+from lxml.etree import ParserError
 
 SITE = 'https://unilexicon.com/translit'
 NAME = 'Unilexicon Translitera'
@@ -56,6 +57,9 @@ def translit_view(request, url):
     session.headers.update({
         'User-agent': f'Mozilla/5.0 (compatible; {NAME}/0.1; +{SITE})'})
     try:
+        query_string = request.META['QUERY_STRING']
+        if query_string:
+            url += '?' + query_string
         response = session.get(f'https://{url}', timeout=10)
         response.raise_for_status()
     except requests.exceptions.HTTPError as e:
@@ -68,7 +72,11 @@ def translit_view(request, url):
         return err(request, url, e)
 
     s = response.content.decode()
-    dom = html.fromstring(s)
+    try:
+        dom = html.fromstring(s)
+    except ParserError:
+        return err(request, url, '''That website is invalid. We tried.
+            Webmaster needs to fix W3C validation errors.''')
     lang = get_lang(dom)
     dom.make_links_absolute(f'https://{url}')
     dom.find(".//body").insert(0, html.fromstring(NOTE))
