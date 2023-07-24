@@ -74,8 +74,8 @@ const maps = {
   ka_sk: "a b v g d e v z t i k l m n o p r s t u f k gh q š č c ts dz ts kh j h",
   fu_la: "a á b c d e f g h i ï j k l m n ŋ o p q r s t þ ð u v w x y z",
   fu_xx: "ᚨ ᚨ ᛒ  ᚲ ᛞ ᛖ ᚠ ᚷ ᚺ  ᛁ ᛇ ᛃ ᚲ ᛚ ᛗ ᚾ ᛜ ᛟ ᛈ ᛩ ᚱ  ᛋ ᛏ ᚦ ᚦ ᚢ  ᚢ ᚹ ᛪ ᛦ ᛉ",
-  gl_xx: "ⰰ ⰱ ⰲ ⰳ ⰴ ⰵ ⰶ ⰸ ⰹ ⰺ ⰻ ⰼ ⰽ ⰾ ⰿ ⱀ ⱁ ⱂ ⱃ ⱄ ⱅ ⱆ ⱇ ⱈ  ⱉ ⱊ ⱋ ⱌ ⱍ ⱎ ⱏ ⱐ ⱑ  ⱒ  ⱓ  ⱔ  ⱕ ⱖ  ⱗ ⱘ ⱙ ⱚ ⱛ ⱜ ⱝ ⱞ",
-  gl_sk: "a b  v g d  e ž z  i j i ď k l m n o p r s t  u f ch ó p št c č š ú í ja ch ju ah á io ie ô iô θ y ľ ň ľ",
+  gl_xx: "ⰰ ⰱ ⰲ ⰳ ⰳ ⰴ ⰵ ⰶ ⰸ ⰹ ⰺ ⰻ ⰼ ⰽ ⰾ ⰿ ⱀ ⱁ ⱂ ⱃ ⱄ ⱅ ⱆ ⱇ ⱈ  ⱉ ⱊ ⱋ ⱌ ⱍ ⱎ ⱏ ⱐ ⱑ  ⱒ  ⱓ  ⱔ  ⱕ ⱖ  ⱗ ⱘ ⱙ ⱚ ⱛ ⱜ ⱝ ⱞ",
+  gl_sk: "a b  v g h d  e ž z  i j i ď k l m n o p r s t  u f ch ó p št c č š ú í ja ch ju ah á io ie ô iô θ y ľ ň ľ",
 };
 const lookup = {
   'cylat': { inp: 'cy_xx', out: 'cy_sk', label: 'а́збука', title: 'Cyrillic'},

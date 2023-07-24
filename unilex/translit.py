@@ -12,7 +12,8 @@ NAME = 'Unilexicon Translitera'
 NOTE = f"""
 <div id="translit" style="position:fixed;top:.5rem;right:.5rem;z-index:999;font-family:sans-serif;
     padding:.5rem 1rem;background-color:ivory;border-radius:3px;border:1px solid goldenrod;box-shadow:0 0 5px goldenrod">
-    Transliterated with <a href="{SITE}" style="color:dodgerblue">{NAME}</a>
+    <a href="{SITE}" style="color:DodgerBlue">{NAME}</a>,
+    <a href="#URL#" style="color:DodgerBlue;text-decoration:underline" target="_blank">original</a>
     <a href="#" onclick="return document.getElementById('translit').style.display = 'none'"
         style="color:gray;text-decoration:none;margin-left:.5rem">×</a>
 </div>
@@ -56,11 +57,12 @@ def translit_view(request, url):
     session = requests.Session()
     session.headers.update({
         'User-agent': f'Mozilla/5.0 (compatible; {NAME}/0.1; +{SITE})'})
+    full_url = f'https://{url}'
     try:
-        query_string = request.META['QUERY_STRING']
-        if query_string:
-            url += '?' + query_string
-        response = session.get(f'https://{url}', timeout=10)
+        qs = request.META.get('QUERY_STRING')
+        if qs:
+            full_url += '?' + qs
+        response = session.get(full_url, timeout=10)
         response.raise_for_status()
     except requests.exceptions.HTTPError as e:
         return err(request, url, f'That website had an error: {e}')
@@ -75,11 +77,12 @@ def translit_view(request, url):
     try:
         dom = html.fromstring(s)
     except ParserError:
-        return err(request, url, '''That website is invalid. We tried.
+        return err(request, url, '''That website is invalid.
             Webmaster needs to fix W3C validation errors.''')
     lang = get_lang(dom)
-    dom.make_links_absolute(f'https://{url}')
-    dom.find(".//body").insert(0, html.fromstring(NOTE))
+    dom.make_links_absolute(full_url)
+    note = NOTE.replace('#URL#', full_url)
+    dom.find(".//body").insert(0, html.fromstring(note))
     s = html.tostring(dom, encoding='utf8').decode()
 
     try:
