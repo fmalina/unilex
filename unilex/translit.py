@@ -8,11 +8,11 @@ from lxml import html
 from lxml.etree import ParserError
 
 SITE = 'https://unilexicon.com/translit'
-NAME = 'Unilexicon Translitera'
+NAME = 'Unilexicon Transliterate'
 NOTE = f"""
 <div id="translit" style="position:fixed;top:.5rem;right:.5rem;z-index:999;font-family:sans-serif;
     padding:.5rem 1rem;background-color:ivory;border-radius:3px;border:1px solid goldenrod;box-shadow:0 0 5px goldenrod">
-    <a href="{SITE}" style="color:DodgerBlue">{NAME}</a>,
+    Transliterated with <a href="{SITE}" style="color:DodgerBlue">Unilexicon</a>,
     <a href="#URL#" style="color:DodgerBlue;text-decoration:underline" target="_blank">original</a>
     <a href="#" onclick="return document.getElementById('translit').style.display = 'none'"
         style="color:gray;text-decoration:none;margin-left:.5rem">×</a>
