@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}{{ exception }}{% endblock %}
+{% block nav %}TRANSLITERA{% endblock %}
+{% block search %}{% endblock %}
+{% block content %}
+    <p>{{ exception }}
+    {% if not url %}
+        Enter your URL in the address bar like this:<br><br>
+        <u>unilexicon.com/translit/<b>www.example.com/some-page</b></u>
+    {% else %}
+        <p>Visit it directly: <a href="https://{{ url }}">https://{{ url }}</a>
+    {% endif %}
+{% endblock %}
+{% block footer %}{% endblock %}

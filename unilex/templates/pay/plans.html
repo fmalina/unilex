@@ -2,12 +2,6 @@
 
 {% block content %}
 <h1>Purchase professional membership</h1>
-<ul>
-    <li>Support continued development of Unilexicon
-    <li>Use and export private vocabularies
-    <li>Request a team authority multi-user setup for your organization
-    <li>Access first-class technical support
-</ul>
 
 <form method="post" action="#" id="plans">
     {% csrf_token %}
@@ -18,6 +12,13 @@
                 <small>Choose plan</small>
             </button>
     {% endfor %}
+    <ul>
+        <li>✔️ Support continued development of Unilexicon
+        <li>✔️ Use and export private vocabularies
+        <li>✔️ Transliterate live websites
+        <li>✔️ Request a team authority multi-user setup for your organization
+        <li>✔️ Access first-class technical support
+    </ul>
     <p>Plans are not recurring and no renewal reminders are sent.
     Payments are processed via Paypal and eligible for Paypal purchase protection.
     <p>If you have any questions or suggestions,

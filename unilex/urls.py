@@ -25,7 +25,7 @@ urlpatterns = [
     path('logout/', logmeout, name='auth_logout'),
     path('sitemap.xml', sitemap, name='sitemap'),
 
-    re_path(r'^tl/(?P<s>.*)$', translit_view, name='translit'),
+    re_path(r'^translit/(?P<url>.*)$', translit_view, name='translit'),
     path('med', RedirectView.as_view(url='/med/', permanent=True)),
     path('med/', include('medd.urls')),
 ]

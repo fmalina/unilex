@@ -14,12 +14,13 @@ header{text-align:center;padding:.5rem}
 header{text-transform:uppercase;font-size:.9rem;padding-top:.5rem}
 header a{letter-spacing:.2rem;color:DarkGoldenRod}
 header b{font-weight:normal}
-a{color:royalblue;text-decoration:none}
-button,textarea{border-radius:3px;border:1px solid gainsboro}
+a{color:RoyalBlue;text-decoration:none}
+button,textarea,#banner{border-radius:3px;border:1px solid gainsboro}
 textarea{padding:.2rem}
 textarea,form span{display:inline-block}
 form span{padding:3px 3px 0 0;width:1.4rem;font-size:.9rem;position:relative;top:-1rem}
 button{background:none}
+kbd{font-size:1.2rem}
 blockquote{margin:0;padding:0 1rem}
 #txt{padding:0.5rem;font-size:1rem}
 #txt{width:100%;box-sizing:border-box}
@@ -28,8 +29,9 @@ blockquote{margin:0;padding:0 1rem}
 #langs li{display:inline-block;list-style:none;padding-right:1em}
 #langs a{font-size:.8rem}
 #langs,.submit{text-align:center}
-#copy{text-align:center;display:block;font-size:smaller;display:none;color:deeppink}
+#copy{text-align:center;display:block;font-size:smaller;display:none;color:DeepPink}
 #reset{display:none;position:absolute;top:1rem;right:1rem;font-size:.9rem;font-weight:bold;color:silver}
+#banner{padding:.5rem 1rem;margin-top:3rem;background-color:ivory;border-color:Goldenrod;box-shadow:0 0 5px Goldenrod}
 </style>
 </head>
 <body>
@@ -54,6 +56,11 @@ blockquote{margin:0;padding:0 1rem}
         <a id="copy"  href="#">copy</a>
         <a id="reset" href="#" title="reset">×</a>
     </form>
+    <div id="banner">
+        <p>Transliterate live websites with our premium membership.
+        <p>Just prepend any site with current address followed by a slash:
+        <kbd><a href="/translit/">unilexicon.com/translit/</a><u>www.example.com</u></kbd>
+    </div>
 </main>
 
 <!--div id="cookie-consent"></div>
