@@ -20,7 +20,7 @@ textarea{padding:.2rem}
 textarea,form span{display:inline-block}
 form span{padding:3px 3px 0 0;width:1.4rem;font-size:.9rem;position:relative;top:-1rem}
 button{background:none}
-blockquote{margin:0;padding:0 1rem}
+blockquote{margin:0;padding:0 1rem;font-size:1.2em}
 #txt{padding:0.5rem;font-size:1rem}
 #txt{width:100%;box-sizing:border-box}
 #inp,#out{font-family:monospace;min-width:calc(100% - 2.4rem)}
@@ -28,6 +28,7 @@ blockquote{margin:0;padding:0 1rem}
 #langs li{display:inline-block;list-style:none;padding-right:1em}
 #langs a{font-size:.8rem}
 #langs,.submit{text-align:center}
+#swap{background:DarkGoldenRod;border-color:DarkGoldenRod;color:white}
 #copy{text-align:center;display:block;font-size:smaller;display:none;color:DeepPink}
 #reset{display:none;position:absolute;top:1rem;right:1rem;font-size:.9rem;font-weight:bold;color:silver}
 #banner{padding:.5rem 1rem;margin-top:5rem;background-color:ivory;border-color:Goldenrod;box-shadow:0 0 5px Goldenrod}
@@ -36,7 +37,7 @@ blockquote{margin:0;padding:0 1rem}
 <body>
 <header>
     <a href="/" class="logo">Unilexicon</a>
-    <b>Translitera</b>
+    <b>Transliterate</b>
 </header>
 <main>
     <form name="translit">
@@ -47,10 +48,10 @@ blockquote{margin:0;padding:0 1rem}
         </ul>
         <p id="io">
           <span>·→</span><textarea id="inp" name="inp"
-             placeholder="а б в г д…   š  č  ú…  the *ed  st* sp*"></textarea>
+             placeholder="a b v g d…  sh ch oo…   the *ed ph*"></textarea>
              <br>
           <span>→·</span><textarea id="out" name="out"
-             placeholder="a b v g d…  sh ch oo…    d   d  št  šp"></textarea>
+             placeholder="а б в г д…   š  č  ú…   d   d   f"></textarea>
         <blockquote id="result"></blockquote>
         <a id="copy"  href="#">copy</a>
         <a id="reset" href="#" title="reset">×</a>
@@ -78,11 +79,11 @@ const maps = {
   gl_sk: "a b  v g h d  e ž z  i j i ď k l m n o p r s t  u f ch ó p št c č š ú í ja ch ju ah á io ie ô iô θ y ľ ň ľ",
 };
 const lookup = {
-  'cylat': { inp: 'cy_xx', out: 'cy_sk', label: 'а́збука', title: 'Cyrillic'},
-  'grlat': { inp: 'gr_xx', out: 'gr_la', label: '🇬🇷 αβγ', title: 'Greek'},
-  'kalat': { inp: 'ka_xx', out: 'ka_sk', label: '🇬🇪 აბვ', title: 'Georgian'},
-  'fulat': { inp: 'fu_xx', out: 'fu_la', label: 'ᚠᚢᚦᚨᚱᚲ', title: 'Viking Futhark'},
-  'gllat': { inp: 'gl_xx', out: 'gl_sk', label: 'ⰃⰎⰀ', title: 'Slavic Glagolitsa'},
+  'cylat': { inp: 'cy_sk', out: 'cy_xx', label: 'а́збука', title: 'Cyrillic'},
+  'grlat': { inp: 'gr_la', out: 'gr_xx', label: '🇬🇷 αβγ', title: 'Greek'},
+  'kalat': { inp: 'ka_sk', out: 'ka_xx', label: '🇬🇪 აბვ', title: 'Georgian'},
+  'fulat': { inp: 'fu_la', out: 'fu_xx', label: 'ᚠᚢᚦᚨᚱᚲ', title: 'Viking Futhark'},
+  'gllat': { inp: 'gl_sk', out: 'gl_xx', label: 'ⰃⰎⰀ', title: 'Slavic Glagolitsa'},
 };
 const form = document.forms['translit'];
 function Id(s){return document.getElementById(s);}
@@ -124,8 +125,8 @@ function inputwatch(e){
     if (lang.endsWith('xx')){  // prefill detected langugage
       var code = `${lang[0]}${lang[1]}lat`;
       console.log(code);
-      form.inp.value = maps[lookup[code].inp];
-      form.out.value = maps[lookup[code].out];
+      form.inp.value = maps[lookup[code].out];
+      form.out.value = maps[lookup[code].inp];
     } else { // default latin to cyrillic
       form.inp.value = maps.cy_sk;
       form.out.value = maps.cy_xx;
