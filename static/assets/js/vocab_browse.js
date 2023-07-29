@@ -78,18 +78,19 @@ var VB = {
             },
             onAfterCompute: function(){
                 var node = VB.rootNode();
+                var desc = Id("id_description");
                 if (node && node.id.indexOf("v-") == -1){
                     $.get(VB.conceptUri(node.id,'edit'), function (data) {
                         fill('editing', data);
                         document.title = document.title.split(':')[0] + ': ' + node.name;
-                        flexi();
+                        flexi(desc);
                         acFormset('/tree/autocomplete',
                             document.querySelector('.set').id);
                     });
                 } else {
                     $.get('/tree/' + VB.id(VB.root) + '/edit', function (data) {
                         fill('editing', data);
-                        flexi();
+                        flexi(desc);
                     });
                 }
             }
@@ -196,9 +197,8 @@ var VB = {
     },
 }
 
-function flexi(){
-    // flexible height description
-    var textarea = Id("id_description");
+function flexi(textarea){
+    // flexible height textarea
     if (textarea){
         textarea.style.height = (textarea.scrollHeight + 5) + "px";
         textarea.oninput = function() {
@@ -218,6 +218,20 @@ function setView(view) {
     } else {
         masonry.destroy();
     }
+    var toggle = Id('toggle-horizontal');
+    toggle.addEventListener('click', function (){
+        var state = toggle.getAttribute('data-state');
+        Id('infovis').classList.toggle('horizontal');
+        if (state === 'on') {
+            toggle.setAttribute('data-state', 'off');
+            toggle.textContent = 'off';
+            masonry.destroy();
+        } else {
+            toggle.setAttribute('data-state', 'on');
+            toggle.textContent = 'on';
+            masonry.layout();
+        }
+    });
 }
 
 $(function(){

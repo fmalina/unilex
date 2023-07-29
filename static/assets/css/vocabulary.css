@@ -178,6 +178,10 @@ button.delete b{color:#fcc;position:relative;top:-1px}
 .card ul ul a{cursor:grab}
 .card ul ul a:active{cursor:grabbing}
 .card a.L1{cursor:not-allowed}
+.horizontal .card .L1-wrap{display:flex;flex-wrap:nowrap}
+.horizontal .card .L1in{position:static;width:17em}
+#horizontal-toggle-wrap{display:none}
+.cardview #horizontal-toggle-wrap{display:inline}
 
 @keyframes switch-view {
   from{transform:scale(0.99)}
