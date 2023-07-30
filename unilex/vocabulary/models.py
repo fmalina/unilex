@@ -68,7 +68,9 @@ class Vocabulary(models.Model):
     source = models.URLField(blank=True)
     updated_at = models.DateTimeField(default=datetime.now, editable=False)
     created_at = models.DateTimeField(default=datetime.now, editable=False)
-
+    # predicates = models.ManyToManyField(
+    #    'vocabulary.Concept', blank=True, symmetrical=False,
+    #    related_name='enabled_predicates')
     objects = VocabularyManager()
 
     @property
@@ -132,10 +134,9 @@ class Concept(models.Model):
                                     # through='vocabulary.Relation',
                                     # through_fields=('subject', 'predicate'),
                                     related_name='children')
-    related = models.ManyToManyField('self', blank=True, symmetrical=False,
-                                    through='vocabulary.Relation',
-                                    through_fields=('subject', 'predicate'),
-                                    related_name='relations')
+    related = models.ManyToManyField('self', blank=True, symmetrical=True,
+                                     through='vocabulary.Relation',
+                                     through_fields=('subject', 'object'))
     query = models.TextField(blank=True)
     count = models.IntegerField(blank=True, null=True)
     active = models.BooleanField(default=True)
@@ -228,8 +229,8 @@ class Relation(models.Model):
     VALIDATIONS = [(y, z) for x, y, z in VALUE_TYPES]
 
     subject = models.ForeignKey(Concept, related_name='subject', on_delete=models.CASCADE)
-    predicate = models.ForeignKey(Concept, related_name='predicate', on_delete=models.CASCADE)
-    object = models.ForeignKey(Concept, related_name='object', on_delete=models.CASCADE, null=True, blank=True)
+    predicate = models.ForeignKey(Concept, related_name='predicate', on_delete=models.CASCADE, null=True, blank=True)
+    object = models.ForeignKey(Concept, related_name='object', on_delete=models.CASCADE)
     object_value_type = models.CharField("Object type", choices=VALUE_TYPE_CHOICES, max_length=4, null=True, blank=True)
     object_value = models.TextField("Object value", null=True, blank=True)
 

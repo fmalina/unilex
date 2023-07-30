@@ -1,10 +1,10 @@
 from django import forms
 from unilex.tag.models import Record
-from unilex.vocabulary.forms import TO_CONCEPT
+from unilex.vocabulary.forms import link_concept
 
 
 class TagForm(forms.Form):
-    predicate = TO_CONCEPT
+    object = link_concept()
 
 
 class RecordForm(forms.ModelForm):

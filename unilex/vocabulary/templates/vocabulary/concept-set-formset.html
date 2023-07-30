@@ -7,11 +7,11 @@
     {% if set == 'addfirst' %}
         <div class="show">
         <div></div>
-        {{ form.predicate }}
+        {{ form.object }}
         </div>
     {% else %}
         <div></div>
-        {{ form.predicate }}
+        {{ form.object }}
     {% endif %}
     {% for fld in form.hidden_fields %}{{ fld }}{% endfor %}
     {% if form.instance.pk %}{{ form.DELETE }}{% endif %}

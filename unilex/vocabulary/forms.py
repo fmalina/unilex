@@ -44,15 +44,18 @@ class UploadFileForm(forms.Form):
     )
 
 
-TO_CONCEPT = forms.ModelChoiceField(
-    queryset=Concept.objects.all(),
-    widget=forms.TextInput(attrs={'class': 'autocomplete',
-                                  'placeholder': 'Type concept and choose'})
-)
+def link_concept(qs=Concept.objects.all()):
+    return forms.ModelChoiceField(
+        queryset=qs,
+        widget=forms.TextInput(attrs={
+            'class': 'autocomplete',
+            'placeholder': 'Type concept and choose'
+        })
+    )
 
 
 class RelatedForm(forms.ModelForm):
-    predicate = TO_CONCEPT
+    object = link_concept()
 
     class Meta:
         model = Concept.related.through
@@ -60,7 +63,7 @@ class RelatedForm(forms.ModelForm):
 
 
 class ParentForm(forms.ModelForm):
-    to_concept = TO_CONCEPT
+    to_concept = link_concept()
 
     class Meta:
         model = Concept.parent.through
