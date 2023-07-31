@@ -49,7 +49,8 @@ function initCookieConsent() {
 	} else {
 		cc.style.display = "block";
 	    const p = document.createElement("p");
-        p.textContent = `This website uses cookies to let you login.
+        p.textContent = `This website uses cookies to enhance your browsing
+        experience and provide personalized advertising.
         By continuing to use our website, you agree to our `;
 
         const privacy = document.createElement("a");
