@@ -11,8 +11,7 @@
 {% if m %}<p>{{ m }}{% endif %}
 <h1><small>{% if total %}Results for{% else %}No results{% endif %}:</small><br>
     {{ q }} <span class="badge">{{ total }}</span></h1>
-<hr>
-
+{% include 'ad.html' %}
 {% if total %}
     <ul class="ls{% if total > 20 %} cols{% endif %}">
         {% for app, results, count in sr %}
