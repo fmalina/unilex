@@ -64,6 +64,7 @@ dl::after{content:'';clear:both;display:table}
 .a-z{margin-top:0}
 .btn{padding:.5rem 2rem;margin-bottom:1rem}
 .notices{font-size:smaller;padding:.5em 1em;background:ivory}
+.rect{margin:2em 0}
 
 /* homepage */
 section{max-width:768px;padding-bottom:2rem}
