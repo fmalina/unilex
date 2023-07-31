@@ -3,40 +3,12 @@
 {% if user.is_authenticated %}
 <form method="post" action="{{ request.path }}">
     {{ form.errors }}
-    
     <p class="title">{{ form.name.label_tag }} {{ form.name }}</p>
     <p class="node_id">{{ form.node_id.label_tag }} {{ form.node_id }}</p>
     <p>{{ form.description.label_tag }} {{ form.description }}</p>
-
-    <div><label>{% if not concept.vocabulary.queries %}Related{% else %}Query{% endif %} concepts</label></div>
-    <div{% if concept.vocabulary.queries %} id="queries"{% endif %}>
-        {% include "vocabulary/concept-set-formset.html" %}
-    </div>
-
-    <p>
-        {% csrf_token %}
-        {{ formset.management_form }}
-        {{ parent_formset.management_form }}
+    <div><label>Related concepts</label></div>
+    {% include "vocabulary/concept-set-formset.html" %}
+    <p>{% csrf_token %} {{ formset.management_form }}
         <button type="submit">Save</button>
-    </p>
-
-    {% if concept.vocabulary.queries %}
-        <script src="{{ base_url }}/assets/js/vocab_queries.js?{{ version }}"></script>
-        <p id="query"><label for="operators">{{ form.query.label }}
-                <select id="operators">
-                    <option value="and">and</option>
-                    <option value="or">or</option>
-                    <option value="not">not</option>
-                    <option value="(  )">(  )</option>
-                </select>
-                <span class="link" id="add_operator">+</span>
-            </label>
-        {{ form.query }}</p>
-        
-        <p><label><span class="link test try">test query</span></label></p>
-        <div id="results"></div>
-        <p>{{ form.order.label_tag }} {{ form.order }}</p>
-        <p>{{ form.active.label_tag }} {{ form.active }}</p>
-    {% endif %}
 </form>
 {% endif %}
