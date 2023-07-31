@@ -142,7 +142,7 @@ footer #queries{color:#ccc;margin-top:300px}
 	.content{padding:3em}
 	.col1,.col2{width:45%;max-width:500px;float:left;padding-right:3%}
 	.btn-links{display:inline-block}
-	.search{width:350px;float:left}
+	.search{width:200px;float:left}
 	.search input{max-width:none}
 	#feedback,#feedback textarea{width:560px;max-width:none}
 	#feedback input{width:200px;display:inline}
