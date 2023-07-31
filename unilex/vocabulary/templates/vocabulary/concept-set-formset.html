@@ -7,11 +7,15 @@
     {% if set == 'addfirst' %}
         <div class="show">
         <div></div>
-        {{ form.object }}
+        {{ form.predicate }}{# concept related #}
+        {{ form.object }}{# concept related #}
+        {{ form.concept }}{# vocabulary predicates #}
         </div>
     {% else %}
         <div></div>
-        {{ form.object }}
+        {{ form.predicate }}{# concept related #}
+        {{ form.object }}{# concept related #}
+        {{ form.concept }}{# vocabulary predicates #}
     {% endif %}
     {% for fld in form.hidden_fields %}{{ fld }}{% endfor %}
     {% if form.instance.pk %}{{ form.DELETE }}{% endif %}

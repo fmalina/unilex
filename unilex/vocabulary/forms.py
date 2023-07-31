@@ -54,20 +54,45 @@ def link_concept(qs=Concept.objects.all()):
     )
 
 
+class BaseRelatedFormSet(forms.BaseInlineFormSet):
+    def __init__(self, *args, predicates=None, **kwargs):
+        self.predicates = predicates
+        super(BaseRelatedFormSet, self).__init__(*args, **kwargs)
+
+    def get_form_kwargs(self, index):
+        kwargs = super(BaseRelatedFormSet, self).get_form_kwargs(index)
+        kwargs['predicates'] = self.predicates
+        return kwargs
+
+
 class RelatedForm(forms.ModelForm):
+    predicate = forms.ChoiceField(choices=[])
     object = link_concept()
 
     class Meta:
         model = Concept.related.through
         exclude = ('subject',)
 
+    def __init__(self, *args, predicates=None, **kwargs):
+        super(RelatedForm, self).__init__(*args, **kwargs)
+        self.fields['predicate'].choices = predicates or []
 
-class ParentForm(forms.ModelForm):
-    to_concept = link_concept()
+    def clean_predicate(self):
+        pk = self.cleaned_data['predicate']
+        if pk:
+            try:
+                return Concept.objects.get(pk=pk)
+            except Concept.DoesNotExist:
+                pass
+        raise forms.ValidationError("Invalid predicate selected.")
+
+
+class PredicatesForm(forms.ModelForm):
+    concept = link_concept()
 
     class Meta:
-        model = Concept.parent.through
-        exclude = ('from',)
+        model = Vocabulary.predicates.through
+        exclude = ('vocabulary',)
 
 
 class AutoBotHoneypotSignupForm(forms.Form):

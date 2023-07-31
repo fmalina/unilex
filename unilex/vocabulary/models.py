@@ -68,9 +68,7 @@ class Vocabulary(models.Model):
     source = models.URLField(blank=True)
     updated_at = models.DateTimeField(default=datetime.now, editable=False)
     created_at = models.DateTimeField(default=datetime.now, editable=False)
-    # predicates = models.ManyToManyField(
-    #    'vocabulary.Concept', blank=True, symmetrical=False,
-    #    related_name='enabled_predicates')
+    predicates = models.ManyToManyField('vocabulary.Concept', blank=True, related_name='predicates')
     objects = VocabularyManager()
 
     @property
@@ -132,7 +130,7 @@ class Concept(models.Model):
     order = models.IntegerField(blank=True, null=True)
     parent = models.ManyToManyField('self', blank=True, symmetrical=False,
                                     # through='vocabulary.Relation',
-                                    # through_fields=('subject', 'predicate'),
+                                    # through_fields=('subject', 'object'),
                                     related_name='children')
     related = models.ManyToManyField('self', blank=True, symmetrical=True,
                                      through='vocabulary.Relation',

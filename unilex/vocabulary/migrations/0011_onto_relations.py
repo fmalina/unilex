@@ -52,8 +52,8 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='concept',
             name='related',
-            field=models.ManyToManyField(blank=True, related_name='relations',
-                                         through='vocabulary.Relation', to='vocabulary.Concept'),
+            field=models.ManyToManyField(
+                blank=True, through='vocabulary.Relation', to='vocabulary.Concept'),
         ),
         migrations.DeleteModel(
             name='AttributeOption',

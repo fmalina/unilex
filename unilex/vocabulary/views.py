@@ -20,7 +20,7 @@ from unilex.vocabulary.export_skos import export_skos
 from unilex.vocabulary.forms import (
     UploadFileForm, VocabularyForm, 
     ConceptForm, NewChildConceptForm,
-    RelatedForm, ParentForm
+    BaseRelatedFormSet, RelatedForm, PredicatesForm
 )
 from unilex.vocabulary.models import Authority, Vocabulary, Concept
 from sentry_sdk import capture_exception
@@ -321,25 +321,41 @@ def ordering(request, vocab_node_id):
 def vocabulary_edit(request, vocab_node_id):
     vocab = get_vocab(request.user, vocab_node_id)
     form = VocabularyForm(instance=vocab, label_suffix='')
+    predicates = vocab.predicates.all()
+    if not predicates:
+        predicates = ['addfirst']
+    FormSet = inlineformset_factory(
+        Vocabulary,
+        Vocabulary.predicates.through,
+        fk_name="vocabulary",
+        form=PredicatesForm,
+        extra=1,
+        can_delete=True
+    )
+    formset = FormSet(instance=vocab, prefix='pf')
     if request.method == 'POST':
-        if request.user.is_authenticated:
+        if not request.user.is_authenticated:
+            return redirect('/')
+        else:
             form = VocabularyForm(request.POST, instance=vocab)
+            formset = FormSet(request.POST, instance=vocab, prefix='pf')
             if form.is_valid():
                 form.save()
+            if formset.is_valid():
+                formset.save()
             return redirect(vocab.get_absolute_url())
-        else:
-            return redirect('/')
     return render(request, 'vocabulary/vocabulary-edit.html', {
         'vocabulary': vocab,
         'children': vocab.get_children(),
-        'form': form
+        'form': form,
+        'formset': formset,
+        'forms_and_set': zip(formset.forms, predicates)
     })
 
 
 @ajax_login_required
 def concept_new(request, vocab_node_id, node_id=0):
     vocab = get_vocab(request.user, vocab_node_id)
-
     c = Concept(vocabulary=vocab)
     if vocab_node_id:
         parent = vocab
@@ -347,7 +363,6 @@ def concept_new(request, vocab_node_id, node_id=0):
     if node_id:
         parent = get_object_or_404(Concept, node_id=node_id, vocabulary=vocab)
         add_parent = True
-
     form = NewChildConceptForm(instance=c)
     if request.method == 'POST':
         form = NewChildConceptForm(request.POST, instance=c, label_suffix='')
@@ -366,28 +381,18 @@ def concept_new(request, vocab_node_id, node_id=0):
 
 def concept_edit(request, vocab_node_id, node_id):
     vocab = get_vocab(request.user, vocab_node_id)
-
+    predicates = [('', 'Related')] + [(p.pk, p.name) for p in vocab.predicates.all()]
     c = get_object_or_404(Concept, node_id=node_id, vocabulary=vocab)
     children = c.get_children()
     related = c.related.all()
-    parent = c.parent.all()
     if not related:
         related = ['addfirst']
-    if not parent:
-        parent = ['addfirst']
     RelatedFormSet = inlineformset_factory(
         Concept,
         Concept.related.through,
+        formset=BaseRelatedFormSet,
         fk_name="subject",
         form=RelatedForm,
-        extra=1,
-        can_delete=True
-    )
-    ParentFormSet = inlineformset_factory(
-        Concept,
-        Concept.parent.through,
-        fk_name="from_concept",
-        form=ParentForm,
         extra=1,
         can_delete=True
     )
@@ -396,27 +401,24 @@ def concept_edit(request, vocab_node_id, node_id):
             return redirect('/')
         else:
             form = ConceptForm(request.POST, instance=c)
-            formset = RelatedFormSet(request.POST, instance=c, prefix='rf')
-            parent_formset = ParentFormSet(request.POST, instance=c, prefix='pf')
+            formset = RelatedFormSet(
+                request.POST,
+                instance=c, prefix='rf', predicates=predicates)
             if form.is_valid():
                 form.save()
             if formset.is_valid():
                 formset.save()
-            if parent_formset.is_valid():
-                parent_formset.save()
             return redirect(c.get_absolute_url())
     else:
         form = ConceptForm(instance=c, label_suffix='')
-        formset = RelatedFormSet(instance=c, prefix='rf')
-        parent_formset = ParentFormSet(instance=c, prefix='pf')
+        formset = RelatedFormSet(
+            instance=c, prefix='rf', predicates=predicates)
     return render(request, 'vocabulary/concept-edit.html', {
         'children': children,
         'concept': c,
         'form': form,
         'formset': formset,
-        'parent_formset': parent_formset,
-        'forms_and_set': zip(formset.forms, related),
-        'parent_forms_and_set': zip(parent_formset.forms, parent)
+        'forms_and_set': zip(formset.forms, related)
     })
 
 

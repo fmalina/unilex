@@ -79,20 +79,18 @@ var VB = {
             onAfterCompute: function(){
                 var node = VB.rootNode();
                 var desc = Id("id_description");
+                var url = `/tree/${VB.id(VB.root)}/edit`;  // editing vocab
+                var title = document.title;
                 if (node && node.id.indexOf("v-") == -1){
-                    $.get(VB.conceptUri(node.id,'edit'), function (data) {
-                        fill('editing', data);
-                        document.title = document.title.split(':')[0] + ': ' + node.name;
-                        flexi(desc);
-                        acFormset('/tree/autocomplete',
-                            document.querySelector('.set').id);
-                    });
-                } else {
-                    $.get('/tree/' + VB.id(VB.root) + '/edit', function (data) {
-                        fill('editing', data);
-                        flexi(desc);
-                    });
+                    url = VB.conceptUri(node.id, 'edit');  // editing concept
+                    title = title.split(':')[0] + ': ' + node.name;
                 }
+                $.get(url, function (data) {
+                   fill('editing', data);
+                   document.title = title;
+                   flexi(desc);
+                   acFormset('/tree/autocomplete', document.querySelector('.set').id);
+                });
             }
         });
         // load JSON data.
