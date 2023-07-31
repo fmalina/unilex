@@ -1,18 +1,14 @@
 TODO
 ====
 - collaboration features
-- undo / redo / versioning
-- i10n
-- l10n
-
+    - cooperative mode
+    - change list attributed to users
+      "x" was rename to "y" (by user) _restore_
+    - undo / redo; approve / cancel
+- i10n / l10n
 - introductory video
 - tag tool with API on Chrome app store
-- drag and drop vocabulary upload
-- file storage
-- oauth (Google, FB)
-- pay (for private vocabs)
-- CBV
-- REST API
-- React implementation
-- ALT UI
+- alternative UI
 - support custom relation types for ontologies
+
+See https://github.com/fmalina/unilex/issues
