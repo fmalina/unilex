@@ -1,5 +1,6 @@
 @import url('/assets/css/base.css');
 
+body{padding-bottom:10em}
 a.badge:hover{color:white;text-decoration:none}
 ul,li{margin:0;padding:0;list-style:none}
 h1,h2{font-weight:normal}

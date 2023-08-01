@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
     <link rel="canonical" href="https://unilexicon.com{{ request.path_info }}">
     <link rel="stylesheet" href="/assets/css/medd.css">
-    <script src="/assets/js/cookies.js"></script>
     <script src="/assets/js/ad.js"></script>
     {% block head %}{% endblock %}
 </head>
@@ -32,7 +31,6 @@
         <small>&copy; {% now "Y" %} {{ site_name }}{% if app_list %} by <a href="/fm/">F. Malina</a></small>{% endif %}
         {% include 'debug.html' %}
     </div>
-    <div id="cookie-consent"></div>
 </body>
 </html>
 {% endspaceless %}
