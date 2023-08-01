@@ -6,11 +6,12 @@
 .ac_results a{text-decoration:none;color:#333}
 .ac_results small{color:#ccc}
 .ac_loading{
-    background-position:85% 50% !important;
+    background-position:99% 50%;
     background-repeat:no-repeat !important;
     background-color:white !important;
     background-image:url(/assets/img/indicator.gif) !important
 }
+.search .ac_loading{background-position:85% 50%}
 .ac_odd{background-color:#fff}
 .ac_over{background-color:#D7E4F4}
 .hide,.ac_results .add,.ac_results .go{display:none}

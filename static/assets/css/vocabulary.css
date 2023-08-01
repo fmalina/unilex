@@ -80,7 +80,7 @@ button b{color:#cfc}
 button.delete i,
 button.delete b{color:#fcc;position:relative;top:-1px}
 #results{display:none}
-.add-row{text-decoration:none}
+.add-row{text-decoration:none;font-size:small}
 
 @media screen and (min-width:800px){
 	.aside{padding:20px}
