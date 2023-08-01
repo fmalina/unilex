@@ -27,7 +27,12 @@ CONCEPT_TEMPLATE = Template('''
         {% endfor %}{% endif %}
         {% for child in concept.get_children %}<skos:narrower rdf:nodeID="{{ child.node_id }}"/>
         {% endfor %}{% for rel in concept.related.all %}
-        <zthes:termNote identifier="{{ rel.node_id }}" label="category" vocab="{{ rel.vocabulary.node_id }}">{{rel.name}}</zthes:termNote>
+            {% if rel.vocabulary == concept.vocabulary %}
+                <skos:related rdf:nodeID="{{rel.node_id}}"/>
+            {% else %}
+                <zthes:termNote identifier="{{ rel.node_id }}" label="category"
+                    vocab="{{ rel.vocabulary.node_id }}">{{rel.name}}</zthes:termNote>
+            {% endif %}
         {% endfor %}{% if concept.query %}
         <zthes:termNote label="query">{{ concept.query }}</zthes:termNote>{% endif %}
     </skos:Concept>
