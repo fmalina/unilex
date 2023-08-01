@@ -12,7 +12,7 @@
 
 {% with model.objects as objects %}
 <h1>{{ model.verbose_name_plural|capfirst }} <b class="badge">{{ count }}</b></h1>
-{% include 'ad.html' %}
+{% include 'ad-wide.html' %}
 {% if a_z and count > 500 %}
 <div class="pagination a-z">
 {% for letter in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' %}

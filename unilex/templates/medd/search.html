@@ -3,15 +3,13 @@
 {% block title %}{{ q }}{% endblock %}
 {% block content %}
 
-<p><b>Commercial usage notice</b>:
-    If you are a commercial user using this search tool during course of your business,<br>
-    please ensure your organisation have purchased and has active
+<p><b>Commercial usage notice</b>: please ensure your organisation purchased
     <a href="/pro/subscribe">professional membership</a>.</p>
 
 {% if m %}<p>{{ m }}{% endif %}
 <h1><small>{% if total %}Results for{% else %}No results{% endif %}:</small><br>
     {{ q }} <span class="badge">{{ total }}</span></h1>
-{% include 'ad.html' %}
+{% include 'ad-wide.html' %}
 {% if total %}
     <ul class="ls{% if total > 20 %} cols{% endif %}">
         {% for app, results, count in sr %}

@@ -26,10 +26,12 @@
     </header>
     <div class="content">
         {% block content %}{% endblock %}
-        {% include 'debug.html' %}
         {% include 'ad.html' %}
     </div>
-    <div class="footer"><small>&copy; {% now "Y" %} {{ site_name }}{% if app_list %} by <a href="/fm/">F. Malina</a></small>{% endif %}</div>
+    <div class="footer">
+        <small>&copy; {% now "Y" %} {{ site_name }}{% if app_list %} by <a href="/fm/">F. Malina</a></small>{% endif %}
+        {% include 'debug.html' %}
+    </div>
     <div id="cookie-consent"></div>
 </body>
 </html>
