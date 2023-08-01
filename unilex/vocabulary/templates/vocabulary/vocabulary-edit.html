@@ -9,7 +9,7 @@
         {{ field }}
     </p>
     {% endfor %}
-    <div><label>Enabled predicates</label></div>
+    <div><label>Predicates (semantic relation types to enable)</label></div>
     {% include "vocabulary/concept-set-formset.html" %}
     <p>{% csrf_token %} {{ formset.management_form }}
         <button type="submit">Save</button>

@@ -1,6 +1,6 @@
 {% extends 'vocabulary/base.html' %}
 {% load concept_hierarchy %}
-{% block title %}{{ vocabulary.title }}{% endblock %}
+{% block title %}Unilexicon: {{ vocabulary.title }} taxonomy{% endblock %}
 {% block extrahead %}
     {% if vocabulary.description %}<meta name="description" content="{{ vocabulary.description }}">{% endif %}
 {% endblock %}
