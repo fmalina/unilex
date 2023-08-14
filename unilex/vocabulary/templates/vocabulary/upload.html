@@ -125,7 +125,7 @@ concept names and descriptions separated by ::</pre>
         {{ form.as_p }}
         <p><button type="submit" disabled="disabled">Upload</button></p>
     {% else %}
-        <p><a href="{% url 'account_signup' %}" class="btn"><i class="icon-edit"></i> Registration required&hellip;</a></p>
+        <p><a href="{% url 'account_signup' %}?next={{ request.path }}" class="btn">Upload</a></p>
     {% endif %}
 </form>
 {% endblock %}

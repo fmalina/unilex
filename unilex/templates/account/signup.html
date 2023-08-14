@@ -1,17 +1,19 @@
 {% extends "account/base.html" %}
 {% block head_title %}Sign up{% endblock %}
 {% block content %}
-<h1>Create your account</h1>
-{% include "account/social_account.html" %}
+<hgroup>
+<h1>Sign up</h1>
+<p>Already have an account? <a href="{{ login_url }}">Log in</a>.
+</hgroup>
 <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
   {% csrf_token %}
   {{ form.as_p }}
   {% if redirect_field_value %}
   <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
   {% endif %}
-  <p style="position:absolute;top:0;left:-999px">
+  <p class="offscreen">
       🤖 name: <input type="text" name="bname" value="" placeholder="humans leave this out" />
   <p><button type="submit">Create your account</button>
-  <p>Already have an account? <a href="{{ login_url }}">Sign in</a>.
+  {% include "account/social_account.html" %}
 </form>
 {% endblock %}

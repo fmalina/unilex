@@ -1,8 +1,5 @@
-<a href="{% url 'add' %}" class="btn">Create
-    {% if not request.user.is_authenticated %}
-        <small class="nowrap">sign up required</small>
-    {% endif %}
-</a>
+<a href="{% if request.user.is_authenticated %}{% url 'add' %}{% else %}{% url 'account_signup' %}?next={% url 'add' %}{% endif %}"
+   class="btn">Create</a>
 <span>
     Import:
     <a href="{% url 'load' 'xls' %}">spreadsheet</a>,

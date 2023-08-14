@@ -2,6 +2,7 @@
 @import url('/assets/css/base.css');
 
 h1{font-size:2rem;margin:0;padding:.2em 0 0 0;font-weight:300}
+hgroup p{margin-top:0;color:gray;font-weight:300}
 .content h1,h2{font-weight:300}
 fieldset{border:0;padding:0}
 dfn{border-bottom:1px dotted #ddd;cursor:help;font-style:normal}
@@ -53,6 +54,7 @@ form input[type="checkbox"]{display:inline-block;width:auto}
 .login-or span{position:relative;top:-.6em;
     padding:0 .5em;color:#aaa;background:#fff}
 #loginlink{padding-right:0}
+.offscreen{position:absolute;top:0;left:-999px}
 
 button,input[type="submit"],.btn{
     text-decoration:none;display:inline-block;padding:.5em 1em;
@@ -123,7 +125,6 @@ footer #queries{color:#ccc;margin-top:300px}
 .docs img{border:1px solid #ddd;background:#eee;padding:2px;width:100%}
 .docs img.auto{width:auto;max-width:100%}
 .docs .figure{margin:20px auto;text-align:center}
-.docs h1 small{font-size:.45em;color:silver;display:block}
 .docs h2{margin-top:3em;padding-top:1em;border-top:1px solid #ddd}
 .docs .content{max-width:600px}
 .listings .content,
