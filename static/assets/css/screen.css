@@ -41,19 +41,18 @@ input,textarea{
 	display:block;width:100%;box-sizing:border-box;
 	border:1px solid #bbb;border-radius:2px;background:#f9f9f9;
 	padding:.2em .5em;font-family:inherit}
-input,textarea,.login-or{max-width:350px}
 button{font-size:1rem}
 form input[type="file"]{border:0;font-size:inherit;background:transparent}
 form input[type="radio"],
 form input[type="checkbox"]{display:inline-block;width:auto}
 .unverified{color:#c00;font-weight:bold}
 
-
 .login-or{text-align:center;border-top:1px solid #ddd;
     margin:2em 0 .5em 0}
 .login-or span{position:relative;top:-.6em;
     padding:0 .5em;color:#aaa;background:#fff}
 #loginlink{padding-right:0}
+label[for=id_remember]{display:inline-block;position:relative;top:-2px}
 .offscreen{position:absolute;top:0;left:-999px}
 
 button,input[type="submit"],.btn{
@@ -147,6 +146,7 @@ footer #queries{color:#ccc;margin-top:300px}
 	.search input{max-width:none}
 	#feedback,#feedback textarea{width:560px;max-width:none}
 	#feedback input{width:200px;display:inline}
+    form.auth input,.login-or{max-width:350px}
 }
 @media screen and (max-width:640px){
 	.logo{display:block}
@@ -155,4 +155,5 @@ footer #queries{color:#ccc;margin-top:300px}
 	table,pre{overflow-x:auto;display:block}
 	main .tagging #demo{left:-170px}
 	header .headspace{padding:2em 0}
+	form.auth{text-align:center}
 }
