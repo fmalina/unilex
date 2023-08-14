@@ -1,4 +1,4 @@
-<form action="{{ request.path }}" method="post">
+<form method="post" action="{{ request.path }}">
 {% if not allowed %}
     <p>Only authors and staff members can delete vocabularies.
 {% else %}

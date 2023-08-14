@@ -4,8 +4,7 @@
     <script src="{{ base_url }}/assets/js/vocab_upload.js?{{ version }}"></script>
 {% endblock %}
 {% block content %}
-<form class="upload" action="{{ request.path }}" method="post"
-    enctype="multipart/form-data">
+<form method="post" class="upload" action="{{ request.path }}" enctype="multipart/form-data">
 	<h2>Import your vocabulary from<br>
         {% if format == 'xls' %}Excel (.xls) or CSV spreadsheet
         {% elif format == 'md' %}markdown text file

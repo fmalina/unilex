@@ -14,13 +14,13 @@
 <body>
     <header>
     <div class="header">
-        <div>
-            <div class="logo">Unilexicon <a href="{{ site_url }}">Medicines</a></div>
-            <form method="GET" action="{{ site_url }}s" target="_top">
+        <div class="logo">Unilexicon <a href="{{ site_url }}">Medicines</a></div>
+        <search>
+            <form method="get" action="{{ site_url }}s" target="_top">
             <input type="text" name="q" class="searchbox"{% if q %} value="{{q}}"{% endif %} placeholder="Search medicine name or code">
             {% csrf_token %}
             </form>
-        </div>
+        </search>
     </div>
     </header>
     <div class="content">

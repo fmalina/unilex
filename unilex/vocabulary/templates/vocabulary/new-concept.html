@@ -1,7 +1,7 @@
-<form action="{{request.path}}" method="post" class="new_concept">
+<form method="post" action="{{ request.path }}" class="new_concept">
     {% csrf_token %}
     <p>Create a new concept{% if parent %} within <strong>{{parent}}</strong>{% endif %}:</p>
-    {{form.as_p}}
+    {{ form.as_p }}
     <p><button type="submit">Create</button> &nbsp;
     <a href="#cancel" class="cancel">cancel</a></p>
 </form>
