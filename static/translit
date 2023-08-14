@@ -20,7 +20,7 @@ textarea{padding:.2rem}
 textarea,form span{display:inline-block}
 form span{padding:3px 3px 0 0;width:1.4rem;font-size:.9rem;position:relative;top:-1rem}
 button{background:none}
-blockquote{margin:0;padding:0 1rem;font-size:1.2em}
+#result{display:block;padding:1rem 1rem 0;font-size:1.2em}
 #txt{padding:0.5rem;font-size:1rem}
 #txt{width:100%;box-sizing:border-box}
 #inp,#out{font-family:monospace;min-width:calc(100% - 2.4rem)}
@@ -52,7 +52,7 @@ blockquote{margin:0;padding:0 1rem;font-size:1.2em}
              <br>
           <span>→·</span><textarea id="out" name="out"
              placeholder="а б в г д…   š  č  ú…   d   d   f"></textarea>
-        <blockquote id="result"></blockquote>
+        <output id="result"></output>
         <a id="copy"  href="#">copy</a>
         <a id="reset" href="#" title="reset">×</a>
     </form>
