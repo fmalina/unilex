@@ -146,7 +146,7 @@ footer #queries{color:#ccc;margin-top:300px}
 	.search input{max-width:none}
 	#feedback,#feedback textarea{width:560px;max-width:none}
 	#feedback input{width:200px;display:inline}
-    form.auth input,.login-or{max-width:350px}
+    .auth main input,.login-or{max-width:350px}
 }
 @media screen and (max-width:640px){
 	.logo{display:block}

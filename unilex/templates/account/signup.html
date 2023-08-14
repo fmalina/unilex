@@ -5,7 +5,7 @@
 <h1>Sign up</h1>
 <p>Already have an account? <a href="{{ login_url }}">Log in</a>.
 </hgroup>
-<form method="post" class="auth" action="{% url 'account_signup' %}">
+<form method="post" action="{% url 'account_signup' %}">
   {% csrf_token %}
   {{ form.as_p }}
   {% if redirect_field_value %}
