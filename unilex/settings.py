@@ -22,6 +22,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [os.path.join(STATIC_ROOT, 'assets')]
 STATIC_URL = '/assets/'
+
+EMAIL_USE_TLS = False
+EMAIL_HOST = os.getenv('EMAIL_HOST', 'localhost')
+EMAIL_PORT = os.getenv('EMAIL_PORT', 25)
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', '')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', '')
+
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
