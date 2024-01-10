@@ -134,7 +134,7 @@ if DEBUG:
     ALLOWED_HOSTS += ['localhost', '127.0.0.1', 'unilexicon.co']
     CSRF_TRUSTED_ORIGINS += ['https://unilexicon.co']
     MY_SITE_PROTOCOL = 'https'
-DEFAULT_FROM_EMAIL = 'fmalina@protonmail.com'
+DEFAULT_FROM_EMAIL = 'hi@unilexicon.com'
 ADMINS = MANAGERS = [('Admin', DEFAULT_FROM_EMAIL)]
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
