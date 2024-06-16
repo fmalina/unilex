@@ -1,6 +1,6 @@
 django>=2.1  # web framework
 gunicorn     # backend server
-mysqlclient  # database bindings
+mysqlclient==2.1.1  # database bindings
 PyMySQL      #  for MySQL
 xlrd         # Excel reader
 lxml         # parsing DM+D export data

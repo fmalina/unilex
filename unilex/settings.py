@@ -73,6 +73,7 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
     'unilex.paging.paging_middleware',
     'medd.browse.middleware.SiteMiddleware',
     'medd.browse.middleware_static.StaticCacheMiddleware',
@@ -121,11 +122,11 @@ INSTALLED_APPS = [
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'unilex', 'USER': 'root', 'PASSWORD': os.getenv('DB_PASS')
+        'NAME': 'unilex', 'USER': os.getenv('DB_USER'), 'PASSWORD': os.getenv('DB_PASS')
     },
     'medd': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'medd', 'USER': 'root', 'PASSWORD': os.getenv('DB_PASS')
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'medd', 'USER': os.getenv('PGUSER'), 'PASSWORD': os.getenv('PGPASSWORD')
     }
 }
 ALLOWED_HOSTS = ['unilexicon.com', 'unilexicon.co']
