@@ -23,7 +23,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [os.path.join(STATIC_ROOT, 'assets')]
 STATIC_URL = '/assets/'
 
-EMAIL_USE_TLS = False
+EMAIL_USE_TLS = True
 EMAIL_HOST = os.getenv('EMAIL_HOST', 'localhost')
 EMAIL_PORT = os.getenv('EMAIL_PORT', 25)
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', '')
@@ -34,7 +34,7 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_RATE_LIMITS = {
-    "change_password": "5/m",
+    "change_redpassword": "5/m",
     "manage_email": "10/m",
     "reset_password": "20/m",
     "reset_password_email": "5/m",
@@ -144,3 +144,4 @@ if DEBUG:
 else:
     SENTRY_URL = "https://2b75f709314a42a4b1e5cb8b3d616353@o315515.ingest.sentry.io/5411895"
     sentry_sdk.init(dsn=SENTRY_URL, integrations=[DjangoIntegration()])
+

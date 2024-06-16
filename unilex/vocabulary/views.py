@@ -226,7 +226,7 @@ def get_vocab(user, vocab_node_id):
     if vocab.private and not vocab.is_allowed_for(user):
         raise Http404(NOT_ALLOWED)
     if for_pro(vocab) and not user.is_staff:
-        raise redirect('pro')
+        raise redirect('/pro/')
     return vocab
 
 
