@@ -121,8 +121,10 @@ INSTALLED_APPS = [
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'unilex', 'USER': os.getenv('PGUSER'), 'PASSWORD': os.getenv('PGPASSWORD')
+        # 'ENGINE': 'django.db.backends.postgresql',
+        # 'NAME': 'unilex', 'USER': os.getenv('PGUSER'), 'PASSWORD': os.getenv('PGPASSWORD')
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'unilex', 'USER': os.getenv('MYSQL_USER'), 'PASSWORD': os.getenv('MYSQL_PWD')
     },
     'medd': {
         'ENGINE': 'django.db.backends.postgresql',
