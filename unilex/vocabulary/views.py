@@ -230,8 +230,8 @@ def get_vocab(user, vocab_node_id):
 
 def detail(request, vocab_node_id, style=None):
     vocab = get_vocab(request.user, vocab_node_id)
-    if for_pro(vocab) and not request.user.is_staff:
-        return redirect('/pro/')
+    if for_pro(vocab):
+        return redirect('subscribe')
     if style or request.path_info.endswith('/'):
         return redirect(vocab.get_absolute_url(), permanent=True)
     count = Concept.objects.filter(vocabulary=vocab).count()
