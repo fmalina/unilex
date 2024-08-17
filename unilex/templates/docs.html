@@ -92,7 +92,7 @@
   concept is now centered in the display and its child, grand-child (and so on) concepts
   are shown. The route back to its parent is also shown, together with the other child
   concepts of the parent. This overall tree structure is called a <b>hypertree</b>. Note
-  also that the hierarchical structure is shown in the panel to the right. The user can
+  also that the hierarchical structure shows in the panel to the right. The user can
   choose concepts from here to focus upon as an alternative to the tree
   structure.</p>
 
@@ -119,7 +119,7 @@
   relationships) with terms elsewhere in this vocabulary and in other
   vocabularies.</p>
 
-  <p><b>Cut out</b> an <b>put in</b> functions allow for moving branches.
+  <p><b>Cut out</b> and <b>put in</b> functions allow for moving branches.
     User identifies the "cut from" node by clicking on a "cut out" icon
     on the root concept of the tree branch user wants to cut out,
     then by navigating to a concept or vocabulary root where user wants to paste
@@ -144,19 +144,16 @@
   <p><b>Organisation Authority</b>. Paid members can benefit from having
   an authority for their organisation with access for their multiple registered
   users to manage together multiple private vocabularies under authority of their organisation.
-  Authority is setup by <a href="mailto:hi@unilexicon.com">contacting support</a>
+  Authority is set up by <a href="mailto:hi@unilexicon.com">contacting support</a>
   with email addresses or names and usernames of registered users and a name for your organisation.
 
   <p><b>Import issues</b>
   User experiencing trouble importing may be trying to upload a vocabulary using node_id that
   already exists in his collection. Deleting a vocabulary first before re-uploading is recommended
   making sure duplicate node_ids aren't present within uploaded file.<br>
-  <p>Also commonly the concept names or IDs may be too long too if over 60 characters.<br>
-  <P>Many users carefully inspect Unilexicon SKOS format and mimick it in
+  <p>Also, commonly the concept names or IDs may be too long if over 60 characters.<br>
+  <P>Many users carefully inspect Unilexicon SKOS format and mimic it in
   their SKOS XML file for upload.
-
-  <p>Editor also implements <a href="/docs-nav-queries">assistance with
-      navigational queries</a> for navigation specific vocabularies.</p>
 
   <h2 id="tagging">Content tagging plugin, system description</h2>
 
@@ -182,12 +179,10 @@
   <p>Ubuntu Linux server, 256MB memory. Debian also works. All code is generally platform independent.</p>
 
   <h3>Installation</h3>
-  <p>To instal the dependencies on a fresh Ubuntu server:</p>
-  <p><code>sudo apt-get install gunicorn mysql-server python3-django python3-mysqldb
-    python3-xlrd python3-docutils postfix nginx</code></p>
+  <p>To install the dependencies on a fresh Ubuntu server:</p>
+  <p><code>sudo apt install gunicorn mysql-server python3-django python3-mysqldb
+    python3-xlrd python3-docutils nginx</code></p>
   <p>Server configuration files are included.</p>
-  <p>Our server runs on <a class="external" href="https://www.linode.com/?r=fc1241b5f2add0a0050d8a021f831f8bc6faf59a"
-                           title="referral link">Linode</a>.</p>
 
   <h3>Technical description</h3>
   <p>Web based SKOS editor.</p>
@@ -221,39 +216,17 @@
   <h2>Technical components of the content tagging plugin</h2>
   <p><a class="external" href="https://developer.chrome.com/docs/extensions/">Chrome extension</a> is written in JavaScript (plain native code,
   <a class="external" href="https://developer.chrome.com/docs/extensions/mv3/options/">DOM localStorage</a>), CSS and HTML5.
-  Tagging interfaces are loaded for each content node using AJAX. Tagging interface iteself uses jQuery.
+  Tagging interfaces are loaded for each content node using AJAX. Tagging interface itself uses jQuery.
   Frontend uses AJAX to talk to backend WSGI application, which communicates to underlying CMS.
   SRU is used to retrieve data from the CMS. SWORD is used to post amended data back.</p>
 
   <h3>System requirements</h3>
-  <p><a class="external" href="https://www.google.com/chrome/">Chrome</a> or
-  <a class="external" href="https://www.chromium.org/Home">Chromium</a> web browser.</p>
+  <p>Modern web browser.</p>
 
   
   <h3>Technical description</h3>
   <p>Tagging plug-in is implemented as a browser extension for Google Chrome and Chromium browsers.</p>
   <p>It is CMS independent interface that uses integration with the content management system to be tagged.</p>
   <p>This can be achieved by hooking into existing APIs of the client as in the following example.</p>
-  
-  <h3>Tagging integration dependencies for Drupal CMS, legacy of The National Strategies</h3>
-  <ul>
-      <li><p><b>SRU</b> (Search/Retrieval via URL),
-          a standard XML-focused search protocol for Internet search queries,
-          utilizing CQL (Contextual Query Language),
-          a standard syntax for representing queries.</p></li>
-      <li><p><b>SWORD</b> (Simple Web service Offering Repository Deposit), XML protocol for depositing content from one location to another.
-          It is a profile of the Atom Publishing Protocol (known as APP or ATOMPUB).</p></li>
-      <li><p><b>CQL</b> (Contextual Query Language),
-          a formal language for representing queries to information retrieval systems such as search engines,
-          bibliographic catalogs and museum collection information. It's design objective is 
-          that queries be human readable and writable, and that the language
-          be intuitive while maintaining the expressiveness of more complex query languages.
-          It is being developed and maintained by the Z39.50 Maintenance Agency,
-          part of the Library of Congress.</p></li>
-  </ul>
-  <p>Modules:
-      <a class="external" href="https://www.drupal.org/project/sru">SRU</a>,
-      <a class="external" href="https://www.drupal.org/project/sword">SWORD</a>,
-      <a class="external" href="https://www.drupal.org/project/cql">CQL</a>,
-      W3C standard <a class="external" href="https://www.drupal.org/node/560326">SKOS export/import for Drupal</a>.</p>
+
 {% endblock %}

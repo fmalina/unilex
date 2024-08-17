@@ -57,9 +57,7 @@
         <nav>
             &copy; {% now "Y" %} Unilexicon by <a href="/fm/">F. Malina</a>
             <a href="#feedback" id="open_feedback">Contact</a>
-            <i class="icon icon-external"></i>
-            <a href="{{ base_url }}/med/" target="_blank" title="Unilexicon for Medicines">Med</a>
-            <a href="{{ base_url }}/translit" title="Online transliterator">Translit</a>
+            {% block ext %}{% endblock %}
         </nav>
         {% include 'debug.html' %}
     </footer>

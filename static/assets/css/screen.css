@@ -41,7 +41,7 @@ input,textarea{
 	display:block;width:100%;box-sizing:border-box;
 	border:1px solid #bbb;border-radius:2px;background:#f9f9f9;
 	padding:.2em .5em;font-family:inherit}
-button{font-size:1rem}
+button{font-size:1rem;margin-right:.5rem}
 form input[type="file"]{border:0;font-size:inherit;background:transparent}
 form input[type="radio"],
 form input[type="checkbox"]{display:inline-block;width:auto}
