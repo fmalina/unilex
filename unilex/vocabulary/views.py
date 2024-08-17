@@ -214,11 +214,11 @@ def authority(request, authority_code, json=False):
     return render(request, 'vocabulary/authority.html', context)
 
 
-def for_pro(vocab):
+def has_pro(user):
     try:
-        return vocab.private and not vocab.user.subscription.is_active
-    except:  # RelatedObjectDoesNotExist
-        return vocab.private
+        return user.subscription.is_active
+    except user._meta.model.subscription.RelatedObjectDoesNotExist:
+        return False
 
 
 def get_vocab(user, vocab_node_id):
@@ -230,7 +230,7 @@ def get_vocab(user, vocab_node_id):
 
 def detail(request, vocab_node_id, style=None):
     vocab = get_vocab(request.user, vocab_node_id)
-    if for_pro(vocab):
+    if vocab.private and not has_pro(vocab.user):
         return redirect('subscribe')
     if style or request.path_info.endswith('/'):
         return redirect(vocab.get_absolute_url(), permanent=True)
@@ -321,6 +321,9 @@ def ordering(request, vocab_node_id):
 def vocabulary_edit(request, vocab_node_id):
     vocab = get_vocab(request.user, vocab_node_id)
     form = VocabularyForm(instance=vocab, label_suffix='')
+    if not has_pro(vocab.user) and not vocab.private:
+        form.fields['private'].widget.attrs['disabled'] = True
+
     predicates = vocab.predicates.all()
     if not predicates:
         predicates = ['addfirst']
