@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
             field=models.BooleanField(
                 default=False,
                 help_text="Private vocabulary can be edited only by the users belonging to its authority.",
-                verbose_name="Private vocabulary (pro members only)",
+                verbose_name="Private vocabulary (paid members only)",
             ),
         ),
     ]
