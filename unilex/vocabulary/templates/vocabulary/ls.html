@@ -3,7 +3,7 @@
 	<li{% if v.language %} lang="{{ v.language.iso }}"{% endif %}>
 	{% if v.private %}🔒 {% endif %}<a href="{{v.get_absolute_url}}">
 		{{ v.title }} ({{ v.concept_count }})</a>
-		{% if v.language %}<b>{{ v.language.iso.upper }}</b>{% endif %}<br>
+		{% if v.language %}<em>{{ v.language.iso.upper }}</em>{% endif %}<br>
 		{% if v.description %}{{ v.description }}{% endif %}</li>
 	{% endfor %}
 </ul>
