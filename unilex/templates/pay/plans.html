@@ -1,7 +1,7 @@
 {% extends 'pay/base.html' %}
 
 {% block content %}
-<h1>Purchase professional membership</h1>
+<h1>Purchase membership</h1>
 
 <form method="post" action="#" id="plans">
     {% csrf_token %}
@@ -22,6 +22,6 @@
     <p>Plans are not recurring and no renewal reminders are sent.
     Payments are processed via Paypal and eligible for Paypal purchase protection.
     <p>If you have any questions or suggestions,
-        please contact <a href="/fm/">František Malina</a>.
+        please contact <a href="/fm/">F. Malina</a>.
 </form>
 {% endblock %}

@@ -122,7 +122,7 @@ var VB = {
                 VB.go(mo[1]);
             VB.last_fragment = fragment;
             // redirect to right context when logging in
-            // $('#loginlink').attr('href', this.href + location.hash);
+            // $('.loginlink').attr('href', this.href + location.hash);
         }
     },
     addBox: function (data) {

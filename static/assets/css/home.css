@@ -40,8 +40,8 @@
             transform:rotate(45deg);
 }
 .lead{
-    background:linear-gradient(#001049, #005089) #005089;
-    background-size: cover;
+    background:url(/assets/img/bg.png) 120% 100% no-repeat, linear-gradient(#001049, #005089) #005089;
+    background-size:auto,cover;
     color: white;
 }
 .lead ::placeholder{color:rgba(255,255,255,.7)}

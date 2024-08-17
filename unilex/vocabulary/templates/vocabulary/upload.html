@@ -10,9 +10,20 @@
         {% elif format == 'md' %}markdown text file
         {% else %}SKOS file{% endif %}
         and start editing</h2>
+    <p> <a{% if format == 'xls' %} class="curr"{% endif %} href="{% url 'load' 'xls' %}">XLS/CSV</a> &nbsp;
+        <a{% if format == 'skos' %} class="curr"{% endif %} href="{% url 'load' 'skos' %}">SKOS</a> &nbsp;
+        <a{% if format == 'md' %} class="curr"{% endif %} href="{% url 'load' 'md' %}">Text</a></p>
     {% csrf_token %}
 
-    {% if format == 'md' %}
+    {% if request.user.is_authenticated %}
+        {{ form.as_p }}
+        <p><button type="submit" disabled="disabled">Upload</button></p>
+    {% else %}
+        <p><a href="{% url 'account_signup' %}?next={{ request.path }}" class="btn">Register to upload</a></p>
+    {% endif %}
+</form>
+
+{% if format == 'md' %}
     <p>For automated creation of taxonomies, you may consider the following ChatGPT prompt:
     <pre>Write a taxonomy for WATCHES in markdown nested unordered list with
 concept names and descriptions separated by ::</pre>
@@ -34,9 +45,9 @@ concept names and descriptions separated by ::</pre>
     - Dress Watches: Luxury watches designed to be worn with formal attire.
     - Dive Watches: Luxury watches designed for underwater activities like
       scuba diving.
-</pre>
-    {% endif %}
-    {% if format == 'xls' %}
+    </pre>
+{% elif format == 'xls' %}
+    <div class="explainer">
     <p>Upload your taxonomy in any of the following formats:</p>
     <h3>Plain tree,
         <i class="p2">1st column can contain IDs.</i>
@@ -99,8 +110,8 @@ concept names and descriptions separated by ::</pre>
             <tr><th>  …</th><td class="p2">  …</td><td>…</td><td></td><td></td><td class="p4"></td></tr>
         </tbody>
     </table>
-    {% endif %}
-    {% if format == 'skos' %}
+    </div>
+{% elif format == 'skos' %}
     <p>Works for SKOS files produced with Unilexicon and subset of Lexaurus export.</p>
     <pre>
 &lt;rdf:RDF
@@ -119,12 +130,5 @@ concept names and descriptions separated by ::</pre>
 
 &lt;/rdf:RDF&gt;
     </pre>
-    {% endif %}
-    {% if request.user.is_authenticated %}
-        {{ form.as_p }}
-        <p><button type="submit" disabled="disabled">Upload</button></p>
-    {% else %}
-        <p><a href="{% url 'account_signup' %}?next={{ request.path }}" class="btn">Upload</a></p>
-    {% endif %}
-</form>
+{% endif %}
 {% endblock %}

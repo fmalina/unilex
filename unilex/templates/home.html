@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}Unilexicon: taxonomy editor for controlled vocabularies, SKOS theasurus suite{% endblock %}
+{% block title %}Unilexicon: taxonomy editor for controlled vocabularies, SKOS thesaurus suite{% endblock %}
 {% block extrahead %}
 <meta name="description" content="Create and manage controlled vocabularies, than use your taxonomies to tag content.
 Simple knowledge organization system (SKOS) thesaurus software for your organisation.">
@@ -11,10 +11,10 @@ Simple knowledge organization system (SKOS) thesaurus software for your organisa
 <section class="headspace">
     <h1>Taxonomy editor suite</h1>
     <p class="btn-links clearfix">
-        <a class="btn" href="{% url 'listings' %}">Explore taxonomies</a>
         {% include 'vocabulary/add.html' %}
-    <p>Unilexicon™ a visual editor and taxonomy manager for authoring controlled
-    vocabularies with a content tagging&nbsp;extension.
+    <p>Unilexicon™ a visual editor and taxonomy manager for authoring
+    <a href="{% url 'listings' %}">controlled vocabularies</a>
+    with a content tagging&nbsp;extension.
     <div id="editor">
         <h2>Visual taxonomy editor and management tools for
             controlled vocabularies and thesauri</h2>
@@ -86,7 +86,7 @@ Simple knowledge organization system (SKOS) thesaurus software for your organisa
 </div>
 <div class="content">
 <div class="clearfix"></div>
-<h2>Professional subscription</h2>
+<h2>Paid subscription</h2>
 <p>Hi, I'm Francis Malina the creator of Unilexicon, a free and open platform that helps
 you manage taxonomies and classifications. I know from experience that taxonomy
 work can be complex and time-consuming, and that's why I've designed Unilexicon
@@ -127,6 +127,6 @@ features, but you'll also be supporting the continued development of
 Unilexicon. Your contribution will help me maintain and improve the
 platform, ensuring that it remains a valuable resource for taxonomists
 everywhere.
-<p><a href="/pro/subscribe" class="btn call">Purchase professional membership</a>
+<p><a href="/pro/subscribe" class="btn call">Purchase membership</a>
 
 {% endblock %}

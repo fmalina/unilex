@@ -25,10 +25,10 @@ nav a,footer a{text-decoration:none}
 header a.logo{color:#EAA000;padding-right:1.5rem;text-decoration:none}
 header nav{display:block;padding:0 1.5em 0 0;float:left}
 header nav a{display:inline-block}
-header nav .sep{color:#ddd}
 header form{text-align:center}
 nav{font-size:.9rem}
 nav a{text-transform:uppercase;padding:.5em 1em .5em 0}
+a.curr{color:inherit;text-decoration:none;cursor:default}
 
 form ul{margin:0;padding:10px 0}
 form ul li{list-style:none;padding:5px 0}
@@ -51,7 +51,9 @@ form input[type="checkbox"]{display:inline-block;width:auto}
     margin:2em 0 .5em 0}
 .login-or span{position:relative;top:-.6em;
     padding:0 .5em;color:#aaa;background:#fff}
-#loginlink{padding-right:0}
+.signuplink{padding-left:.2rem}
+.loginlink{padding-right:0}
+.loginlink:after{content:' | ';color:#ddd}
 label[for=id_remember]{display:inline-block;position:relative;top:-2px}
 .offscreen{position:absolute;top:0;left:-999px}
 
@@ -64,7 +66,6 @@ button[disabled="disabled"]{background:gray}
 .btn-links{display:block}
 .btn-links .btn{float:left;margin-right:.6rem}
 .btn-links span{float:left;width:15em;padding:.8rem .2rem}
-
 .call{padding:1em 1.5em;font-size:1.5em}
 .call small{font-size:.7em}
 
@@ -129,13 +130,13 @@ footer #queries{color:#ccc;margin-top:300px}
 .listings .content,
 .pro .content{max-width:980px}
 
-.upload .p2,.upload .p3,.upload .p4{display:none}
-.upload .p4{color:navy}
-.upload .p3{color:gray}
-.upload .p2{color:green}
-.upload thead .p2{color:inherit}
-.upload h3{margin-bottom:.3em;font-weight:300}
-.upload h3 i{font-style:normal}
+.explainer .p2,.explainer .p3,.explainer .p4{display:none}
+.explainer .p4{color:navy}
+.explainer .p3{color:gray}
+.explainer .p2{color:green}
+.explainer thead .p2{color:inherit}
+.explainer h3{margin-bottom:.3em;font-weight:300}
+.explainer h3 i{font-style:normal}
 
 @media screen and (min-width:640px){
 	header,footer,#messages{padding:1em 3em}

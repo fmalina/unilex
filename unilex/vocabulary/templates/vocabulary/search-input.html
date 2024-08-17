@@ -1,8 +1,7 @@
 <script src="{{ base_url }}/assets/js/search.js?{{ version }}"></script>
-<search>
-<form method="get" class="search" action="{{ base_url }}{% url 'search' %}">
+
+<form method="get" class="search" role="search" action="{{ base_url }}{% url 'search' %}">
         <input type="text" id="q" name="q" value="{{ q }}"
-               placeholder="Search vocabularies" /><button type="submit" title="Search">
+               placeholder="Search vocabularies"><button type="submit" title="Search">
             <i class="icon-search"></i></button>
 </form>
-</search>
