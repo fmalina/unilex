@@ -23,6 +23,7 @@
         <nav><a href="{{ base_url }}" class="logo">Unilexicon</a>
         {% block nav %}
             <a href="{{ base_url }}{% url 'listings' %}">Taxonomies</a>
+            <a href="{{ base_url }}{% url 'docs' %}">Docs</a>
             {% if user.is_staff %}
             <a href="{{ base_url }}/admin/" title="Admin">
                 <span class="icon icon-edit"></span></a>{% endif %}
@@ -58,7 +59,6 @@
         <nav>
             &copy; {% now "Y" %} Unilexicon by <a href="/fm/">F. Malina</a>
             <a href="#feedback" id="open_feedback">Contact</a>
-            <a href="{{ base_url }}{% url 'docs' %}">Docs</a>
             for <a href="{{ base_url }}/med/" target="_blank" title="Unilexicon for Medicines">Med
                 <i class="icon icon-external"></i></a>
             <a href="{{ base_url }}/translit" target="_blank" title="Online transliterator">Translit
