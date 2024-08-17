@@ -225,13 +225,13 @@ def get_vocab(user, vocab_node_id):
     vocab = get_object_or_404(Vocabulary, node_id=vocab_node_id)
     if vocab.private and not vocab.is_allowed_for(user):
         raise Http404(NOT_ALLOWED)
-    if for_pro(vocab) and not user.is_staff:
-        raise redirect('/pro/')
     return vocab
 
 
 def detail(request, vocab_node_id, style=None):
     vocab = get_vocab(request.user, vocab_node_id)
+    if for_pro(vocab) and not request.user.is_staff:
+        return redirect('/pro/')
     if style or request.path_info.endswith('/'):
         return redirect(vocab.get_absolute_url(), permanent=True)
     count = Concept.objects.filter(vocabulary=vocab).count()
