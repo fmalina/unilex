@@ -1,0 +1,29 @@
+[project]
+name = "unilex"
+version = "1.0.0"
+description = "Taxonomy management suite"
+authors = [
+    {name = "Francis Malina", email = "hi@unilexicon.com"},
+    {name = "Dr Ian Piper", url = "https://www.tellura.co.uk"}  # docs, testing
+]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "django>=5.1.2",
+    "django-allauth>=65.0.2",
+    "django-rest-framework>=0.1.0",
+    "django-reversion>=5.1.0",
+    "docutils>=0.21.2",
+    "fabric>=3.2.2",
+    "gunicorn>=23.0.0",
+    "invoke>=2.2.0",
+    "lxml>=5.3.0",
+    "markdown>=3.7",
+    "mysqlclient==2.1.1",
+    "openai>=1.51.2",
+    "pymysql>=1.1.1",
+    "requests>=2.32.3",
+    "sentry-sdk>=2.16.0",
+    "transliterate>=1.10.2",
+    "xlrd>=2.0.1",
+]
