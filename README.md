@@ -4,15 +4,15 @@
 
 Visual tool for managing controlled vocabularies
 
-:   -   uses hypertree graphs to allow users exploring and editing
+   -   uses hypertree graphs to allow users exploring and editing
         vocabularies
-    -   helps users to comprehend relations in large taxonomies
+   -   helps users to comprehend relations in large taxonomies
 
 Tagging tool for tagging resources using controlled vocabularies
 
-:   -   use controlled vocabularies from the repository to tag your
+   -   use controlled vocabularies from the repository to tag your
         resources and web pages
-    -   works contextually as a Chrome browser extension
+   -   works contextually as a Chrome browser extension
 
 ## Content findability toolkit
 
@@ -32,7 +32,7 @@ Standard formats: SKOS, JSON, Excel/CSV
 Install Python, MySQL or your database of choice and all required
 packages.
 
-> pip install -r requirements.txt
+> uv sync
 
 Create database and add name, user and password to settings_local.py
 based on the text template provided.
@@ -128,16 +128,15 @@ compatible with the GNU GPL license v3, you may use Unilexicon under the
 terms of the GPLv3.
 
 ## TODO
+See [issues](https://github.com/fmalina/unilex/issues)
 
-- collaboration features
-    - cooperative mode
+- improve collaboration features
+    - add authority management UI for cooperative mode
     - change list attributed to users
       "x" was rename to "y" (by user) _restore_
     - undo / redo; approve / cancel
 - i10n / l10n
 - introductory video
 - tag tool with API on Chrome app store
-- alternative UI
+- alternative UI / treeview
 - support custom relation types for ontologies
-
-See https://github.com/fmalina/unilex/issues
