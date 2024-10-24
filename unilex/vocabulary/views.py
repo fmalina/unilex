@@ -208,7 +208,7 @@ def authority(request, authority_code, json=False):
         ls = [{
             'name': v.title,
             'node_id': v.node_id,
-            'url': v.get_absolute_url() + 'json'
+            'url': v.get_absolute_url() + '.json'
         } for v in ls]
         return HttpResponse(dumps(ls), content_type='application/json')
     return render(request, 'vocabulary/authority.html', context)
