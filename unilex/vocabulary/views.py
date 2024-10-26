@@ -245,7 +245,6 @@ def detail(request, vocab_node_id, style=None):
     })
 
 
-@login_required
 def json(request, vocab_node_id):
     vocab = get_vocab(request.user, vocab_node_id)
     json_data = dumps(vocab_to_dict(vocab, 0), indent=4)
