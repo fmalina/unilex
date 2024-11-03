@@ -1,25 +1,26 @@
 {% extends 'pay/base.html' %}
 {% block search %}{% endblock %}
 {% block content %}
-<h1>Purchase membership</h1>
+<h1>Get Professional Plus Membership</h1>
 
 <form method="post" action="#" id="plans">
     {% csrf_token %}
     {% for plan_value, plan_name in plans %}
         <p><button name="plan" value="{{ plan_value }}"
             type="submit" class="btn btn-default btn-block">
-                {{ plan_name }}<br>
-                <small>Choose plan</small>
+                <strong>One-Year Professional Plus Membership</strong> - £199<br>
+                <small>All premium features, one-time payment, full-year access</small>
             </button>
     {% endfor %}
     <ul>
-        <li>✔️ Use and export private vocabularies
-        <li>✔️ Multi-user team setup for your organization
-        <li>✔️ Access first-class technical support
+        <li><strong>Includes:</strong></li>
+        <li>✔️ Create and Export Private Vocabularies
+        <li>✔️ Multi-User Team Access for Collaboration
+        <li>✔️ Priority Support
     </ul>
-    <p>Plans are not recurring and no renewal reminders are sent.
-    Payments are processed via Paypal and eligible for Paypal purchase protection.
-    <p>If you have any questions or suggestions,
-        please contact <a href="/fm/">F. Malina</a>.
+    <p><em>One-time purchase, no recurring fees or renewal reminders.</em>
+        Payments are securely processed via PayPal with purchase protection included.
+    <p>Notice: <em>Price increases to £229 on 1. 1. 2025</em>
+    <p>Got questions or suggestions? Reach out to <a href="/fm/">F. Malina</a>.
 </form>
 {% endblock %}

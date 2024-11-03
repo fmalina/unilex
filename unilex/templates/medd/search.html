@@ -2,9 +2,10 @@
 {% load tags %}
 {% block title %}{{ q }}{% endblock %}
 {% block content %}
+<p><strong>Commercial Use Notice:</strong> For up-to-date NHS medicines and devices data,
+    your organization requires a <a href="/pro/subscribe">Professional Plus Membership</a>.
+    Ensure data accuracy and compliance by subscribing today for under £20 a month!</p>
 
-<p><b>Commercial usage notice</b>: please ensure your organisation purchased
-    <a href="/pro/subscribe">professional membership</a>.</p>
 
 {% if m %}<p>{{ m }}{% endif %}
 <h1><small>{% if total %}Results for{% else %}No results{% endif %}:</small><br>

@@ -140,7 +140,7 @@ if DEBUG:
 DEFAULT_FROM_EMAIL = 'hi@unilexicon.com'
 ADMINS = MANAGERS = [('Admin', DEFAULT_FROM_EMAIL)]
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
-
+PAY_PLANS = {365: ('199.00', '', '')}
 if DEBUG:
     sentry_sdk.init()
 else:
