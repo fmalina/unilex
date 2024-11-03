@@ -24,10 +24,11 @@
 </form>
 
 {% if format == 'md' %}
-    <p>For automated creation of taxonomies, you may consider the following ChatGPT prompt:
+    <p>Consider the following LLM prompt specifying format required.
     <pre>Write a taxonomy for WATCHES in markdown nested unordered list with
 concept names and descriptions separated by ::</pre>
-    <p>Answer can look like this, save it to a .txt file and load here
+    <p>Load your text based taxonomy here to be parsed
+        into concept IDs, names, descriptions and broader/narrower relations.
     <pre>
 - Watches
   * Analog Watches: Watches that display time using traditional clock hands
