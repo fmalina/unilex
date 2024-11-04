@@ -31,7 +31,7 @@ button{background:none}
 #swap{background:DarkGoldenRod;border-color:DarkGoldenRod;color:white}
 #copy{text-align:center;display:block;font-size:smaller;display:none;color:DeepPink}
 #reset{display:none;position:absolute;top:1rem;right:1rem;font-size:.9rem;font-weight:bold;color:silver}
-#banner{padding:1rem 1.5rem;margin-top:5rem;display:inline-block;border-color:Goldenrod;box-shadow:0 0 5px Goldenrod}
+#banner{padding:1rem;margin-top:5rem;display:inline-block;border-color:Goldenrod;box-shadow:0 0 5px Goldenrod}
 </style>
 </head>
 <body>
