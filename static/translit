@@ -57,9 +57,9 @@ button{background:none}
         <a id="reset" href="#" title="reset">×</a>
     </form>
     <div id="banner">
-        <p>Transliterate live websites with our premium membership.
+        <p>Transliterate live websites to latin with <a href="/pro/subscribe">Pro+ membership</a>.
         <p>Just prepend any site with current address followed by a slash:
-        <kbd><a href="/translit/">unilexicon.com/translit/</a><u>www.example.com</u></kbd>
+        <kbd><a href="/translit/">unilexicon.com/translit/</a><u>www.pravda.ru</u></kbd>
     </div>
 </main>
 
