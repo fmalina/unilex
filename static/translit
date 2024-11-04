@@ -31,7 +31,7 @@ button{background:none}
 #swap{background:DarkGoldenRod;border-color:DarkGoldenRod;color:white}
 #copy{text-align:center;display:block;font-size:smaller;display:none;color:DeepPink}
 #reset{display:none;position:absolute;top:1rem;right:1rem;font-size:.9rem;font-weight:bold;color:silver}
-#banner{padding:.5rem 1rem;margin-top:5rem;background-color:ivory;border-color:Goldenrod;box-shadow:0 0 5px Goldenrod}
+#banner{padding:1rem 1.5rem;margin-top:5rem;display:inline-block;border-color:Goldenrod;box-shadow:0 0 5px Goldenrod}
 </style>
 </head>
 <body>
@@ -56,11 +56,11 @@ button{background:none}
         <a id="copy"  href="#">copy</a>
         <a id="reset" href="#" title="reset">×</a>
     </form>
-    <div id="banner">
-        <p>Transliterate live websites to latin with <a href="/pro/subscribe">Pro+ membership</a>.
-        <p>Just prepend any site with current address followed by a slash:
-        <kbd><a href="/translit/">unilexicon.com/translit/</a><u>www.pravda.ru</u></kbd>
-    </div>
+    <p id="banner">
+        <a href="/pro/subscribe">Transliterate websites to Latin Script with Pro+</a>
+        <br>Just add the site after:
+        <kbd><a href="/translit/">unilexicon.com/translit/</a><u>yourwebsite.com</u></kbd>
+    </p>
 </main>
 
 <!--div id="cookie-consent"></div>
