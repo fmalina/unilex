@@ -18,13 +18,12 @@ from unilex.vocabulary.export_csv import export_csv
 from unilex.vocabulary.export_json import vocab_to_dict
 from unilex.vocabulary.export_skos import export_skos
 from unilex.vocabulary.forms import (
-    UploadFileForm, VocabularyForm, 
+    UploadFileForm, VocabularyForm,  User, AuthorityForm,
     ConceptForm, NewChildConceptForm,
     BaseRelatedFormSet, RelatedForm, PredicatesForm
 )
 from unilex.vocabulary.models import Authority, Vocabulary, Concept
 from sentry_sdk import capture_exception
-
 
 NOT_ALLOWED = 'You are not allowed to view or edit this taxonomy'
 
@@ -90,22 +89,17 @@ def search(request):
 def generate(request):
     from unilex.vocabulary.ola import taxonomy_prompt, submit_prompt
     from unilex.vocabulary.load_md import load_md
-    from openai.error import RateLimitError
 
     if request.method == 'POST' and request.user.is_authenticated:
         topic = request.POST.get('topic')
         try:
             text = submit_prompt(taxonomy_prompt(topic))
-            print(text)
             v = load_md(request.user, text.encode('utf8'), topic)
-            v.source = 'https://platform.openai.com/docs/models/gpt-3-5'
+            v.source = 'https://chat.openai.com'
             v.save()
             return redirect(v.get_absolute_url())
-        except RateLimitError:
-            messages.error(request,
-                """We don't have enough ChatGPT API tokens to serve your request.
-                If you are not too frustrated by this you can still use ChatGPT
-                directly combined with Unilexicon text import feature.""")
+        except Exception as e:
+            messages.error(request, str(e))
 
     return render(request, 'vocabulary/generate.html', {})
 
@@ -190,28 +184,32 @@ def vocabulary_add(request, authority_code=''):
     return redirect(vocab.get_absolute_url())
 
 
+def is_permitted(user, ath):
+    return user in ath.users.all() or user.is_staff
+
+
 def authority(request, authority_code, json=False):
     """Authority and its vocabularies."""
-    a = get_object_or_404(Authority, code=authority_code)
-    ls = Vocabulary.objects.with_counts().filter(authority=a)
-    # TODO: ACL API
-    # private_access = request.user in a.users.all()
-    # if not private_access:
-    #     ls = ls.filter(private=False)
-    context = {
-        'ls': ls,
-        'authority': a,
-        'authority_code': a.code,
-        'private_access': True  # private_access
-    }
+    ath = get_object_or_404(Authority, code=authority_code)
+    ls = Vocabulary.objects.with_counts().filter(authority=ath)
+    permitted = is_permitted(request.user, ath)
+    form = AuthorityForm(request.POST or None, instance=ath)
+    if form.is_valid() and permitted:
+        form.save()
+        return redirect('authority', authority_code=ath.code)
+    context = dict(ls=ls, authority=ath, permitted=permitted, form=form)
     if json:
-        ls = [{
-            'name': v.title,
-            'node_id': v.node_id,
-            'url': v.get_absolute_url() + '.json'
-        } for v in ls]
+        ls = [dict(name=v.title, node_id=v.node_id, url=f'{v.get_absolute_url()}.json') for v in ls]
         return HttpResponse(dumps(ls), content_type='application/json')
     return render(request, 'vocabulary/authority.html', context)
+
+
+def rm_user_from_authority(request, authority_code, user_id):
+    ath = get_object_or_404(Authority, code=authority_code)
+    user = get_object_or_404(User, id=user_id)
+    if is_permitted(request.user, ath) and user in ath.users.all():
+        ath.users.remove(user)
+    return redirect('authority', authority_code=ath.code)
 
 
 def has_pro(user):

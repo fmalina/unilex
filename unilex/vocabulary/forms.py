@@ -1,5 +1,8 @@
 from django import forms
-from unilex.vocabulary.models import Concept, Vocabulary
+from django.contrib.auth import get_user_model
+from unilex.vocabulary.models import Concept, Vocabulary, Authority
+
+User = get_user_model()
 
 
 class ConceptForm(forms.ModelForm):
@@ -85,6 +88,34 @@ class RelatedForm(forms.ModelForm):
             except Concept.DoesNotExist:
                 pass
         raise forms.ValidationError("Invalid predicate selected.")
+
+
+class AuthorityForm(forms.ModelForm):
+    email_to_add = forms.EmailField(
+        required=False,
+        label="Add user by email"
+    )
+
+    class Meta:
+        model = Authority
+        fields = ['name', 'website']
+
+    def clean_email_to_add(self):
+        email = self.cleaned_data.get("email_to_add")
+        if email:
+            try:
+                _user = User.objects.get(email=email)
+            except User.DoesNotExist:
+                raise forms.ValidationError("No user found with this email.")
+        return email
+
+    def save(self, commit=True):
+        email = self.cleaned_data.get("email_to_add")
+        if email:
+            user = User.objects.get(email=email)
+            if user:
+                self.instance.users.add(user)
+        return super().save(commit=commit)
 
 
 class PredicatesForm(forms.ModelForm):

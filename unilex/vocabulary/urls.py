@@ -9,6 +9,8 @@ urlpatterns = [
     path('authority/<slug:authority_code>/json', v.authority, {'json': True}, name='authority_json'),
     path('authority/<slug:authority_code>/add', v.vocabulary_add, name='authority_add'),
     path('authority/<slug:authority_code>/load-<slug:format>', v.load_vocab, name='authority_load'),
+    path('authority/<slug:authority_code>/rm-user/<int:user_id>/', v.rm_user_from_authority, name='authority_rm_user'),
+
     path('autocomplete', v.autocomplete, name='v-autocomplete'),
     path('generate', v.generate, name='generate'),
     path('search', v.search, name='search'),

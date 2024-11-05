@@ -1,5 +1,6 @@
 {% extends 'vocabulary/base.html' %}
 {% block title %}{{ authority.name }} ({{ authority.code }}){% endblock %}
+{% block body_id %} class="auth"{% endblock %}
 {% block content %}
     <h1>{{ authority.name }} ({{ authority.code }})</h1>
     <p>
@@ -8,7 +9,9 @@
             <a href="{{ authority.website }}">{{ authority.website }}</a>
         {% endif %}
     </p>
-    {% if private_access %}
+
+    {% include 'vocabulary/ls.html' %}
+    {% if permitted %}
         <p class="btn-links clearfix">
             <a href="{% url 'authority_add' authority.code %}" class="btn">Add vocabulary</a>
             <span>
@@ -17,7 +20,18 @@
                 <a href="{% url 'authority_load' authority_code=authority.code format='skos' %}">SKOS</a>
             </span>
         </p>
+        <details>
+            <summary>edit authority</summary>
+            <form method="post">
+                <fieldset>
+                {% csrf_token %}
+                {{ form.as_p }}
+                <p>{% for u in authority.users.all %}<u>{{ u.email }}</u>
+                    <a href="{% url 'authority_rm_user' authority.code u.id %}">&times;</a>
+                {% if not forloop.last %}, {% endif %}{% endfor %}
+                <p><button type="submit">Save changes</button>
+                </fieldset>
+            </form>
+        </details>
     {% endif %}
-
-    {% include 'vocabulary/ls.html' %}
 {% endblock %}
