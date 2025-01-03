@@ -66,8 +66,7 @@ button[disabled="disabled"]{background:gray}
 .btn-links{display:block}
 .btn-links .btn{float:left;margin-right:.6rem}
 .btn-links span{float:left;width:15em;padding:.8rem .2rem}
-.call{padding:1em 1.5em;font-size:1.5em}
-.call small{font-size:.7em}
+
 
 hr{color:#ddd;clear:both}
 
