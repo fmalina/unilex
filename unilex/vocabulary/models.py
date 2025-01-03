@@ -65,7 +65,7 @@ class Vocabulary(models.Model):
     private = models.BooleanField(
         verbose_name="Private vocabulary (paid members only)", default=False,
         help_text="Private vocabulary can be edited only by the users belonging to its authority.")
-    source = models.URLField(blank=True)
+    source = models.URLField(blank=True, null=True)
     updated_at = models.DateTimeField(default=datetime.now, editable=False)
     created_at = models.DateTimeField(default=datetime.now, editable=False)
     predicates = models.ManyToManyField('vocabulary.Concept', blank=True, related_name='predicates')
