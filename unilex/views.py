@@ -22,9 +22,7 @@ def home(request):
 
 
 def docs(request, tpl=''):
-    if 'nav' in request.path_info:
-        tpl = '-nav-queries'
-    return render(request, f'docs{tpl}.html', {})
+    return render(request, f'docs.html', {})
 
 
 def logmeout(request):
