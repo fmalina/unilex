@@ -7,13 +7,13 @@ def load_md(user, md_file, title):
     s = md_file.decode().replace('::', ':').replace('**', '')
     html = markdown.markdown(s)
     dom = fromstring(html)
-    vocab_el = dom.cssselect("ul")[0]
-    l1_title = vocab_el.cssselect("li:nth-child(1)")
+    vocab_el = dom.cssselect('ul')[0]
+    l1_title = vocab_el.cssselect('li:nth-child(1)')
     if len(l1_title) == 1:
         title = l1_title[0].text
     v = Vocabulary.objects.create(user=user, title=title)
     parents = []
-    for li in vocab_el.cssselect("li"):
+    for li in vocab_el.cssselect('li'):
         depth = (len(list(li.iterancestors())) - 3) // 2
         name = li.text.strip()
         desc = ''
@@ -24,8 +24,7 @@ def load_md(user, md_file, title):
         # Pop items off the stack until we reach the correct depth
         while len(parents) > depth:
             parents.pop()
-        concept = Concept.objects.create(
-            vocabulary=v, name=name, description=desc)
+        concept = Concept.objects.create(vocabulary=v, name=name, description=desc)
         if parents:
             concept.parent.add(parents[-1])
             concept.save()

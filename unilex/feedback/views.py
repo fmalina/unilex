@@ -4,19 +4,14 @@ from django.http import Http404, HttpResponse
 import datetime
 
 
-def strip_domain(request, url):
-    site = Site.objects.get_current()
-    return url.replace('http://', '')\
-              .replace('https://', '')\
-              .replace(site.domain, '')
-
-
 def feedback(request):
     if not request.POST.get('feedback_message', '').strip():
         raise Http404
-    url = strip_domain(request, request.META.get('HTTP_REFERER', '').replace('\n', '').strip())
+    site = Site.objects.get_current()
+    url = request.META.get('HTTP_REFERER', '').replace('\n', '').strip()
+    url = url.removeprefix(f'https://{site.domain}')
     ip = request.META.get('HTTP_X_FORWARDED_FOR', '') or request.META.get('REMOTE_ADDR', '')
-    
+
     if request.user.is_authenticated:
         user = request.user
         email = user.email

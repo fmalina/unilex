@@ -1,6 +1,7 @@
 """Import SKOS vocabularies (tested only with Lexaurus serialisation)
 Use from a command line for bulk imports and in the SKOS upload script view.
 """
+
 import logging
 import os
 import os.path
@@ -17,72 +18,89 @@ xmlns = {
     'rdf': 'http://www.w3.org/1999/02/22-rdf-syntax-ns#',
     'rdfs': 'http://www.w3.org/2000/01/rdf-schema#',
     'skos': 'http://www.w3.org/2004/02/skos/core#',
-    'zthes': 'https://unilexicon.com/'
+    'zthes': 'https://unilexicon.com/',
 }
 
-def expand_tag(ns, tag): return '{%s}%s' % (xmlns[ns], tag)
-def TAG(ns_colon_tag): return expand_tag(*ns_colon_tag.split(':'))
-def expand_map(tag_map): return {TAG(k):v for k,v in tag_map.items()}
 
-VOCAB_TAG_MAP = expand_map({
-    'skos:prefLabel': 'title',
-    'skos:definition': 'description',
-    'dc:title': 'title',
-    'dc:language': 'language',
-    'dc:date': None,
-    'dc:creator': None,
-    'dc:contributor': None,
-    'dc:description': 'description',
-    'dc:format': None,
-    'dc:rights': None,
-    'zthes:thesNote': ('label', {
-            'authority': None,
-            'version': None,
-            'globallyUniqueId': None,
-            'ownersId': None,
-            'category': None,
-            'rightsHolder': None,
-        }
-    ),
-})
+def expand_tag(ns, tag):
+    return '{%s}%s' % (xmlns[ns], tag)
 
-CONCEPT_TAG_MAP = expand_map({
-    'skos:prefLabel': 'name',
-    'skos:topConceptOf': None,  # deduceable from inScheme when no broader
-    'skos:inScheme': 'vocabulary',
-    'skos:broader': 'parent[]',
-    'skos:narrower': 'children[]',
-    'skos:definition': 'description',
-    'skos:related': 'related[]',
-    'dc:title': 'name',
-    'dc:source': None, # source
-    'dc:creator': None, # creator
-    'dc:language': None,
-    'zthes:termNoteGloballyUniqueId': None,
-    'zthes:termNoteDisplayOrder': 'order',
-    'zthes:termNoteSourceAuthority': None, # source
-    'zthes:termNote': ('label', {
-            'category': 'category[]',
-            # these need to go to ConceptAttributes
-            'displayOrder': 'order',
-            'query': 'query',
-            'definition': 'description',
-            'parentId': None,
-            'originalTid': None,
-            'option': None, 
-            'weight': None, 
-            'globallyUniqueId': None, # Duplicate
-            'isoCode': None, # Apparently a blob of junk.
-            # These seem like workflow stuff we can ignore for now
-            'termModifiedBy': None,  # creator
-            'created': None,
-            'modified': None,
-            'rightsHolder': None,
-            'authority': None,
-            'termApproval': None,
-        }
-    ),
-})
+
+def TAG(ns_colon_tag):
+    return expand_tag(*ns_colon_tag.split(':'))
+
+
+def expand_map(tag_map):
+    return {TAG(k): v for k, v in tag_map.items()}
+
+
+VOCAB_TAG_MAP = expand_map(
+    {
+        'skos:prefLabel': 'title',
+        'skos:definition': 'description',
+        'dc:title': 'title',
+        'dc:language': 'language',
+        'dc:date': None,
+        'dc:creator': None,
+        'dc:contributor': None,
+        'dc:description': 'description',
+        'dc:format': None,
+        'dc:rights': None,
+        'zthes:thesNote': (
+            'label',
+            {
+                'authority': None,
+                'version': None,
+                'globallyUniqueId': None,
+                'ownersId': None,
+                'category': None,
+                'rightsHolder': None,
+            },
+        ),
+    }
+)
+
+CONCEPT_TAG_MAP = expand_map(
+    {
+        'skos:prefLabel': 'name',
+        'skos:topConceptOf': None,  # deduceable from inScheme when no broader
+        'skos:inScheme': 'vocabulary',
+        'skos:broader': 'parent[]',
+        'skos:narrower': 'children[]',
+        'skos:definition': 'description',
+        'skos:related': 'related[]',
+        'dc:title': 'name',
+        'dc:source': None,  # source
+        'dc:creator': None,  # creator
+        'dc:language': None,
+        'zthes:termNoteGloballyUniqueId': None,
+        'zthes:termNoteDisplayOrder': 'order',
+        'zthes:termNoteSourceAuthority': None,  # source
+        'zthes:termNote': (
+            'label',
+            {
+                'category': 'category[]',
+                # these need to go to ConceptAttributes
+                'displayOrder': 'order',
+                'query': 'query',
+                'definition': 'description',
+                'parentId': None,
+                'originalTid': None,
+                'option': None,
+                'weight': None,
+                'globallyUniqueId': None,  # Duplicate
+                'isoCode': None,  # Apparently a blob of junk.
+                # These seem like workflow stuff we can ignore for now
+                'termModifiedBy': None,  # creator
+                'created': None,
+                'modified': None,
+                'rightsHolder': None,
+                'authority': None,
+                'termApproval': None,
+            },
+        ),
+    }
+)
 
 
 class XMLFormatError(Exception):
@@ -91,7 +109,7 @@ class XMLFormatError(Exception):
 
 def load_fields_from_node(node, tag_map):
     """Convert an XML node in a format defined by tag_map to a simple dictionary.
-    
+
     Each key in tag_map is a dictionary of element names in ElementTree's qualified name
     format (ie {namespace}nodeName).
     The values define how that element is mapped to a result key:
@@ -109,7 +127,7 @@ def load_fields_from_node(node, tag_map):
         try:
             mapped_field = tag_map[child.tag]
         except KeyError as e:
-            raise XMLFormatError(f"Unknown element found in {node.tag}: {child.tag}") from e
+            raise XMLFormatError(f'Unknown element found in {node.tag}: {child.tag}') from e
 
         if isinstance(mapped_field, tuple):
             attribute, attribute_mapping = mapped_field
@@ -117,8 +135,9 @@ def load_fields_from_node(node, tag_map):
             try:
                 mapped_field = attribute_mapping[attribute_value]
             except KeyError as e:
-                raise XMLFormatError(f"Unknown {attribute} value found"
-                                     f"for {child.tag}: {attribute_value}") from e
+                raise XMLFormatError(
+                    f'Unknown {attribute} value found for {child.tag}: {attribute_value}'
+                ) from e
 
         if mapped_field is not None:
             value = child.text
@@ -140,8 +159,10 @@ def load_fields_from_node(node, tag_map):
                 map.setdefault(mapped_field, []).append(value)
             else:
                 if mapped_field in map and map[mapped_field] != value:
-                    err = (f"Duplicate value '{value}' for field {mapped_field} "
-                           f"in node {node.get(xmlns_nid)}")
+                    err = (
+                        f"Duplicate value '{value}' for field {mapped_field} "
+                        f'in node {node.get(xmlns_nid)}'
+                    )
                     raise XMLFormatError(err)
                 map[mapped_field] = value
     return map
@@ -153,14 +174,14 @@ class SKOSLoader(object):
         self.log = log
         self.concepts_relationships = []
         self.messages = []
-    
+
     def message(self, level, message):
         """Log message to a log file or display in the browser"""
         if self.log:
             logging.log(level, message)
         else:
             self.messages.append((level, message))
-    
+
     def add_parent_relationship(self, parent, child):
         self.concepts_relationships.append((parent, 'parent of', child))
 
@@ -180,7 +201,7 @@ class SKOSLoader(object):
 
             object = Concept.objects.filter(node_id=obj_node_id, vocabulary=obj_vocab).first()
             if not object:
-                err = f"Problem importing {obj_vocab} no {predicate}: {subject} → {obj_node_id}"
+                err = f'Problem importing {obj_vocab} no {predicate}: {subject} → {obj_node_id}'
                 self.message(20, err)
                 continue
             if predicate == 'parent of':
@@ -204,16 +225,16 @@ class SKOSLoader(object):
             os.unlink(f.name)
         except TypeError:
             self.message(40, "That wasn't a SKOS RDF file.")
-            
+
         if doc.getroot().tag != TAG('rdf:RDF'):
-            self.message(40, "We need a SKOS RDF file. Try again.")
-        
-        for vocab in doc.findall('.//'+TAG('skos:ConceptScheme')):
+            self.message(40, 'We need a SKOS RDF file. Try again.')
+
+        for vocab in doc.findall('.//' + TAG('skos:ConceptScheme')):
             vocab = self.load_vocab_instance(vocab)
 
-        for concept in doc.findall('.//'+TAG('skos:Concept')):
+        for concept in doc.findall('.//' + TAG('skos:Concept')):
             self.load_concept_instance(concept)
-        
+
         return vocab, self.messages
 
     def get_node_id(self, element):
@@ -228,17 +249,14 @@ class SKOSLoader(object):
         if node_fragment:
             identifiers.append(f'#{node_fragment}')
         if not identifiers:
-            raise XMLFormatError(f"No node identifier found for {element.tag}")
+            raise XMLFormatError(f'No node identifier found for {element.tag}')
         if len(identifiers) > 1:
-            raise XMLFormatError(f"Duplicate identifiers found for {element.tag}: {identifiers}")
+            raise XMLFormatError(f'Duplicate identifiers found for {element.tag}: {identifiers}')
         return identifiers[0]
 
     def load_vocab_instance(self, vocab):
         """Parse a Vocabulary instance from an ElementTree skos:ConceptScheme node."""
-        vocab_dict = {
-            'node_id': self.get_node_id(vocab),
-            'user': self.user
-        }
+        vocab_dict = {'node_id': self.get_node_id(vocab), 'user': self.user}
         vocab_dict.update(load_fields_from_node(vocab, VOCAB_TAG_MAP))
         # Find or create a Language instance for vocab_dict['language']
         if 'language' in vocab_dict:
@@ -282,6 +300,6 @@ class SKOSLoader(object):
                 if file.endswith('.xml') or file.endswith('.rdf'):
                     file_path = os.path.join(subdir, file)
                     try:
-                        self.load_skos_vocab(file_path) 
+                        self.load_skos_vocab(file_path)
                     except XMLFormatError:
                         continue

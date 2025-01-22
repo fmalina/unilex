@@ -26,30 +26,25 @@ class VocabularyForm(forms.ModelForm):
 
     class Meta:
         model = Vocabulary
-        fields = ('title', 'node_id', 'description', 'language',
-                  'private', 'source')
+        fields = ('title', 'node_id', 'description', 'language', 'private', 'source')
 
 
 class UploadFileForm(forms.Form):
     file = forms.FileField(required=False)
-    permit = forms.BooleanField(
-        required=False,
-        label='Store raw file for inspection'
-    )
+    permit = forms.BooleanField(required=False, label='Store raw file for inspection')
     content = forms.CharField(
         required=False,
         widget=forms.Textarea(attrs={'rows': 3, 'cols': 60}),
-        label='Or paste content here'
+        label='Or paste content here',
     )
 
 
 def link_concept():
     return forms.ModelChoiceField(
         queryset=Concept.objects.all(),
-        widget=forms.TextInput(attrs={
-            'class': 'autocomplete',
-            'placeholder': 'Type concept and choose'
-        })
+        widget=forms.TextInput(
+            attrs={'class': 'autocomplete', 'placeholder': 'Type concept and choose'}
+        ),
     )
 
 
@@ -72,7 +67,6 @@ class RelatedForm(forms.ModelForm):
         model = Concept.related.through
         fields = ('predicate', 'object', 'object_value_type', 'object_value')
 
-
     def __init__(self, *args, predicates=None, **kwargs):
         super(RelatedForm, self).__init__(*args, **kwargs)
         self.fields['predicate'].choices = predicates or []
@@ -84,30 +78,27 @@ class RelatedForm(forms.ModelForm):
                 return Concept.objects.get(pk=pk)
             except Concept.DoesNotExist:
                 pass
-        raise forms.ValidationError("Invalid predicate selected.")
+        raise forms.ValidationError('Invalid predicate selected.')
 
 
 class AuthorityForm(forms.ModelForm):
-    email_to_add = forms.EmailField(
-        required=False,
-        label="Add user by email"
-    )
+    email_to_add = forms.EmailField(required=False, label='Add user by email')
 
     class Meta:
         model = Authority
         fields = ['name', 'website']
 
     def clean_email_to_add(self):
-        email = self.cleaned_data.get("email_to_add")
+        email = self.cleaned_data.get('email_to_add')
         if email:
             try:
                 _user = User.objects.get(email=email)
             except User.DoesNotExist as e:
-                raise forms.ValidationError("No user found with this email.") from e
+                raise forms.ValidationError('No user found with this email.') from e
         return email
 
     def save(self, commit=True):
-        email = self.cleaned_data.get("email_to_add")
+        email = self.cleaned_data.get('email_to_add')
         if email:
             user = User.objects.get(email=email)
             if user:

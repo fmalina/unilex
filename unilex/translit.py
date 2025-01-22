@@ -21,15 +21,15 @@ NOTE = f"""
 """
 
 requests_cache.install_cache(
-    cache_name='requests_cache', backend='sqlite',
-    expire_after=30*24*3600)
+    cache_name='requests_cache', backend='sqlite', expire_after=30 * 24 * 3600
+)
 
 
 def is_url(text):
-    if " " in text:
+    if ' ' in text:
         return False
-    parts = text.split("/")
-    if len(parts) and "." not in parts[0]:
+    parts = text.split('/')
+    if len(parts) and '.' not in parts[0]:
         return False
     return True
 
@@ -45,8 +45,9 @@ def get_lang(dom):
 
 
 def err(request, url, exception):
-    return render(request, 'translit.html', {
-        'exception': exception, 'redirect': SITE, 'url': url}, status=500)
+    return render(
+        request, 'translit.html', {'exception': exception, 'redirect': SITE, 'url': url}, status=500
+    )
 
 
 @login_required
@@ -56,8 +57,7 @@ def translit_view(request, url):
     if not is_url(url):
         return err(request, url, 'Please, use a correct address.')
     session = requests.Session()
-    session.headers.update({
-        'User-agent': f'Mozilla/5.0 (compatible; {NAME}/0.1; +{SITE})'})
+    session.headers.update({'User-agent': f'Mozilla/5.0 (compatible; {NAME}/0.1; +{SITE})'})
     full_url = f'https://{url}'
     try:
         qs = request.META.get('QUERY_STRING')
@@ -78,28 +78,28 @@ def translit_view(request, url):
     try:
         dom = html.fromstring(s)
     except ParserError:
-        return err(request, url, '''That website is invalid.
-            Webmaster needs to fix W3C validation errors.''')
+        return err(
+            request,
+            url,
+            """That website is invalid.
+            Webmaster needs to fix W3C validation errors.""",
+        )
     lang = get_lang(dom)
     dom.make_links_absolute(full_url)
     note = NOTE.replace('#URL#', full_url)
-    dom.find(".//body").insert(0, html.fromstring(note))
+    dom.find('.//body').insert(0, html.fromstring(note))
     s = html.tostring(dom, encoding='utf8').decode()
 
     try:
         result = transliterate.translit(s, language_code=lang, reversed=True)
         return HttpResponse(result)
     except transliterate.utils.LanguageDetectionError:
-        return HttpResponse(s.replace(
-            'Transliterated with',
-            'Not transliterated, is this in latin script?'
-        ))
+        return HttpResponse(
+            s.replace('Transliterated with', 'Not transliterated, is this in latin script?')
+        )
     except transliterate.utils.LanguagePackNotFound:
         try:  # try without language set
             return HttpResponse(transliterate.translit(s, reversed=True))
         except Exception as e:
-            return HttpResponse(s.replace(
-                'Transliterated with',
-                f'Not transliterated, {e}'
-            ))
+            return HttpResponse(s.replace('Transliterated with', f'Not transliterated, {e}'))
     return HttpResponse(s)

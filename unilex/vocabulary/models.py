@@ -25,14 +25,16 @@ class Language(models.Model):
 class Authority(models.Model):
     """Authority is an organisation, author or maintainer whose
     decisions on development of a vocabulary are definitive"""
+
     code = models.CharField(
-        max_length=5, primary_key=True,
-        help_text='Uppercase shorthand, no spaces, only set once')
+        max_length=5, primary_key=True, help_text='Uppercase shorthand, no spaces, only set once'
+    )
     name = models.CharField(max_length=150)
     website = models.URLField(blank=True)
     users = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
-        help_text='Authority can have many users. Vocabulary can have one authority.')
+        help_text='Authority can have many users. Vocabulary can have one authority.',
+    )
 
     class Meta:
         verbose_name_plural = 'Authorities'
@@ -48,7 +50,7 @@ class VocabularyManager(models.Manager):
 
 def uniq_slug(slug):
     uid = str(uuid.uuid4())[:5]
-    return f"{slug}--{uid}"
+    return f'{slug}--{uid}'
 
 
 @reversion.register()
@@ -61,10 +63,12 @@ class Vocabulary(models.Model):
     description = models.TextField(blank=True, default='')
     language = models.ForeignKey(Language, blank=True, null=True, on_delete=models.PROTECT)
     authority = models.ForeignKey(Authority, blank=True, null=True, on_delete=models.PROTECT)
-    queries = models.BooleanField(verbose_name="Enable queries?", default=False)
+    queries = models.BooleanField(verbose_name='Enable queries?', default=False)
     private = models.BooleanField(
-        verbose_name="Private vocabulary (paid members only)", default=False,
-        help_text="Private vocabulary can be edited only by the users belonging to its authority.")
+        verbose_name='Private vocabulary (paid members only)',
+        default=False,
+        help_text='Private vocabulary can be edited only by the users belonging to its authority.',
+    )
     source = models.URLField(blank=True, default='')
     updated_at = models.DateTimeField(default=datetime.now, editable=False)
     created_at = models.DateTimeField(default=datetime.now, editable=False)
@@ -128,13 +132,21 @@ class Concept(models.Model):
     name = models.CharField(db_index=True, max_length=255)  # prefLabel
     description = models.TextField(blank=True)
     order = models.IntegerField(blank=True, null=True)
-    parent = models.ManyToManyField('self', blank=True, symmetrical=False,
-                                    # through='vocabulary.Relation',
-                                    # through_fields=('subject', 'object'),
-                                    related_name='children')
-    related = models.ManyToManyField('self', blank=True, symmetrical=True,
-                                     through='vocabulary.Relation',
-                                     through_fields=('subject', 'object'))
+    parent = models.ManyToManyField(
+        'self',
+        blank=True,
+        symmetrical=False,
+        # through='vocabulary.Relation',
+        # through_fields=('subject', 'object'),
+        related_name='children',
+    )
+    related = models.ManyToManyField(
+        'self',
+        blank=True,
+        symmetrical=True,
+        through='vocabulary.Relation',
+        through_fields=('subject', 'object'),
+    )
     query = models.TextField(blank=True)
     count = models.IntegerField(blank=True, null=True)
     active = models.BooleanField(default=True)
@@ -208,14 +220,14 @@ class Concept(models.Model):
 
     def make_node_id(self):
         slug = slugify(self.name)
-        if Concept.objects.filter(node_id__iexact=slug,
-                                  vocabulary=self.vocabulary).exists():
+        if Concept.objects.filter(node_id__iexact=slug, vocabulary=self.vocabulary).exists():
             return uniq_slug(slug)
         return slug
 
 
 class Relation(models.Model):
     """Simple related concepts, custom relation triples, synonyms, attribute values etc."""
+
     VALUE_TYPES = [
         ('char', 'validation_simple', 'One or more characters'),
         ('bool', 'validation_yesno', 'Yes or No'),
@@ -227,17 +239,19 @@ class Relation(models.Model):
     VALIDATIONS = [(y, z) for x, y, z in VALUE_TYPES]
 
     subject = models.ForeignKey(Concept, related_name='subject', on_delete=models.CASCADE)
-    predicate = models.ForeignKey(Concept, related_name='predicate', on_delete=models.CASCADE,
-                                  blank=True, default='')
+    predicate = models.ForeignKey(
+        Concept, related_name='predicate', on_delete=models.CASCADE, blank=True, default=''
+    )
     object = models.ForeignKey(Concept, related_name='object', on_delete=models.CASCADE)
-    object_value_type = models.CharField("Object type", choices=VALUE_TYPE_CHOICES,
-                                         max_length=4, blank=True, default='')
-    object_value = models.TextField("Object value", blank=True, default='')
+    object_value_type = models.CharField(
+        'Object type', choices=VALUE_TYPE_CHOICES, max_length=4, blank=True, default=''
+    )
+    object_value = models.TextField('Object value', blank=True, default='')
 
     class Meta:
         db_table = 'concept_relations'
-        verbose_name = "Concept Relation"
-        verbose_name_plural = "Concept Relations"
+        verbose_name = 'Concept Relation'
+        verbose_name_plural = 'Concept Relations'
 
     def __str__(self):
         return self.object.name

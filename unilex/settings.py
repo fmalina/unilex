@@ -2,14 +2,14 @@ import sentry_sdk  # NoQA
 from sentry_sdk.integrations.django import DjangoIntegration  # NoQA
 import os.path
 import pymysql
+
 pymysql.install_as_MySQLdb()
 
 SECRET_KEY = os.getenv('SECRET_KEY', '12345')
 DEBUG = bool(int(os.getenv('UNILEX_DEBUG', '0')))
 VERSION = '1.72'
 
-BASE_DIR = os.path.dirname(
-    os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 INTERNAL_IPS = ['127.0.0.1']
 TIME_ZONE = 'Europe/London'
@@ -34,12 +34,12 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_RATE_LIMITS = {
-    "change_redpassword": "5/m",
-    "manage_email": "10/m",
-    "reset_password": "20/m",
-    "reset_password_email": "5/m",
-    "reset_password_from_key": "20/m",
-    "signup": "20/m",
+    'change_redpassword': '5/m',
+    'manage_email': '10/m',
+    'reset_password': '20/m',
+    'reset_password_email': '5/m',
+    'reset_password_from_key': '20/m',
+    'signup': '20/m',
 }
 ACCOUNT_SIGNUP_FORM_CLASS = 'unilex.vocabulary.forms.AutoBotHoneypotSignupForm'
 AUTHENTICATION_BACKENDS = ['allauth.account.auth_backends.AuthenticationBackend']
@@ -64,7 +64,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.messages.context_processors.messages',
             ]
-        }
+        },
     }
 ]
 MIDDLEWARE = [
@@ -92,20 +92,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.admin',
     'django.contrib.admindocs',
-
     'unilex.vocabulary',
     'unilex.tag',
     'unilex.feedback',
     'pay',
-
     'reversion',
-    # 'rest_framework',
-
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
-    # 'allauth.socialaccount.providers.microsoft',
 ] + [
     'medd.lookup',
     'medd.ingredient',
@@ -116,18 +111,22 @@ INSTALLED_APPS = [
     'medd.ampp',
     'medd.gtin',
     'medd.browse',
-    'medd.prescription'
+    'medd.prescription',
 ]
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'unilex', 'USER': os.getenv('PGUSER'), 'PASSWORD': os.getenv('PGPASSWORD')
+        'NAME': 'unilex',
+        'USER': os.getenv('PGUSER'),
+        'PASSWORD': os.getenv('PGPASSWORD'),
     },
     'medd': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'medd', 'USER': os.getenv('PGUSER'), 'PASSWORD': os.getenv('PGPASSWORD')
-    }
+        'NAME': 'medd',
+        'USER': os.getenv('PGUSER'),
+        'PASSWORD': os.getenv('PGPASSWORD'),
+    },
 }
 ALLOWED_HOSTS = ['unilexicon.com', 'unilexicon.co']
 CSRF_TRUSTED_ORIGINS = ['https://unilexicon.com', 'https://unilexicon.co']
@@ -140,6 +139,5 @@ PAY_PLANS = {365: ('229.00', '', '')}
 if DEBUG:
     sentry_sdk.init()
 else:
-    SENTRY_URL = "https://2b75f709314a42a4b1e5cb8b3d616353@o315515.ingest.sentry.io/5411895"
+    SENTRY_URL = 'https://2b75f709314a42a4b1e5cb8b3d616353@o315515.ingest.sentry.io/5411895'
     sentry_sdk.init(dsn=SENTRY_URL, integrations=[DjangoIntegration()])
-

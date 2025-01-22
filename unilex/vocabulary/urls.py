@@ -10,12 +10,10 @@ urlpatterns = [
     path('authority/<slug:authority_code>/add', v.vocabulary_add, name='authority_add'),
     path('authority/<slug:authority_code>/load-<slug:format>', v.load_vocab, name='authority_load'),
     path('authority/<slug:authority_code>/rm-user/<int:user_id>/', v.remove_user, name='rm_user'),
-
     path('autocomplete', v.autocomplete, name='v-autocomplete'),
     path('generate', v.generate, name='generate'),
     path('search', v.search, name='search'),
     path('adopt', v.concept_adopt),
-
     path('<slug:vocab_node_id>', v.detail, name='vocabulary'),
     path('<slug:vocab_node_id>/', v.detail),
     path('<slug:vocab_node_id>/edit', v.vocabulary_edit),
@@ -25,7 +23,6 @@ urlpatterns = [
     path('<slug:vocab_node_id>.xml', v.skos, name='skos'),
     path('<slug:vocab_node_id>/ordering', v.ordering, name='ordering'),
     path('<slug:vocab_node_id>/new', v.concept_new),
-
     re_path(r'^(?P<vocab_node_id>[a-z0-9-_]+)/(?P<style>nav|order|ul)', v.detail),  # legacy 301
     re_path(r'^(?P<vocab_node_id>[a-z0-9-_]+)/(?P<node_id>[A-Za-z0-9-: ]+)/new', v.concept_new),
     re_path(r'^(?P<vocab_node_id>[a-z0-9-_]+)/(?P<node_id>[A-Za-z0-9-: ]+)/edit', v.concept_edit),

@@ -13,9 +13,7 @@ urlpatterns = [
     path('feedback', feedback),
     path('tree/', include('unilex.vocabulary.urls')),
     path('tag/', include('unilex.tag.urls')),
-
     path('', include('allauth.urls')),
-
     path('admin/doc/', include('django.contrib.admindocs.urls')),
     path('admin/', admin.site.urls),
     path('profile', profile, name='profile'),
@@ -23,7 +21,6 @@ urlpatterns = [
     path('pro/', include('pay.urls')),
     path('logout/', logmeout, name='auth_logout'),
     path('sitemap.xml', sitemap, name='sitemap'),
-
     re_path(r'^translit/(?P<url>.*)$', translit_view, name='translit'),
     path('med', RedirectView.as_view(url='/med/', permanent=True)),
     path('med/', include('medd.urls')),

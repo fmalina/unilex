@@ -10,7 +10,7 @@ Paging middleware needs installing in the settings:
 Use in a view like so:
 
     from unilex.paging import simple_paging
-    
+
     def listings(request):
         ls = Listing.objects.all()
         ls, count, paging = simple_paging(request, ls, 100)
@@ -19,10 +19,11 @@ Use in a view like so:
             })
 
 Include paging in your listings template:
-    
+
     {{ paging }}
 
 """
+
 from django.template.loader import render_to_string
 from django.core.paginator import Paginator, EmptyPage
 from django.http import Http404
@@ -41,7 +42,7 @@ def paging_middleware(get_response):
 
 def simple_paging(request, qs, limit):
     pager = Paginator(qs, limit)
-    try: 
+    try:
         page_obj = pager.page(request.page)
         qs = page_obj.object_list
     except EmptyPage:
@@ -58,30 +59,27 @@ def simple_paging(request, qs, limit):
 
 def render_paging(request, pages, page_obj, count, limit):
     pages = sample(pages, request.page)
-    
+
     get = request.GET.copy()
     get.pop('page', None)
-    
-    return render_to_string('pagination.html', {
+    context = {
         'path': request.path_info,
         'pages': pages,
         'page_obj': page_obj,
         'is_paginated': count > limit,
-        'getvars': '&' + get.urlencode() if get else ''
-    })
+        'getvars': '&' + get.urlencode() if get else '',
+    }
+    return render_to_string('pagination.html', context)
 
 
 def sample(pages, current):
-    """Show first few, few around the current page & a last page
-    """
+    """Show first few, few around the current page & a last page"""
     if len(pages) > 20:
         ls = []
         prev = False
         for x in pages:
             a = False
-            if x in range(1,5)\
-            or x in range(current-5, current+5)\
-            or x == pages[-1]:
+            if x in range(1, 5) or x in range(current - 5, current + 5) or x == pages[-1]:
                 a = x
             if prev or a:
                 ls.append(a)

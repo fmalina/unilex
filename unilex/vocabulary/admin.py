@@ -16,10 +16,7 @@ def clean_relation_value(cleaned_data, obj):
 
 class RelationInlineForm(models.ModelForm):
     def clean_value(self):
-        return clean_relation_value(
-            self.cleaned_data,
-            self.cleaned_data['concept']
-        )
+        return clean_relation_value(self.cleaned_data, self.cleaned_data['concept'])
 
 
 class RelationInline(admin.TabularInline):
@@ -32,7 +29,9 @@ class RelationInline(admin.TabularInline):
 
 @admin.register(vocabs.Language)
 class LanguageAdmin(admin.ModelAdmin):
-    admin.site.disable_action('delete_selected',)
+    admin.site.disable_action(
+        'delete_selected',
+    )
 
 
 class AuthorityMembershipInline(admin.TabularInline):
@@ -51,24 +50,21 @@ def bulk_delete(modeladmin, request, queryset):
     queryset.delete()
 
 
-bulk_delete.short_description = "Delete selected"
+bulk_delete.short_description = 'Delete selected'
 
 
 @admin.register(vocabs.Vocabulary)
 class VocabularyAdmin(VersionAdmin):
     actions = [bulk_delete]
     search_fields = ['node_id', 'title', 'description']
-    prepopulated_fields = {"node_id": ("title",)}
+    prepopulated_fields = {'node_id': ('title',)}
     list_filter = ('private',)
-    list_display = (
-        'title', 'node_id', 'user', 'language',
-        'private', 'updated_at', 'created_at'
-    )
+    list_display = ('title', 'node_id', 'user', 'language', 'private', 'updated_at', 'created_at')
 
 
 @admin.register(vocabs.Concept)
 class ConceptAdmin(VersionAdmin):
-    search_fields = ['id','name']
+    search_fields = ['id', 'name']
     inlines = [RelationInline]
     list_display = ('name', 'mother', 'vocabulary', 'forward_path')
     list_filter = ('vocabulary',)

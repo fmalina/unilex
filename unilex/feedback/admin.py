@@ -12,8 +12,8 @@ def delete_spam(modeladmin, request, queryset):
     queryset.delete()
 
 
-mark_done.short_description = "Mark selected as done"
-delete_spam.short_description = "Delete selected"
+mark_done.short_description = 'Mark selected as done'
+delete_spam.short_description = 'Delete selected'
 
 
 class FeedbackAdmin(admin.ModelAdmin):

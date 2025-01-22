@@ -18,9 +18,8 @@ class Client:
         self.query = query
         self.request = request
 
-    def get_tags(self, api_key=""):
-        """Get tags over HTTP and return records as dictionaries
-        """
+    def get_tags(self, api_key=''):
+        """Get tags over HTTP and return records as dictionaries"""
         url = self.TAG_SERVER_URL + 'tag/json/' + urllib.parse.quote(self.query) + api_key
         data = urllib.request.urlopen(url).read().decode()
         return data

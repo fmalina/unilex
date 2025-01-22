@@ -11,12 +11,10 @@ def concept_to_csv(concept):
         concept.description,
         concept.depth_indent(),
         concept.name,
-        to_csv([concept_to_csv(child)
-                for child in concept.get_children()])
+        to_csv([concept_to_csv(child) for child in concept.get_children()]),
     )
 
 
 def export_csv(vocab):
     header = '"ID","Definition","Tree"\n'
-    return header + to_csv([concept_to_csv(child)
-                            for child in vocab.get_children()])
+    return header + to_csv([concept_to_csv(child) for child in vocab.get_children()])

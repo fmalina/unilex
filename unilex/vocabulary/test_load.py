@@ -21,7 +21,7 @@ class LoadTestCase(TestCase):
             (28, 'world-no-ids.csv'),
             (17, 'artificial-intelligence.md'),
             (17, 'personal-safety.md'),
-            (9, 'watches.md')
+            (9, 'watches.md'),
         ]
         load_ext = {
             'csv': load_xls,
@@ -29,9 +29,8 @@ class LoadTestCase(TestCase):
             'md': load_md,
         }
         for no, fn in test_files:
-            with open('unilex/vocabulary/test_data/'+fn, 'rb') as f:
+            with open('unilex/vocabulary/test_data/' + fn, 'rb') as f:
                 slug, ext = fn.split('.')
                 v = load_ext[ext](request.user, f.read(), slug)
-                self.assertEqual(v.get_absolute_url(),
-                                 f'/tree/{slug}/')
+                self.assertEqual(v.get_absolute_url(), f'/tree/{slug}/')
                 self.assertEqual(no, v.concept_set.all().count())

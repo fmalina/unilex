@@ -12,5 +12,5 @@ class TagInline(admin.TabularInline):
 @admin.register(Record)
 class RecordAdmin(admin.ModelAdmin):
     search_fields = ['title', 'desc', 'key']
-    list_display = ('title', 'key',)
+    list_display = ['title', 'key']
     inlines = [TagInline]

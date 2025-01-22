@@ -18,9 +18,15 @@ from unilex.vocabulary.export_csv import export_csv
 from unilex.vocabulary.export_json import vocab_to_dict
 from unilex.vocabulary.export_skos import export_skos
 from unilex.vocabulary.forms import (
-    UploadFileForm, VocabularyForm,  User, AuthorityForm,
-    ConceptForm, NewChildConceptForm,
-    BaseRelatedFormSet, RelatedForm, PredicatesForm
+    UploadFileForm,
+    VocabularyForm,
+    User,
+    AuthorityForm,
+    ConceptForm,
+    NewChildConceptForm,
+    BaseRelatedFormSet,
+    RelatedForm,
+    PredicatesForm,
 )
 from unilex.vocabulary.models import Authority, Vocabulary, Concept
 from sentry_sdk import capture_exception
@@ -30,9 +36,7 @@ NOT_ALLOWED = 'You are not allowed to view or edit this taxonomy'
 
 def listings(request, *args, **kwargs):
     qs = Vocabulary.objects.with_counts()
-    ls = qs.exclude(private=True)\
-           .exclude(concept_count__lte=10)\
-           .order_by('language', 'title')
+    ls = qs.exclude(private=True).exclude(concept_count__lte=10).order_by('language', 'title')
     own = []
     if request.user.is_authenticated:
         own = qs.filter(user=request.user)
@@ -43,9 +47,9 @@ def filter_private(qs, user):
     """Filters out private terms"""
     if user.is_authenticated:
         qs = qs.filter(
-            Q(vocabulary__private=False) |
-            Q(vocabulary__user=user) |
-            Q(vocabulary__authority__users=user)
+            Q(vocabulary__private=False)
+            | Q(vocabulary__user=user)
+            | Q(vocabulary__authority__users=user)
         )
     else:
         qs = qs.filter(vocabulary__private=False)
@@ -56,14 +60,9 @@ def autocomplete(request):
     q = request.GET.get('q', '').strip()
     concepts = Concept.objects.none()
     if q:
-        concepts = Concept.objects.filter(
-            Q(name__icontains=q) |
-            Q(node_id__istartswith=q)
-        )
+        concepts = Concept.objects.filter(Q(name__icontains=q) | Q(node_id__istartswith=q))
         concepts = filter_private(concepts, request.user)
-    response = render(request, 'vocabulary/autocomplete.txt', {
-        'concepts': concepts
-    })
+    response = render(request, 'vocabulary/autocomplete.txt', {'concepts': concepts})
     response['Access-Control-Allow-Origin'] = '*'
     return response
 
@@ -71,19 +70,17 @@ def autocomplete(request):
 def search(request):
     q = request.GET.get('q', '').strip()
     ls = Concept.objects.filter(
-        Q(name__icontains=q) |
-        Q(description__icontains=q) |
-        Q(node_id__istartswith=q)
+        Q(name__icontains=q) | Q(description__icontains=q) | Q(node_id__istartswith=q)
     )
     ls = filter_private(ls, request.user)
     if not q:
         ls = []
     ls, count, paging = simple_paging(request, ls, 10)
-    return render(request, 'vocabulary/search.html', {
-        'ls': ls, 'count': count, 'paging': paging,
-        'q': q,
-        'title': f'{q} - Search results'
-    })
+    return render(
+        request,
+        'vocabulary/search.html',
+        {'ls': ls, 'count': count, 'paging': paging, 'q': q, 'title': f'{q} - Search results'},
+    )
 
 
 def generate(request):
@@ -254,37 +251,38 @@ def export(vocab, data, extension, mime):
     timestamp = datetime.today().strftime('%Y-%m-%d')
     response = HttpResponse(data, content_type=mime)
     response['Content-Disposition'] = 'attachment; filename="%s-%s.%s"' % (
-        vocab.node_id, timestamp, extension)
+        vocab.node_id,
+        timestamp,
+        extension,
+    )
     return response
 
 
 @login_required
 def skos(request, vocab_node_id):
     vocab = get_vocab(request.user, vocab_node_id)
-    return export(vocab, export_skos(vocab),
-                  'xml', 'application/rdf+xml')
+    return export(vocab, export_skos(vocab), 'xml', 'application/rdf+xml')
 
 
 @login_required
 def csv(request, vocab_node_id):
     vocab = get_vocab(request.user, vocab_node_id)
-    return export(vocab, export_csv(vocab),
-                  'csv', 'text/comma-separated-values')
+    return export(vocab, export_csv(vocab), 'csv', 'text/comma-separated-values')
 
 
 @ajax_login_required
 def ordering(request, vocab_node_id):
     """Child concepts are ordered by ID if no order is specified.
-    
+
     This view allows to set new ordering using concept.order.
-    
+
     Request POST will look like:
         {'order-concept-478[]': ['2', '1', '3']} or
         {'order-vocab-15[]': ['1', '2', '5'...
     Where 478 is parent concept PK and 2, 1, 3 is new ordering
     of the children to rewrite their starting sequence 1, 2, 3.
     Ordering sequence numbers are not the same thing as concept.order
-    
+
     Ordering the 1st level differs as instead of parent concept PK we get a vocab PK.
     """
 
@@ -327,10 +325,10 @@ def vocabulary_edit(request, vocab_node_id):
     FormSet = inlineformset_factory(
         Vocabulary,
         Vocabulary.predicates.through,
-        fk_name="vocabulary",
+        fk_name='vocabulary',
         form=PredicatesForm,
         extra=1,
-        can_delete=True
+        can_delete=True,
     )
     formset = FormSet(instance=vocab, prefix='pf')
     if request.method == 'POST':
@@ -349,7 +347,7 @@ def vocabulary_edit(request, vocab_node_id):
         'children': vocab.get_children(),
         'form': form,
         'formset': formset,
-        'forms_and_set': zip(formset.forms, predicates, strict=False)
+        'forms_and_set': zip(formset.forms, predicates, strict=False),
     }
     return render(request, 'vocabulary/vocabulary-edit.html', context)
 
@@ -373,11 +371,9 @@ def concept_new(request, vocab_node_id, node_id=0):
                 c.parent.add(parent)
             c.save()
             return redirect(parent.get_absolute_url())
-    return render(request, 'vocabulary/new-concept.html', {
-        'concept': c,
-        'parent': parent,
-        'form': form
-    })
+    return render(
+        request, 'vocabulary/new-concept.html', {'concept': c, 'parent': parent, 'form': form}
+    )
 
 
 def concept_edit(request, vocab_node_id, node_id):
@@ -392,19 +388,17 @@ def concept_edit(request, vocab_node_id, node_id):
         Concept,
         Concept.related.through,
         formset=BaseRelatedFormSet,
-        fk_name="subject",
+        fk_name='subject',
         form=RelatedForm,
         extra=1,
-        can_delete=True
+        can_delete=True,
     )
     if request.method == 'POST':
         if not request.user.is_authenticated:
             return redirect('/')
         else:
             form = ConceptForm(request.POST, instance=c)
-            formset = RelatedFormSet(
-                request.POST,
-                instance=c, prefix='rf', predicates=predicates)
+            formset = RelatedFormSet(request.POST, instance=c, prefix='rf', predicates=predicates)
             if form.is_valid():
                 form.save()
             if formset.is_valid():
@@ -412,14 +406,13 @@ def concept_edit(request, vocab_node_id, node_id):
             return redirect(c.get_absolute_url())
     else:
         form = ConceptForm(instance=c, label_suffix='')
-        formset = RelatedFormSet(
-            instance=c, prefix='rf', predicates=predicates)
+        formset = RelatedFormSet(instance=c, prefix='rf', predicates=predicates)
     context = {
         'children': children,
         'concept': c,
         'form': form,
         'formset': formset,
-        'forms_and_set': zip(formset.forms, related, strict=False)
+        'forms_and_set': zip(formset.forms, related, strict=False),
     }
     return render(request, 'vocabulary/concept-edit.html', context)
 
@@ -499,7 +492,6 @@ def vocabulary_delete(request, vocab_node_id):
                 return redirect('/tree/')
             messages.info(request, 'Not deleted. You need to tick the box to confirm.')
             return redirect(vocab.get_absolute_url())
-    return render(request, 'vocabulary/vocabulary-delete.html', {
-        'vocabulary': vocab,
-        'allowed': allowed
-    })
+    return render(
+        request, 'vocabulary/vocabulary-delete.html', {'vocabulary': vocab, 'allowed': allowed}
+    )

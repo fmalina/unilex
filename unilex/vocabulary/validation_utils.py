@@ -15,8 +15,8 @@ def validation_simple(value, obj=None):
 
 def validation_integer(value, obj=None):
     """
-   Validates that value is an integer number.
-   No change is made to the value
+    Validates that value is an integer number.
+    No change is made to the value
     """
     try:
         int(value)
@@ -30,7 +30,7 @@ def validation_yesno(value, obj=None):
     Validates that yes or no is entered.
     Converts the yes or no to capitalized version
     """
-    if string.upper(value) in ["YES", "NO"]:
+    if string.upper(value) in ['YES', 'NO']:
         return True, string.capitalize(value)
     return False, value
 

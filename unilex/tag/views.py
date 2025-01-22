@@ -18,6 +18,7 @@ class TaggingView(View):
 
     Communicate with local database or proxy remote source using Client.
     """
+
     template_name = 'tag/record-form.html'
     form = RecordForm
     remote = False
@@ -58,7 +59,7 @@ class TaggingView(View):
             'record': record,
             'form': form,
             'formset': formset,
-            'forms_and_set': zip(formset.forms, tags, strict=False)
+            'forms_and_set': zip(formset.forms, tags, strict=False),
         }
         return render(request, self.template_name, context)
 
@@ -76,6 +77,7 @@ class TaggingView(View):
             except Exception:
                 msg = "Sorry, can't pull tags from the remote source right now.\nError was:\n\n"
                 import traceback
+
                 return HttpResponse(msg + traceback.format_exc(), content_type='text/plain')
 
             record = Record.objects.get(id=json_record['id'])
@@ -90,7 +92,7 @@ class TaggingView(View):
             concepts = [tag.concept for tag in record.tag_set.all()]
 
         for concept in concepts:
-            tag_form = {'predicate': concept.id, }
+            tag_form = {'predicate': concept.id}
             tag_concepts.append(concept)
             tag_forms.append(tag_form)
             # messages.info(request, '''Concept "%s" from vocab "%s"
@@ -102,12 +104,8 @@ class TaggingView(View):
         form = self.form(instance=record, label_suffix='')
         formset = tag_formset(initial=tag_forms)
         forms_and_tags = zip(formset.forms, tag_concepts, strict=False)
-        response = render(request, self.template_name, {
-            'record': record,
-            'form': form,
-            'formset': formset,
-            'forms_and_set': forms_and_tags
-        })
+        context = {'record': record, 'form': form, 'formset': formset, 'forms_and_set': forms_and_tags}
+        response = render(request, self.template_name, context)
         # CORS header
         response['Access-Control-Allow-Origin'] = '*'
         return response
@@ -121,25 +119,22 @@ def about(request):
 def query(request):
     """Return list of results for a given tag query."""
     q = request.POST['query']
-    return render(request, 'tag/query-results.html', {
-        'records': Client(request, q).get_tags()
-    })
+    return render(request, 'tag/query-results.html', {'records': Client(request, q).get_tags()})
 
 
 def records(request):
-    return render(request, 'tag/records.html', {
+    context = {
         'title': 'Recent records',
         'records': Record.objects.prefetch_related(
-            'tag_set__concept',
-            'tag_set__concept__vocabulary'
-        )
-    })
+            'tag_set__concept', 'tag_set__concept__vocabulary'
+        ),
+    }
+    return render(request,b'tag/records.html', context)
 
 
 def record_json(request, record_id):
     """JSON rendered single record with its tags."""
     record = get_object_or_404(Record, pk=record_id)
     tags = record.tag_set.all()
-    return render(request, 'tag/record.js',
-                  {'record': record, 'tags': tags},
-                  content_type="application/json")
+    context = {'record': record, 'tags': tags}
+    return render(request, 'tag/record.js', context, content_type='application/json')

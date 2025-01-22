@@ -22,6 +22,7 @@ Ola lives a life of her own and cares for health of her models.
 Don't use output from other "intelligent" systems to feed Ola's input, ever.
 Don't give her bullshit either or you'll get cut off.
 """
+
 import os
 import openai
 
@@ -38,8 +39,7 @@ def taxonomy_prompt(concept):
 def submit_prompt(prompt):
     print(f'>>> {prompt}')
     response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
-        messages=[{"role": "user", "content": prompt}]
+        model='gpt-3.5-turbo', messages=[{'role': 'user', 'content': prompt}]
     )
     return response.choices[0]['message']['content']
 

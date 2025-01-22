@@ -39,19 +39,17 @@ def load_xls(user, file, title):
         book = xlrd.open_workbook(file_contents=file)
         sheet1 = book.sheet_by_index(0)
         col1 = [x.value for x in sheet1.col(0)]
-        reader = [[x.value for x in sheet1.row(row_no)]
-                  for row_no in range(sheet1.nrows)]
+        reader = [[x.value for x in sheet1.row(row_no)] for row_no in range(sheet1.nrows)]
     except xlrd.XLRDError:
         try:
             f = file.decode().splitlines()
         except UnicodeDecodeError as e:
-            raise XLSLoadException("Not a CSV.") from e
-        reader = [[cell.strip() for cell in row]
-                  for row in csv.reader(f)]
+            raise XLSLoadException('Not a CSV.') from e
+        reader = [[cell.strip() for cell in row] for row in csv.reader(f)]
         try:
             col1 = [x[0] for x in reader]
         except IndexError as e:
-            raise XLSLoadException("Remove blank lines!") from e
+            raise XLSLoadException('Remove blank lines!') from e
 
     id_col = has_unique_ids(col1)
     description_column_index = None
@@ -74,12 +72,11 @@ def load_xls(user, file, title):
         if description_column_index is not None:
             concept.description = row[description_column_index]
             blank -= 1  # to account for description column
-        
+
         concept.save()
         if len(parents) < blank:
-            raise XLSLoadException(
-                f"Wrong indent on line {line + 1} or non unique IDs.")
-        
+            raise XLSLoadException(f'Wrong indent on line {line + 1} or non unique IDs.')
+
         if len(parents) > blank:
             for _i in range(len(parents) - blank):
                 parents.pop()

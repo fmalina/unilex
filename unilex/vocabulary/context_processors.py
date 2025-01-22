@@ -21,8 +21,4 @@ def current_site(request):
         site = Site.objects.get_current()
     except Site.DoesNotExist:
         site = RequestSite(request)
-    return {
-        'site': site,
-        'base_url': current_site_url(site),
-        'version': version
-    }
+    return {'site': site, 'base_url': current_site_url(site), 'version': version}

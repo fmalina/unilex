@@ -1,12 +1,11 @@
-"""Export a vocabulary as SKOS in RDF/XML format.
-"""
+"""Export a vocabulary as SKOS in RDF/XML format."""
 
 from django.template import Template, Context
 from unilex.vocabulary.load_skos import xmlns
 
-NAMESPACES = '\n'.join(['xmlns:%s="%s"' % (k,v) for k, v in xmlns.items()])
+NAMESPACES = '\n'.join(['xmlns:%s="%s"' % (k, v) for k, v in xmlns.items()])
 
-VOCAB_TEMPLATE = Template('''
+VOCAB_TEMPLATE = Template("""
 <skos:ConceptScheme rdf:nodeID="{{v.node_id}}">
     <skos:prefLabel>{{v.title}}</skos:prefLabel>
     <skos:definition>{{v.description}}</skos:definition>
@@ -15,9 +14,9 @@ VOCAB_TEMPLATE = Template('''
     {% if v.language %}<dc:language>{{v.language}}</dc:language>{% endif %}
     <dc:date>{{v.created_at|date:"d-m-Y"}}</dc:date>
 </skos:ConceptScheme>
-''')
+""")
 
-CONCEPT_TEMPLATE = Template('''
+CONCEPT_TEMPLATE = Template("""
 <skos:Concept rdf:nodeID="{{ concept.node_id }}">
     <skos:inScheme rdf:nodeID="{{ concept.vocabulary.node_id }}"/>
     <skos:prefLabel>{{ concept.name }}</skos:prefLabel>{% if concept.description %}
@@ -37,7 +36,7 @@ CONCEPT_TEMPLATE = Template('''
     {% endfor %}{% if concept.query %}
     <zthes:termNote label="query">{{ concept.query }}</zthes:termNote>{% endif %}
 </skos:Concept>
-''')
+""")
 
 
 def vocab_to_skos(vocab):
@@ -55,8 +54,8 @@ def export_skos(vocab):
     without buffering the whole file in memory.
     """
     yield '<?xml version="1.0" encoding="UTF-8"?>\n'
-    yield '<rdf:RDF '+NAMESPACES+'>\n'
-    yield vocab_to_skos(vocab) 
+    yield '<rdf:RDF ' + NAMESPACES + '>\n'
+    yield vocab_to_skos(vocab)
 
     for concept in vocab.concept_set.all():
         yield concept_to_skos(concept)

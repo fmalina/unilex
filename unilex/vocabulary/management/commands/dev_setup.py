@@ -13,17 +13,14 @@ def create_user():
     if user:
         return user
     return User.objects.create_user(
-        username='admin',
-        email='hi@unilexicon.com',
-        password='admin',
-        is_superuser=True
+        username='admin', email='hi@unilexicon.com', password='admin', is_superuser=True
     )
 
 
 def setup_site():
     s = Site.objects.get(id=1)
-    s.domain = "unilexicon.com"
-    s.name = "Unilexicon"
+    s.domain = 'unilexicon.com'
+    s.name = 'Unilexicon'
     s.save()
 
 
@@ -39,9 +36,6 @@ class Command(BaseCommand):
         user = create_user()
         setup_site()
         for fn in ['World', 'Unilexicon', 'Software', 'Museum']:
-            path = os.path.join(
-                settings.BASE_DIR,
-                f"unilex/vocabulary/test_data/vocabs/{fn}.xml"
-            )
+            path = os.path.join(settings.BASE_DIR, f'unilex/vocabulary/test_data/vocabs/{fn}.xml')
             Vocabulary.objects.filter(title=fn).delete()
             load_vocab(user, path)

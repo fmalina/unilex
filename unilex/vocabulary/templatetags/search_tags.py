@@ -11,7 +11,7 @@ SETTINGS_DEFAULTS = {
     'CONTEXT_WORDS': 10,
     'IGNORE_CASE': True,
     'WORD_BOUNDARY': False,
-    'HIGHLIGHT_CLASS': "highlight"
+    'HIGHLIGHT_CLASS': 'highlight',
 }
 
 
@@ -31,11 +31,11 @@ def searchexcerpt(text, phrases, context_words=None, ignore_case=None, word_boun
 
     phrases = map(re.escape, phrases)
     flags = ignore_case and re.I or 0
-    exprs = [re.compile(r"^%s$" % p, flags) for p in phrases]
+    exprs = [re.compile(r'^%s$' % p, flags) for p in phrases]
     whitespace = re.compile(r'\s+')
-    
-    re_template = word_boundary and r"\b(%s)\b" or r"(%s)"
-    re_pieces = re.compile(re_template % "|".join(phrases), flags)
+
+    re_template = word_boundary and r'\b(%s)\b' or r'(%s)'
+    re_pieces = re.compile(re_template % '|'.join(phrases), flags)
     pieces = re_pieces.split(text)
     matches = {}
     word_lists = []
@@ -73,10 +73,10 @@ def searchexcerpt(text, phrases, context_words=None, ignore_case=None, word_boun
         elif not i % 2:
             omit = slice(context_words + 1, -context_words - 1)
         if omit and words[omit]:
-            words[omit] = ["..."]
-        output.append(" ".join(words))
+            words[omit] = ['...']
+        output.append(' '.join(words))
 
-    return dict(original=text, excerpt="".join(output), hits=len(index))
+    return dict(original=text, excerpt=''.join(output), hits=len(index))
 
 
 class FunctionProxyNode(Node):
@@ -91,7 +91,7 @@ class FunctionProxyNode(Node):
         value = self.get_value(text, *args)
         if self.variable_name:
             context[self.variable_name] = value
-            return ""
+            return ''
         else:
             return self.string_value(value)
 
@@ -113,16 +113,16 @@ class SearchContextNode(FunctionProxyNode):
 @register.tag(name='searchexcerpt')
 def searchexcerpt_tag(parser, token):
     """
-        {% searchexcerpt search_terms [context_words] [ignore_case] [word_boundary] [as name] %}
-        ...text...
-        {% endsearchexcerpt %}
+    {% searchexcerpt search_terms [context_words] [ignore_case] [word_boundary] [as name] %}
+    ...text...
+    {% endsearchexcerpt %}
     """
     bits = list(token.split_contents())
     if not 3 <= len(bits) <= 8:
         usage = searchexcerpt_tag.__doc__.strip()
-        raise TemplateSyntaxError(f"{bits[0]!r} expected usage: {usage}")
+        raise TemplateSyntaxError(f'{bits[0]!r} expected usage: {usage}')
 
-    if len(bits) > 4 and bits[-2] == "as":
+    if len(bits) > 4 and bits[-2] == 'as':
         args, name = bits[1:-2], bits[-1]
     else:
         args, name = bits[1:], None
@@ -135,6 +135,8 @@ def searchexcerpt_tag(parser, token):
 @register.filter(name='searchexcerpt')
 def searchexcerpt_filter(value, arg):
     return searchexcerpt(value, arg)['excerpt']
+
+
 searchexcerpt_filter.is_safe = True
 
 
@@ -150,8 +152,8 @@ def highlight(text, phrases, ignore_case=None, word_boundary=None, class_name=No
 
     phrases = map(re.escape, phrases)
     flags = ignore_case and re.I or 0
-    re_template = word_boundary and r"\b(%s)\b" or r"(%s)"
-    expr = re.compile(re_template % "|".join(phrases), flags)
+    re_template = word_boundary and r'\b(%s)\b' or r'(%s)'
+    expr = re.compile(re_template % '|'.join(phrases), flags)
     template = '<b class="%s">%%s</b>' % class_name
     matches = []
 
@@ -175,16 +177,16 @@ class HighlightNode(FunctionProxyNode):
 @register.tag(name='highlight')
 def highlight_tag(parser, token):
     """
-        {% highlight search_terms [ignore_case] [word_boundary] [class_name] [as name] %}
-        ...text...
-        {% endhighlight %}
+    {% highlight search_terms [ignore_case] [word_boundary] [class_name] [as name] %}
+    ...text...
+    {% endhighlight %}
     """
     bits = list(token.split_contents())
     if not 2 <= len(bits) <= 7:
         usage = highlight_tag.__doc__.strip()
-        raise TemplateSyntaxError(f"{bits[0]!r} expected usage: {usage}")
+        raise TemplateSyntaxError(f'{bits[0]!r} expected usage: {usage}')
 
-    if len(bits) > 3 and bits[-2] == "as":
+    if len(bits) > 3 and bits[-2] == 'as':
         args, name = bits[1:-2], bits[-1]
     else:
         args, name = bits[1:], None
@@ -205,12 +207,12 @@ def hits(text, phrases, ignore_case=None, word_boundary=None):
     if ignore_case is None:
         ignore_case = get_setting('IGNORE_CASE')
     if word_boundary is None:
-        word_boundary = get_setting('WORD_BOUNDARY')    
+        word_boundary = get_setting('WORD_BOUNDARY')
 
     phrases = map(re.escape, phrases)
     flags = ignore_case and re.I or 0
-    re_template = word_boundary and r"\b(%s)\b" or r"(%s)"
-    expr = re.compile(re_template % "|".join(phrases), flags)
+    re_template = word_boundary and r'\b(%s)\b' or r'(%s)'
+    expr = re.compile(re_template % '|'.join(phrases), flags)
     return len(expr.findall(text))
 
 
@@ -219,22 +221,22 @@ class HitsNode(FunctionProxyNode):
         return hits(*args)
 
     def string_value(self, value):
-        return f"{value:d}"
+        return f'{value:d}'
 
 
 @register.tag(name='hits')
 def hits_tag(parser, token):
     """
-        {% hits search_terms [ignore_case] [word_boundary] [as name] %}
-        ...text...
-        {% endhits %}
+    {% hits search_terms [ignore_case] [word_boundary] [as name] %}
+    ...text...
+    {% endhits %}
     """
     bits = list(token.split_contents())
     if not 2 <= len(bits) <= 6:
         usage = hits_tag.__doc__.strip()
-        raise TemplateSyntaxError(f"{bits[0]!r} expected usage: {usage}")
+        raise TemplateSyntaxError(f'{bits[0]!r} expected usage: {usage}')
 
-    if len(bits) > 3 and bits[-2] == "as":
+    if len(bits) > 3 and bits[-2] == 'as':
         args, name = bits[1:-2], bits[-1]
     else:
         args, name = bits[1:], None

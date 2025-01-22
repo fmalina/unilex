@@ -8,7 +8,7 @@ def concept_to_dict(concept, children_lookup, depth, max_depth):
         'name': escape(concept.name),
         'url': concept.get_absolute_url(),
         'children': [],
-        'data': {'type': 'concept'}
+        'data': {'type': 'concept'},
     }
     if concept.description:
         d['description'] = escape(concept.description)
@@ -22,16 +22,16 @@ def concept_to_dict(concept, children_lookup, depth, max_depth):
             depth += 1
         else:
             depth -= 1
-        d['children'] = [concept_to_dict(child, children_lookup, depth, max_depth)
-                         for child in children]
+        d['children'] = [
+            concept_to_dict(child, children_lookup, depth, max_depth) for child in children
+        ]
         d['data']['depth'] = depth
     return d
 
 
 def vocab_to_dict(vocab, max_depth=0):
     vocab_concepts = {c.id: c for c in vocab.concept_set.all()}
-    parent_rels = Concept.parent.through.objects.filter(
-        from_concept__vocabulary=vocab)
+    parent_rels = Concept.parent.through.objects.filter(from_concept__vocabulary=vocab)
     children_lookup = {}
     for rel in parent_rels:
         child = vocab_concepts[rel.from_concept_id]
@@ -47,7 +47,9 @@ def vocab_to_dict(vocab, max_depth=0):
         'url': vocab.get_absolute_url(),
         'queries': vocab.queries,
         'description': escape(vocab.description),
-        'children': [concept_to_dict(child, children_lookup, depth=1, max_depth=max_depth)
-                     for child in children],
-        'data': {'type': 'vocab'}
+        'children': [
+            concept_to_dict(child, children_lookup, depth=1, max_depth=max_depth)
+            for child in children
+        ],
+        'data': {'type': 'vocab'},
     }
