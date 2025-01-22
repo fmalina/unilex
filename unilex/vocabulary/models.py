@@ -240,7 +240,7 @@ class Relation(models.Model):
 
     subject = models.ForeignKey(Concept, related_name='subject', on_delete=models.CASCADE)
     predicate = models.ForeignKey(
-        Concept, related_name='predicate', on_delete=models.CASCADE, blank=True, default=''
+        Concept, related_name='predicate', on_delete=models.CASCADE, blank=True, null=True
     )
     object = models.ForeignKey(Concept, related_name='object', on_delete=models.CASCADE)
     object_value_type = models.CharField(

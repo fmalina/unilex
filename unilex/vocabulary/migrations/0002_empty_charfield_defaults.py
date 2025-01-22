@@ -34,17 +34,6 @@ class Migration(migrations.Migration):
             ),
         ),
         migrations.AlterField(
-            model_name="relation",
-            name="predicate",
-            field=models.ForeignKey(
-                blank=True,
-                default="",
-                on_delete=django.db.models.deletion.CASCADE,
-                related_name="predicate",
-                to="vocabulary.concept",
-            ),
-        ),
-        migrations.AlterField(
             model_name="vocabulary",
             name="description",
             field=models.TextField(blank=True, default=""),
