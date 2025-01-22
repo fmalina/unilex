@@ -44,14 +44,14 @@ def load_xls(user, file, title):
     except xlrd.XLRDError:
         try:
             f = file.decode().splitlines()
-        except UnicodeDecodeError:
-            raise XLSLoadException("Not a CSV.")
+        except UnicodeDecodeError as e:
+            raise XLSLoadException("Not a CSV.") from e
         reader = [[cell.strip() for cell in row]
                   for row in csv.reader(f)]
         try:
             col1 = [x[0] for x in reader]
-        except IndexError:
-            raise XLSLoadException("Remove blank lines!")
+        except IndexError as e:
+            raise XLSLoadException("Remove blank lines!") from e
 
     id_col = has_unique_ids(col1)
     description_column_index = None
@@ -81,7 +81,7 @@ def load_xls(user, file, title):
                 f"Wrong indent on line {line + 1} or non unique IDs.")
         
         if len(parents) > blank:
-            for i in range(len(parents) - blank):
+            for _i in range(len(parents) - blank):
                 parents.pop()
 
         if parents:

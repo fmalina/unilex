@@ -32,8 +32,8 @@ def paging_middleware(get_response):
     def middleware(request):
         try:
             request.page = int(request.GET.get('page', 1))
-        except ValueError:
-            raise Http404('Page does not exist')
+        except ValueError as e:
+            raise Http404('Page does not exist') from e
         return get_response(request)
 
     return middleware

@@ -204,7 +204,7 @@ def authority(request, authority_code, json=False):
     return render(request, 'vocabulary/authority.html', context)
 
 
-def rm_user_from_authority(request, authority_code, user_id):
+def remove_user(request, authority_code, user_id):
     ath = get_object_or_404(Authority, code=authority_code)
     user = get_object_or_404(User, id=user_id)
     if is_permitted(request.user, ath) and user in ath.users.all():
@@ -235,12 +235,13 @@ def detail(request, vocab_node_id, style=None):
     count = Concept.objects.filter(vocabulary=vocab).count()
     d = vocab_to_dict(vocab, 0)
     json_data = dumps(d, indent=4).encode()
-    return render(request, 'vocabulary/detail.html', {
+    context = {
         'vocabulary': vocab,
         'concept_dict': d,
         'json_data': json_data.decode(),
         'count': count,
-    })
+    }
+    return render(request, 'vocabulary/detail.html', context)
 
 
 def json(request, vocab_node_id):
@@ -286,7 +287,6 @@ def ordering(request, vocab_node_id):
     
     Ordering the 1st level differs as instead of parent concept PK we get a vocab PK.
     """
-    vocab = get_vocab(request.user, vocab_node_id)
 
     x = 'Order concepts'
     if request.method == 'POST':
@@ -344,13 +344,14 @@ def vocabulary_edit(request, vocab_node_id):
             if formset.is_valid():
                 formset.save()
             return redirect(vocab.get_absolute_url())
-    return render(request, 'vocabulary/vocabulary-edit.html', {
+    context = {
         'vocabulary': vocab,
         'children': vocab.get_children(),
         'form': form,
         'formset': formset,
-        'forms_and_set': zip(formset.forms, predicates)
-    })
+        'forms_and_set': zip(formset.forms, predicates, strict=False)
+    }
+    return render(request, 'vocabulary/vocabulary-edit.html', context)
 
 
 @ajax_login_required
@@ -413,13 +414,14 @@ def concept_edit(request, vocab_node_id, node_id):
         form = ConceptForm(instance=c, label_suffix='')
         formset = RelatedFormSet(
             instance=c, prefix='rf', predicates=predicates)
-    return render(request, 'vocabulary/concept-edit.html', {
+    context = {
         'children': children,
         'concept': c,
         'form': form,
         'formset': formset,
-        'forms_and_set': zip(formset.forms, related)
-    })
+        'forms_and_set': zip(formset.forms, related, strict=False)
+    }
+    return render(request, 'vocabulary/concept-edit.html', context)
 
 
 @ajax_login_required
@@ -454,16 +456,13 @@ def concept_adopt(request):
         child.save()
         for d in child.get_descendants():
             d.vocabulary = parent_vocab
-            try:
-                d.save()
-            except:
-                pass
+            d.save()
 
     return HttpResponse('ok')
 
 
 @ajax_login_required
-def concept_delete(request, vocab_node_id, node_id):
+def concept_del(request, vocab_node_id, node_id):
     vocab = get_vocab(request.user, vocab_node_id)
 
     c = get_object_or_404(Concept, node_id=node_id, vocabulary=vocab)

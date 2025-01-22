@@ -13,7 +13,8 @@ class Record(models.Model):
     """
     title = models.CharField(max_length=150)
     desc = models.TextField(blank=True, verbose_name="Description")
-    key = models.CharField(max_length=150, unique=True, verbose_name="Key / URI / Unique Resource ID")
+    key = models.CharField(max_length=150, unique=True,
+                           verbose_name="Key / URI / Unique Resource ID")
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         blank=True, null=True,
@@ -21,15 +22,15 @@ class Record(models.Model):
     updated_at = models.DateTimeField(default=datetime.now, editable=False)
     created_at = models.DateTimeField(default=datetime.now, editable=False)
 
-    def get_absolute_url(self):
-        return f"/tag/{self.key}"
-
     def __str__(self):
         return self.title
 
     def save(self, *args, **kwargs):
         self.updated_at = datetime.now()
         super(Record, self).save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return f"/tag/{self.key}"
 
 
 class Tag(models.Model):

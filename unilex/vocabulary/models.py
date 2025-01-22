@@ -15,11 +15,11 @@ class Language(models.Model):
     iso = models.CharField(primary_key=True, max_length=5, verbose_name='ISO code')
     name = models.CharField(max_length=60)
 
-    def __str__(self):
-        return self.iso
-
     class Meta:
         db_table = 'languages'
+
+    def __str__(self):
+        return self.iso
 
 
 class Authority(models.Model):
@@ -34,11 +34,11 @@ class Authority(models.Model):
         settings.AUTH_USER_MODEL,
         help_text='Authority can have many users. Vocabulary can have one authority.')
 
-    def __str__(self):
-        return self.code
-
     class Meta:
         verbose_name_plural = 'Authorities'
+
+    def __str__(self):
+        return self.code
 
 
 class VocabularyManager(models.Manager):
@@ -58,18 +58,39 @@ class Vocabulary(models.Model):
     node_id = models.SlugField(unique=True, max_length=60, verbose_name='Permalink: /tree/')
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
     title = models.CharField(max_length=75)
-    description = models.TextField(blank=True, null=True)
+    description = models.TextField(blank=True, default='')
     language = models.ForeignKey(Language, blank=True, null=True, on_delete=models.PROTECT)
     authority = models.ForeignKey(Authority, blank=True, null=True, on_delete=models.PROTECT)
     queries = models.BooleanField(verbose_name="Enable queries?", default=False)
     private = models.BooleanField(
         verbose_name="Private vocabulary (paid members only)", default=False,
         help_text="Private vocabulary can be edited only by the users belonging to its authority.")
-    source = models.URLField(blank=True, null=True)
+    source = models.URLField(blank=True, default='')
     updated_at = models.DateTimeField(default=datetime.now, editable=False)
     created_at = models.DateTimeField(default=datetime.now, editable=False)
     predicates = models.ManyToManyField('vocabulary.Concept', blank=True, related_name='predicates')
     objects = VocabularyManager()
+
+    class Meta:
+        db_table = 'vocabularies'
+        verbose_name_plural = 'Vocabularies'
+
+    def __str__(self):
+        return self.title
+
+    def save(self, *args, **kwargs):
+        self.updated_at = datetime.now()
+        if not self.pk and not self.node_id or self.node_id.startswith('new-vocabulary'):
+            # must be a new vocabulary or excel import without node_id
+            self.node_id = self.make_node_id(self.title)
+        if not self.pk:
+            # must be an import and nodeID has been provided
+            self.node_id = self.make_node_id(self.node_id)
+        self.node_id = slugify(self.node_id)
+        super(Vocabulary, self).save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return f'/tree/{self.node_id}'
 
     @property
     def name(self):
@@ -77,12 +98,6 @@ class Vocabulary(models.Model):
 
     def get_children(self):
         return self.concept_set.filter(parent__isnull=True).order_by('order')
-
-    def __str__(self):
-        return self.title
-
-    def get_absolute_url(self):
-        return f'/tree/{self.node_id}'
 
     def json_url(self):
         return f'/tree/{self.node_id}/json'
@@ -102,21 +117,6 @@ class Vocabulary(models.Model):
         if user.is_superuser or user.is_staff:
             return True
         return False
-
-    def save(self, *args, **kwargs):
-        self.updated_at = datetime.now()
-        if not self.pk and not self.node_id or self.node_id.startswith('new-vocabulary'):
-            # must be a new vocabulary or excel import without node_id
-            self.node_id = self.make_node_id(self.title)
-        if not self.pk:
-            # must be an import and nodeID has been provided
-            self.node_id = self.make_node_id(self.node_id)
-        self.node_id = slugify(self.node_id)
-        super(Vocabulary, self).save(*args, **kwargs)
-
-    class Meta:
-        db_table = 'vocabularies'
-        verbose_name_plural = 'Vocabularies'
 
 
 @reversion.register()
@@ -140,6 +140,23 @@ class Concept(models.Model):
     active = models.BooleanField(default=True)
     updated_at = models.DateTimeField(default=datetime.now, editable=False)
     created_at = models.DateTimeField(default=datetime.now, editable=False)
+
+    class Meta:
+        db_table = 'concepts'
+        ordering = ['order', 'name']
+        unique_together = [('node_id', 'vocabulary')]
+
+    def __str__(self):
+        return self.name
+
+    def save(self, *args, **kwargs):
+        self.updated_at = datetime.now()
+        if not self.node_id:
+            self.node_id = self.make_node_id()
+        super(Concept, self).save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return f'{self.vocabulary.get_absolute_url()}#c-{self.node_id}'
 
     def mother(self):
         return self.parent.first()
@@ -186,14 +203,8 @@ class Concept(models.Model):
         p.reverse()
         return ' ‹ '.join(p)
 
-    def get_absolute_url(self):
-        return f'{self.vocabulary.get_absolute_url()}#c-{self.node_id}'
-
     def get_edit_url(self):
         return f'/tree/{self.vocabulary.node_id}/{self.node_id}/'
-
-    def __str__(self):
-        return self.name
 
     def make_node_id(self):
         slug = slugify(self.name)
@@ -201,17 +212,6 @@ class Concept(models.Model):
                                   vocabulary=self.vocabulary).exists():
             return uniq_slug(slug)
         return slug
-
-    def save(self, *args, **kwargs):
-        self.updated_at = datetime.now()
-        if not self.node_id:
-            self.node_id = self.make_node_id()
-        super(Concept, self).save(*args, **kwargs)
-
-    class Meta:
-        db_table = 'concepts'
-        ordering = ['order', 'name']
-        unique_together = [('node_id', 'vocabulary')]
 
 
 class Relation(models.Model):
@@ -227,18 +227,12 @@ class Relation(models.Model):
     VALIDATIONS = [(y, z) for x, y, z in VALUE_TYPES]
 
     subject = models.ForeignKey(Concept, related_name='subject', on_delete=models.CASCADE)
-    predicate = models.ForeignKey(Concept, related_name='predicate', on_delete=models.CASCADE, null=True, blank=True)
+    predicate = models.ForeignKey(Concept, related_name='predicate', on_delete=models.CASCADE,
+                                  blank=True, default='')
     object = models.ForeignKey(Concept, related_name='object', on_delete=models.CASCADE)
-    object_value_type = models.CharField("Object type", choices=VALUE_TYPE_CHOICES, max_length=4, null=True, blank=True)
-    object_value = models.TextField("Object value", null=True, blank=True)
-
-    @property
-    def name(self):
-        return self.object.name
-
-    @property
-    def description(self):
-        return self.object.description
+    object_value_type = models.CharField("Object type", choices=VALUE_TYPE_CHOICES,
+                                         max_length=4, blank=True, default='')
+    object_value = models.TextField("Object value", blank=True, default='')
 
     class Meta:
         db_table = 'concept_relations'
@@ -247,3 +241,11 @@ class Relation(models.Model):
 
     def __str__(self):
         return self.object.name
+
+    @property
+    def name(self):
+        return self.object.name
+
+    @property
+    def description(self):
+        return self.object.description

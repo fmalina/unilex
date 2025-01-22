@@ -8,13 +8,9 @@ User = get_user_model()
 class ConceptForm(forms.ModelForm):
     name = forms.CharField()
 
-    def __init__(self, *args, **kwargs):
-        super(ConceptForm, self).__init__(*args, **kwargs)
-        instance = kwargs['instance']
-
     class Meta:
         model = Concept
-        exclude = ('related', 'vocabulary', 'parent')
+        fields = ('node_id', 'name', 'description', 'order', 'count', 'active')
 
 
 class NewChildConceptForm(forms.ModelForm):
@@ -47,9 +43,9 @@ class UploadFileForm(forms.Form):
     )
 
 
-def link_concept(qs=Concept.objects.all()):
+def link_concept():
     return forms.ModelChoiceField(
-        queryset=qs,
+        queryset=Concept.objects.all(),
         widget=forms.TextInput(attrs={
             'class': 'autocomplete',
             'placeholder': 'Type concept and choose'
@@ -74,7 +70,8 @@ class RelatedForm(forms.ModelForm):
 
     class Meta:
         model = Concept.related.through
-        exclude = ('subject',)
+        fields = ('predicate', 'object', 'object_value_type', 'object_value')
+
 
     def __init__(self, *args, predicates=None, **kwargs):
         super(RelatedForm, self).__init__(*args, **kwargs)
@@ -105,8 +102,8 @@ class AuthorityForm(forms.ModelForm):
         if email:
             try:
                 _user = User.objects.get(email=email)
-            except User.DoesNotExist:
-                raise forms.ValidationError("No user found with this email.")
+            except User.DoesNotExist as e:
+                raise forms.ValidationError("No user found with this email.") from e
         return email
 
     def save(self, commit=True):
@@ -123,7 +120,7 @@ class PredicatesForm(forms.ModelForm):
 
     class Meta:
         model = Vocabulary.predicates.through
-        exclude = ('vocabulary',)
+        exclude = ('vocabulary',)  # noqa
 
 
 class AutoBotHoneypotSignupForm(forms.Form):
@@ -132,4 +129,4 @@ class AutoBotHoneypotSignupForm(forms.Form):
         honeypot = request.POST.get('bname')
         if honeypot:
             user.delete()
-            raise Exception(f'Bot trying to signup')
+            raise Exception('Bot trying to signup')

@@ -3,7 +3,6 @@ import json
 from django.forms.formsets import formset_factory
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
-from django.utils.decorators import method_decorator
 from django.views import View
 
 from unilex.tag.client import Client
@@ -55,12 +54,13 @@ class TaggingView(View):
                     _tag, _created = Tag.objects.get_or_create(record=record, concept=tag)
                 response = redirect(record.get_absolute_url())
             return response
-        return render(request, self.template_name, {
+        context = {
             'record': record,
             'form': form,
             'formset': formset,
-            'forms_and_set': zip(formset.forms, tags)
-        })
+            'forms_and_set': zip(formset.forms, tags, strict=False)
+        }
+        return render(request, self.template_name, context)
 
     def get(self, request, key=None):
         tag_concepts = []
@@ -73,7 +73,7 @@ class TaggingView(View):
             try:
                 data = Client(request, query).get_tags()
                 json_record = json.loads(data)
-            except Exception as e:
+            except Exception:
                 msg = "Sorry, can't pull tags from the remote source right now.\nError was:\n\n"
                 import traceback
                 return HttpResponse(msg + traceback.format_exc(), content_type='text/plain')
@@ -101,12 +101,12 @@ class TaggingView(View):
         tag_formset = formset_factory(form=TagForm, extra=len(tag_concepts), can_delete=True)
         form = self.form(instance=record, label_suffix='')
         formset = tag_formset(initial=tag_forms)
-        forms_and_tags = zip(formset.forms, tag_concepts)
+        forms_and_tags = zip(formset.forms, tag_concepts, strict=False)
         response = render(request, self.template_name, {
             'record': record,
             'form': form,
             'formset': formset,
-            'forms_and_set': zip(formset.forms, tag_concepts)
+            'forms_and_set': forms_and_tags
         })
         # CORS header
         response['Access-Control-Allow-Origin'] = '*'

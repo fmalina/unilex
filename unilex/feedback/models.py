@@ -15,8 +15,8 @@ class Feedback(models.Model):
     done = models.BooleanField(default=False)
     created_at = models.DateTimeField()
 
-    def __str__(self):
-        return '#%s: From %s' % (self.id, self.email or 'anonymous')
-
     class Meta:
         db_table = 'feedback'
+
+    def __str__(self):
+        return '#%s: From %s' % (self.id, self.email or 'anonymous')

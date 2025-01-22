@@ -130,10 +130,8 @@ DATABASES = {
     }
 }
 ALLOWED_HOSTS = ['unilexicon.com', 'unilexicon.co']
-CSRF_TRUSTED_ORIGINS = ['https://unilexicon.com']
+CSRF_TRUSTED_ORIGINS = ['https://unilexicon.com', 'https://unilexicon.co']
 if DEBUG:
-    ALLOWED_HOSTS += ['localhost', '127.0.0.1', 'unilexicon.co']
-    CSRF_TRUSTED_ORIGINS += ['https://unilexicon.co']
     MY_SITE_PROTOCOL = 'https'
 DEFAULT_FROM_EMAIL = 'hi@unilexicon.com'
 ADMINS = MANAGERS = [('Admin', DEFAULT_FROM_EMAIL)]

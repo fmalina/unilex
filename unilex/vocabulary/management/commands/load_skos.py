@@ -3,6 +3,8 @@ from unilex.vocabulary.load_skos import SKOSLoader
 from unilex.vocabulary.management.commands.dev_setup import create_user
 from optparse import make_option
 
+import sys
+
 
 class Command(BaseCommand):
     help = 'Import SKOS files'
@@ -25,11 +27,10 @@ class Command(BaseCommand):
                 for a in args:
                     loader.load_skos_vocab(a)
             loader.save_relationships()
-        except Exception:
-            import traceback, sys
-            traceback.print_exc()
+        except Exception as e:
+            # breakpoint()
             print(
-                '''Exceptions have been raised.
+                f'''Exceptions have been raised. {e}
                 If the import was incomplete, you might want to reset the DB:
                 $ python manage.py reset vocabulary''',
                 file=sys.stderr

@@ -6,7 +6,7 @@ blockquote cite:before{content:"— "}
 .btn.call{padding:1em 2em;font-size:1.2rem;background:gold;color:black;
     font-weight:bold;text-transform:uppercase;letter-spacing:.1em;word-spacing:1ex}
 .btn.call:hover{background:gold;text-decoration:underline}
-.award{width:14rem;background:royalblue;padding:3rem;font-size:1.4rem;border-radius:1rem;color:white;float:left}
+.award{width:14rem;background:#005089;padding:3rem;font-size:1.4rem;border-radius:1rem;color:white;float:left}
 .award img{width:200px;float:none}
 summary{text-align:right}
 .tagging #demo{

@@ -5,7 +5,7 @@ $(function(){
         scrollHeight: 'auto',
         selectFirst: false,
         autoFill: false,
-        minChars: 1
+        minChars: 4
     }).attr("autocomplete","off");
     $("#q").result(function(event, data, formatted){
         if(data){

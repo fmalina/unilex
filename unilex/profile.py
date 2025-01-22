@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.shortcuts import redirect
-from unilex.vocabulary.models import Vocabulary
 
 
 class UpdateProfile(forms.ModelForm):

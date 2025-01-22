@@ -27,3 +27,9 @@ dependencies = [
     "transliterate>=1.10.2",
     "xlrd>=2.0.1",
 ]
+
+[tool.ruff]
+lint.select = ["E", "F", "B", "DJ"]
+line-length = 100
+format.quote-style = "single"
+exclude = ["migrations"]

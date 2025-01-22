@@ -6,8 +6,8 @@ import os
 import os.path
 from tempfile import NamedTemporaryFile
 from xml.etree.ElementTree import ElementTree
-
-from unilex.vocabulary.models import *
+from django.conf import settings
+from unilex.vocabulary.models import Vocabulary, Concept, Language
 
 logfile = os.path.join(settings.BASE_DIR, 'log')
 logging.basicConfig(filename=logfile, level=logging.DEBUG)
@@ -20,9 +20,9 @@ xmlns = {
     'zthes': 'https://unilexicon.com/'
 }
 
-expand_tag = lambda ns, tag: '{%s}%s' % (xmlns[ns], tag)
-TAG = lambda ns_colon_tag: expand_tag(*ns_colon_tag.split(':'))
-expand_map = lambda tag_map: {TAG(k):v for k,v in tag_map.items()}
+def expand_tag(ns, tag): return '{%s}%s' % (xmlns[ns], tag)
+def TAG(ns_colon_tag): return expand_tag(*ns_colon_tag.split(':'))
+def expand_map(tag_map): return {TAG(k):v for k,v in tag_map.items()}
 
 VOCAB_TAG_MAP = expand_map({
     'skos:prefLabel': 'title',
@@ -108,16 +108,17 @@ def load_fields_from_node(node, tag_map):
     for child in node:
         try:
             mapped_field = tag_map[child.tag]
-        except KeyError:
-            raise XMLFormatError(f"Unknown element found in {node.tag}: {child.tag}")
+        except KeyError as e:
+            raise XMLFormatError(f"Unknown element found in {node.tag}: {child.tag}") from e
 
         if isinstance(mapped_field, tuple):
             attribute, attribute_mapping = mapped_field
             attribute_value = child.get(attribute)
             try:
                 mapped_field = attribute_mapping[attribute_value]
-            except KeyError:
-                raise XMLFormatError(f"Unknown {attribute} value found for {child.tag}: {attribute_value}")
+            except KeyError as e:
+                raise XMLFormatError(f"Unknown {attribute} value found"
+                                     f"for {child.tag}: {attribute_value}") from e
 
         if mapped_field is not None:
             value = child.text
@@ -139,9 +140,9 @@ def load_fields_from_node(node, tag_map):
                 map.setdefault(mapped_field, []).append(value)
             else:
                 if mapped_field in map and map[mapped_field] != value:
-                    raise XMLFormatError(
-                        f"Duplicate value '{value}' for field {mapped_field} in node {node.get(xmlns_nid)}"
-                    )
+                    err = (f"Duplicate value '{value}' for field {mapped_field} "
+                           f"in node {node.get(xmlns_nid)}")
+                    raise XMLFormatError(err)
                 map[mapped_field] = value
     return map
 
@@ -173,12 +174,14 @@ class SKOSLoader(object):
 
             subject = Concept.objects.filter(node_id=sub_node_id, vocabulary=sub_vocab).first()
             if not subject:
-                self.message(20, f"No subject Concept matching node_id '{sub_node_id}' in {sub_vocab}")
+                err = f"No subject Concept matching node_id '{sub_node_id}' in {sub_vocab}"
+                self.message(20, err)
                 continue
 
             object = Concept.objects.filter(node_id=obj_node_id, vocabulary=obj_vocab).first()
             if not object:
-                self.message(20, f"Problem importing {obj_vocab} no {predicate}: {subject} → {obj_node_id}")
+                err = f"Problem importing {obj_vocab} no {predicate}: {subject} → {obj_node_id}"
+                self.message(20, err)
                 continue
             if predicate == 'parent of':
                 object.parent.add(subject)
@@ -259,7 +262,7 @@ class SKOSLoader(object):
 
         vocab = Vocabulary.objects.filter(node_id=vocab_node_id).first()
         if not vocab:
-            raise XMLFormatError(f"No Vocabulary with node_id '{vocab}' found for Concept '{node_id}'")
+            raise XMLFormatError(f"No Vocabulary '{vocab}' found for Concept '{node_id}'")
         concept_dict['vocabulary'] = vocab
         c = Concept(**concept_dict)
         c.save()
@@ -274,7 +277,7 @@ class SKOSLoader(object):
             self.add_related_relationship(subject=(vocab, node_id), related=(vocab, rel))
 
     def load_recursive(self, path):
-        for subdir, dirs, files in os.walk(path, followlinks=True):
+        for subdir, _dirs, files in os.walk(path, followlinks=True):
             for file in files:
                 if file.endswith('.xml') or file.endswith('.rdf'):
                     file_path = os.path.join(subdir, file)

@@ -27,7 +27,7 @@
                 {% csrf_token %}
                 {{ form.as_p }}
                 <p>{% for u in authority.users.all %}<u>{{ u.email }}</u>
-                    <a href="{% url 'authority_rm_user' authority.code u.id %}">&times;</a>
+                    <a href="{% url 'rm_user' authority.code u.id %}">&times;</a>
                 {% if not forloop.last %}, {% endif %}{% endfor %}
                 <p><button type="submit">Save changes</button>
                 </fieldset>

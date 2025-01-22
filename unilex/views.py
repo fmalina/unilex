@@ -22,7 +22,7 @@ def home(request):
 
 
 def docs(request, tpl=''):
-    return render(request, f'docs.html', {})
+    return render(request, 'docs.html', {})
 
 
 def logmeout(request):
