@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-{% spaceless %}<head>
+<head>
         <meta charset="utf-8">
         <title>{% block title %}{{ title }}{% endblock %}{% block head_title %}{% endblock %}</title>
         <link rel="stylesheet" href="{{ base_url }}/assets/css/screen.css?{{ version }}">
@@ -55,7 +55,7 @@
     <footer>
         {% include 'feedback/form.html' %}
         <nav>
-            &copy; {% now "Y" %} Unilexicon by <a href="/fm/">F. Malina</a>
+            &copy; {% now "Y" %} Unilexicon by <a href="/fm/">Francis Malina</a>
             <a href="#feedback" id="open_feedback">Contact</a>
             {% block ext %}{% endblock %}
         </nav>
@@ -67,4 +67,4 @@
         <script src="{{ base_url }}/assets/js/cookies.js?{{ version }}"></script>
     {% endblock %}
     </body>
-</html>{% endspaceless %}
+</html>

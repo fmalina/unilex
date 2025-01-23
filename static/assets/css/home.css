@@ -1,12 +1,12 @@
 .content p{max-width:1000px}
 .center{text-align:center}
-blockquote{width:25rem;font-size:1.2rem;padding:0 4rem 3rem 0;margin:0;float:left}
+blockquote{font-size:1.2rem;padding:0 0 3rem 0;margin:0}
 blockquote:before{content:'“';font-size:4rem;font-family:serif;float:left;padding:.8rem}
 blockquote cite:before{content:"— "}
 .btn.call{padding:1em 2em;font-size:1.2rem;background:gold;color:black;
     font-weight:bold;text-transform:uppercase;letter-spacing:.1em;word-spacing:1ex}
 .btn.call:hover{background:gold;text-decoration:underline}
-.award{width:14rem;background:#005089;padding:3rem;font-size:1.4rem;border-radius:1rem;color:white;float:left}
+.award{background:#005089;padding:3rem;font-size:1.4rem;border-radius:1rem;color:white}
 .award img{width:200px;float:none}
 summary{text-align:right}
 .tagging #demo{

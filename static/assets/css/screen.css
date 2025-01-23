@@ -28,6 +28,7 @@ header nav a{display:inline-block}
 header form{text-align:center}
 nav{font-size:.9rem}
 nav a{text-transform:uppercase;padding:.5em 1em .5em 0}
+footer nav a{white-space:nowrap;text-transform:none}
 a.curr{color:inherit;text-decoration:none;cursor:default}
 
 form ul{margin:0;padding:10px 0}
@@ -146,6 +147,8 @@ footer #queries{color:#ccc;margin-top:300px}
 	#feedback,#feedback textarea{width:560px;max-width:none}
 	#feedback input{width:200px;display:inline}
     .auth main input,.login-or{max-width:350px}
+    blockquote{width:25rem;padding-right:4rem;float:left}
+    .award{width:14rem;float:left}
 }
 @media screen and (max-width:640px){
 	.logo{display:block}
