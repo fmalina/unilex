@@ -29,27 +29,35 @@ Standard formats: SKOS, JSON, Excel/CSV
 
 ## Server Installation - Vocabulary editor & repository
 
-Install Python, MySQL or your database of choice and all required
+Install Python, PostgreSQL or your database of choice and all required
 packages.
 
-> uv sync
+    uv sync
 
 Create database and add name, user and password to settings_local.py
 based on the text template provided.
 
 Run:
 
-> ./manage.py migrate ./manage.py runserver
+    ./manage.py migrate ./manage.py runserver
 
-For MySQL enable fulltext indexes.
+Enable fulltext indexes.
 
-> ALTER TABLE concepts ADD FULLTEXT(name); ALTER TABLE concepts ADD
-> FULLTEXT(description);
+On Postgres:
+
+    CREATE INDEX concepts_name_fulltext_idx ON concepts USING GIN (to_tsvector('english', name));
+    CREATE INDEX concepts_description_fulltext_idx ON concepts USING GIN (to_tsvector('english', description));
+
+
+On MySQL/MariaDB:
+
+    ALTER TABLE concepts ADD FULLTEXT(name);
+    ALTER TABLE concepts ADD FULLTEXT(description);
 
 Import SKOS vocabularies from disk (or upload them later):
 
-> ./manage.py load_skos -r \<directory of the vocabularies to import
-> e.g.: /path/to/vocabs/\>
+    ./manage.py load_skos -r \<directory of the vocabularies to import
+    e.g.: /path/to/vocabs/\>
 
 ## Browser Installation - Tagging tool
 
@@ -62,7 +70,6 @@ should be ./tag/
 
 ## Credits
  - Web framework (Templates, ORM, MVC) used is [Django](https://djangoproject.com) with Gunicorn a deployment backend server.
- - PyMySQL and mysqlclient are database bindings for MySQL being phased out for Postgres.
  - xlrd used to read Excel files, lxml helps parse DM+D medd export data with fabric automating updates.
  - Sentry_sdk is used for error reporting.
  - Graph visualisation uses [The JavaScript InfoVis Toolkit](https://github.com/philogb/jit).
@@ -92,7 +99,7 @@ django dev server, so this needs changing for deployment.
 
 Another important bit of the config file is:
 
-> add_header Access-Control-Allow-Origin\...
+    add_header Access-Control-Allow-Origin\...
 
 This allows the Chrome tagging extension to get on with the AJAX Cross
 Site Scripting(XSS) security controls.

@@ -151,7 +151,7 @@ xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
         <skos:narrower rdf:nodeID="git"/>
         <skos:narrower rdf:nodeID="nginx"/>
         <skos:narrower rdf:nodeID="ubuntu"/>
-        <skos:narrower rdf:nodeID="mysql"/>
+        <skos:narrower rdf:nodeID="postgresql"/>
         
     </skos:Concept>
 
@@ -171,9 +171,9 @@ xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
         
     </skos:Concept>
 
-    <skos:Concept rdf:nodeID="mysql">
+    <skos:Concept rdf:nodeID="postgresql">
         <skos:inScheme rdf:nodeID="unilexicon"/>
-        <skos:prefLabel>MySQL</skos:prefLabel>
+        <skos:prefLabel>PostgreSQL</skos:prefLabel>
         <skos:broader rdf:nodeID="live-platform"/>
         
         
